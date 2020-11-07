@@ -199,7 +199,6 @@ app
         //         console.log('linkToken:',parsedBody["linkToken"]);
         //     })
 
-        
         return client.replyMessage(ev.replyToken,{
             "type":"flex",
             "altText":"link",
