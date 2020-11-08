@@ -183,23 +183,6 @@ app
 
     }else if(text === '連携'){
 
-        // const userId = ev.source.userId;
-        // const options = {
-        //     url:`https://api.line.me/v2/bot/user/${userId}/linkToken`,
-        //     method:'POST',
-        //     headers:{
-        //         'Authorization':'Bearer ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU='
-        //     }
-        // }
-
-        // request(options)
-        //     .then(body=>{
-        //         const parsedBody = JSON.parse(body);
-        //         console.log('parsedBody:',parsedBody)
-        //         console.log('linkToken:',parsedBody["linkToken"]);
-        //     })
-
-
         return client.replyMessage(ev.replyToken,{
             "type":"flex",
             "altText":"link",
@@ -216,7 +199,6 @@ app
                       "type": "uri",
                       "label": "連携しますよん",
                       "uri": `https://linebot-linkapp.herokuapp.com/api/link?line_uid=${ev.source.userId}`
-                    //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
                     }
                   }
                 ]
@@ -227,7 +209,7 @@ app
     else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
-            "text":`${profile.displayName}さん、今${text}って言いました？`
+            "text":`${profile.displayName}さん、今「${text}」って言いました？`
         });
     }
  }
