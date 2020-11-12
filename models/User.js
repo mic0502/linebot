@@ -66,7 +66,6 @@ module.exports = {
             }
             connection.query(select_query)
                 .then(res=>{
-                    console.log('登録済みアカウント');
                     resolve(res.rows);
                 })
                 .catch(e=>console.log(e));
