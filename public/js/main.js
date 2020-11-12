@@ -22,21 +22,21 @@ window.onload = () => {
                 .then(profile=>{
                     const lineId = profile.userId;                  
                     
-                    // 登録済のユーザーかどうがチェック
-                    const select_user_query = {
-                        text:`SELECT * FROM users WHERE line_id='${lineId}';`
-                    }
-                    connection.query(select_user_query)
-                    .then(res=>{
-                        if (res.rowCount > 0 ){
-                        // すでに登録済の場合
-                        console.log('登録済みアカウント');
-                        return client.replyMessage(ev.replyToken,{
-                            "type":"text",
-                            "text":`${profile.displayName}さん、すでに連携済みです。`
-                        });
-                        }else{
-                        // 未登録の場合
+                    // // 登録済のユーザーかどうがチェック
+                    // const select_user_query = {
+                    //     text:`SELECT * FROM users WHERE line_id='${lineId}';`
+                    // }
+                    // connection.query(select_user_query)
+                    // .then(res=>{
+                    //     if (res.rowCount > 0 ){
+                    //     // すでに登録済の場合
+                    //     console.log('登録済みアカウント');
+                    //     return client.replyMessage(ev.replyToken,{
+                    //         "type":"text",
+                    //         "text":`${profile.displayName}さん、すでに連携済みです。`
+                    //     });
+                    //     }else{
+                    //     // 未登録の場合
               
                         fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                             .then(response=>{
@@ -121,8 +121,8 @@ window.onload = () => {
                                 // フォーム要素を大元のdiv要素へ格納
                                 divLogin.appendChild(formElement);
                             });
-                            }
-                        });           
+                        //     }
+                        // });           
                     
                 })
                 .catch(err=>console.log(err));
