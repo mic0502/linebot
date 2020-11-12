@@ -36,14 +36,11 @@ module.exports = {
             // const splitId = id.split('&');
             // const originId = splitId[0];
             // const linkToken = splitId[1];
-            console.log('id linktoken pass',id,password,linkToken);
-            User.check()
+
+            User.check(id,password,'')
                 .then(response=>{
-                    console.log('response:',response);
-                    const filtered = response.filter(object=>{
-                        return object.login_id === id && object.login_password === password;
-                    });
-                    if(filtered.length){
+                    if (response > 0 ){
+
                         console.log('認証成功');
                         // nonce生成d
                         const N=16

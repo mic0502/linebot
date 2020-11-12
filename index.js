@@ -177,7 +177,7 @@ app
     }else if(text === '連携'){
 
         // 登録済のユーザーかどうがチェック
-        User.userCheck({lineId})
+        User.check('','',lineId)
         .then(res=>{
             if (res > 0 ){
                 // すでに登録済の場合
@@ -215,46 +215,6 @@ app
             
         })
         .catch(e=>console.log(e));
-
-
-        // const select_user_query = {
-        //   text:`SELECT * FROM users WHERE line_id='${lineId}';`
-        // }
-        // connection.query(select_user_query)
-        // .then(res=>{
-        //   if (res.rowCount > 0 ){
-        //     // すでに登録済の場合
-        //     console.log('登録済みアカウント');
-        //     return client.replyMessage(ev.replyToken,{
-        //       "type":"text",
-        //       "text":`${profile.displayName}さん、すでに連携済みです。`
-        //     });
-        //   }else{
-        //     // 未登録の場合
-        //     return client.replyMessage(ev.replyToken,{
-        //         "type":"flex",
-        //         "altText":"link",
-        //         "contents":
-        //         {
-        //         "type": "bubble",
-        //         "body": {
-        //             "type": "box",
-        //             "layout": "vertical",
-        //             "contents": [
-        //             {
-        //                 "type": "button",
-        //                 "action": {
-        //                 "type": "uri",
-        //                 "label": "連携しますよん",
-        //                 "uri":"https://liff.line.me/1654951421-nwJ0jYeb"
-        //                 }
-        //             }
-        //             ]
-        //         }
-        //         }
-        //     });
-        //     }
-        // });
 
     }else{
         return client.replyMessage(ev.replyToken,{

@@ -45,31 +45,24 @@ module.exports = {
         })
     },
 
-    check: ()=>{
+    check: (loginId,password,lineId)=>{
         return new Promise((resolve,reject)=>{
+            let joken;
+            if(lineId == ''){
+                joken = ` WHERE login_id='${loginId}' and login_password='${password}';`    // ログイン情報から検索
+            }else{
+                joken = ` WHERE line_id='${lineId}';`   // ラインIDから検索
+            }
             const select_query = {
-                text:'SELECT * FROM users;'
+                text:`SELECT * FROM users'${joken}';`
             }
             connection.query(select_query)
                 .then(res=>{
-                    console.log('取得成功');
-                    resolve(res.rows);
-                })
-                .catch(e=>console.log(e));
-        });
-    },
-
-    userCheck:({lineId})=>{
-        return new Promise((resolve,reject)=>{
-            const select_query = {
-                text:`SELECT * FROM users WHERE line_id='${lineId}';`
-            }
-            connection.query(select_query)
-                .then(res=>{
+                    console.log('ユーザーテーブル検索完了');
                     resolve(res.rowCount);
                 })
                 .catch(e=>console.log(e));
         });
-    }
+    },
 
 }
