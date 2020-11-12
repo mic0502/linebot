@@ -57,5 +57,20 @@ module.exports = {
                 })
                 .catch(e=>console.log(e));
         });
+    },
+
+    userCheck:({lineId})=>{
+        return new Promise((resolve,reject)=>{
+            const select_query = {
+                text:`SELECT * FROM users WHERE line_id='${lineId}';`
+            }
+            connection.query(select_query)
+                .then(res=>{
+                    console.log('登録済みアカウント');
+                    resolve(res.rows);
+                })
+                .catch(e=>console.log(e));
+        });
     }
+
 }
