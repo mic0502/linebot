@@ -106,11 +106,11 @@ app
  const handleMessageEvent = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
+    const lineId = ev.source.userId;
 
     if(text === 'アカウント連携'){
-        const userId = ev.source.userId;
         const options = {
-            url:`https://api.line.me/v2/bot/user/${userId}/linkToken`,
+            url:`https://api.line.me/v2/bot/user/${lineId}/linkToken`,
             method:'POST',
             headers:{
                 'Authorization':'Bearer ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU='
@@ -149,9 +149,8 @@ app
             .catch(e=>console.log(e));
     }
     else if(text === '連携解除'){
-        const line_id = ev.source.userId;
         const select_query = {
-            text:`SELECT * FROM users WHERE line_id='${line_id}';`
+            text:`SELECT * FROM users WHERE line_id='${lineId}';`
         }
         connection.query(select_query)
             .then(res=>{
@@ -176,37 +175,47 @@ app
 
     }else if(text === '連携'){
 
-        return client.replyMessage(ev.replyToken,{
-            "type":"flex",
-            "altText":"link",
-            "contents":
-            {
-              "type": "bubble",
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                        // "type":"postback",
-                        // "label":"連携しますよん",
-                        // "data":"login"
-                      "type": "uri",
-                      "label": "連携しますよん",
-                      "uri":"https://liff.line.me/1654951421-nwJ0jYeb"
-                    //   "uri": `https://api.line.me/v2/bot/user/${ev.source.userId}/linkToken`
-                    //   "uri": "line://app/1655219547-VEldKEW0"
-                    //   "uri": `https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${ev.source.userId}`
-                    //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
+        // 登録済のユーザーかどうがチェック
+        const select_user_query = {
+          text:`SELECT * FROM users WHERE line_id='${lineId}';`
+        }
+        connection.query(select_user_query)
+        .then(res=>{
+          if (res.rowCount > 0 ){
+            // すでに登録済の場合
+            console.log('登録済みアカウント');
+            return client.replyMessage(ev.replyToken,{
+              "type":"text",
+              "text":`${profile.displayName}さん、すでに連携済みです。`
+            });
+          }else{
+            // 未登録の場合
+            return client.replyMessage(ev.replyToken,{
+                "type":"flex",
+                "altText":"link",
+                "contents":
+                {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "uri",
+                        "label": "連携しますよん",
+                        "uri":"https://liff.line.me/1654951421-nwJ0jYeb"
+                        }
                     }
-                  }
-                ]
-              }
+                    ]
+                }
+                }
+            });
             }
-          });
-    }
-    else{
+        });
+
+    }else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
             "text":`${profile.displayName}さん、今${text}って言いました？`
