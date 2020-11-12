@@ -179,7 +179,7 @@ app
         // 登録済のユーザーかどうがチェック
         User.userCheck({lineId})
         .then(()=>{
-            if (rows > 0 ){
+            if (res.rows > 0 ){
                 // すでに登録済の場合
                 console.log('登録済みアカウント');
                 return client.replyMessage(ev.replyToken,{
