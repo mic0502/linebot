@@ -55,22 +55,6 @@ app
    .use(multipart())
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
-//    .get('/login',(req,res)=>{
-//         const query = querystring.stringify({
-//             response_type: 'code',
-//             client_id: clientID,
-//             // client_id: 1654221139,
-//             redirect_uri: 'https://linebot-account-renkei.herokuapp.com/callback',
-//             state: 'hoge', // TODO: must generate random string
-//             scope: 'profile',
-//         })
-//         console.log('query:',query);
-//         res.redirect(301, 'https://access.line.me/oauth2/v2.1/authorize?' + query)
-//     })
-    // .get('/callback',(req,res)=>{
-    //     console.log('req.query:',req.query);
-    //     res.send('code:'+req.query.code);
-    // })
    .use('/',router)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
@@ -182,6 +166,11 @@ app
                         console.log('アカウント連携解除成功！');
                     })
                     .catch(e=>console.log(e));
+
+                    return client.replyMessage(ev.replyToken,{
+                        "type":"text",
+                        "text":"連携が解除されました！"
+                    });            
             })
             .catch(e=>console.log(e));
 
