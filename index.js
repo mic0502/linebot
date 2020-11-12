@@ -98,6 +98,10 @@ app
             case 'accountLink':
                 promises.push(accountLink(ev));
                 break;
+
+            case 'postback':
+                promises.push(handlePostbackEvent(ev));
+                break;
         }
     }
     Promise
@@ -196,9 +200,16 @@ app
                   {
                     "type": "button",
                     "action": {
+                        // "type":"postback",
+                        // "label":"連携しますよん",
+                        // "data":"login"
                       "type": "uri",
                       "label": "連携しますよん",
-                      "uri": `https://linebot-linkapp.herokuapp.com/api/link?line_uid=${ev.source.userId}`
+                      "uri":"https://liff.line.me/1654951421-nwJ0jYeb"
+                    //   "uri": `https://api.line.me/v2/bot/user/${ev.source.userId}/linkToken`
+                    //   "uri": "line://app/1655219547-VEldKEW0"
+                    //   "uri": `https://linebot-account-renkei.herokuapp.com/api/link?line_uid=${ev.source.userId}`
+                    //   "uri": `https://linebot-account-renkei.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
                     }
                   }
                 ]
@@ -209,7 +220,7 @@ app
     else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
-            "text":`${profile.displayName}さん、今「${text}」って言いました？`
+            "text":`${profile.displayName}さん、今${text}って言いました？`
         });
     }
  }
