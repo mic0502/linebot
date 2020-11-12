@@ -48,7 +48,7 @@ module.exports = {
     check: (loginId,password,lineId)=>{
         return new Promise((resolve,reject)=>{
             let joken;
-            if(lineId == ''){
+            if(lineId == ""){
                 joken = ` WHERE login_id='${loginId}' and login_password='${password}';`    // ログイン情報から検索
             }else{
                 joken = ` WHERE line_id='${lineId}';`   // ラインIDから検索

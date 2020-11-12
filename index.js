@@ -177,7 +177,7 @@ app
     }else if(text === '連携'){
 
         // 登録済のユーザーかどうがチェック
-        User.check('','',lineId)
+        User.check("","",lineId)
         .then(res=>{
             if (res > 0 ){
                 // すでに登録済の場合
