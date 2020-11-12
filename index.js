@@ -179,7 +179,7 @@ app
         // 登録済のユーザーかどうがチェック
         const userId = "";
         const password = "";
-        User.check({userId,password,lineId})
+        User.check(userId,password,lineId)
         .then(res=>{
             if (res > 0 ){
                 // すでに登録済の場合

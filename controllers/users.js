@@ -37,7 +37,7 @@ module.exports = {
             // const originId = splitId[0];
             // const linkToken = splitId[1];
             const lineId = "";
-            User.check({id,password,lineId})
+            User.check(id,password,lineId)
                 .then(response=>{
                     if (response > 0 ){
 

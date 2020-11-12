@@ -20,19 +20,6 @@ class Create {
     }
 }
 
-class Check {
-    constructor({loginId,password,lineId}){
-        this.loginId = loginId;
-        this.password = password;
-        this.lineId = lineId;
-    }
-
-    queryArray(){
-        return [this.loginId,this.password,this.lineId];
-    }
-}
-
-
 module.exports = {
 
     create:({name,id,password})=>{
@@ -58,14 +45,8 @@ module.exports = {
         })
     },
 
-    check: ({loginId,password,lineId})=>{
+    check:(loginId,password,lineId)=>{
         return new Promise((resolve,reject)=>{
-            const createUser = new Create({
-                loginId:loginId,
-                password:password,
-                lineId:lineId
-            }).queryArray();
-
             let joken;
             if(lineId == ""){
                 joken = ` WHERE login_id='${loginId}' and login_password='${password}';`    // ログイン情報から検索
@@ -73,7 +54,7 @@ module.exports = {
                 joken = ` WHERE line_id='${lineId}';`   // ラインIDから検索
             }
             const select_query = {
-                text:`SELECT * FROM users'${joken}';`
+                text:`SELECT * FROM users WHERE line_id='${lineId}';`
             }
             connection.query(select_query)
                 .then(res=>{
