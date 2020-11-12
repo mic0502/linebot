@@ -66,7 +66,7 @@ module.exports = {
             }
             connection.query(select_query)
                 .then(res=>{
-                    resolve(res.rows);
+                    resolve(res.rowCount);
                 })
                 .catch(e=>console.log(e));
         });
