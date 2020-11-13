@@ -1,4 +1,5 @@
 const request = require('request-promise');
+const client = new line.Client(config);
 const User = require('../models/User');
 
 module.exports = {
@@ -13,6 +14,10 @@ module.exports = {
             if (res > 0 ){
                 // すでに登録済の場合
                 console.log('登録済みアカウント');
+                return client.replyMessage(ev.replyToken,{
+                    "type":"text",
+                    "text":"すでに連携済みです。"
+                });
             }else{
                 console.log('未登録アカウント');
                 const options = {
