@@ -1,8 +1,21 @@
 const request = require('request-promise');
+const User = require('../models/User');
 
 module.exports = {
 
     accountLink: (req,res) => {
+
+        // 登録済のユーザーかどうがチェック
+        User.check('','',lineId)
+        .then(res=>{
+            if (res > 0 ){
+                // すでに登録済の場合
+                console.log('登録済みアカウント');
+            }else{
+                console.log('未登録アカウント');
+            }
+        })
+
         console.log('テスト通過３');
         const line_uid = req.query.line_uid;
         console.log('line_uid:',line_uid);
