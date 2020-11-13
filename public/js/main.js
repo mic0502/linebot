@@ -10,6 +10,7 @@ window.onload = () => {
 
             liff.getProfile()
                 .then(profile=>{
+                    console.log('テスト通過１');
                     const lineId = profile.userId;                  
                     
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
