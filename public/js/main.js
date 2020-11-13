@@ -21,13 +21,13 @@ window.onload = () => {
                                 .then(text=>{
                                     if(text===''){
                                         // 連携済みの場合顧客データを取得する
-                                        User.getKokData('','',lineId)
-                                        .then(resProfile=>{
-                                            const pointElement = document.getElementById('customer_rank');
-                                            const pointElement = document.getElementById('customer_point');
-                                            rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
-                                            pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
-                                        });
+                                        // User.getKokData('','',lineId)
+                                        // .then(resProfile=>{
+                                        //     const pointElement = document.getElementById('customer_rank');
+                                        //     const pointElement = document.getElementById('customer_point');
+                                        //     rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
+                                        //     pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
+                                        // });
                         
                                     }else{
                                         // リンクトークン発行されたので未連携の場合    
