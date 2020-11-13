@@ -17,26 +17,15 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
-                                if(text===''){
+                                if(text !==''){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = "連携済みです。";
 
-                                    // const rank = 'A';
-                                    // const point = '30,000';
-                                    // const rankElement = document.getElementById('customer_rank');
-                                    // const pointElement = document.getElementById('customer_point');
-                                    // rankElement.innerHTML = '現在のランクは：' + rank + 'です。';
-                                    // pointElement.innerHTML = '現在の保有ポイント：' + point + 'pt';
-
-                                    const User = require('../../models/User');
-                                    User.getKokData(lineId)
-                                    .then(resProfile=>{
-                                        const rankElement = document.getElementById('customer_rank');
-                                        const pointElement = document.getElementById('customer_point');
-                                        rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
-                                        pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';
-                                    });
+                                    const rankElement = document.getElementById('customer_rank');
+                                    const pointElement = document.getElementById('customer_point');
+                                    rankElement.innerHTML = '現在のランクは：' + text.rank + 'です。';
+                                    pointElement.innerHTML = '現在の保有ポイント：' + text.point + 'pt';
 
                                 }else{
                                     // リンクトークン発行。未連携の場合    
