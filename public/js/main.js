@@ -26,7 +26,7 @@ window.onload = () => {
 
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
-                                    rankElement.innerHTML = '現在のランクは：' + linkToken.rank + 'です。';
+                                    rankElement.innerHTML = '現在のランクは：' + linkToken[0].rank + 'です。';
                                     pointElement.innerHTML = '現在の保有ポイント：' + linkToken.point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
