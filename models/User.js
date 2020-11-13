@@ -70,7 +70,7 @@ module.exports = {
             connection.query(select_query)
                 .then(res=>{
                     console.log('顧客情報検索完了');
-                    resolve(res.rows[0]);
+                    resolve(res.rows[0].name);
                 })
                 .catch(e=>console.log(e));
         });
