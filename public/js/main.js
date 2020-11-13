@@ -1,5 +1,4 @@
 window.onload = () => {
-    const User = require('../../models/User');
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
 
@@ -21,6 +20,7 @@ window.onload = () => {
                                 .then(text=>{
                                     if(text===''){
                                         // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                        const User = require('../../models/User');
                                         User.getKokData(lineId)
                                         .then(resProfile=>{
                                             // const rankElement = document.getElementById('customer_rank');
