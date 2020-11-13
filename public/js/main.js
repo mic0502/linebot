@@ -19,12 +19,12 @@ window.onload = () => {
                             .then(text=>{
                                 const linkToken = text;
                                 if(isJSON(linkToken)){
-                                    // リンクトークン未発行。連携済みの場合顧客データを取得する
-                                    const rankElement = document.getElementById('customer_rank');
-                                    const pointElement = document.getElementById('customer_point');
-                                    rankElement.innerHTML = '現在のランクは：' + JSON.parse(linkToken).rank + 'です。';
-                                    pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(linkToken).point + 'pt';
-                                }else{
+                                //     // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                //     const rankElement = document.getElementById('customer_rank');
+                                //     const pointElement = document.getElementById('customer_point');
+                                //     rankElement.innerHTML = '現在のランクは：' + JSON.parse(linkToken).rank + 'です。';
+                                //     pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(linkToken).point + 'pt';
+                                // }else{
                                     // リンクトークン発行。未連携の場合
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = linkToken;
