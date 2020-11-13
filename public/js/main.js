@@ -1,13 +1,13 @@
 window.onload = () => {
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
+    const divRegistration = document.getElementById('registration_area');
 
     liff
         .init({
             liffId:myLiffId
         })
         .then(()=>{
-
             liff.getProfile()
                 .then(profile=>{
                     const lineId = profile.userId;
@@ -22,22 +22,23 @@ window.onload = () => {
                                         // リンクトークン未発行。連携済みの場合顧客データを取得する
                                         const idElement = document.getElementById('lineid');
                                         idElement.innerHTML = "連携済みです。";
-                                        
-                                        const rank = 'A';
-                                        const point = '30,000';
-                                        const rankElement = document.getElementById('customer_rank');
-                                        const pointElement = document.getElementById('customer_point');
-                                        rankElement.innerHTML = '現在のランクは：' + rank + 'です。';
-                                        pointElement.innerHTML = '現在の保有ポイント：' + point + 'pt';    
-                                        // const User = require('../../models/User');
-                                        // User.getKokData(lineId)
-                                        // .then(resProfile=>{
-                                        //     const rankElement = document.getElementById('customer_rank');
-                                        //     const pointElement = document.getElementById('customer_point');
-                                        //     rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
-                                        //     pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
-                                        // });
-                        
+
+                                        // const rank = 'A';
+                                        // const point = '30,000';
+                                        // const rankElement = document.getElementById('customer_rank');
+                                        // const pointElement = document.getElementById('customer_point');
+                                        // rankElement.innerHTML = '現在のランクは：' + rank + 'です。';
+                                        // pointElement.innerHTML = '現在の保有ポイント：' + point + 'pt';
+
+                                        const User = require('../../models/User');
+                                        User.getKokData(lineId)
+                                        .then(resProfile=>{
+                                            const rankElement = document.getElementById('customer_rank');
+                                            const pointElement = document.getElementById('customer_point');
+                                            rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
+                                            pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
+                                        });
+
                                     }else{
                                         // リンクトークン発行。未連携の場合    
                                         const linkToken = text;
