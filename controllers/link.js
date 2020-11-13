@@ -1,10 +1,3 @@
-const line = require('@line/bot-sdk');
-const request = require('request-promise');
-const config = {
-    channelAccessToken:process.env.ACCESS_TOKEN,
-    channelSecret:process.env.CHANNEL_SECRET
- };
-const client = new line.Client(config);
 const User = require('../models/User');
 
 module.exports = {

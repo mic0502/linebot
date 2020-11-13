@@ -15,7 +15,7 @@ window.onload = () => {
                     
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
-                            if (response.text = "" ){
+                            if (response.text() = "" ){
 
                             }else{
                                 const idElement = document.getElementById('lineid');

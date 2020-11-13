@@ -111,73 +111,7 @@ app
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     const lineId = ev.source.userId;
 
-    if(text === 'アカウント連携'){
-        const options = {
-            url:`https://api.line.me/v2/bot/user/${lineId}/linkToken`,
-            method:'POST',
-            headers:{
-                'Authorization':'Bearer ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU='
-            }
-        }
-
-        request(options)
-            .then(body=>{
-                const parsedBody = JSON.parse(body);
-                console.log('parsedBody:',parsedBody)
-                console.log('linkToken:',parsedBody["linkToken"]);
-                
-                return client.replyMessage(ev.replyToken,{
-                    "type":"flex",
-                    "altText":"link",
-                    "contents":
-                    {
-                      "type": "bubble",
-                      "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                          {
-                            "type": "button",
-                            "action": {
-                              "type": "uri",
-                              "label": "自社HPログイン画面へ",
-                              "uri": `https://linebot-linkapp.herokuapp.com?linkToken=${parsedBody["linkToken"]}`
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  });
-            })
-            .catch(e=>console.log(e));
-    }
-    else if(text === '連携解除'){
-        const select_query = {
-            text:`SELECT * FROM users WHERE line_id='${lineId}';`
-        }
-        connection.query(select_query)
-            .then(res=>{
-                const name = res.rows[0].name;
-                const login_id = res.rows[0].login_id;
-                const password = res.rows[0].login_password;
-                const update_query = {
-                    text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`
-                }
-                connection.query(update_query)
-                    .then(res2=>{
-                        console.log('アカウント連携解除成功！');
-                    })
-                    .catch(e=>console.log(e));
-
-                    return client.replyMessage(ev.replyToken,{
-                        "type":"text",
-                        "text":"連携が解除されました！"
-                    });            
-            })
-            .catch(e=>console.log(e));
-
-    }else if(text === '連携'){
-
+    if(text === '連携'){
         // 登録済のユーザーかどうがチェック
         User.check('','',lineId)
         .then(res=>{
@@ -217,6 +151,31 @@ app
             
         })
         .catch(e=>console.log(e));
+
+    }else if(text === '連携解除'){
+        const select_query = {
+            text:`SELECT * FROM users WHERE line_id='${lineId}';`
+        }
+        connection.query(select_query)
+            .then(res=>{
+                const name = res.rows[0].name;
+                const login_id = res.rows[0].login_id;
+                const password = res.rows[0].login_password;
+                const update_query = {
+                    text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`
+                }
+                connection.query(update_query)
+                    .then(res2=>{
+                        console.log('アカウント連携解除成功！');
+                    })
+                    .catch(e=>console.log(e));
+
+                    return client.replyMessage(ev.replyToken,{
+                        "type":"text",
+                        "text":"連携が解除されました！"
+                    });            
+            })
+            .catch(e=>console.log(e));
 
     }else{
         return client.replyMessage(ev.replyToken,{
