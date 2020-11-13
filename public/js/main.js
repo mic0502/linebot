@@ -11,6 +11,7 @@ window.onload = () => {
 
             liff.getProfile()
                 .then(profile=>{
+                    console.log('テスト通過１');
                     const lineId = profile.userId;                  
                     User.check('','',lineId)
                     .then(res=>{
