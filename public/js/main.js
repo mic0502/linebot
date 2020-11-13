@@ -10,20 +10,20 @@ window.onload = () => {
 
             liff.getProfile()
                 .then(profile=>{
-                    console.log('テスト通過１');
-                    const lineId = profile.userId;                  
-                    
+                    const lineId = profile.userId;                                      
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
                             let linkToken ='';
                             response.text()
                                 .then(text=>{
                                     linkToken = text;
-                                    if(linkToken){
-                                        const idElement = document.getElementById('lineid');
-                                        idElement.innerHTML = linkToken;
+                                    if(linkToken===''){
+                                        //リフを閉じる
+                                        liff.closeWindow(); 
                                     }
-                                });
+                                    const idElement = document.getElementById('lineid');
+                                    idElement.innerHTML = linkToken;
+                            });
 
                             const formElement = document.createElement('form');
                             formElement.setAttribute('id','login');
