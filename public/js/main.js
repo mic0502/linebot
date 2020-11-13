@@ -17,7 +17,7 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
-                                if(text ===''){
+                                if(text !==''){
                                 //     // リンクトークン未発行。連携済みの場合顧客データを取得する
                                 //     const rankElement = document.getElementById('customer_rank');
                                 //     const pointElement = document.getElementById('customer_point');
