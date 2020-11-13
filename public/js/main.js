@@ -1,6 +1,7 @@
 window.onload = () => {
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
+    const User = require('../models/User');
 
     liff
         .init({
