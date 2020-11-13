@@ -9,8 +9,8 @@ module.exports = {
 
         // 登録済のユーザーかどうがチェック
         User.check('','',line_uid)
-        .then(res=>{
-            if (res > 0 ){
+        .then(res2=>{
+            if (res2 > 0 ){
                 // すでに登録済の場合
                 console.log('登録済みアカウント');
                 res.status(400).send("");
