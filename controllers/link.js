@@ -9,9 +9,11 @@ module.exports = {
         .then(res2=>{
             if (res2 > 0 ){
                 // すでに連携済の場合
+                console.log('登録済みアカウント');
                 res.status(200).send("");
             }else{
                 // まだ連携されていない場合リンクトークンを取得
+                console.log('未登録アカウント');
                 const options = {
                     url:`https://api.line.me/v2/bot/user/${line_uid}/linkToken`,
                     method:'POST',
