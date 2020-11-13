@@ -1,5 +1,5 @@
 window.onload = () => {
-    const User = require('../../models/User');
+    // const User = require('../../models/User');
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
 
@@ -17,7 +17,6 @@ window.onload = () => {
 
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
-
                             response.text()
                                 .then(text=>{
                                     if(text===''){
