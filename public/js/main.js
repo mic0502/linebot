@@ -31,13 +31,13 @@ window.onload = () => {
                                         // pointElement.innerHTML = '現在の保有ポイント：' + point + 'pt';
 
                                         const User = require('../../models/User');
-                                        User.getKokData(lineId)
-                                        .then(resProfile=>{
-                                            const rankElement = document.getElementById('customer_rank');
-                                            const pointElement = document.getElementById('customer_point');
-                                            rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
-                                            pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
-                                        });
+                                        // User.getKokData(lineId)
+                                        // .then(resProfile=>{
+                                        //     const rankElement = document.getElementById('customer_rank');
+                                        //     const pointElement = document.getElementById('customer_point');
+                                        //     rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
+                                        //     pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
+                                        // });
 
                                     }else{
                                         // リンクトークン発行。未連携の場合    
