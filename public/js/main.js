@@ -17,18 +17,16 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
 
-                            // response.text()
-                            //     .then(text=>{
-                            //         const idElement = document.getElementById('lineid');
-                            //         linkToken = text;
-                            //         if(linkToken===''){
-                            //             linkToken="すでに連携済みです。"
-                            //         }
-                            //         idElement.innerHTML = linkToken;
-                            // });
+                            response.text()
+                                .then(text=>{
+                                    if(text===''){
+                                        text="すでに連携済みです。"
+                                    }
+                                    const idElement = document.getElementById('lineid');
+                                    idElement.innerHTML = linkToken;
+                                });
 
 
-                            if(response.text().then(text)){
                                 // リンクトークン発行されたので未連携の場合
                                 let linkToken ='';
                                 linkToken = text;
@@ -106,10 +104,6 @@ window.onload = () => {
                                 // フォーム要素を大元のdiv要素へ格納
                                 divLogin.appendChild(formElement);
     
-                            }else{
-                                // 連携済みの場合
-
-                            }
                             
                         });
                                
