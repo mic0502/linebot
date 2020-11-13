@@ -19,7 +19,7 @@ window.onload = () => {
                             .then(text=>{
                                 if(isJson(response)){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
-                                    const linkToken = text;
+                                    const linkToken = response;
 
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = linkToken;
@@ -30,7 +30,7 @@ window.onload = () => {
                                     pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(linkToken).point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
-                                    const linkToken = text;
+                                    const linkToken = response;
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = linkToken;
 
