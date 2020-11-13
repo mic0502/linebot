@@ -27,6 +27,7 @@ module.exports = {
                 request(options)
                     .then(body=>{
                         const parsedBody = JSON.parse(body);
+                        console.log(parsedBody["linkToken"]);
                         res.status(200).send(parsedBody["linkToken"]);
                     });
             }
