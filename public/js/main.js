@@ -19,8 +19,10 @@ window.onload = () => {
                             .then(text=>{
                                 if(text !==''){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                    const linkToken = text;
+
                                     const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = "連携済みです。";
+                                    idElement.innerHTML = linkToken;
 
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
