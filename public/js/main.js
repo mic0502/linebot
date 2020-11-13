@@ -17,9 +17,13 @@ window.onload = () => {
                             response.text()
                                 .then(text=>{
                                     linkToken = text;
-                                    if(linkToken===''){
+                                    if(linkToken===''){                        
                                         //リフを閉じる
                                         liff.closeWindow(); 
+                                        return client.replyMessage(ev.replyToken,{
+                                            "type":"text",
+                                            "text":"すでに連携済みです。"
+                                        });
                                     }
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = linkToken;
