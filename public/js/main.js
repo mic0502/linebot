@@ -20,6 +20,9 @@ window.onload = () => {
                                 .then(text=>{
                                     if(text===''){
                                         // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                        const idElement = document.getElementById('lineid');
+                                        idElement.innerHTML = "連携済みです。";
+                                        
                                         const User = require('../../models/User');
                                         User.getKokData(lineId)
                                         .then(()=>{
@@ -27,8 +30,6 @@ window.onload = () => {
                                             // const pointElement = document.getElementById('customer_point');
                                             // rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
                                             // pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
-                                            const idElement = document.getElementById('lineid');
-                                            idElement.innerHTML = "連携済みです。";
                                         });
                         
                                     }else{
