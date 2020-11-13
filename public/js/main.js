@@ -20,8 +20,8 @@ window.onload = () => {
                             response.text()
                                 .then(text=>{
                                     if(text===''){
-                                        // 連携済みの場合顧客データを取得する
-                                        User.getKokData('','',lineId)
+                                        // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                        User.getKokData(lineId)
                                         .then(resProfile=>{
                                             // const rankElement = document.getElementById('customer_rank');
                                             // const pointElement = document.getElementById('customer_point');
@@ -32,7 +32,7 @@ window.onload = () => {
                                         });
                         
                                     }else{
-                                        // リンクトークン発行されたので未連携の場合    
+                                        // リンクトークン発行。未連携の場合    
                                         const linkToken = text;
                                         const idElement = document.getElementById('lineid');
                                         idElement.innerHTML = linkToken;
