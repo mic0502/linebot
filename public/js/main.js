@@ -23,10 +23,12 @@ window.onload = () => {
                                         // 連携済みの場合顧客データを取得する
                                         User.getKokData('','',lineId)
                                         .then(resProfile=>{
-                                            const rankElement = document.getElementById('customer_rank');
-                                            const pointElement = document.getElementById('customer_point');
-                                            rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
-                                            pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
+                                            // const rankElement = document.getElementById('customer_rank');
+                                            // const pointElement = document.getElementById('customer_point');
+                                            // rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
+                                            // pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
+                                            const idElement = document.getElementById('lineid');
+                                            idElement.innerHTML = "連携済みです。";
                                         });
                         
                                     }else{
