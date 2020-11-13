@@ -23,7 +23,7 @@ window.onload = () => {
                                         text="すでに連携済みです。"
                                     }
                                     const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = linkToken;
+                                    idElement.innerHTML = text;
                                 });
 
 
