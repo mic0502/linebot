@@ -16,7 +16,19 @@ window.onload = () => {
 
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
-                            if(response.text){
+
+                            // response.text()
+                            //     .then(text=>{
+                            //         const idElement = document.getElementById('lineid');
+                            //         linkToken = text;
+                            //         if(linkToken===''){
+                            //             linkToken="すでに連携済みです。"
+                            //         }
+                            //         idElement.innerHTML = linkToken;
+                            // });
+
+
+                            if(response.text()){
                                 // リンクトークン発行されたので未連携の場合
                                 let linkToken ='';
                                 linkToken = text;
