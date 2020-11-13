@@ -25,10 +25,7 @@ window.onload = () => {
                                         const idElement = document.getElementById('lineid');
                                         idElement.innerHTML = text;
                                     }else{
-                                        // リンクトークン発行されたので未連携の場合
-                                        const idElement = document.getElementById('lineid');
-                                        idElement.innerHTML = text;
-    
+                                        // リンクトークン発行されたので未連携の場合    
                                         let linkToken ='';
                                         linkToken = text;
                                         const idElement = document.getElementById('lineid');
