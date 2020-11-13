@@ -16,16 +16,11 @@ window.onload = () => {
                             let linkToken ='';
                             response.text()
                                 .then(text=>{
-                                    linkToken = text;
-                                    if(linkToken===''){                        
-                                        //リフを閉じる
-                                        liff.closeWindow(); 
-                                        return client.replyMessage(ev.replyToken,{
-                                            "type":"text",
-                                            "text":"すでに連携済みです。"
-                                        });
-                                    }
                                     const idElement = document.getElementById('lineid');
+                                    linkToken = text;
+                                    if(linkToken===''){
+                                        linkToken="すでに連携済みです。"
+                                    }
                                     idElement.innerHTML = linkToken;
                             });
 
