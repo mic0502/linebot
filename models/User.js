@@ -47,14 +47,12 @@ module.exports = {
 
     check:(loginId,password,lineId)=>{
         return new Promise((resolve,reject)=>{
-            let joken;
-            if(lineId == ""){
-                joken = ` WHERE login_id='${loginId}' and login_password='${password}';`    // ログイン情報から検索
+            let select_query;
+            // 引数にラインIDがあるかどうかで検索条件変更
+            if(lineId == ""){   
+                select_query = {text:`SELECT * FROM users WHERE login_id='${loginId}' and login_password='${password}';`};
             }else{
-                joken = ` WHERE line_id='${lineId}';`   // ラインIDから検索
-            }
-            const select_query = {
-                text:`SELECT * FROM users WHERE line_id='${lineId}';`
+                select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`};
             }
             connection.query(select_query)
                 .then(res=>{
