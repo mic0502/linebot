@@ -12,8 +12,8 @@ module.exports = {
                 console.log('登録済みアカウント');
                 User.getKokData(line_uid)
                 .then(resProfile=>{
-                    console.log(resProfile.point);
-                    res.status(200).send(resProfile[0]);
+                    console.log(resProfile.name);
+                    res.status(200).send(resProfile);
                 })
             }else{
                 // まだ連携されていない場合リンクトークンを取得
