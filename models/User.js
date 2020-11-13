@@ -65,7 +65,8 @@ module.exports = {
 
     getKokData:(lineId)=>{
         return new Promise((resolve,reject)=>{
-            let select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`};
+            let select_query;
+            select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`};
             connection.query(select_query)
                 .then(res=>{
                     console.log('顧客情報検索完了');
