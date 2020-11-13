@@ -10,7 +10,10 @@ window.onload = () => {
 
             liff.getProfile()
                 .then(profile=>{
-                    const lineId = profile.userId;                                      
+                    const lineId = profile.userId;
+                    const nameElement = document.getElementById('line-name');
+                    nameElement.innerHTML = profile.displayName + ' 様';
+
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
                             let linkToken ='';
