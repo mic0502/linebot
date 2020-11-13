@@ -16,7 +16,7 @@ window.onload = () => {
 
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{
-                                if(isJson(response)){
+                                if(JSON.parse(response)){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
                                     const linkToken = response;
 
@@ -114,14 +114,5 @@ window.onload = () => {
         .catch(err=>alert(JSON.stringify(err)));
 
         
-    }
-
-    function isJson(str) {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
     }
     
