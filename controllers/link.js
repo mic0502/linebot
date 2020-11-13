@@ -13,7 +13,7 @@ module.exports = {
                 User.getKokData(line_uid)
                 .then(resProfile=>{
                     console.log(resProfile.point);
-                    res.status(200).send(resProfile);
+                    res.status(200).send(resProfile[0]);
                 })
             }else{
                 // まだ連携されていない場合リンクトークンを取得
