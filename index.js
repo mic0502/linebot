@@ -32,7 +32,7 @@ const connection = new Client({
 connection.connect();
 
 const create_userTable = {
-text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), line_id VARCHAR(255));'
+text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), rank VARCHAR(50), point VARCHAR(50), line_id VARCHAR(255));'
 };
     
 connection.query(create_userTable)
