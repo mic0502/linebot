@@ -14,10 +14,10 @@ module.exports = {
             if (res > 0 ){
                 // すでに登録済の場合
                 console.log('登録済みアカウント');
-                return client.replyMessage(ev.replyToken,{
-                    "type":"text",
-                    "text":"すでに連携済みです。"
-                });
+                // return client.replyMessage(ev.replyToken,{
+                //     "type":"text",
+                //     "text":"すでに連携済みです。"
+                // });
             }else{
                 console.log('未登録アカウント');
                 const options = {
