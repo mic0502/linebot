@@ -28,7 +28,7 @@ window.onload = () => {
                             // });
 
 
-                            if(response.text()){
+                            if(response.text().text){
                                 // リンクトークン発行されたので未連携の場合
                                 let linkToken ='';
                                 linkToken = text;
