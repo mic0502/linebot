@@ -10,6 +10,11 @@ module.exports = {
             if (res2 > 0 ){
                 // すでに連携済の場合
                 console.log('登録済みアカウント');
+                User.getKokData(line_uid)
+                .then(resProfile=>{
+                    console.log('登録済みアカウント2');
+                })
+
                 res.status(200).send("");
             }else{
                 // まだ連携されていない場合リンクトークンを取得
