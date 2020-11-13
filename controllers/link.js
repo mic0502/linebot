@@ -12,7 +12,7 @@ module.exports = {
                 console.log('登録済みアカウント');
                 User.getKokData(line_uid)
                 .then(resProfile=>{
-                    console.log('登録済みアカウント2');
+                    console.log(resProfile.rank);
                 })
 
                 res.status(200).send("");
