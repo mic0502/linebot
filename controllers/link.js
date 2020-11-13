@@ -5,8 +5,10 @@ module.exports = {
 
     accountLink: (req,res) => {
 
+        const line_uid = req.query.line_uid;
+
         // 登録済のユーザーかどうがチェック
-        User.check('','',lineId)
+        User.check('','',line_uid)
         .then(res=>{
             if (res > 0 ){
                 // すでに登録済の場合
@@ -17,7 +19,6 @@ module.exports = {
         })
 
         console.log('テスト通過３');
-        const line_uid = req.query.line_uid;
         console.log('line_uid:',line_uid);
         const options = {
             url:`https://api.line.me/v2/bot/user/${line_uid}/linkToken`,
