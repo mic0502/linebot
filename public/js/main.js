@@ -1,4 +1,5 @@
 window.onload = () => {
+    const User = require('../../models/User');
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
 
@@ -20,10 +21,15 @@ window.onload = () => {
                             response.text()
                                 .then(text=>{
                                     if(text===''){
-                                        // 連携済みの場合
-                                        text="すでに連携済みです。"
-                                        const idElement = document.getElementById('lineid');
-                                        idElement.innerHTML = text;
+                                        // 連携済みの場合顧客データを取得する
+                                        User.getKokData('','',lineId)
+                                        .then(resProfile=>{
+                                            const pointElement = document.getElementById('customer_rank');
+                                            const pointElement = document.getElementById('customer_point');
+                                            rankElement.innerHTML = '現在のランクは：' + resProfile.rank + 'です。';
+                                            pointElement.innerHTML = '現在の保有ポイント：' + resProfile.point + 'pt';    
+                                        });
+                        
                                     }else{
                                         // リンクトークン発行されたので未連携の場合    
                                         const linkToken = text;
