@@ -81,7 +81,9 @@ app
                 break;
 
             case 'accountLink':
+                console.log('テスト通過０');
                 promises.push(accountLink(ev));
+                console.log('テスト通過２');
                 break;
 
             case 'postback':

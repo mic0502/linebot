@@ -3,6 +3,7 @@ const request = require('request-promise');
 module.exports = {
 
     accountLink: (req,res) => {
+        console.log('テスト通過３');
         const line_uid = req.query.line_uid;
         console.log('line_uid:',line_uid);
         const options = {
