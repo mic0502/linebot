@@ -26,10 +26,8 @@ window.onload = () => {
                                         idElement.innerHTML = text;
                                     }else{
                                         // リンクトークン発行されたので未連携の場合    
-                                        let linkToken ='';
-                                        linkToken = text;
                                         const idElement = document.getElementById('lineid');
-                                        idElement.innerHTML = linkToken;
+                                        idElement.innerHTML = text;
 
                                         const formElement = document.createElement('form');
                                         formElement.setAttribute('id','login');
