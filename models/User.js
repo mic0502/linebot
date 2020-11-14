@@ -38,7 +38,6 @@ module.exports = {
                 text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'${rank}','${point}');`,
                 values:createUser
             };
-            console.log(`INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'${rank}','${point}');`);
             connection.query(insert_query)
                 .then(res=>{
                     console.log('新規登録成功');
