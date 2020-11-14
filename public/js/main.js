@@ -92,7 +92,8 @@ window.onload = () => {
                                     });
 
                                     const divRegistration = document.createElement('div');
-                                    const label_registration = document.createElement('link');
+                                    const label_registration = document.createElement('a');
+                                    label_registration.href = '/registration'
                                     label_registration.textContent = '新規会員登録';
                                     divRegistration.appendChild(label_registration);
         
