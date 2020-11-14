@@ -22,10 +22,10 @@ window.onload = () => {
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = JSON.parse(response).linkToken;
 
-                                    const rankElement = document.getElementById('customer_rank');
-                                    const pointElement = document.getElementById('customer_point');
-                                    rankElement.innerHTML = '現在のランクは：' + JSON.parse(response).rank + 'です。';
-                                    pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(response).point + 'pt';
+                                    // const rankElement = document.getElementById('customer_rank');
+                                    // const pointElement = document.getElementById('customer_point');
+                                    // rankElement.innerHTML = '現在のランクは：' + JSON.parse(response).rank + 'です。';
+                                    // pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(response).point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     const idElement = document.getElementById('lineid');
