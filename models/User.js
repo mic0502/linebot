@@ -1,3 +1,4 @@
+const {randomBytes} = require('crypto')
 const { Client } = require('pg');
 const connection = new Client({
     user:process.env.PG_USER,
