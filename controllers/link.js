@@ -5,7 +5,8 @@ const User = require('../models/User');
 module.exports = {
     accountLink: (req,res) => {
         const line_uid = req.query.line_uid;
-
+        console.log(process.env.ACCESS_TOKEN);
+        
         User.check('','',line_uid)
         .then(res2=>{
             if (res2 > 0 ){
