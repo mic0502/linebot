@@ -17,16 +17,16 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
-                                if(JSON.parse(response).linkToken){
-                                    // リンクトークン未発行。連携済みの場合顧客データを取得する
-                                    const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = JSON.parse(response).linkToken;
+                                // if(JSON.parse(response).linkToken){
+                                //     // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                //     const idElement = document.getElementById('lineid');
+                                //     idElement.innerHTML = JSON.parse(response).linkToken;
 
-                                    // const rankElement = document.getElementById('customer_rank');
-                                    // const pointElement = document.getElementById('customer_point');
-                                    // rankElement.innerHTML = '現在のランクは：' + JSON.parse(response).rank + 'です。';
-                                    // pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(response).point + 'pt';
-                                }else{
+                                //     // const rankElement = document.getElementById('customer_rank');
+                                //     // const pointElement = document.getElementById('customer_point');
+                                //     // rankElement.innerHTML = '現在のランクは：' + JSON.parse(response).rank + 'です。';
+                                //     // pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(response).point + 'pt';
+                                // }else{
                                     // リンクトークン発行。未連携の場合    
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = JSON.parse(response).linkToken;
@@ -102,7 +102,7 @@ window.onload = () => {
                                     // フォーム要素を大元のdiv要素へ格納
                                     divLogin.appendChild(formElement);
         
-                                }
+                                // }
                             });
 
 
