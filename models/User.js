@@ -31,11 +31,8 @@ module.exports = {
             }).queryArray();
 
             console.log('createUser:',createUser);
-
-            const rank = 'D';
-            const point = '0';
             const insert_query = {
-                text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'${rank}','${point}');`,
+                text:'INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,"D","0");',
                 values:createUser
             };
             connection.query(insert_query)

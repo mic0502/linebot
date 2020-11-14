@@ -30,13 +30,10 @@ module.exports = {
     },
 
     postLogin: (req,res) => {
+    // ユーザーIDとパスワードでログイン
         try{
             console.log('req.body:',req.body);
             const {id,password,linkToken} = req.body;
-            // ログインidとlinkTokenの分離
-            // const splitId = id.split('&');
-            // const originId = splitId[0];
-            // const linkToken = splitId[1];
             User.check(id,password,'')
                 .then(response=>{
                     if (response > 0 ){
