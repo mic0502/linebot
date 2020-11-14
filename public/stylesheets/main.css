@@ -7,8 +7,11 @@ body{
     color:#FFF;
     background-color:#00B900;
 }
+#customer_rank{
+    display:none;
+}
 #customer_area{
-    font-size:2rem;
+    font-size:1.5rem;
     margin-top:30%;
 }
 #rank_gold{
