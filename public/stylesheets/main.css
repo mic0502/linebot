@@ -4,7 +4,8 @@ body{
 #line-name{
     width: 100%;
     margin:3% 0;
-    background-color: blue;
+    color:#FFF;
+    background-color:#00B900;
 }
 #rank_gold{
     background-image:url(../img/rank-gold.jpg);
