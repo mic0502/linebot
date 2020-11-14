@@ -14,7 +14,7 @@ body{
     font-size:1.5rem;
     margin-top:50%;
 }
-#wrap{background-image:url(../img/rank-regular.jpg);background-size: cover;};
+#wrap{background-size: cover;};
 .rank_gold{background-image:url(../img/rank-gold.jpg);};
 .rank_silver{background-image:url(../img/rank-silver.jpg);};
 .rank_bronze{background-image:url(../img/rank-bronze.jpg);};
