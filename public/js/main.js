@@ -11,7 +11,6 @@ window.onload = () => {
                 .then(profile=>{
                     const lineId = profile.userId;
                     const nameElement = document.getElementById('line-name');
-                    nameElement.innerHTML = profile.displayName + 'さま';
 
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
@@ -19,12 +18,14 @@ window.onload = () => {
                                 const parsedBody = JSON.parse(text);
                                 if(!parsedBody.linkToken){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
+                                    nameElement.innerHTML = parsedBody.name + 'さま';
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
                                     rankElement.innerHTML = '現在のランクは：' + parsedBody.rank + 'です。';
                                     pointElement.innerHTML = '現在の保有ポイント：' + parsedBody.point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
+                                    nameElement.innerHTML = profile.displayName + 'さま';
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = parsedBody.linkToken;
 
