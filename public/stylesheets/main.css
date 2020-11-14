@@ -7,6 +7,10 @@ body{
     color:#FFF;
     background-color:#00B900;
 }
+#customer_area{
+    font-size:2rem;
+    margin-top:30%;
+}
 #rank_gold{
     background-image:url(../img/rank-gold.jpg);
     background-size: cover;
