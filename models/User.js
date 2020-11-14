@@ -30,7 +30,7 @@ module.exports = {
                 password:password
             }).queryArray();
 
-            console.log('createUser:',createUser);
+            // 新規登録の場合はランクはD、ポイントは０で登録
             const insert_query = {
                 text:"INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'D','0');",
                 values:createUser
@@ -73,5 +73,32 @@ module.exports = {
                 })
                 .catch(e=>console.log(e));
         });
+    },
+
+    insertNonce:(id,linkToken)=>{
+        return new Promise((resolve,reject)=>{
+
+            // nonce生成d
+            const N=16
+            const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
+            const buf = Buffer.from(randomStrings);
+            const nonce = buf.toString('base64');
+
+            // nonceテーブルへの挿入
+            const insert_query = {
+                text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
+                values:[`${id}`,`${nonce}`]
+            }
+            connection.query(insert_query)
+                .then(response=>{
+                    console.log('linktoken nonce:',linkToken,nonce);
+                    const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
+                    resolve(linkSentence);
+                    // アイディアここでリダイレクトするのでなく、linktokenとnonceをフロント側へ返してあげ、フロント側で下記ページへGETする
+                    // res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+                })
+                .catch(e=>console.log(e));
+            })
+
     }
 }

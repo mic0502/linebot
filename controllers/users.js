@@ -1,16 +1,6 @@
 const User = require('../models/User');
 const {randomBytes} = require('crypto')
 
-const { Client } = require('pg');
-const connection = new Client({
-    user:process.env.PG_USER,
-    host:process.env.PG_HOST,
-    database:process.env.PG_DATABASE,
-    password:process.env.PG_PASSWORD,
-    port:5432
-  });
-connection.connect();
-
 module.exports = {
 
     postUser: (req,res) => {
@@ -37,28 +27,13 @@ module.exports = {
             User.check(id,password,'')
                 .then(response=>{
                     if (response > 0 ){
-
                         console.log('認証成功');
-                        // nonce生成d
-                        const N=16
-                        const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
-                        const buf = Buffer.from(randomStrings);
-                        const nonce = buf.toString('base64');
-                        // nonceテーブルへの挿入
-                        const insert_query = {
-                            text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
-                            values:[`${id}`,`${nonce}`]
-                        }
-                        connection.query(insert_query)
-                            .then(response=>{
-                                console.log('insert into nonces 成功');
-                                console.log('linktoken nonce:',linkToken,nonce);
-                                const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
-                                // アイディアここでリダイレクトするのでなく、linktokenとnonceをフロント側へ返してあげ、フロント側で下記ページへGETする
-                                res.status(200).send(linkSentence);
-                                // res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+
+                        // Nonceを追加
+                        User.insertNonce(id,linkToken)
+                            .then(resNonce=>{
+                                res.status(200).send(resNonce);
                             })
-                            .catch(e=>console.log(e));
                     }else{
                         console.log('ログイン失敗');
                     }
