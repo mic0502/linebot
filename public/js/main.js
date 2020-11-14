@@ -91,20 +91,21 @@ window.onload = () => {
                                         .catch(e=>console.log(e));
                                     });
 
+                                    // フォーム要素にform1,form2,loginButtonを格納
+                                    formElement.appendChild(div_form1);
+                                    formElement.appendChild(div_form2);
+                                    formElement.appendChild(loginButton);
+        
+                                    // フォーム要素を大元のdiv要素へ格納
+                                    divLogin.appendChild(formElement);
+
                                     const divRegistration = document.createElement('div');
                                     const label_registration = document.createElement('a');
                                     label_registration.href = '/registration'
                                     label_registration.textContent = '新規会員登録';
                                     divRegistration.appendChild(label_registration);
         
-                                    // フォーム要素にform1,form2,loginButtonを格納
-                                    formElement.appendChild(div_form1);
-                                    formElement.appendChild(div_form2);
-                                    formElement.appendChild(loginButton);
-                                    formElement.appendChild(divRegistration);
-        
-                                    // フォーム要素を大元のdiv要素へ格納
-                                    divLogin.appendChild(formElement);
+                                    divLogin.appendChild(divRegistration);
         
                                 }
                             });
