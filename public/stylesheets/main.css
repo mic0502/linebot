@@ -1,3 +1,11 @@
+body{
+    text-align: center;
+}
+#line-name{
+    width: 100%;
+    margin:3% 0;
+    background-color: blue;
+}
 #rank_gold{
     background-image:url(../img/rank-gold.jpg);
     background-size: cover;
