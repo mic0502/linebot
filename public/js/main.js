@@ -1,5 +1,5 @@
 window.onload = () => {
-    const myLiffId = process.env.MYLIFFID;
+    const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
 
     liff
