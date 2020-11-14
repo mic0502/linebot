@@ -12,7 +12,6 @@ module.exports = {
                 console.log('登録済みアカウント');
                 User.getKokData(line_uid)
                 .then(resProfile=>{
-                    console.log(resProfile);
                     res.status(200).send(resProfile);
                 })
             }else{
@@ -26,7 +25,6 @@ module.exports = {
                 }
                 request(options)
                     .then(body=>{
-                        console.log(body);
                         res.status(200).send(body);
                     });
             }

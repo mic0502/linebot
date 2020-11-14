@@ -15,16 +15,12 @@ window.onload = () => {
                     nameElement.innerHTML = profile.displayName + 'さま';
 
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
-                        .then(response=>{response.text()
-                            .then(text=>{
-                                const parsedBody = JSON.parse(text) 
+                        .then(response=>{
+                                const parsedBody = JSON.parse(response.text().text) 
                                 const linkToken = parsedBody.linkToken;
 
                                 if(!linkToken){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
-                                    const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = linkToken;
-
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
                                     rankElement.innerHTML = '現在のランクは：' + parsedBody.rank + 'です。';
@@ -106,9 +102,6 @@ window.onload = () => {
                                     divLogin.appendChild(formElement);
         
                                 }
-                            });
-
-
 
                         });
                                
