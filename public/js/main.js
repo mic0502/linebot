@@ -15,11 +15,10 @@ window.onload = () => {
                     nameElement.innerHTML = profile.displayName + 'さま';
 
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
-                        .then(response=>{
-                                const parsedBody = JSON.parse(response.text().text) 
-                                const linkToken = parsedBody.linkToken;
-
-                                if(!linkToken){
+                        .then(response=>{response.text()
+                            .then(text=>{
+                                const parsedBody = JSON.parse(text);
+                                if(!parsedBody.linkToken){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
@@ -28,7 +27,7 @@ window.onload = () => {
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = linkToken;
+                                    idElement.innerHTML = parsedBody.linkToken;
 
                                     const formElement = document.createElement('form');
                                     formElement.setAttribute('id','login');
@@ -70,7 +69,7 @@ window.onload = () => {
                                     loginButton.type = 'button';
                                     loginButton.addEventListener('click',()=>{
                                         const data = new FormData(formElement);
-                                        data.append('linkToken',linkToken);
+                                        data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
         
                                         fetch('/api/users/login',{
@@ -102,6 +101,9 @@ window.onload = () => {
                                     divLogin.appendChild(formElement);
         
                                 }
+                            });
+
+
 
                         });
                                
