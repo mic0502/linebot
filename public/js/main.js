@@ -17,10 +17,10 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
-                                if(!JSON.parse(text).linkToken){
-                                    // リンクトークン未発行。連携済みの場合顧客データを取得する
-                                    const linkToken = text;
+                                const linkToken = JSON.parse(text).linkToken;
 
+                                if(!linkToken){
+                                    // リンクトークン未発行。連携済みの場合顧客データを取得する
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = linkToken;
 
@@ -30,7 +30,6 @@ window.onload = () => {
                                     pointElement.innerHTML = '現在の保有ポイント：' + linkToken.point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
-                                    const linkToken = text;
                                     const idElement = document.getElementById('lineid');
                                     idElement.innerHTML = linkToken;
 
