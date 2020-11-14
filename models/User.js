@@ -78,7 +78,6 @@ module.exports = {
 
     insertNonce:(id,linkToken)=>{
         return new Promise((resolve,reject)=>{
-
             // nonce生成d
             const N=16
             const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');

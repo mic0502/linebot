@@ -6,6 +6,8 @@ module.exports = {
         try{
             const {name,id,password} = req.body;
             console.log('name id pass',name,id,password);
+
+            // ユーザーを新規登録
             User.create({name,id,password})
                 .then(message=>{
                     console.log('message:',message);
@@ -23,6 +25,8 @@ module.exports = {
         try{
             console.log('req.body:',req.body);
             const {id,password,linkToken} = req.body;
+
+            // IDとパスワードから検索
             User.check(id,password,'')
                 .then(response=>{
                     if (response > 0 ){
