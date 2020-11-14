@@ -19,20 +19,17 @@ window.onload = () => {
                             .then(text=>{
                                 if(JSON.parse(response).linkToken){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
-                                    const linkToken = text;
-
                                     const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = linkToken;
+                                    idElement.innerHTML = JSON.parse(response).linkToken;
 
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
-                                    rankElement.innerHTML = '現在のランクは：' + JSON.parse(linkToken).rank + 'です。';
-                                    pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(linkToken).point + 'pt';
+                                    rankElement.innerHTML = '現在のランクは：' + JSON.parse(response).rank + 'です。';
+                                    pointElement.innerHTML = '現在の保有ポイント：' + JSON.parse(response).point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
-                                    const linkToken = text;
                                     const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = linkToken;
+                                    idElement.innerHTML = JSON.parse(response).linkToken;
 
                                     const formElement = document.createElement('form');
                                     formElement.setAttribute('id','login');
@@ -74,7 +71,7 @@ window.onload = () => {
                                     loginButton.type = 'button';
                                     loginButton.addEventListener('click',()=>{
                                         const data = new FormData(formElement);
-                                        data.append('linkToken',linkToken);
+                                        data.append('linkToken',JSON.parse(response).linkToken);
                                         console.log(...data.entries());
         
                                         fetch('/api/users/login',{
