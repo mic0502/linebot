@@ -16,14 +16,7 @@ const config = {
    channelSecret:process.env.CHANNEL_SECRET
 };
 
-const clientID = process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID;
-console.log('clientID:',clientID);
-
-console.log(process.env.APP_PATH);
-
-const User = require('./models/User');
 const client = new line.Client(config);
-
 const connection = new Client({
     user:process.env.PG_USER,
     host:process.env.PG_HOST,
