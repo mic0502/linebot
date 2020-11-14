@@ -19,6 +19,8 @@ const config = {
 const clientID = process.env.LINECORP_PLATFORM_CHANNEL_CHANNELID;
 console.log('clientID:',clientID);
 
+console.log(process.env.APP_PATH);
+
 const User = require('./models/User');
 const client = new line.Client(config);
 
@@ -81,9 +83,7 @@ app
                 break;
 
             case 'accountLink':
-                console.log('テスト通過０');
                 promises.push(accountLink(ev));
-                console.log('テスト通過２');
                 break;
 
             case 'postback':

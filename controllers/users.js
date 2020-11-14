@@ -1,6 +1,5 @@
 const User = require('../models/User');
 const {randomBytes} = require('crypto')
-const app_path = 'https://linebot-linkapp.herokuapp.com/'
 
 const { Client } = require('pg');
 const connection = new Client({
@@ -21,7 +20,8 @@ module.exports = {
             User.create({name,id,password})
                 .then(message=>{
                     console.log('message:',message);
-                    res.status(200).redirect(app_path);
+                    // 環境変数のAPPパスへリダイレクト
+                    res.status(200).redirect(process.env.APP_PATH); 
                 })
                 .catch(e=>console.log(e.stack));
          }catch(error){
