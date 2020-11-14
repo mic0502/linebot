@@ -17,7 +17,8 @@ window.onload = () => {
                     fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
-                                const linkToken = JSON.parse(text).linkToken;
+                                const parsedBody = JSON.parse(text) 
+                                const linkToken = parsedBody.linkToken;
 
                                 if(!linkToken){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
@@ -26,8 +27,8 @@ window.onload = () => {
 
                                     const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
-                                    rankElement.innerHTML = '現在のランクは：' + JSON.parse(linkToken).nama + 'です。';
-                                    pointElement.innerHTML = '現在の保有ポイント：' + linkToken.point + 'pt';
+                                    rankElement.innerHTML = '現在のランクは：' + parsedBody.rank + 'です。';
+                                    pointElement.innerHTML = '現在の保有ポイント：' + parsedBody.point + 'pt';
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     const idElement = document.getElementById('lineid');
