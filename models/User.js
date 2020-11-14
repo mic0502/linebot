@@ -32,10 +32,13 @@ module.exports = {
 
             console.log('createUser:',createUser);
 
+            const rank = 'D';
+            const point = 0;
             const insert_query = {
-                text:'INSERT INTO users (name,login_id,login_password) VALUES($1,$2,$3);',
+                text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'${rank}','${point}');`,
                 values:createUser
             };
+            console.log(`INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'${rank}','${point}');`);
             connection.query(insert_query)
                 .then(res=>{
                     console.log('新規登録成功');
