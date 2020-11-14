@@ -1,7 +1,6 @@
 window.onload = () => {
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
-    const divRegistration = document.getElementById('registration_area');
 
     liff
         .init({
@@ -91,11 +90,17 @@ window.onload = () => {
                                         })
                                         .catch(e=>console.log(e));
                                     });
+
+                                    const divRegistration = document.createElement('div');
+                                    const label_registration = document.createElement('link');
+                                    label_registration.textContent = '新規会員登録';
+                                    divRegistration.appendChild(label_registration);
         
                                     // フォーム要素にform1,form2,loginButtonを格納
                                     formElement.appendChild(div_form1);
                                     formElement.appendChild(div_form2);
                                     formElement.appendChild(loginButton);
+                                    formElement.appendChild(divRegistration);
         
                                     // フォーム要素を大元のdiv要素へ格納
                                     divLogin.appendChild(formElement);
