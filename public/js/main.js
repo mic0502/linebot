@@ -24,8 +24,8 @@ window.onload = () => {
                                     rankElement.innerHTML = '現在のランクは：' + parsedBody.rank + 'です。';
                                     pointElement.innerHTML = '現在の保有ポイント：' + parsedBody.point + 'pt';
                                     // クラス追加
-                                    // const rankBackground = document.getElementById('wrap');
-                                    // rankBackground.classList.add('rank_gold');
+                                    const rankBackground = document.getElementById('wrap');
+                                    rankBackground.classList.add('rank_gold');
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     nameElement.innerHTML = profile.displayName + 'さま';
