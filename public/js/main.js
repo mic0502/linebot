@@ -24,7 +24,7 @@ window.onload = () => {
                                     // クラス追加
                                     var medal_img = document.createElement('img');
                                     var rankup_img = document.createElement('img');
-                                    switch (parsedBody.point){
+                                    switch (parsedBody.rank){
                                         case 'A':
                                             medal_img.src = '../img/medal-gold.jpg';
                                             rankup_img.src = '../img/rankup-gold.jpg';
