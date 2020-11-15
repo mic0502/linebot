@@ -22,14 +22,9 @@ window.onload = () => {
                                     const pointElement = document.getElementById('customer_point');
                                     pointElement.innerHTML = '現在の保有ポイント：' + parsedBody.point + 'pt';
                                     // クラス追加
-                                    const medalElement = document.createElement('img');
+                                    var img = document.createElement('img');
                                     img.src = '../img/medal-gold.jpg';
                                     document.getElementById('customer_medal').appendChild(img);
-
-                                    medalElement.classList.add('medal_gold');
-                                    const rankupElement = document.getElementById('customer_rankup');
-                                    rankupElement.classList.add('rankup_gold');
-
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     nameElement.innerHTML = profile.displayName + 'さま';
