@@ -15,7 +15,12 @@ body{
     margin-top:60%;
 }
 #wrap{background-size:cover;}
-.rank_gold{background-image:url(../img/rank-gold.jpg);}
-.rank_silver{background-image:url(../img/rank-silver.jpg);}
-.rank_bronze{background-image:url(../img/rank-bronze.jpg);}
+.medal_gold{background-image:url(../img/medal-gold.jpg);}
+.medal_silver{background-image:url(../img/medal-silver.jpg);}
+.medal_bronze{background-image:url(../img/medal-bronze.jpg);}
+.medal_regular{background-image:url(../img/medal-regular.jpg);}
+.rankup_gold{background-image:url(../img/rankup-gold.jpg);}
+.rankup_silver{background-image:url(../img/rankup-silver.jpg);}
+.rankup_bronze{background-image:url(../img/rankup-bronze.jpg);}
+.rankup_regular{background-image:url(../img/rankup-regular.jpg);}
 
