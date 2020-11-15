@@ -11,14 +11,5 @@ body{
 #customer_point{
     font-size:1.5rem;
 }
-#customer_medal{width:200px;height:200px;background-size:cover;}
-#customer_rankup{width:100px;height:200px;background-size:cover;}
-.medal_gold{background-image:url(../img/medal-gold.jpg);}
-.medal_silver{background-image:url(../img/medal-silver.jpg);}
-.medal_bronze{background-image:url(../img/medal-bronze.jpg);}
-.medal_regular{background-image:url(../img/medal-regular.jpg);}
-.rankup_gold{background-image:url(../img/rankup-gold.jpg);}
-.rankup_silver{background-image:url(../img/rankup-silver.jpg);}
-.rankup_bronze{background-image:url(../img/rankup-bronze.jpg);}
-.rankup_regular{background-image:url(../img/rankup-regular.jpg);}
-
+#customer_medal{width:30%;}
+#customer_rankup{width:90%;}
