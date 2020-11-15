@@ -12,7 +12,7 @@ body{
 }
 #customer_area{
     font-size:1.5rem;
-    margin-bottom:60%;
+    margin-top:60%;
 }
 #wrap{background-size:cover;}
 .rank_gold{background-image:url(../img/rank-gold.jpg);}
