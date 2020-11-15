@@ -10,7 +10,7 @@ body{
 #customer_area{
     font-size:1.5rem;
 }
-#customer_medal,#customer_rankup{width:100%;}
+#customer_medal,#customer_rankup{width:100%;background-size:contain;}
 .medal_gold{background-image:url(../img/medal-gold.jpg);}
 .medal_silver{background-image:url(../img/medal-silver.jpg);}
 .medal_bronze{background-image:url(../img/medal-bronze.jpg);}
