@@ -12,9 +12,8 @@ body{
 }
 #customer_area{
     font-size:1.5rem;
-    margin-top:50%;
 }
-#wrap{background-size: cover;}
+#wrap{background-size: cover;width:100%;height:auto;}
 .rank_gold{background-image:url(../img/rank-gold.jpg);}
 .rank_silver{background-image:url(../img/rank-silver.jpg);}
 .rank_bronze{background-image:url(../img/rank-bronze.jpg);}
