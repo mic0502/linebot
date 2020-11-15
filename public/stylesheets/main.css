@@ -12,5 +12,5 @@ img{width:100%;}
 #customer_point{
     font-size:1.5rem;
 }
-#customer_medal{width:30%;}
-#customer_rankup{width:90%;}
+#customer_medal{width:30%;margin:0 auto;}
+#customer_rankup{width:90%;margin:0 auto;}

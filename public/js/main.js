@@ -22,9 +22,13 @@ window.onload = () => {
                                     const pointElement = document.getElementById('customer_point');
                                     pointElement.innerHTML = '現在の保有ポイント：' + parsedBody.point + 'pt';
                                     // クラス追加
-                                    var img = document.createElement('img');
-                                    img.src = '../img/medal-gold.jpg';
-                                    document.getElementById('customer_medal').appendChild(img);
+                                    var medal_img = document.createElement('img');
+                                    var rankup_img = document.createElement('img');
+                                    
+                                    medal_img.src = '../img/medal-gold.jpg';
+                                    rankup_img.src = '../img/rankup-gold.jpg';
+                                    document.getElementById('customer_medal').appendChild(medal_img);
+                                    document.getElementById('customer_rankup').appendChild(rankup_img);
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     nameElement.innerHTML = profile.displayName + 'さま';
