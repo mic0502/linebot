@@ -19,13 +19,13 @@ window.onload = () => {
                                 if(!parsedBody.linkToken){
                                     // リンクトークン未発行。連携済みの場合顧客データを取得する
                                     nameElement.innerHTML = parsedBody.name + 'さま';
-                                    const rankElement = document.getElementById('customer_rank');
                                     const pointElement = document.getElementById('customer_point');
-                                    rankElement.innerHTML = '現在のランクは：' + parsedBody.rank + 'です。';
                                     pointElement.innerHTML = '現在の保有ポイント：' + parsedBody.point + 'pt';
                                     // クラス追加
-                                    const rankBackground = document.getElementById('wrap');
-                                    rankBackground.classList.add('rank_gold');
+                                    const medalElement = document.getElementById('customer_medal');
+                                    medalElement.classList.add('medal_gold');
+                                    const rankupElement = document.getElementById('customer_rankup');
+                                    rankupElement.classList.add('rankup_gold');
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     nameElement.innerHTML = profile.displayName + 'さま';
