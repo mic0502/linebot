@@ -13,6 +13,7 @@ body{
 #customer_area{
     font-size:1.5rem;
 }
+#wrap{background-size:contain;}
 .rank_gold{background-image:url(../img/rank-gold.jpg);}
 .rank_silver{background-image:url(../img/rank-silver.jpg);}
 .rank_bronze{background-image:url(../img/rank-bronze.jpg);}
