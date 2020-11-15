@@ -24,9 +24,23 @@ window.onload = () => {
                                     // クラス追加
                                     var medal_img = document.createElement('img');
                                     var rankup_img = document.createElement('img');
-                                    
-                                    medal_img.src = '../img/medal-gold.jpg';
-                                    rankup_img.src = '../img/rankup-gold.jpg';
+                                    switch (parsedBody.point){
+                                        case 'A':
+                                            medal_img.src = '../img/medal-gold.jpg';
+                                            rankup_img.src = '../img/rankup-gold.jpg';
+                                            break;
+                                        case 'B':
+                                            medal_img.src = '../img/medal-silver.jpg';
+                                            rankup_img.src = '../img/rankup-silver.jpg';
+                                            break;
+                                        case 'C':
+                                            medal_img.src = '../img/medal-bronze.jpg';
+                                            rankup_img.src = '../img/rankup-bronze.jpg';
+                                            break;
+                                        default:
+                                            medal_img.src = '../img/medal-regular.jpg';
+                                            rankup_img.src = '../img/rankup-regular.jpg';
+                                      }
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
                                 }else{
