@@ -1,13 +1,14 @@
 body{
     text-align: center;
 }
+#lineid{display: none;}
 #line-name{
     width: 100%;
     margin:3% 0;
     color:#FFF;
     background-color:#00B900;
 }
-#customer_area{
+#customer_point{
     font-size:1.5rem;
 }
 #customer_medal,#customer_rankup{width:100%;background-size:contain;}
