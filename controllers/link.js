@@ -15,7 +15,6 @@ module.exports = {
                 })
             }else{
                 // まだ連携されていない場合リンクトークンを取得
-                // 環境変数のチャネルアクセストークンをヘッダーに設定
                 console.log('未登録アカウント');
                 const options = {
                     url:`https://api.line.me/v2/bot/user/${line_uid}/linkToken`,
@@ -29,5 +28,15 @@ module.exports = {
                     });
             }
         })
+    },
+
+    accountRelease: (req,res) => {
+        const line_uid = req.query.line_uid;        
+        User.release(line_uid)
+        .then(res2=>{
+            res.status(200).send(res2);
+        })
+        
     }
+
 }
