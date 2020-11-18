@@ -26,25 +26,25 @@ const connection = new Client({
   });
 connection.connect();
 
-const create_userTable = {
-text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), rank VARCHAR(50), point VARCHAR(50), line_id VARCHAR(255));'
-};
+// const create_userTable = {
+// text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), rank VARCHAR(50), point VARCHAR(50), line_id VARCHAR(255));'
+// };
     
-connection.query(create_userTable)
-.then(()=>{
-    console.log('table users created successfully!!');
-})
-.catch(e=>console.log(e));
+// connection.query(create_userTable)
+// .then(()=>{
+//     console.log('table users created successfully!!');
+// })
+// .catch(e=>console.log(e));
 
-const create_nonceTable = {
-    text:'CREATE TABLE IF NOT EXISTS nonces (id SERIAL NOT NULL, login_id VARCHAR(50), nonce VARCHAR(255));'
-}
+// const create_nonceTable = {
+//     text:'CREATE TABLE IF NOT EXISTS nonces (id SERIAL NOT NULL, login_id VARCHAR(50), nonce VARCHAR(255));'
+// }
 
-connection.query(create_nonceTable)
-    .then(()=>{
-        console.log('table nonce created successfully');
-    })
-    .catch(e=>console.log(e));
+// connection.query(create_nonceTable)
+//     .then(()=>{
+//         console.log('table nonce created successfully');
+//     })
+//     .catch(e=>console.log(e));
 
 app
    .use(express.static(path.join(__dirname, 'public')))
@@ -103,6 +103,13 @@ app
     const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     const lineId = ev.source.userId;
+
+    // fetch(`api/link?line_uid=${lineId}`,{method:'GET'})
+    // .then(response=>{response.text()
+    //     .then(text=>{
+    //     })
+    // })
+
 
     if(text === '連携解除'){
         const select_query = {
