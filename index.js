@@ -105,7 +105,7 @@ app
     const lineId = ev.source.userId;
 
     if(text === '連携解除'){
-
+        console.log('連携解除API');
         fetch(`api/link/release?line_uid=${lineId}`,{method:'GET'})
         .then(response=>{response.text()
             .then(text=>{
