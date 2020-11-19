@@ -29,7 +29,7 @@ module.exports = {
         })
     },
 
-    accountUnLink: (lineId) => {
+    accountUnLink: (lineId,res) => {
         const select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`}
         User.check(select_query)
         .then(checkRes=>{
