@@ -11,7 +11,6 @@ module.exports = {
             if (checkRes.rowCount > 0 ){
                 // すでに連携済の場合
                 console.log('登録済みアカウント');
-                console.log(checkRes.rows[0].name);
                 res.status(200).send(checkRes.rows[0]);
             }else{
                 // まだ連携されていない場合リンクトークンを取得

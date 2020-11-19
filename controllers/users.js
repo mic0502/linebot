@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const {randomBytes} = require('crypto')
 
 module.exports = {
 
@@ -26,16 +27,23 @@ module.exports = {
             console.log('req.body:',req.body);
             const {id,password,linkToken} = req.body;
             // IDとパスワードから検索
-            select_query = {text:`SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`};
+            const select_query = {text:`SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`};
             User.check(select_query)
                 .then(checkRes=>{
                     if (checkRes.rowCount > 0 ){
                         console.log('認証成功');
 
-                        // Nonceを追加
-                        User.insertNonce(id,linkToken)
-                            .then(resNonce=>{
-                                res.status(200).send(resNonce);
+                        // nonce生成d
+                        const N=16
+                        const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
+                        const buf = Buffer.from(randomStrings);
+                        const nonce = buf.toString('base64');
+
+                        // nonceテーブルへの挿入
+                        const insert_query = {text:`INSERT INTO nonces (login_id,nonce) VALUES('${id}','${nonce}');`}
+                        User.insertNonce(insert_query,linkToken,nonce)
+                            .then(insertNonceRes=>{
+                                res.status(200).send(insertNonceRes);
                             })
                     }else{
                         console.log('ログイン失敗');

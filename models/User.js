@@ -1,4 +1,3 @@
-const {randomBytes} = require('crypto')
 const { Client } = require('pg');
 const connection = new Client({
     user:process.env.PG_USER,
@@ -32,22 +31,11 @@ module.exports = {
         });
     },
 
-    insertNonce:(id,linkToken)=>{
+    insertNonce:(insert_query,linkToken,nonce)=>{
         return new Promise((resolve,reject)=>{
-            // nonce生成d
-            const N=16
-            const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
-            const buf = Buffer.from(randomStrings);
-            const nonce = buf.toString('base64');
-
-            // nonceテーブルへの挿入
-            const insert_query = {
-                text:'INSERT INTO nonces (login_id,nonce) VALUES($1,$2);',
-                values:[`${id}`,`${nonce}`]
-            }
             connection.query(insert_query)
-                .then(response=>{
-                    console.log('linktoken nonce:',linkToken,nonce);
+                .then(res=>{
+                    console.log('Nonceテーブル追加完了');
                     const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
                     resolve(linkSentence);
                     // アイディアここでリダイレクトするのでなく、linktokenとnonceをフロント側へ返してあげ、フロント側で下記ページへGETする
