@@ -12,6 +12,7 @@ const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
 const users = require('./controllers/users');
+const User = require('./models/User');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -96,7 +97,7 @@ app
 
 const accountLink = (ev) => {
     // 連携処理開始
-    link(ev.link.nonce,ev.source.userId)
+    User.link(ev.link.nonce,ev.source.userId)
     .then(response=>{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
