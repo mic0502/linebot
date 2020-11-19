@@ -7,6 +7,7 @@ const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
+const User = require('./models/User');
 const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
@@ -106,16 +107,14 @@ app
 
     if(text === '連携解除'){
         console.log('連携解除API');
-        fetch(`api/link/release?line_uid=${lineId}`,{method:'GET'})
-        .then(response=>{response.text()
-            // .then(text=>{
-            //     return client.replyMessage(ev.replyToken,{
-            //         "type":"text",
-            //         "text":"連携が解除されました！"
-            //     });
-            // })
+        User.release(lineId)
+        .then(response=>{
+            return client.replyMessage(ev.replyToken,{
+                "type":"text",
+                "text":"連携が解除されました！"
+            });
         })
-
+        
     }else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
