@@ -21,32 +21,12 @@ module.exports = {
         })
     },
 
-    check:(loginId,password,lineId)=>{
+    check:(select_query)=>{
         return new Promise((resolve,reject)=>{
-            let select_query;
-            // 引数にラインIDがあるかどうかで検索条件変更
-            if(lineId == ""){   
-                select_query = {text:`SELECT * FROM users WHERE login_id='${loginId}' and login_password='${password}';`};
-            }else{
-                select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`};
-            }
             connection.query(select_query)
                 .then(res=>{
                     console.log('ユーザーテーブル検索完了');
-                    resolve(res.rowCount);
-                })
-                .catch(e=>console.log(e));
-        });
-    },
-
-    getKokData:(lineId)=>{
-        return new Promise((resolve,reject)=>{
-            let select_query;
-            select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`};
-            connection.query(select_query)
-                .then(res=>{
-                    console.log('顧客情報検索完了');
-                    resolve(res.rows[0]);
+                    resolve(res);
                 })
                 .catch(e=>console.log(e));
         });

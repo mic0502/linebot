@@ -25,11 +25,11 @@ module.exports = {
         try{
             console.log('req.body:',req.body);
             const {id,password,linkToken} = req.body;
-
             // IDとパスワードから検索
-            User.check(id,password,'')
-                .then(response=>{
-                    if (response > 0 ){
+            select_query = {text:`SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`};
+            User.check(select_query)
+                .then(checkRes=>{
+                    if (checkRes.rowCount > 0 ){
                         console.log('認証成功');
 
                         // Nonceを追加
