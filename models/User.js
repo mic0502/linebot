@@ -76,31 +76,16 @@ module.exports = {
         });
     },
 
-    release:(lineId)=>{
+    release:(update_query)=>{
         return new Promise((resolve,reject)=>{
-
-            const select_query = {
-                text:`SELECT * FROM users WHERE line_id='${lineId}';`
-            }
-            connection.query(select_query)
-                .then(res=>{
-                    const name = res.rows[0].name;
-                    const login_id = res.rows[0].login_id;
-                    const password = res.rows[0].login_password;
-                    const update_query = {
-                        text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`
-                    }
-                    connection.query(update_query)
-                        .then(res2=>{
-                            console.log('連携解除成功');
-                            resolve('release succeeded!');
-                        })
-                        .catch(e=>console.log(e));
-    
+            connection.query(update_query)
+                .then(releaseRes=>{
+                    console.log('連携解除成功');
+                    resolve('release succeeded!');
                 })
                 .catch(e=>console.log(e));
 
-        });
+        })
     }
 
 }
