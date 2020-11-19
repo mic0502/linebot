@@ -5,10 +5,10 @@ module.exports = {
     postUser: (req,res) => {
         try{
             const {name,id,password} = req.body;
-            console.log('name id pass',name,id,password);
 
-            // ユーザーを新規登録
-            User.create({name,id,password})
+            // 新規登録の場合はランクはD、ポイントは０で登録
+            const insert_query = {text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`};
+            User.create(insert_query)
                 .then(message=>{
                     console.log('message:',message);
                     // 環境変数のAPPパスへリダイレクト

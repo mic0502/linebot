@@ -9,36 +9,13 @@ const connection = new Client({
   });
 connection.connect();
 
-class Create {
-    constructor({name,id,password}){
-        this.name = name;
-        this.id = id;
-        this.password = password;
-    }
-
-    queryArray(){
-        return [this.name,this.id,this.password];
-    }
-}
-
 module.exports = {
-    create:({name,id,password})=>{
+    create:(insert_query)=>{
         return new Promise((resolve,reject)=>{
-            const createUser = new Create({
-                name:name,
-                id:id,
-                password:password
-            }).queryArray();
-
-            // 新規登録の場合はランクはD、ポイントは０で登録
-            const insert_query = {
-                text:"INSERT INTO users (name,login_id,login_password,rank,point) VALUES($1,$2,$3,'D','0');",
-                values:createUser
-            };
             connection.query(insert_query)
                 .then(res=>{
                     console.log('新規登録成功');
-                    resolve('post succeeded!');
+                    resolve('create成功');
                 })
                 .catch(e=>console.log(e)); 
         })
