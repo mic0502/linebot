@@ -106,7 +106,7 @@ app
 
     if(text === '連携解除'){
 
-        fetch(`api/link/release?line_uid=${lineId}`,{method:'POST'})
+        fetch(`api/link/release?line_uid=${lineId}`,{method:'GET'})
         .then(response=>{response.text()
             .then(text=>{
                 return client.replyMessage(ev.replyToken,{
