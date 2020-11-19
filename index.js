@@ -96,7 +96,7 @@ app
                     // 未連携の場合
                     return client.replyMessage(ev.replyToken,{
                         "type":"text",
-                        "text":`${profile.displayName}さん、今${text}って言いました？`
+                        "text":`${profile.displayName}さん、「${text}」って言いました？`
                     });
                 }
             })
@@ -105,7 +105,7 @@ app
         // 上記以外のメッセージ受診の場合はおうむ返しする
         return client.replyMessage(ev.replyToken,{
             "type":"text",
-            "text":`${profile.displayName}さん、今${text}って言いました？`
+            "text":`${profile.displayName}さん、「${text}」って言いました？`
         });
     }
  }
@@ -113,7 +113,7 @@ app
 const accountLink = (ev) => {
     // 連携処理開始
     User.link(ev.link.nonce,ev.source.userId)
-    .then(response=>{
+    .then(linkRes=>{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
             "text":"連携完了！"
