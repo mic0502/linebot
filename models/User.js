@@ -100,6 +100,37 @@ module.exports = {
             })
     },
 
+    link:(nonce,lineId)=>{
+        return new Promise((resolve,reject)=>{
+            const select_query = {
+                text:`SELECT * FROM nonces WHERE nonce='${nonce}';`
+            };
+            connection.query(select_query)
+                .then(res=>{
+                    const login_id = res.rows[0].login_id;
+                    const selectUsers = {
+                        text:`SELECT * FROM users WHERE login_id='${login_id}';`
+                    }
+                    connection.query(selectUsers)
+                        .then(res1=>{
+                            const name = res1.rows[0].name;
+                            const password = res1.rows[0].login_password;
+                            const update_query = {
+                                text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '${lineId}') WHERE login_id='${login_id}';`
+                            }
+                            connection.query(update_query)
+                                .then(res2=>{
+                                    console.log('アカウント連携成功！！');
+                                    resolve('link succeeded!');
+                                })
+                                .catch(e=>console.log(e));
+                        })
+        
+                })
+                .catch(e=>console.log(e));
+        });
+    },
+
     release:(lineId)=>{
         return new Promise((resolve,reject)=>{
 

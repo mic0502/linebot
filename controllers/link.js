@@ -28,15 +28,6 @@ module.exports = {
                     });
             }
         })
-    },
-
-    accountRelease: (req,res) => {
-        const line_uid = req.query.line_uid;        
-        User.release(line_uid)
-        .then(res2=>{
-            res.status(200).send(res2);
-        })
-        
     }
 
 }

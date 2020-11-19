@@ -17,16 +17,6 @@ const config = {
    channelSecret:process.env.CHANNEL_SECRET
 };
 
-const client = new line.Client(config);
-const connection = new Client({
-    user:process.env.PG_USER,
-    host:process.env.PG_HOST,
-    database:process.env.PG_DATABASE,
-    password:process.env.PG_PASSWORD,
-    port:5432
-  });
-connection.connect();
-
 // const create_userTable = {
 // text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), rank VARCHAR(50), point VARCHAR(50), line_id VARCHAR(255));'
 // };
@@ -106,7 +96,7 @@ app
     const lineId = ev.source.userId;
 
     if(text === '連携解除'){
-        console.log('連携解除API');
+        // ユーザーコントローラーを呼び出し連携を解除する
         User.release(lineId)
         .then(response=>{
             return client.replyMessage(ev.replyToken,{
@@ -114,7 +104,7 @@ app
                 "text":"連携が解除されました！"
             });
         })
-        
+
     }else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
@@ -126,32 +116,13 @@ app
 const accountLink = (ev) => {
     const lineId = ev.source.userId;
     const nonce = ev.link.nonce;
-    console.log('lineID:',lineId);
-    console.log('nonce',nonce);
 
-    const select_query = {
-        text:`SELECT * FROM nonces WHERE nonce='${nonce}';`
-    };
-    connection.query(select_query)
-        .then(res1=>{
-            const login_id = res1.rows[0].login_id;
-            const selectUsers = {
-                text:`SELECT * FROM users WHERE login_id='${login_id}';`
-            }
-            connection.query(selectUsers)
-                .then(res2=>{
-                    const name = res2.rows[0].name;
-                    const password = res2.rows[0].login_password;
-                    const update_query = {
-                        text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '${lineId}') WHERE login_id='${login_id}';`
-                    }
-                    connection.query(update_query)
-                        .then(res3=>{
-                            console.log('アカウント連携成功！！');
-                        })
-                        .catch(e=>console.log(e));
-                })
+    User.link(nonce,lineId)
+    .then(response=>{
+        return client.replyMessage(ev.replyToken,{
+            "type":"text",
+            "text":"連携完了！"
+        });
+    })
 
-        })
-        .catch(e=>console.log(e));
 }
