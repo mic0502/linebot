@@ -86,15 +86,15 @@ app
                 const login_id = checkRes.rows[0].login_id;
                 const password = checkRes.rows[0].login_password;
                 const update_query = {text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`}
+                
+                User.release(update_query)
+                .then(response=>{
+                    return client.replyMessage(ev.replyToken,{
+                        "type":"text",
+                        "text":"連携が解除されました！"
+                    });
+                })        
             })
-
-        User.release(lineId)
-        .then(response=>{
-            return client.replyMessage(ev.replyToken,{
-                "type":"text",
-                "text":"連携が解除されました！"
-            });
-        })
 
     }else{
         // 上記以外のメッセージ受診の場合はおうむ返しする
