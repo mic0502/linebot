@@ -17,25 +17,7 @@ const config = {
    channelSecret:process.env.CHANNEL_SECRET
 };
 
-// const create_userTable = {
-// text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), rank VARCHAR(50), point VARCHAR(50), line_id VARCHAR(255));'
-// };
-    
-// connection.query(create_userTable)
-// .then(()=>{
-//     console.log('table users created successfully!!');
-// })
-// .catch(e=>console.log(e));
-
-// const create_nonceTable = {
-//     text:'CREATE TABLE IF NOT EXISTS nonces (id SERIAL NOT NULL, login_id VARCHAR(50), nonce VARCHAR(255));'
-// }
-
-// connection.query(create_nonceTable)
-//     .then(()=>{
-//         console.log('table nonce created successfully');
-//     })
-//     .catch(e=>console.log(e));
+const client = new line.Client(config);
 
 app
    .use(express.static(path.join(__dirname, 'public')))
