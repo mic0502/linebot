@@ -2,21 +2,19 @@ const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 5000
-const { Client } = require('pg');
 const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const User = require('./models/User');
+// const { Client } = require('pg');
 // const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
-
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
    channelSecret:process.env.CHANNEL_SECRET
 };
-
 const client = new line.Client(config);
 
 app
@@ -120,5 +118,4 @@ const accountLink = (ev) => {
         });
     })
     .catch(e=>console.log(e));
-
 }
