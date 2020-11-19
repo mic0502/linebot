@@ -7,10 +7,11 @@ const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
-const User = require('./models/User');
+const link = require('./controllers/link');
 const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
+const users = require('./controllers/users');
 
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -43,15 +44,12 @@ app
             case 'follow':
                 promises.push(greeting_follow(ev));
                 break;
-            
             case 'message':
                 promises.push(handleMessageEvent(ev));
                 break;
-
             case 'accountLink':
                 promises.push(accountLink(ev));
                 break;
-
             case 'postback':
                 promises.push(handlePostbackEvent(ev));
                 break;
@@ -79,23 +77,14 @@ app
 
     if(text === '連携解除'){
         // ユーザーコントローラーを呼び出し連携を解除する
-        const select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`}
-        User.check(select_query)
-            .then(checkRes=>{
-                const name = checkRes.rows[0].name;
-                const login_id = checkRes.rows[0].login_id;
-                const password = checkRes.rows[0].login_password;
-                const update_query = {text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`}
-                
-                User.release(update_query)
-                .then(response=>{
-                    return client.replyMessage(ev.replyToken,{
-                        "type":"text",
-                        "text":"連携が解除されました！"
-                    });
-                })        
-            })
-
+        link.accountUnLink()
+            .then(response=>{
+                return client.replyMessage(ev.replyToken,{
+                "type":"text",
+                "text":"連携が解除されました！"
+            });
+        });
+        
     }else{
         // 上記以外のメッセージ受診の場合はおうむ返しする
         return client.replyMessage(ev.replyToken,{
@@ -107,12 +96,12 @@ app
 
 const accountLink = (ev) => {
     // 連携処理開始
-    User.link(ev.link.nonce,ev.source.userId)
+    link(ev.link.nonce,ev.source.userId)
     .then(response=>{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
             "text":"連携完了！"
         });
     })
-
+    .catch(e=>console.log(e));
 }
