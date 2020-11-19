@@ -108,12 +108,12 @@ app
         console.log('連携解除API');
         fetch(`api/link/release?line_uid=${lineId}`,{method:'GET'})
         .then(response=>{response.text()
-            .then(text=>{
-                return client.replyMessage(ev.replyToken,{
-                    "type":"text",
-                    "text":"連携が解除されました！"
-                });
-            })
+            // .then(text=>{
+            //     return client.replyMessage(ev.replyToken,{
+            //         "type":"text",
+            //         "text":"連携が解除されました！"
+            //     });
+            // })
         })
 
     }else{
