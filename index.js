@@ -78,7 +78,7 @@ app
 
     if(text === '連携解除'){
         // ユーザーコントローラーを呼び出し連携を解除する
-        link.accountUnLink()
+        link.accountUnLink(lineId)
             .then(response=>{
                 return client.replyMessage(ev.replyToken,{
                 "type":"text",

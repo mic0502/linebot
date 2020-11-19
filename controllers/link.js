@@ -29,7 +29,7 @@ module.exports = {
         })
     },
 
-    accountUnLink: (req,res) => {
+    accountUnLink: (lineId) => {
         const select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`}
         User.check(select_query)
         .then(checkRes=>{
@@ -39,8 +39,9 @@ module.exports = {
             const update_query = {text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`}
             
             User.release(update_query)
-            .then(response=>{
-                res.status(200).send(response);
+            .then(releaseRes=>{
+                console.log('アカウント解除成功');
+                res.status(200).send(releaseRes);
             });
 
         })
