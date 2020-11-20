@@ -72,6 +72,7 @@ registrationButton.addEventListener('click',(e)=>{
 formElement.appendChild(div_form0);
 formElement.appendChild(div_form1);
 formElement.appendChild(div_form2);
+formElement.appendChild(div_error);
 formElement.appendChild(registrationButton);
 
 // フォーム要素を大元のdiv要素へ格納
