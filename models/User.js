@@ -47,7 +47,6 @@ module.exports = {
 
     link:(nonce,lineId)=>{
         return new Promise((resolve,reject)=>{
-            console.log('通過２');
             const select_query = {text:`SELECT * FROM nonces WHERE nonce='${nonce}';`};
             connection.query(select_query)
                 .then(res=>{
