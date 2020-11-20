@@ -83,7 +83,7 @@ window.onload = () => {
                                     div_form2.appendChild(input_form2);
         
                                     // エラーコード表示エリア
-                                    const div_error = document.createElement('p')
+                                    const div_error = document.createElement('span')
                                     const label_error = document.createElement('label');
                                     label_error.setAttribute('class','label_error');
                                     label_error.textContent = '　';
