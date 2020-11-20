@@ -66,6 +66,15 @@ window.onload = () => {
         case 'error01':
             label_error.textContent = 'すでに登録済みのIDです。';
             break;
+        case 'error02':
+            label_error.textContent = '名前を入力してください。';
+            break;
+        case 'error03':
+            label_error.textContent = 'ログインIDは５桁以上で入力してください。';
+            break;
+        case 'error04':
+            label_error.textContent = 'パスワードは５桁以上で入力してください。';
+            break;
         default:
             label_error.textContent = '';
     }
