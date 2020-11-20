@@ -21,7 +21,7 @@ window.onload = () => {
 
     const label_form0 = document.createElement('label');
     label_form0.setAttribute('class','label_name');
-    label_form0.textContent = '名前';
+    label_form0.textContent = '　　　名前';
     div_form0.appendChild(label_form0);
 
     const input_form0 = document.createElement('input');
