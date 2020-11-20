@@ -86,6 +86,7 @@ window.onload = () => {
                                     // エラーコード表示エリア
                                     const div_error = document.createElement('p')
                                     const label_error = document.createElement('label');
+                                    label_error.setAttribute('class','label_error');
 
 
                                     // ログインボタン
@@ -104,6 +105,7 @@ window.onload = () => {
                                         })
                                         .then(response=>{
                                             if(response.ok){
+                                                label_error.textContent = '';
                                                 response.text()
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
@@ -111,14 +113,13 @@ window.onload = () => {
                                                         document.location.href = url;
                                                     })
                                             }else{
-                                                label_error.setAttribute('class','label_error');
                                                 label_error.textContent = 'IDかパスワードが正しくありません。';
-                                                div_error.appendChild(label_error);
-                                                alert('IDかパスワードが正しくありません。');
                                             }
                                         })
                                         .catch(e=>console.log(e));
                                     });
+
+                                    div_error.appendChild(label_error);
 
                                     // フォーム要素にform1,form2,loginButtonを格納
                                     formElement.appendChild(div_form1);
