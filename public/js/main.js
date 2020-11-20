@@ -57,7 +57,6 @@ window.onload = () => {
         
                                     // div_form1はログインIDに関するlabel要素とinput要素で構成
                                     const div_form1 = document.createElement('div');
-        
                                     const label_form1 = document.createElement('label');
                                     label_form1.setAttribute('class','label_id');
                                     label_form1.textContent = 'ログインID';
@@ -87,7 +86,7 @@ window.onload = () => {
                                     const div_error = document.createElement('p')
                                     const label_error = document.createElement('label');
                                     label_error.setAttribute('class','label_error');
-                                    label_error.textContent = ' ';
+                                    label_error.textContent = '　';
 
 
                                     // ログインボタン
