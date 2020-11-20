@@ -87,6 +87,7 @@ window.onload = () => {
                                     const div_error = document.createElement('p')
                                     const label_error = document.createElement('label');
                                     label_error.setAttribute('class','label_error');
+                                    label_error.textContent = ' ';
 
 
                                     // ログインボタン
@@ -105,7 +106,6 @@ window.onload = () => {
                                         })
                                         .then(response=>{
                                             if(response.ok){
-                                                label_error.textContent = '　';
                                                 response.text()
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
