@@ -107,9 +107,8 @@ window.onload = () => {
                                             if(response.ok){
                                                 response.text()
                                                     .then(text=>{
-                                                        // const url = `https://access.line.me/dialog/bot/${text}`;
-                                                        // console.log('通過１url:',url);
-                                                        // document.location.href = url;
+                                                        const url = `https://access.line.me/dialog/bot/${text}`;
+                                                        document.location.href = url;
                                                     })
                                             }else{
                                                 label_error.textContent = 'IDかパスワードが正しくありません。';
