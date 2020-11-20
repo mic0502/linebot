@@ -54,7 +54,7 @@ module.exports = {
                             })
                     }else{
                         console.log('ログイン失敗');
-                        res.status(400);
+                        res.status(400).json({message:error.message});
                     }
                 })
                 .catch(e=>console.log(e));
