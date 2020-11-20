@@ -83,6 +83,11 @@ window.onload = () => {
                                     input_form2.setAttribute('name','password');
                                     div_form2.appendChild(input_form2);
         
+                                    // エラーコード表示エリア
+                                    const div_error = document.createElement('p')
+                                    const label_error = document.createElement('label');
+
+
                                     // ログインボタン
                                     const loginButton = document.createElement('input');
                                     loginButton.value = 'ログイン';
@@ -106,7 +111,10 @@ window.onload = () => {
                                                         document.location.href = url;
                                                     })
                                             }else{
-                                                alert('ログイン失敗です');
+                                                label_error.setAttribute('class','label_error');
+                                                label_error.textContent = 'IDかパスワードが正しくありません。';
+                                                div_error.appendChild(label_error);
+                                                alert('IDかパスワードが正しくありません。');
                                             }
                                         })
                                         .catch(e=>console.log(e));
@@ -115,6 +123,7 @@ window.onload = () => {
                                     // フォーム要素にform1,form2,loginButtonを格納
                                     formElement.appendChild(div_form1);
                                     formElement.appendChild(div_form2);
+                                    formElement.appendChild(div_error);
                                     formElement.appendChild(loginButton);
         
                                     // フォーム要素を大元のdiv要素へ格納

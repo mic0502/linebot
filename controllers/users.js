@@ -53,8 +53,7 @@ module.exports = {
                                 res.status(200).send(insertNonceRes);
                             })
                     }else{
-                        console.log('ログイン失敗');
-                        res.status(400).json({message:'失敗したみたい'});
+                        res.status(401).json({message:'ログイン失敗'});
                     }
                 })
                 .catch(e=>console.log(e));
