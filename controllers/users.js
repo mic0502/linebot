@@ -7,7 +7,7 @@ module.exports = {
         try{
             const {name,id,password} = req.body;
             // 入力された情報チェック
-            if(mame==''){
+            if(name==''){
                 res.status(200).redirect(process.env.APP_PATH + 'registration?error02');
             }else if(id.length<4){
                 res.status(200).redirect(process.env.APP_PATH + 'registration?error03'); 
