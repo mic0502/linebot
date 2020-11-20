@@ -76,7 +76,7 @@ window.onload = () => {
             label_error.textContent = 'パスワードは４桁以上で入力してください。';
             break;
         default:
-            label_error.textContent = '';
+            label_error.textContent = '　';
     }
     div_error.appendChild(label_error);
 
