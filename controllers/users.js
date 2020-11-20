@@ -12,7 +12,7 @@ module.exports = {
                 if (checkRes.rowCount > 0 ){
                     // すでに登録されたIDの場合
                     console.log('すでに使用されたIDです。');
-                    res.status(401).json({message:'すでに使用されたIDです。'});
+                    res.status(200).redirect(process.env.APP_PATH + '/registration'); 
                 }else{
                     // 新規登録の場合はランクはD、ポイントは０で登録
                     const insert_query = {text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`};

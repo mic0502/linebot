@@ -55,7 +55,7 @@ div_form2.appendChild(input_form2);
 const div_error = document.createElement('p')
 const label_error = document.createElement('label');
 label_error.setAttribute('class','label_error');
-label_error.textContent = 'aa';
+label_error.textContent = '';
 div_error.appendChild(label_error);
 
 
