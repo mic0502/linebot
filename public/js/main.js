@@ -1,11 +1,7 @@
 window.onload = () => {
-    const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
 
     liff
-        .init({
-            liffId:myLiffId
-        })
         .then(()=>{
             liff.getProfile()
                 .then(profile=>{
