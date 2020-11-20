@@ -11,7 +11,7 @@ module.exports = {
             .then(checkRes=>{
                 if (checkRes.rowCount > 0 ){
                     // すでに登録されたIDの場合
-                    res.status(200).json({message:'登録済み'});
+                    res.status(200).json({message:'すでに登録されているIDです。'});
                 }else{
                     // 新規登録の場合はランクはD、ポイントは０で登録
                     const insert_query = {text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`};
@@ -32,7 +32,6 @@ module.exports = {
     postLogin: (req,res) => {
     // ユーザーIDとパスワードでログイン
         try{
-            console.log('req.body:',req.body);
             const {id,password,linkToken} = req.body;
             // IDとパスワードから検索
             const select_query = {text:`SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`};
@@ -55,6 +54,7 @@ module.exports = {
                             })
                     }else{
                         console.log('ログイン失敗');
+                        res.status(400);
                     }
                 })
                 .catch(e=>console.log(e));

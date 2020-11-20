@@ -106,7 +106,7 @@ window.onload = () => {
                                                         document.location.href = url;
                                                     })
                                             }else{
-                                                alert('HTTPレスポンスエラーです');
+                                                alert('ログイン失敗です');
                                             }
                                         })
                                         .catch(e=>console.log(e));
