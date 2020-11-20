@@ -108,7 +108,7 @@ window.onload = () => {
                                                 response.text()
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
-                                                        console.log('url:',url);
+                                                        console.log('通過１url:',url);
                                                         document.location.href = url;
                                                     })
                                             }else{

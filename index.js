@@ -15,7 +15,6 @@ const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const User = require('./models/User');
-// const { Client } = require('pg');
 // const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
