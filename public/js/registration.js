@@ -70,10 +70,10 @@ window.onload = () => {
             label_error.textContent = '名前を入力してください。';
             break;
         case 'error03':
-            label_error.textContent = 'ログインIDは５桁以上で入力してください。';
+            label_error.textContent = 'ログインIDは４桁以上で入力してください。';
             break;
         case 'error04':
-            label_error.textContent = 'パスワードは５桁以上で入力してください。';
+            label_error.textContent = 'パスワードは４桁以上で入力してください。';
             break;
         default:
             label_error.textContent = '';

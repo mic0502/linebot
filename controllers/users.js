@@ -7,12 +7,9 @@ module.exports = {
         try{
             const {name,id,password} = req.body;
             // 入力された情報チェック
-            if(name==''){
-                res.status(200).redirect(process.env.APP_PATH + 'registration?error02');
-            }else if(id.length<4){
-                res.status(200).redirect(process.env.APP_PATH + 'registration?error03'); 
-            }else if(password.length<4){
-                res.status(200).redirect(process.env.APP_PATH + 'registration?error04'); 
+            if(name==''){res.status(200).redirect(process.env.APP_PATH + 'registration?error02');    //名前を入力してください。
+            }else if(id.length<5){res.status(200).redirect(process.env.APP_PATH + 'registration?error03');  //ログインIDは４桁以上
+            }else if(password.length<5){res.status(200).redirect(process.env.APP_PATH + 'registration?error04');    //パスワードは４桁以上
             }else{
                 const select_query = {text:`SELECT * FROM users WHERE login_id='${id}';`};
                 User.check(select_query)
@@ -20,7 +17,7 @@ module.exports = {
                     if (checkRes.rowCount > 0 ){
                         // すでに登録されたIDの場合
                         console.log('すでに使用されたIDです。');
-                        res.status(200).redirect(process.env.APP_PATH + 'registration?error01'); 
+                        res.status(200).redirect(process.env.APP_PATH + 'registration?error01');    //すでに登録済みのIDです。
                     }else{
                         // 新規登録の場合はランクはD、ポイントは０で登録
                         const insert_query = {text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`};
