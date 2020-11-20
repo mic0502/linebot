@@ -51,6 +51,14 @@ input_form2.setAttribute('class','password-input');
 input_form2.setAttribute('name','password');
 div_form2.appendChild(input_form2);
 
+// エラーコード表示エリア
+const div_error = document.createElement('p')
+const label_error = document.createElement('label');
+label_error.setAttribute('class','label_error');
+label_error.textContent = 'aa';
+div_error.appendChild(label_error);
+
+
 // 新規登録ボタン
 const registrationButton = document.createElement('input');
 registrationButton.value = '新規登録';
