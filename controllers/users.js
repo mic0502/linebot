@@ -7,9 +7,12 @@ module.exports = {
         try{
             const {name,id,password} = req.body;
             // 入力された情報チェック
-            if(name==''){res.status(200).redirect(process.env.APP_PATH + 'registration?error02');    //名前を入力してください。
-            }else if(id.length<4){res.status(200).redirect(process.env.APP_PATH + 'registration?error03');  //ログインIDは４桁以上
-            }else if(password.length<4){res.status(200).redirect(process.env.APP_PATH + 'registration?error04');    //パスワードは４桁以上
+            if(name==''){
+                res.status(200).redirect(process.env.APP_PATH + 'registration?error02');    //名前を入力してください。
+            }else if(id.length<4){
+                res.status(200).redirect(process.env.APP_PATH + 'registration?error03');    //ログインIDは４桁以上
+            }else if(password.length<4){
+                res.status(200).redirect(process.env.APP_PATH + 'registration?error04');    //パスワードは４桁以上
             }else{
                 const select_query = {text:`SELECT * FROM users WHERE login_id='${id}';`};
                 User.check(select_query)
