@@ -13,7 +13,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             connection.query(insert_query)
                 .then(res=>{
-                    console.log('新規登録成功');
+                    console.log('データベースcreate成功');
                     resolve('create成功');
                 })
                 .catch(e=>console.log(e)); 
@@ -24,7 +24,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             connection.query(select_query)
                 .then(res=>{
-                    console.log('ユーザーテーブル検索完了');
+                    console.log('データベースcheck成功');
                     resolve(res);
                 })
                 .catch(e=>console.log(e));
@@ -35,7 +35,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             connection.query(insert_query)
                 .then(res=>{
-                    console.log('Nonceテーブル追加完了');
+                    console.log('データベースinsertNonce成功');
                     const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
                     resolve(linkSentence);
                     // アイディアここでリダイレクトするのでなく、linktokenとnonceをフロント側へ返してあげ、フロント側で下記ページへGETする
@@ -56,7 +56,7 @@ module.exports = {
                     }
                     connection.query(update_query)
                         .then(res1=>{
-                            console.log('アカウント連携成功！！');
+                            console.log('データベースlink成功');
                             resolve('link succeeded!');
                         })
                         .catch(e=>console.log(e));
@@ -69,7 +69,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             connection.query(update_query)
                 .then(releaseRes=>{
-                    console.log('連携解除成功');
+                    console.log('データベースrelease成功');
                     resolve('release succeeded!');
                 })
                 .catch(e=>console.log(e));
