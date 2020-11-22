@@ -114,7 +114,7 @@ app
         // 上記以外のメッセージ受診の場合はおうむ返しする
         return client.replyMessage(ev.replyToken,{
             "type":"text",
-            "text":`${profile.displayName}さん、「${text}」って言いました？`
+            "text":"メッセージありがとうございます。\n\n申し訳ございませんがこちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いいたします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
         });
     }
  }
