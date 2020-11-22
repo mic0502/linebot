@@ -34,7 +34,6 @@ const config = {
 };
 const client = new line.Client(config);
 const richMenuId = 'richmenu-22d31397e83e56e01be48d40ccc30edd';
-console.log(`ホスト：${process.env.DB_HOST}`);
 
 app
    .use(express.static(path.join(__dirname, 'public')))
