@@ -1,0 +1,47 @@
+{
+   "size":{
+       "width":1200,
+       "height":405
+   },
+   "selected":true,
+   "name":"操作メニュー Open/Close",
+   "chatBarText":"メニュー",
+   "areas":[
+       {
+         "bounds":{
+             "x":0,
+             "y":0,
+             "width":400,
+             "height":405
+         },
+         "action":{
+             "type":"uri",
+             "uri":"https://jewelry-kajita.com"
+         }
+       },
+       {
+         "bounds":{
+             "x":400,
+             "y":0,
+             "width":400,
+             "height":405
+         },
+         "action":{
+             "type":"uri",
+             "uri":"https://jewelry-kajita.com"
+         }
+       },
+       {
+         "bounds":{
+             "x":800,
+             "y":0,
+             "width":400,
+             "height":405
+         },
+         "action":{
+             "type":"uri",
+             "uri": "https://liff.line.me/1654951421-nwJ0jYeb"
+         }
+       }
+   ]
+ }
