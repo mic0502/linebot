@@ -23,6 +23,7 @@ const config = {
    channelSecret:process.env.CHANNEL_SECRET
 };
 const client = new line.Client(config);
+const richMenuId = 'richmenu-3e0736106ad2b3f96b2dbfb56362c2c1';
 
 app
    .use(express.static(path.join(__dirname, 'public')))
@@ -92,6 +93,9 @@ app
                     
                     User.release(update_query)
                     .then(response=>{
+                        // リッチメニュー デフォルトに解除
+                        client.unlinkRichMenuFromUser(ev.source.userId, richMenuId)
+
                         return client.replyMessage(ev.replyToken,{
                             "type":"text",
                             "text":"連携が解除されました！"
@@ -119,6 +123,9 @@ const accountLink = (ev) => {
     // 連携処理開始
     User.link(ev.link.nonce,ev.source.userId)
     .then(linkRes=>{
+        // リッチメニュー 変更
+        client.linkRichMenuToUser(ev.source.userId, richMenuId)
+
         return client.replyMessage(ev.replyToken,{
             "type":"text",
             "text":"連携完了！"
