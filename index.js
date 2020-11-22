@@ -35,32 +35,6 @@ const config = {
 const client = new line.Client(config);
 const richMenuId = 'richmenu-22d31397e83e56e01be48d40ccc30edd';
 
-const mysql = require('mysql')
-const connection = mysql.createConnection({
-    host:process.env.DB_HOST,
-    database:process.env.DB_DATABASE,
-    user:process.env.DB_USERNAME,
-    password:process.env.DB_PASSWORD
-  });
-  connection.connect((error) => {
-    if (error) {
-        console.error('Database Connect Error:' + error);
-        return;
-    } else {
-        console.log('Database Connection Success: id=' + connection.threadId);
-    }
-});
-
-const create_userTable = {text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), line_id VARCHAR(255));'};        
-connection.query(create_userTable)
-    .then(()=>{console.log('table users created successfully!!');})
-    .catch(e=>console.log(e));    
-const create_nonceTable = {text:'CREATE TABLE IF NOT EXISTS nonces (id SERIAL NOT NULL, login_id VARCHAR(50), nonce VARCHAR(255));'}
-connection.query(create_nonceTable)
-    .then(()=>{console.log('table nonce created successfully');})
-    .catch(e=>console.log(e));
-
-        
 app
    .use(express.static(path.join(__dirname, 'public')))
    .use(multipart())
