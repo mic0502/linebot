@@ -23,7 +23,7 @@ const config = {
    channelSecret:process.env.CHANNEL_SECRET
 };
 const client = new line.Client(config);
-const richMenuId = 'richmenu-23934d009b7c268d2e2ec990655d8628';
+const richMenuId = 'richmenu-22d31397e83e56e01be48d40ccc30edd';
 
 app
    .use(express.static(path.join(__dirname, 'public')))

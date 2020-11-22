@@ -15,8 +15,8 @@
              "height":800
          },
          "action":{
-             "type":"message",
-             "text":"フェア情報"
+             "type":"uri",
+             "uri":"https://liff.line.me/1654951679-Ny54gwr6"
          }
        },
        {
