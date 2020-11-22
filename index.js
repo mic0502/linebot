@@ -2,10 +2,20 @@
 // process.env.APP_PATH = 'https://linebot-linkapp.herokuapp.com/';
 // process.env.ACCESS_TOKEN = 'ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=';
 // process.env.CHANNEL_SECRET = '6ac0a53fabcf1bbb837d757420eebe1b';
-// process.env.PG_USER = 'puysjkyelweqtl';
-// process.env.PG_HOST = 'ec2-54-237-155-151.compute-1.amazonaws.com';
-// process.env.PG_DATABASE = 'd7spgkjbkj1nh3';
-// process.env.PG_PASSWORD = 'f63d59e51a496356ecd870fd24d59fd53e6b9be616c01b6c11a8ba2e2952746d';
+
+// データベース情報の設定
+// Postgresの設定
+// $ heroku config:set PG_USER=puysjkyelweqtl --app linebot-linkapp
+// $ heroku config:set PG_HOST=ec2-54-237-155-151.compute-1.amazonaws.com --app linebot-linkapp
+// $ heroku config:set PG_DATABASE=d7spgkjbkj1nh3 --app linebot-linkapp
+// $ heroku config:set PG_PASSWORD=f63d59e51a496356ecd870fd24d59fd53e6b9be616c01b6c11a8ba2e2952746d --app linebot-linkapp
+
+// MySQLの設定
+// $ heroku config:set DB_HOST=us-cdbr-east-02.cleardb.com
+// $ heroku config:set DB_DATABASE=heroku_482e6240ec44c35
+// $ heroku config:set DB_USERNAME=bd11fdd7fd1abf
+// $ heroku config:set DB_PASSWORD=ebd1f4de
+
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
