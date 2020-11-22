@@ -42,7 +42,14 @@ const connection = mysql.createConnection({
     user:process.env.DB_USERNAME,
     password:process.env.DB_PASSWORD
   });
-connection.connect();
+  connection.connect((error) => {
+    if (error) {
+        console.error('Database Connect Error:' + error);
+        return;
+    } else {
+        console.log('Database Connection Success: id=' + connection.threadId);
+    }
+});
 
 const create_userTable = {text:'CREATE TABLE IF NOT EXISTS users (id SERIAL NOT NULL, name VARCHAR(50), login_id VARCHAR(50), login_password VARCHAR(50), line_id VARCHAR(255));'};        
 connection.query(create_userTable)

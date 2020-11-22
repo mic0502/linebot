@@ -14,14 +14,7 @@ const connection = mysql.createConnection({
 //     password:process.env.PG_PASSWORD,
 //     port:5432
 //   });
-connection.connect((error) => {
-    if (error) {
-        console.error('Database Connect Error:' + error);
-        return;
-    } else {
-        console.log('Database Connection Success: id=' + connection.threadId);
-    }
-});
+connection.connect();
 
 module.exports = {
     create:(insert_query)=>{
