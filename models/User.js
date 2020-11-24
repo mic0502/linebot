@@ -1,5 +1,5 @@
-const {mysql} = require('mysql')
-const connection = new mysql({
+const mysql = require('mysql')
+const connection = mysql.createConnection({
     host:process.env.DB_HOST,
     database:process.env.DB_DATABASE,
     user:process.env.DB_USERNAME,
@@ -15,7 +15,7 @@ const connection = new mysql({
 //     password:process.env.PG_PASSWORD,
 //     port:5432
 //   });
-connection.connect();
+// connection.connect();
 
 module.exports = {
     create:(insert_query)=>{
