@@ -20,12 +20,9 @@ module.exports = {
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
             connection.query(select_query, (error, results, fields) => {
-                if (error){
-                    reject(error)
-                }else{
+                if (error) reject(error)
                     console.log('データベースcheck成功');
                     resolve(fields);
-                }
             })
         });
     },
