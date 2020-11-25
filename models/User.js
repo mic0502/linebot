@@ -21,7 +21,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             connection.connect();
             connection.query(select_query, (error, results, fields) => {
-                if (error) reject(error)
+                if (error){ reject(error)}
                     console.log('データベースcheck成功');
                     resolve(fields);
             })
