@@ -15,9 +15,10 @@ const connection = mysql.createConnection({
 //     port:5432
 //   });
 // connection.connect();
+
 connection.connect((err) => {
     if (err) {
-      console.log('error connecting: ' + err.stack);
+      console.log('データベース接続エラー: ' + err.stack);
       return;
     }
     console.log('データベース接続成功');
