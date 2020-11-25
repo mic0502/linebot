@@ -38,12 +38,12 @@ module.exports = {
 
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
-            connection.query(select_query)
-                .then(res=>{
-                    console.log('データベースcheck成功');
-                    resolve(res);
-                })
-                .catch(e=>console.log(e));
+            connection.query(select_query, (error, results) => {
+                if (error) reject(error)
+                resolve(results)
+              })
+
+
         });
     },
 
