@@ -27,18 +27,18 @@ connection.connect((err) => {
 module.exports = {
     create:(insert_query)=>{
         return new Promise((resolve,reject)=>{
-            connection.connect(insert_query)
-                .then(res=>{
-                    console.log('データベースcreate成功');
-                    resolve('create成功');
-                })
-                .catch(e=>console.log(e)); 
+            connection.query(insert_query, (error, results) => {
+                if (error) reject(error)
+                resolve(results)
+              })
+
+
         })
     },
 
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
-            connection.connect(select_query)
+            connection.query(select_query)
                 .then(res=>{
                     console.log('データベースcheck成功');
                     resolve(res);
@@ -49,7 +49,7 @@ module.exports = {
 
     insertNonce:(insert_query,linkToken,nonce)=>{
         return new Promise((resolve,reject)=>{
-            connection.connect(insert_query)
+            connection.query(insert_query)
                 .then(res=>{
                     console.log('データベースinsertNonce成功');
                     const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
@@ -64,7 +64,7 @@ module.exports = {
     link:(nonce,lineId)=>{
         return new Promise((resolve,reject)=>{
             const select_query = {text:`SELECT * FROM nonces WHERE nonce='${nonce}';`};
-            connection.connect(select_query)
+            connection.query(select_query)
                 .then(res=>{
                     const login_id = res.rows[0].login_id;
                     const update_query = {
@@ -83,7 +83,7 @@ module.exports = {
 
     release:(update_query)=>{
         return new Promise((resolve,reject)=>{
-            connection.connect(update_query)
+            connection.query(update_query)
                 .then(releaseRes=>{
                     console.log('データベースrelease成功');
                     resolve('release succeeded!');
