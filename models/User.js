@@ -19,7 +19,7 @@ module.exports = {
 
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
-            const select_query = {text:`SELECT * FROM users WHERE line_id='111111';`};
+            console.log(select_query);
             connection.query(select_query, (error, results, fields) => {
                 if (error){ reject(error)}
                     console.log('データベースcheck成功');
