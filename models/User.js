@@ -5,7 +5,6 @@ const connection = mysql.createConnection({
     user:process.env.DB_USERNAME,
     password:process.env.DB_PASSWORD
 });
-connection.connect();
 
 module.exports = {
     create:(insert_query)=>{
@@ -20,6 +19,7 @@ module.exports = {
 
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
+            connection.connect();
             connection.query(select_query, (error, results, fields) => {
                 if (error) reject(error)
                     console.log('データベースcheck成功');
