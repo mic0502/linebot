@@ -19,7 +19,7 @@ module.exports = {
 
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
-            connection.query(select_query, (error, results, fields) => {
+            connection.query(select_query, function(error, results, fields){
                 if (error) reject(error)
                     console.log('データベースcheck成功');
                     resolve(fields);
