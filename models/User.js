@@ -6,8 +6,6 @@ const connection = mysql.createConnection({
     password:process.env.DB_PASSWORD
 });
 
-mysql://bc967d79e81a6f:7705d746@us-cdbr-east-02.cleardb.com/heroku_0b28b257e51b616
-
 // const { Client } = require('pg');
 // const connection = new Client({
 //     user:process.env.PG_USER,
