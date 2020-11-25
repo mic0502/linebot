@@ -23,7 +23,7 @@ module.exports = {
             connection.query(select_query, (error, results, fields) => {
                 if (error){ reject(error)}
                     console.log('データベースcheck成功');
-                    resolve(fields);
+                    resolve(results);
             })
         });
     },
