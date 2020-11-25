@@ -12,7 +12,7 @@ module.exports = {
             connection.query(insert_query, (error, results) => {
                 if (error) reject(error)
                     console.log('データベースcreate成功');
-                    resolve('create成功');
+                    resolve(results);
                 })
         })
     },
@@ -20,10 +20,13 @@ module.exports = {
     check:(select_query)=>{
         return new Promise((resolve,reject)=>{
             connection.query(select_query, (error, results) => {
-                if (error) reject(error)
+                if (error){
+                    reject(error)
+                }else{
                     console.log('データベースcheck成功');
                     resolve(results);
-                })
+                }
+            })
         });
     },
 
