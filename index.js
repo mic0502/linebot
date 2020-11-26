@@ -92,14 +92,14 @@ app
 
     if(text === '連携解除'){
         // ユーザーコントローラーを呼び出し連携を解除する
-        const select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`}
+        const select_query = `SELECT * FROM users WHERE line_id='${lineId}';`
         User.check(select_query)
             .then(checkRes=>{
                 if(checkRes.rowCount > 0){
                     const name = checkRes.rows[0].name;
                     const login_id = checkRes.rows[0].login_id;
                     const password = checkRes.rows[0].login_password;
-                    const update_query = {text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`}
+                    const update_query = `UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`
                     
                     User.release(update_query)
                     .then(response=>{
