@@ -8,7 +8,7 @@ module.exports = {
         const select_query = `SELECT * FROM users WHERE line_id='${line_uid}';`
         User.check(select_query)
         .then(checkRes=>{
-            if (checkRes.rowCount > 0 ){
+            if (checkRes.length > 0 ){
                 // すでに連携済の場合
                 console.log('登録済みアカウント');
                 res.status(200).send(checkRes.rows[0]);

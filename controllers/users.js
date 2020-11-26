@@ -17,7 +17,7 @@ module.exports = {
                 const select_query = `SELECT * FROM users WHERE login_id='${id}';`
                 User.check(select_query)
                 .then(checkRes=>{
-                    if (checkRes.rowCount > 0 ){
+                    if (checkRes.length > 0 ){
                         // すでに登録されたIDの場合
                         console.log('すでに使用されたIDです。');
                         res.status(200).redirect(process.env.APP_PATH + 'registration?error01');    //すでに登録済みのIDです。
@@ -48,7 +48,7 @@ module.exports = {
             const select_query = `SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`
             User.check(select_query)
                 .then(checkRes=>{
-                    if (checkRes.rowCount > 0 ){
+                    if (checkRes.length > 0 ){
                         console.log('認証成功');
 
                         // nonce生成d
