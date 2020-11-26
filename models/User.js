@@ -23,7 +23,7 @@ module.exports = {
             connection.query(select_query, (error, results, fields) => {
                 if (error){ reject(error)}
                     console.log('データベースcheck成功');
-                    resolve(fields);
+                    resolve(results);
             })
         });
     },
@@ -44,7 +44,7 @@ module.exports = {
             const select_query = `SELECT * FROM nonces WHERE nonce='${nonce}';`
             connection.query(select_query, (error, results, fields) => {
                 if (error) reject(error)
-                    const login_id = fields.rows[0].login_id;
+                    const login_id = results.rows[0].login_id;
                     const update_query = `UPDATE users SET (login_id, line_id) = ('${login_id}', '${lineId}') WHERE login_id='${login_id}';`
                     connection.query(update_query, (error, results1) => {
                         if (error) reject(error)
