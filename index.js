@@ -96,10 +96,8 @@ app
         User.check(select_query)
             .then(checkRes=>{
                 if(checkRes.length > 0){
-                    const name = checkRes.rows[0].name;
-                    const login_id = checkRes.rows[0].login_id;
-                    const password = checkRes.rows[0].login_password;
-                    const update_query = `UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`
+                    const login_id = checkRes[0].login_id;
+                    const update_query = `UPDATE users SET line_id = '' WHERE login_id='${login_id}';`
                     
                     User.release(update_query)
                     .then(response=>{
