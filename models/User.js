@@ -45,7 +45,7 @@ module.exports = {
             connection.query(select_query, (error, results, fields) => {
                 if (error){reject(error)};
                     const login_id = results[0].login_id;
-                    const update_query = `UPDATE users SET (login_id, line_id) = ('${login_id}', '${lineId}') WHERE login_id='${login_id}';`
+                    const update_query = `UPDATE users SET line_id = '${lineId}' WHERE login_id='${login_id}';`
                     connection.query(update_query, (error, results1) => {
                         if (error){reject(error)};
                             console.log('データベースlink成功');
