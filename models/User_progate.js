@@ -1,21 +1,11 @@
-const mysql = require('mysql')
-const connection = mysql.createConnection({
-    host:process.env.DB_HOST,
-    database:process.env.DB_DATABASE,
-    user:process.env.DB_USERNAME,
-    password:process.env.DB_PASSWORD
-});
-
-// const { Client } = require('pg');
-// const connection = new Client({
-//     user:process.env.PG_USER,
-//     host:process.env.PG_HOST,
-//     database:process.env.PG_DATABASE,
-//     password:process.env.PG_PASSWORD,
-//     port:5432
-//   });
-// connection.connect();
-
+const { Client } = require('pg');
+const connection = new Client({
+    user:process.env.PG_USER,
+    host:process.env.PG_HOST,
+    database:process.env.PG_DATABASE,
+    password:process.env.PG_PASSWORD,
+    port:5432
+  });
 connection.connect((err) => {
     if (err) {
       console.log('データベース接続エラー: ' + err.stack);
