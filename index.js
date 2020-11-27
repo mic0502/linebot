@@ -10,12 +10,6 @@
 // $ heroku config:set PG_DATABASE=d7spgkjbkj1nh3 --app linebot-linkapp
 // $ heroku config:set PG_PASSWORD=f63d59e51a496356ecd870fd24d59fd53e6b9be616c01b6c11a8ba2e2952746d --app linebot-linkapp
 
-// MySQLの設定
-// $ heroku config:set DB_HOST=us-cdbr-east-02.cleardb.com
-// $ heroku config:set DB_DATABASE=heroku_482e6240ec44c35
-// $ heroku config:set DB_USERNAME=bd11fdd7fd1abf
-// $ heroku config:set DB_PASSWORD=ebd1f4de
-
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
@@ -96,10 +90,8 @@ app
         User.check(select_query)
             .then(checkRes=>{
                 if(checkRes.rowCount > 0){
-                    const name = checkRes.rows[0].name;
                     const login_id = checkRes.rows[0].login_id;
-                    const password = checkRes.rows[0].login_password;
-                    const update_query = {text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`}
+                    const update_query = {text:`UPDATE users SET line_id = '' WHERE login_id='${login_id}';`}
                     
                     User.release(update_query)
                     .then(response=>{

@@ -1,11 +1,3 @@
-// const mysql = require('mysql')
-// const connection = mysql.createConnection({
-//     host:process.env.DB_HOST,
-//     database:process.env.DB_DATABASE,
-//     user:process.env.DB_USERNAME,
-//     password:process.env.DB_PASSWORD
-// });
-
 const { Client } = require('pg');
 const connection = new Client({
     user:process.env.PG_USER,
@@ -46,8 +38,6 @@ module.exports = {
                     console.log('データベースinsertNonce成功');
                     const linkSentence = `accountLink?linkToken=${linkToken}&nonce=${nonce}`;
                     resolve(linkSentence);
-                    // アイディアここでリダイレクトするのでなく、linktokenとnonceをフロント側へ返してあげ、フロント側で下記ページへGETする
-                    // res.status(200).redirect(`https://access.line.me/dialog/bot/accountLink?linkToken=${linkToken}&nonce=${nonce}`);
                 })
                 .catch(e=>console.log(e));
             })
@@ -60,7 +50,7 @@ module.exports = {
                 .then(res=>{
                     const login_id = res.rows[0].login_id;
                     const update_query = {
-                        text:`UPDATE users SET (login_id, line_id) = ('${login_id}', '${lineId}') WHERE login_id='${login_id}';`
+                        text:`UPDATE users SET line_id = '${lineId}' WHERE login_id='${login_id}';`
                     }
                     connection.query(update_query)
                         .then(res1=>{
