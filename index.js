@@ -42,8 +42,6 @@ app
    .use('/api/link',linkRouter)
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
-   alert('a');
-
    const lineBot = (req,res) => {
     res.status(200).end();
     const events = req.body.events;
