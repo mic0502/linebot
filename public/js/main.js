@@ -46,8 +46,6 @@ window.onload = () => {
                                 }else{
                                     // リンクトークン発行。未連携の場合    
                                     nameElement.innerHTML = profile.displayName + 'さま';
-                                    const idElement = document.getElementById('lineid');
-                                    idElement.innerHTML = parsedBody.linkToken;
 
                                     const formElement = document.createElement('form');
                                     formElement.setAttribute('id','login');
