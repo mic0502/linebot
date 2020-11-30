@@ -24,7 +24,7 @@
     "https": "^1.0.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
-    "pg": "^8.4.1",
+    "pg": "^8.5.1",
     "querystring": "^0.2.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
