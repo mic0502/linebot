@@ -46,6 +46,7 @@ app
     res.status(200).end();
     const events = req.body.events;
     const promises = [];
+    alert('a');
     for(let i=0;i<events.length;i++){
         const ev = events[i];
         console.log('ev:',ev);
