@@ -123,6 +123,8 @@ app
 
 const accountLink = (ev) => {
     // 連携処理開始
+    alert('b');
+
     User.link(ev.link.nonce,ev.source.userId)
     .then(linkRes=>{
         // リッチメニュー 変更
