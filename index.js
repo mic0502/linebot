@@ -19,8 +19,8 @@ const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const User = require('./models/User');
-const request = require('request-promise');
-const querystring = require('querystring');
+// const request = require('request-promise');
+// const querystring = require('querystring');
 const multipart = require('connect-multiparty');
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
@@ -49,7 +49,6 @@ app
     for(let i=0;i<events.length;i++){
         const ev = events[i];
         console.log('ev:',ev);
-        alert(ev.type);
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
