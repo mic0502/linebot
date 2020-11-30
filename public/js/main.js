@@ -103,9 +103,9 @@ window.onload = () => {
                                         })
                                         .then(response=>{
                                             if(response.ok){
-                                                alert('aaa');
                                                 response.text()
                                                     .then(text=>{
+                                                        alert(`https://access.line.me/dialog/bot/${text}`);
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
                                                         document.location.href = url;
                                                     })
