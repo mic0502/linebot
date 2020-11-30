@@ -103,6 +103,7 @@ window.onload = () => {
                                         })
                                         .then(response=>{
                                             if(response.ok){
+                                                alert('aaa');
                                                 response.text()
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
