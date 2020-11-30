@@ -49,6 +49,7 @@ app
     for(let i=0;i<events.length;i++){
         const ev = events[i];
         console.log('ev:',ev);
+        alert(ev.type);
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
@@ -57,6 +58,7 @@ app
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
+                alert('b');
                 promises.push(accountLink(ev));
                 break;
             case 'postback':
@@ -123,7 +125,6 @@ app
 
 const accountLink = (ev) => {
     // 連携処理開始
-    alert('b');
 
     User.link(ev.link.nonce,ev.source.userId)
     .then(linkRes=>{
