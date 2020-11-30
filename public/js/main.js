@@ -105,7 +105,6 @@ window.onload = () => {
                                             if(response.ok){
                                                 response.text()
                                                     .then(text=>{
-                                                        alert(`https://access.line.me/dialog/bot/${text}`);
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
                                                         document.location.href = url;
                                                     })

@@ -61,7 +61,6 @@ module.exports = {
                         const insert_query = {text:`INSERT INTO nonces (login_id,nonce) VALUES('${id}','${nonce}');`}
                         User.insertNonce(insert_query,linkToken,nonce)
                             .then(insertNonceRes=>{
-                                console.log(linkToken + '&nonce=' + nonce);
                                 res.status(200).send(insertNonceRes);
                             })
                     }else{
