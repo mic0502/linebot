@@ -58,7 +58,6 @@ app
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
-                alert('b');
                 promises.push(accountLink(ev));
                 break;
             case 'postback':
