@@ -2,10 +2,14 @@
 // process.env.APP_PATH = 'https://linebot-linkapp.herokuapp.com/';
 // process.env.ACCESS_TOKEN = 'ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=';
 // process.env.CHANNEL_SECRET = '6ac0a53fabcf1bbb837d757420eebe1b';
-// process.env.PG_USER = 'puysjkyelweqtl';
-// process.env.PG_HOST = 'ec2-54-237-155-151.compute-1.amazonaws.com';
-// process.env.PG_DATABASE = 'd7spgkjbkj1nh3';
-// process.env.PG_PASSWORD = 'f63d59e51a496356ecd870fd24d59fd53e6b9be616c01b6c11a8ba2e2952746d';
+
+// データベース情報の設定
+// Postgresの設定
+// $ heroku config:set PG_USER=puysjkyelweqtl --app linebot-linkapp
+// $ heroku config:set PG_HOST=ec2-54-237-155-151.compute-1.amazonaws.com --app linebot-linkapp
+// $ heroku config:set PG_DATABASE=d7spgkjbkj1nh3 --app linebot-linkapp
+// $ heroku config:set PG_PASSWORD=f63d59e51a496356ecd870fd24d59fd53e6b9be616c01b6c11a8ba2e2952746d --app linebot-linkapp
+
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
@@ -15,14 +19,15 @@ const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const User = require('./models/User');
-// const request = require('request-promise');
-// const querystring = require('querystring');
+const request = require('request-promise');
+const querystring = require('querystring');
 const multipart = require('connect-multiparty');
 const config = {
    channelAccessToken:process.env.ACCESS_TOKEN,
    channelSecret:process.env.CHANNEL_SECRET
 };
 const client = new line.Client(config);
+const richMenuId = 'richmenu-22d31397e83e56e01be48d40ccc30edd';
 
 app
    .use(express.static(path.join(__dirname, 'public')))
@@ -44,6 +49,7 @@ app
     for(let i=0;i<events.length;i++){
         const ev = events[i];
         console.log('ev:',ev);
+        alert(ev.type);
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
@@ -85,13 +91,14 @@ app
         User.check(select_query)
             .then(checkRes=>{
                 if(checkRes.rowCount > 0){
-                    const name = checkRes.rows[0].name;
                     const login_id = checkRes.rows[0].login_id;
-                    const password = checkRes.rows[0].login_password;
-                    const update_query = {text:`UPDATE users SET (name, login_id, login_password, line_id) = ('${name}', '${login_id}', '${password}', '') WHERE login_id='${login_id}';`}
+                    const update_query = {text:`UPDATE users SET line_id = '' WHERE login_id='${login_id}';`}
                     
                     User.release(update_query)
                     .then(response=>{
+                        // リッチメニュー デフォルトに解除
+                        client.unlinkRichMenuFromUser(ev.source.userId, richMenuId)
+
                         return client.replyMessage(ev.replyToken,{
                             "type":"text",
                             "text":"連携が解除されました！"
@@ -110,15 +117,19 @@ app
         // 上記以外のメッセージ受診の場合はおうむ返しする
         return client.replyMessage(ev.replyToken,{
             "type":"text",
-            "text":`${profile.displayName}さん、「${text}」って言いました？`
+            "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
         });
     }
  }
 
 const accountLink = (ev) => {
     // 連携処理開始
+
     User.link(ev.link.nonce,ev.source.userId)
     .then(linkRes=>{
+        // リッチメニュー 変更
+        client.linkRichMenuToUser(ev.source.userId, richMenuId)
+
         return client.replyMessage(ev.replyToken,{
             "type":"text",
             "text":"連携完了！"
