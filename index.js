@@ -48,6 +48,8 @@ app
     const promises = [];
     for(let i=0;i<events.length;i++){
         const ev = events[i];
+        sleep(5000);
+
         console.log('ev:',ev);
         switch(ev.type){
             case 'follow':
