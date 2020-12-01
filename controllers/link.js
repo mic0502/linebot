@@ -3,6 +3,8 @@ const User = require('../models/User');
 
 module.exports = {
     accountLink: (req,res) => {
+        sleep(5000);
+
         const line_uid = req.query.line_uid;       
         // ラインIDから登録済みかチェック
         const select_query = {text:`SELECT * FROM users WHERE line_id='${line_uid}';`};
