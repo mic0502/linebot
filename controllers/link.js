@@ -3,7 +3,6 @@ const User = require('../models/User');
 
 module.exports = {
     accountLink: (req,res) => {
-        sleep(5000);
 
         const line_uid = req.query.line_uid;       
         // ラインIDから登録済みかチェック
@@ -25,6 +24,7 @@ module.exports = {
                 }
                 request(options)
                     .then(body=>{
+                        sleep(5000);
                         res.status(200).send(body);
                     });
             }
