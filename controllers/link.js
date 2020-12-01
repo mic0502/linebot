@@ -24,7 +24,6 @@ module.exports = {
                 }
                 request(options)
                     .then(body=>{
-                        sleep(5000);
                         res.status(200).send(body);
                     });
             }
