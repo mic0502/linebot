@@ -97,57 +97,23 @@ async function fetchMyText() {
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
         
-
-                                        const asynchronousFunc = (value) => {
-                                            return new Promise((resolve, reject) => {
-                                                // APIへの非同期処理
-                                                fetch('/api/users/login',{method:'POST',body: data,credentials: 'same-origin'})
-                                                .then(response => {
-                                                    response.text()
-                                                    .then(text=>{
-                                                        alert("これは非同期処理が成功した時のログです。");
-                                                        return resolve(`https://access.line.me/dialog/bot/${text}`)
-                                                    }).catch(() => {
-                                                        alert("これは非同期処理が失敗した時のログです。");
-                                                        label_error.textContent = 'IDかパスワードが正しくありません。';
-                                                        return reject('失敗！')
-
-                                                    })
-                                                })
-                        
-                                            })
-                                        }
-
-                                        asynchronousFunc()
-                                        .then(result => {
-                                            document.location.href = result;
+                                        fetch('/api/users/login',{
+                                            method:'POST',
+                                            body: data,
+                                            credentials: 'same-origin'
                                         })
-
-
-
-
-                                        // fetch('/api/users/login',{
-                                        //     method:'POST',
-                                        //     body: data,
-                                        //     credentials: 'same-origin'
-                                        // })
-                                        // .then(response=>{
-                                        //     if(response.ok){
-                                        //         response.text()
-                                        //             .then(text=>{
-                                        //                 const url = `https://access.line.me/dialog/bot/${text}`;
-                                        //                 document.location.href = url;
-                                        //             })
-                                        //     }else{
-                                        //         label_error.textContent = 'IDかパスワードが正しくありません。';
-                                        //     }
-                                        // })
-                                        // .catch(e=>console.log(e));
-
-
-
-
-
+                                        .then(response=>{
+                                            if(response.ok){
+                                                response.text()
+                                                    .then(text=>{
+                                                        const url = `https://access.line.me/dialog/bot/${text}`;
+                                                        document.location.href = url;
+                                                    })
+                                            }else{
+                                                label_error.textContent = 'IDかパスワードが正しくありません。';
+                                            }
+                                        })
+                                        .catch(e=>console.log(e));
                                     });
 
                                     div_error.appendChild(label_error);
