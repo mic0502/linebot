@@ -13,7 +13,7 @@ getConfig = async() => {
                     const lineId = profile.userId;
                     const nameElement = document.getElementById('line_name');
 
-                    await fetch(`api/link/?line_uid=${lineId}`,{method:'GET'})
+                    fetch(`api/link/?line_uid=${lineId}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
                                 const parsedBody = JSON.parse(text);
