@@ -1,4 +1,5 @@
-window.onload = () => {
+getConfig = async() => {
+
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
 
@@ -96,12 +97,13 @@ window.onload = () => {
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
         
-                                        async(await fetch('/api/users/login',{
+                                        fetch('/api/users/login',{
                                             method:'POST',
                                             body: data,
                                             credentials: 'same-origin'
-                                        }))
+                                        })
                                         .then(response=>{
+
                                             if(response.ok){
                                                 response.text()
                                                     .then(text=>{
@@ -146,5 +148,9 @@ window.onload = () => {
         })
         .catch(err=>alert(JSON.stringify(err)));
         
+}
+
+window.onload = function(){
+    getConfig();
 }
 
