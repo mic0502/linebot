@@ -101,9 +101,8 @@ async function fetchMyText() {
                                         (async () => {
                                             try {
                                               const response = await fetch('/api/users/login',{method:'POST',body: data,credentials: 'same-origin'});
-
                                                 if(response.ok){
-                                                    response.text()
+                                                    await response.text()
                                                         .then(text=>{
                                                             const url = `https://access.line.me/dialog/bot/${text}`;
                                                             document.location.href = url;
