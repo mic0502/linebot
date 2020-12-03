@@ -96,11 +96,11 @@ window.onload = () => {
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
         
-                                        await fetch('/api/users/login',{
+                                        async(await fetch('/api/users/login',{
                                             method:'POST',
                                             body: data,
                                             credentials: 'same-origin'
-                                        })
+                                        }))
                                         .then(response=>{
                                             if(response.ok){
                                                 response.text()
