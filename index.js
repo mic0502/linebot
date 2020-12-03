@@ -54,9 +54,9 @@ app
             case 'message':
                 promises.push(handleMessageEvent(ev));
                 break;
-            case 'accountLink':
-                accountLink(ev);
-                break;
+            // case 'accountLink':
+            //     promises.push(accountLink(ev));
+            //     break;
             // case 'postback':
             //     promises.push(handlePostbackEvent(ev));
             //     break;
