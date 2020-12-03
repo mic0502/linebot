@@ -13,10 +13,8 @@ async function fetchMyText() {
                     const lineId = profile.userId;
                     const nameElement = document.getElementById('line_name');
 
-                    (async () => {
-                        const aaaa = await fetch(`api/link/?line_uid=${lineId}`,{method:'GET'});
-                        await aaaa.text()
-
+                    fetch(`api/link/?line_uid=${lineId}`,{method:'GET'})
+                        .then(response=>{response.text()
                             .then(text=>{
                                 const parsedBody = JSON.parse(text);
                                 if(!parsedBody.linkToken){
@@ -99,24 +97,25 @@ async function fetchMyText() {
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
         
-                                        fetch('/api/users/login',{
-                                            method:'POST',
-                                            body: data,
-                                            credentials: 'same-origin'
-                                        })
-                                        .then(response=>{
 
-                                            if(response.ok){
-                                                response.text()
-                                                    .then(text=>{
-                                                        const url = `https://access.line.me/dialog/bot/${text}`;
-                                                        document.location.href = url;
-                                                    })
-                                            }else{
-                                                label_error.textContent = 'IDかパスワードが正しくありません。';
+                                        (async () => {
+                                            try {
+                                              const response = await fetch('/api/users/login',{method:'POST',body: data,credentials: 'same-origin'});
+
+                                                if(response.ok){
+                                                    response.text()
+                                                        .then(text=>{
+                                                            const url = `https://access.line.me/dialog/bot/${text}`;
+                                                            document.location.href = url;
+                                                        })
+                                                }else{
+                                                    label_error.textContent = 'IDかパスワードが正しくありません。';
+                                                }
+
+                                            } catch(e) {
+                                              console.log(e);
                                             }
-                                        })
-                                        .catch(e=>console.log(e));
+                                          })();
                                     });
 
                                     div_error.appendChild(label_error);
@@ -141,8 +140,9 @@ async function fetchMyText() {
                                 }
                             });
 
-                    })();
 
+
+                        });
                                
                 })
                 .catch(err=>console.log(err));
