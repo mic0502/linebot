@@ -96,7 +96,7 @@ window.onload = () => {
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
         
-                                        fetch('/api/users/login',{
+                                        await fetch('/api/users/login',{
                                             method:'POST',
                                             body: data,
                                             credentials: 'same-origin'
