@@ -1,4 +1,4 @@
-const request = require('request');
+const request = require('request-promise');
 const User = require('../models/User');
 
 module.exports = {
