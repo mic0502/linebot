@@ -1,4 +1,4 @@
-getConfig = async() => {
+async function fetchMyText() {
 
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
@@ -13,8 +13,10 @@ getConfig = async() => {
                     const lineId = profile.userId;
                     const nameElement = document.getElementById('line_name');
 
-                    fetch(`api/link/?line_uid=${lineId}`,{method:'GET'})
-                        .then(response=>{response.text()
+                    (async () => {
+                        const aaaa = await fetch(`api/link/?line_uid=${lineId}`,{method:'GET'});
+                        await aaaa.text()
+
                             .then(text=>{
                                 const parsedBody = JSON.parse(text);
                                 if(!parsedBody.linkToken){
@@ -139,9 +141,8 @@ getConfig = async() => {
                                 }
                             });
 
+                    })();
 
-
-                        });
                                
                 })
                 .catch(err=>console.log(err));
@@ -151,6 +152,6 @@ getConfig = async() => {
 }
 
 window.onload = function(){
-    getConfig();
+    fetchMyText();
 }
 
