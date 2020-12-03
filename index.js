@@ -19,7 +19,7 @@ const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const User = require('./models/User');
-const request = require('request-promise');
+// const request = require('request-promise');
 // const querystring = require('querystring');
 const multipart = require('connect-multiparty');
 const config = {
@@ -64,7 +64,7 @@ app
                 break;
         }
     }
-    request
+    Promise
         .all(promises)
         .then(console.log('all promises passed'))
         .catch(e=>console.error(e.stack));
