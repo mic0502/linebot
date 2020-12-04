@@ -49,7 +49,7 @@ module.exports = {
             User.check(select_query)
                 .then(checkRes=>{
                     if (checkRes.rowCount > 0 ){
-                        if (checkRes.rows[0].line_id != '' ){
+                        if (checkRes.rows[0].line_id !== '' ){
                             // すでに他の端末でログインすみ
                             console.log('他の端末でログインされています。');
                             res.status(402).send('他の端末でログインされています。');
