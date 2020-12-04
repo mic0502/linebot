@@ -52,7 +52,7 @@ module.exports = {
                         if (checkRes.rows[0].line_id != '' ){
                             // すでに他の端末でログインすみ
                             console.log('他の端末でログインされています。');
-                            res.status(402).json({message:'他の端末でログインされています。'});
+                            res.status(401).send('他の端末でログインされています。');
                         }else{
                             console.log('認証成功');
 
@@ -73,7 +73,7 @@ module.exports = {
 
                     }else{
                         console.log('ログイン失敗');
-                        res.status(401).json({message:'ログイン失敗'});
+                        res.status(401).send('ログイン失敗');
                     }
                 })
                 .catch(e=>console.log(e));
