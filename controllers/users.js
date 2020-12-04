@@ -51,6 +51,7 @@ module.exports = {
                     if (checkRes.rowCount > 0 ){
                         if (checkRes.rows[0].line_id !== '' ){
                             // すでに他の端末でログインすみ
+                            console.log('[[[[' + checkRes.rows[0].line_id + '}}}}');
                             console.log('他の端末でログインされています。');
                             res.status(402).send('他の端末でログインされています。');
                         }else{
