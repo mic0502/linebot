@@ -97,35 +97,34 @@ window.onload = () => {
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
 
-                                        var ajax = new XMLHttpRequest();
- 
-                                        ajax.open("POST", "/api/users/login");
-                                        ajax.send(data); // 通信させます。
-                                        ajax.addEventListener("load", function(){ // loadイベントを登録します。
-                                            alert(this.response);
-                                            const url = `https://access.line.me/dialog/bot/${this.response}`;
-                                            document.location.href = url;
-                                        }, false);                                          
+                                        // var ajax = new XMLHttpRequest();
+                                        // ajax.open("POST", "/api/users/login");
+                                        // ajax.send(data); // 通信させます。
+                                        // ajax.addEventListener("load", function(){ // loadイベントを登録します。
+                                        //     alert(this.response);
+                                        //     const url = `https://access.line.me/dialog/bot/${this.response}`;
+                                        //     document.location.href = url;
+                                        // }, false);                                          
 
-                                        // fetch('/api/users/login',{
-                                        //     method:'POST',
-                                        //     body: data,
-                                        //     credentials: 'same-origin'
-                                        // })
-                                        // .then(response=>{
-                                        //     if(response.ok){
-                                        //         response.text()
-                                        //             .then(text=>{
-                                        //                 const url = `https://access.line.me/dialog/bot/${text}`;
-                                        //                 document.location.href = url;
-                                        //             })
-                                        //     }else if(response.status == 402){
-                                        //         label_error.textContent = 'すでに他の端末でログインされています。';
-                                        //     }else{
-                                        //         label_error.textContent = '正しいIDとパスワードを入力してください。';
-                                        //     }
-                                        // })
-                                        // .catch(e=>console.log(e));
+                                        fetch('/api/users/login',{
+                                            method:'POST',
+                                            body: data,
+                                            credentials: 'same-origin'
+                                        })
+                                        .then(response=>{
+                                            if(response.ok){
+                                                response.text()
+                                                    .then(text=>{
+                                                        const url = `https://access.line.me/dialog/bot/${text}`;
+                                                        document.location.href = url;
+                                                    })
+                                            }else if(response.status == 402){
+                                                label_error.textContent = 'すでに他の端末でログインされています。';
+                                            }else{
+                                                label_error.textContent = '正しいIDとパスワードを入力してください。';
+                                            }
+                                        })
+                                        .catch(e=>console.log(e));
                                     });
 
                                     div_error.appendChild(label_error);
