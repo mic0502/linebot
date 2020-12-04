@@ -103,14 +103,15 @@ async function fetchMyText() {
                                             credentials: 'same-origin'
                                         })
                                         .then(response=>{
-                                            if(response.ok){
+                                            alert(response.status);
+                                            if(response.status == 429){
+                                                label_error.textContent = 'レート制限を超えています。';
+                                            }else if(response.status == 200){
                                                 response.text()
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
                                                         document.location.href = url;
                                                     })
-                                            }else if(response.status == 429){
-                                                label_error.textContent = 'レート制限を超えています。';
                                             }else if(response.status == 402){
                                                 label_error.textContent = 'すでに他の端末でログインされています。';
                                             }else{
