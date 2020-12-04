@@ -109,6 +109,8 @@ async function fetchMyText() {
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
                                                         document.location.href = url;
                                                     })
+                                            }else if(response.status == 429){
+                                                label_error.textContent = 'レート制限を超えています。';
                                             }else if(response.status == 402){
                                                 label_error.textContent = 'すでに他の端末でログインされています。';
                                             }else{
