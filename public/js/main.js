@@ -1,4 +1,4 @@
-async function fetchMyText() {
+window.onload = () => {
 
     const myLiffId = '1654951421-nwJ0jYeb';
     const divLogin = document.getElementById('login_area');
@@ -96,29 +96,35 @@ async function fetchMyText() {
                                         const data = new FormData(formElement);
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
-        
-                                        fetch('/api/users/login',{
-                                            method:'POST',
-                                            body: data,
-                                            credentials: 'same-origin'
-                                        })
-                                        .then(response=>{
-                                            alert(response.status);
-                                            if(response.status == 429){
-                                                label_error.textContent = 'レート制限を超えています。';
-                                            }else if(response.status == 200){
-                                                response.text()
-                                                    .then(text=>{
-                                                        const url = `https://access.line.me/dialog/bot/${text}`;
-                                                        document.location.href = url;
-                                                    })
-                                            }else if(response.status == 402){
-                                                label_error.textContent = 'すでに他の端末でログインされています。';
-                                            }else{
-                                                label_error.textContent = '正しいIDとパスワードを入力してください。';
-                                            }
-                                        })
-                                        .catch(e=>console.log(e));
+
+                                        var ajax = new XMLHttpRequest();
+ 
+                                        ajax.open("POST", "/api/users/login");
+                                        ajax.send(); // 通信させます。
+                                        ajax.addEventListener("load", function(){ // loadイベントを登録します。
+                                            const url = `https://access.line.me/dialog/bot/${this.response}`;
+                                            document.location.href = url;
+                                        }, false);                                          
+
+                                        // fetch('/api/users/login',{
+                                        //     method:'POST',
+                                        //     body: data,
+                                        //     credentials: 'same-origin'
+                                        // })
+                                        // .then(response=>{
+                                        //     if(response.ok){
+                                        //         response.text()
+                                        //             .then(text=>{
+                                        //                 const url = `https://access.line.me/dialog/bot/${text}`;
+                                        //                 document.location.href = url;
+                                        //             })
+                                        //     }else if(response.status == 402){
+                                        //         label_error.textContent = 'すでに他の端末でログインされています。';
+                                        //     }else{
+                                        //         label_error.textContent = '正しいIDとパスワードを入力してください。';
+                                        //     }
+                                        // })
+                                        // .catch(e=>console.log(e));
                                     });
 
                                     div_error.appendChild(label_error);
@@ -152,9 +158,5 @@ async function fetchMyText() {
         })
         .catch(err=>alert(JSON.stringify(err)));
         
-}
-
-window.onload = function(){
-    fetchMyText();
 }
 
