@@ -49,12 +49,8 @@ module.exports = {
             User.check(select_query)
                 .then(checkRes=>{
                     if (checkRes.rowCount > 0 ){
-                        if (checkRes.rows[0].line_id !== '' ){
-                            // すでに他の端末でログインすみ
-                            console.log('[[[[' + checkRes.rows[0].line_id + '}}}}');
-                            console.log('他の端末でログインされています。');
-                            res.status(402).send('他の端末でログインされています。');
-                        }else{
+                        if (!checkRes.rows[0].line_id){
+                            // 空白かNullの場合は
                             console.log('認証成功');
 
                             // nonce生成d
@@ -70,6 +66,10 @@ module.exports = {
                                     res.status(200).send(insertNonceRes);
                                 })
 
+                        }else{
+                            // すでに他の端末でログインすみ
+                            console.log('他の端末でログインされています。');
+                            res.status(402).send('他の端末でログインされています。');
                         }
 
                     }else{
