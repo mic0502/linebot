@@ -109,11 +109,10 @@ async function fetchMyText() {
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
                                                         document.location.href = url;
                                                     })
+                                            }else if(response.status == 402){
+                                                label_error.textContent = 'すでに他の端末でログインされています。';
                                             }else{
-                                                response.text()
-                                                .then(text=>{
-                                                    label_error.textContent = text;
-                                                })
+                                                label_error.textContent = '正しいIDとパスワードを入力してください。';
                                             }
                                         })
                                         .catch(e=>console.log(e));
