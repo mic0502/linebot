@@ -49,21 +49,28 @@ module.exports = {
             User.check(select_query)
                 .then(checkRes=>{
                     if (checkRes.rowCount > 0 ){
-                        console.log('認証成功');
+                        if (checkRes.rows[0].line_id != '' ){
+                            // すでに他の端末でログインすみ
+                            console.log('他の端末でログインされています。');
+                            res.status(401).json({message:'ログイン失敗'});
+                        }else{
+                            console.log('認証成功');
 
-                        // nonce生成d
-                        const N=16
-                        const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
-                        const buf = Buffer.from(randomStrings);
-                        const nonce = buf.toString('base64');
+                            // nonce生成d
+                            const N=16
+                            const randomStrings = randomBytes(N).reduce((p,i)=> p+(i%36).toString(36),'');
+                            const buf = Buffer.from(randomStrings);
+                            const nonce = buf.toString('base64');
+    
+                            // nonceテーブルへの挿入
+                            const insert_query = {text:`INSERT INTO nonces (login_id,nonce) VALUES('${id}','${nonce}');`}
+                            User.insertNonce(insert_query,linkToken,nonce)
+                                .then(insertNonceRes=>{
+                                    res.status(200).send(insertNonceRes);
+                                })
 
-                        // nonceテーブルへの挿入
-                        const insert_query = {text:`INSERT INTO nonces (login_id,nonce) VALUES('${id}','${nonce}');`}
-                        User.insertNonce(insert_query,linkToken,nonce)
-                            .then(insertNonceRes=>{
-                                console.log('連携もう直ぐ');
-                                res.status(200).send(insertNonceRes);
-                            })
+                        }
+
                     }else{
                         console.log('ログイン失敗');
                         res.status(401).json({message:'ログイン失敗'});
