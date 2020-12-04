@@ -110,7 +110,7 @@ async function fetchMyText() {
                                                         document.location.href = url;
                                                     })
                                             }else{
-                                                label_error.textContent = 'IDかパスワードが正しくありません。';
+                                                label_error.textContent = response.text;
                                             }
                                         })
                                         .catch(e=>console.log(e));
