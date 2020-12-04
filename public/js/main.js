@@ -110,7 +110,10 @@ async function fetchMyText() {
                                                         document.location.href = url;
                                                     })
                                             }else{
-                                                label_error.textContent = response.text();
+                                                response.text()
+                                                .then(text=>{
+                                                    label_error.textContent = text;
+                                                })
                                             }
                                         })
                                         .catch(e=>console.log(e));
