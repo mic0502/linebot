@@ -102,6 +102,7 @@ window.onload = () => {
                                         ajax.open("POST", "/api/users/login");
                                         ajax.send(); // 通信させます。
                                         ajax.addEventListener("load", function(){ // loadイベントを登録します。
+                                            alert(this.response);
                                             const url = `https://access.line.me/dialog/bot/${this.response}`;
                                             document.location.href = url;
                                         }, false);                                          
