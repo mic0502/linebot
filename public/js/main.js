@@ -121,7 +121,7 @@ window.onload = () => {
                                                             url: url,
                                                             external: false
                                                         });
-                                                        liff.closeWindow();
+                                                        liff.closeWindow(myLiffId);
 
                                                     })
                                             }else if(response.status == 402){
