@@ -89,10 +89,10 @@ app
         User.check(select_query)
             .then(checkRes=>{
                 // if(checkRes.rowCount > 0){    データベース変更
-                if(checkRes.length > 0){
                     // const login_id = checkRes.rows[0].login_id;    データベース変更
-                    const login_id = checkRes[0].login_id;
                     // const update_query = {text:`UPDATE users SET line_id = '' WHERE login_id='${login_id}';`}    データベース変更
+                if(checkRes.length > 0){
+                    const login_id = checkRes[0].login_id;
                     const update_query = `UPDATE users SET line_id = '' WHERE login_id='${login_id}';`
                     
                     User.release(update_query)
