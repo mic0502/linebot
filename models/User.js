@@ -79,14 +79,14 @@
 
 const mysql = require('mysql')
 const connection = mysql.createConnection({
-    host:'mysql10093.xserver.jp',
-    database:'xs311188_test',
-    user:'xs311188_user',
-    password:'asdfasdf1'
-    // host:process.env.DB_HOST,
-    // database:process.env.DB_DATABASE,
-    // user:process.env.DB_USERNAME,
-    // password:process.env.DB_PASSWORD
+    // host:'mysql10093.xserver.jp',
+    // database:'xs311188_test',
+    // user:'xs311188_user',
+    // password:'asdfasdf1'
+    host:process.env.DB_HOST,
+    database:process.env.DB_DATABASE,
+    user:process.env.DB_USERNAME,
+    password:process.env.DB_PASSWORD
 });
 
 
