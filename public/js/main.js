@@ -117,7 +117,7 @@ window.onload = () => {
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
                                                         // document.location.href = url;
-                                                        liff.closeWindow();
+                                                        liff.closeWindow(liffId);
                                                         liff.openWindow({
                                                             url: url,
                                                             external: false
