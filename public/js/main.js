@@ -96,6 +96,7 @@ window.onload = () => {
                                         const data = new FormData(formElement);
                                         data.append('linkToken',parsedBody.linkToken);
                                         console.log(...data.entries());
+                                        console.log('テスト' + data);
 
                                         // var ajax = new XMLHttpRequest();
                                         // ajax.open("POST", "/api/users/login");
