@@ -117,13 +117,12 @@ window.onload = () => {
                                                 response.text()
                                                     .then(text=>{
                                                         const url = `https://access.line.me/dialog/bot/${text}`;
-                                                        // document.location.href = url;
-                                                        // liff.openWindow({
-                                                        //     url: url,
-                                                        //     external: false
-                                                        // });
+                                                        document.location.href = url;
+                                                        liff.openWindow({
+                                                            url: url,
+                                                            external: false
+                                                        });
 
-                                                        fetch(url,{method:'POST'});
                                                     })
                                             }else if(response.status == 402){
                                                 label_error.textContent = 'すでに他の端末でログインされています。';
