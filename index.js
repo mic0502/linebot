@@ -3,13 +3,6 @@
 // process.env.ACCESS_TOKEN = 'ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=';
 // process.env.CHANNEL_SECRET = '6ac0a53fabcf1bbb837d757420eebe1b';
 
-// データベース情報の設定
-// Postgresの設定
-// $ heroku config:set PG_USER=puysjkyelweqtl --app linebot-linkapp
-// $ heroku config:set PG_HOST=ec2-54-237-155-151.compute-1.amazonaws.com --app linebot-linkapp
-// $ heroku config:set PG_DATABASE=d7spgkjbkj1nh3 --app linebot-linkapp
-// $ heroku config:set PG_PASSWORD=f63d59e51a496356ecd870fd24d59fd53e6b9be616c01b6c11a8ba2e2952746d --app linebot-linkapp
-
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
@@ -21,8 +14,8 @@ const linkRouter = require('./routers/link');
 const User = require('./models/User');
 const multipart = require('connect-multiparty');
 const config = {
-   channelAccessToken:process.env.ACCESS_TOKEN,
-   channelSecret:process.env.CHANNEL_SECRET
+   channelAccessToken:'ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=',
+   channelSecret:'6ac0a53fabcf1bbb837d757420eebe1b'
 };
 const client = new line.Client(config);
 const richMenuId = 'richmenu-22d31397e83e56e01be48d40ccc30edd';
