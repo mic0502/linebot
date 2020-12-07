@@ -106,6 +106,7 @@ module.exports = {
             console.log(select_query);
             connection.query(select_query, (error, results, fields) => {
                 if (error){
+                    console.log('データベースcheck失敗');
                     reject(error)
                 }else{
                     console.log('データベースcheck成功');
