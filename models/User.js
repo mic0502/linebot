@@ -105,9 +105,12 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             console.log(select_query);
             connection.query(select_query, (error, results, fields) => {
-                if (error){ reject(error)};
+                if (error){
+                    reject(error)
+                }else{
                     console.log('データベースcheck成功');
                     resolve(results);
+                };
             })
         });
     },
