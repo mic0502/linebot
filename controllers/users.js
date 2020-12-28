@@ -6,37 +6,38 @@ module.exports = {
     postUser: (req,res) => {
         try{
             const {name,id,password} = req.body;
-            // 入力された情報チェック
-            if(name==''){
-                res.status(200).redirect('https://linebot-linkapp.herokuapp.com/registration?error02');    //名前を入力してください。
-            }else if(id.length<4){
-                res.status(200).redirect('https://linebot-linkapp.herokuapp.com/registration?error03');    //ログインIDは４桁以上
-            }else if(password.length<4){
-                res.status(200).redirect('https://linebot-linkapp.herokuapp.com/registration?error04');    //パスワードは４桁以上
-            }else{
-                // const select_query = {text:`SELECT * FROM users WHERE login_id='${id}';`};    データベース変更
-                const select_query = `SELECT * FROM users WHERE login_id='${id}';`
-                User.check(select_query)
-                .then(checkRes=>{
-                    // if (checkRes.rowCount > 0 ){    データベース変更
-                    if (checkRes.length > 0 ){
-                            // すでに登録されたIDの場合
-                        console.log('すでに使用されたIDです。');
-                        res.status(200).redirect('https://linebot-linkapp.herokuapp.com/registration?error01');    //すでに登録済みのIDです。
+            const select_query = `SELECT * FROM TM_KOK WHERE login_id='${id}';`
+            User.dbQuery(select_query,'新規作成１番目')
+            .then(checkRes=>{
+                if (checkRes.length > 0 ){
+                    if(checkRes[0].line_id != ''){
+                        // すでに登録されたIDで他の端末で連携済みの場合
+                        console.log('他の端末で連携済みのIDです。');
+                        res.status(200).redirect(process.env.ENV_PATH + 'registration?error01');    //他の端末で連携済みのIDです。
                     }else{
-                        // 新規登録の場合はランクはD、ポイントは０で登録
-                        // const insert_query = {text:`INSERT INTO users (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`};    データベース変更
-                        const insert_query = `INSERT INTO users (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`
-                        User.create(insert_query)
+                        // すでに登録されたIDで未連携場合
+                        console.log('すでに登録されたIDでまだ連携されていないIDです。');
+                        const update_query = `UPDATE TM_KOK SET name = '${name}', login_password = '${password}' WHERE login_id='${id}';`
+                        User.dbQuery(update_query,'新規更新２番目')
                         .then(message=>{
                             console.log('message:',message);
                             // 環境変数のAPPパスへリダイレクト
-                            res.status(200).redirect('https://linebot-linkapp.herokuapp.com/'); 
+                            res.status(200).redirect(`${process.env.ENV_PATH}?id=${id}&password=${password}`);
                         })
                         .catch(e=>console.log(e.stack));
                     }
-                })
-            }
+                }else{
+                    // 新規登録の場合はランクはD、ポイントは０で登録
+                    const insert_query = `INSERT INTO TM_KOK (name,login_id,login_password,rank,point) VALUES('${name}','${id}','${password}','D','0');`
+                    User.dbQuery(insert_query,'新規作成２番目')
+                    .then(message=>{
+                        console.log('message:',message);
+                        // 環境変数のAPPパスへリダイレクト
+                        res.status(200).redirect(`${process.env.ENV_PATH}?id=${id}&password=${password}`);
+                    })
+                    .catch(e=>console.log(e.stack));
+                }
+            })
             
          }catch(error){
              res.status(400).json({message:error.message});
@@ -46,17 +47,15 @@ module.exports = {
     postLogin: (req,res) => {
     // ユーザーIDとパスワードでログイン
         try{
-            const {id,password,linkToken} = req.body;
+            const {id,password,line_uid,linkToken} = req.body;
             // IDとパスワードから検索
-            // const select_query = {text:`SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`};    データベース変更
-            const select_query = `SELECT * FROM users WHERE login_id='${id}' and login_password='${password}';`
-            User.check(select_query)
+            const select_query = `SELECT * FROM TM_KOK WHERE login_id='${id}' and login_password='${password}';`
+            User.dbQuery(select_query,'連携１番目')
                 .then(checkRes=>{
-                    // if (checkRes.rowCount > 0 ){    データベース変更
                     if (checkRes.length > 0 ){
-                        // if (!checkRes.rows[0].line_id){    データベース変更
-                        if (!checkRes[0].line_id){
-                                // 空白かNullの場合は
+                        const line_id = checkRes[0].line_id;
+                        if (!line_id){
+                            // 空白かNullの場合は
                             console.log('認証成功');
 
                             // nonce生成d
@@ -65,12 +64,11 @@ module.exports = {
                             const buf = Buffer.from(randomStrings);
                             const nonce = buf.toString('base64');
     
-                            // nonceテーブルへの挿入
-                            // const insert_query = {text:`INSERT INTO nonces (login_id,nonce) VALUES('${id}','${nonce}');`}    データベース変更
-                            const insert_query = `INSERT INTO nonces (login_id,nonce) VALUES('${id}','${nonce}');`
-                            User.insertNonce(insert_query,linkToken,nonce)
-                                .then(insertNonceRes=>{
-                                    res.status(200).send(insertNonceRes);
+                            // TM_KOKテーブルへの挿入
+                            const update_query = `UPDATE TM_KOK SET line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
+                            User.dbQuery(update_query,'連携２番目')
+                                .then(releaseRes=>{
+                                    res.status(200).send(`accountLink?linkToken=${linkToken}&nonce=${nonce}`);
                                 })
 
                         }else{
@@ -89,5 +87,53 @@ module.exports = {
          }catch(error){
              res.status(400).json({message:error.message});
          }
+    },
+
+    postConfirm: (req,res) => {
+    // 変更内容の確認
+        try{
+            const {name,id,password} = req.body;
+            const select_query = `UPDATE TM_KOK SET name = '${name}', login_password = '${password}' WHERE login_id='${id}';`
+            User.dbQuery(select_query,'変更１番目')
+                .then(checkRes=>{
+                    res.status(200).redirect(process.env.ENV_PATH);
+                })
+                .catch(e=>console.log(e));    
+
+         }catch(error){
+             res.status(400).json({message:error.message});
+         }
+    },
+
+    postSvQuery: (req,res) => {
+        var fs = require('fs');             // File System(Node API)：ファイル操作
+        var readline = require("readline");
+        var files = [];
+        files = fs.readdirSync('./sql');    // フォルダ内のファイルを配列にいれる
+
+        if(files.length>0){
+        // for (let i = 0; i < files.length; i++) {
+            var stream = fs.createReadStream(`./sql/${files[0]}`, 'utf8');
+            var reader = readline.createInterface({ input: stream });
+            var texts = [];
+            reader.on("line", (data) => {
+                texts.push(data.replace(/\r?\n/g,""));
+            });
+            reader.on('close', function () {
+                var svQuery = `SELECT * FROM TM_KOK WHERE login_id ='${texts[1]}';`;
+                User.dbQuery(svQuery,'サーバー更新処理')
+                .then(results=>{
+                    // 登録済みの顧客かチェックしてSQL文生成
+                    if(results.length > 0){
+                        svQuery = `UPDATE TM_KOK SET sys_name = '${texts[2]}', rank = '${texts[3]}', point = ${texts[4]}, birthday = '${texts[5]}', recent_buy = '${texts[6]}' WHERE login_id='${texts[1]}';`;
+                    }else{
+                        svQuery = `INSERT INTO TM_KOK (login_id,sys_name,rank,point,birthday,recent_buy) VALUES('${texts[1]}','${texts[2]}','${texts[3]}',${texts[4]},'${texts[5]}','${texts[6]}');`
+                    }
+                    User.dbQuery(svQuery,'サーバー更新処理２')
+                })
+            });
+            fs.unlinkSync(`./sql/${files[0]}`);     //ファイルを削除
+        };
     }
+        
 }

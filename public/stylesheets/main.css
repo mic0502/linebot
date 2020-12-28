@@ -4,19 +4,22 @@ body{
 img{width:100%;}
 h1{font-size:1.5rem;}
 
-#line_name{
-    width: 100%;
-    margin:3% 0;
+#top_title{
+    position: relative;
+    width:100%;
+    margin:0;
     color:#FFF;
     background-color:#00B900;
+    vertical-align: middle;
 }
+#setting{position:absolute;top:4px;right:5px;display:inline-block;width:30px;height:30px;}
+#setting img{width:60%;padding:20%;}
 #customer_point{
     font-size:1.2rem;
 }
 #customer_medal{width:40%;margin:0 auto;}
 #customer_rankup{width:90%;margin:0 auto;}
 
-.label_error{color:red;}
-.label_error{display: block;}
+.label_error{color:red;display: block;}
 input[type="button"],input[type="submit"]{margin:5%;}
-    
+#update_area #id-input{pointer-events : none;border:0 none;}    

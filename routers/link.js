@@ -6,6 +6,10 @@ router
     .route('/')
     .get(controller.accountLink);
 
+router
+    .route('/release')
+    .get(controller.releaseLink);
+
 module.exports = router;
 
 

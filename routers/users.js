@@ -10,4 +10,12 @@ router
     .route('/login')
     .post(controller.postLogin);
 
+router
+    .route('/confirm')
+    .post(controller.postConfirm);
+
+router
+    .route('/svquery')
+    .post(controller.postSvQuery);
+    
 module.exports = router;

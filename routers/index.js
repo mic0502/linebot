@@ -12,6 +12,9 @@ router
     .get('/mainpage',(req,res)=>{
         res.render('pages/mainpage');
     })
+    .get('/update',(req,res)=>{
+        res.render('pages/update');
+    })
 
 
 module.exports = router;

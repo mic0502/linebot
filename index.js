@@ -1,8 +1,3 @@
-// 環境変数設定内容
-// process.env.APP_PATH = 'https://linebot-linkapp.herokuapp.com/';
-// process.env.ACCESS_TOKEN = 'ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=';
-// process.env.CHANNEL_SECRET = '6ac0a53fabcf1bbb837d757420eebe1b';
-
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
@@ -11,14 +6,13 @@ const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
-const User = require('./models/User');
 const multipart = require('connect-multiparty');
+require('dotenv').config();
 const config = {
-   channelAccessToken:'ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=',
-   channelSecret:'6ac0a53fabcf1bbb837d757420eebe1b'
+   channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
+   channelSecret:process.env.ENV_CHANNEL_SECRET
 };
 const client = new line.Client(config);
-const richMenuId = 'richmenu-22d31397e83e56e01be48d40ccc30edd';
 
 app
    .use(express.static(path.join(__dirname, 'public')))
@@ -39,7 +33,7 @@ app
     const promises = [];
     for(let i=0;i<events.length;i++){
         const ev = events[i];
-        console.log('ev:',ev);
+
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
@@ -71,63 +65,18 @@ app
 
 
  const handleMessageEvent = async (ev) => {
-    const profile = await client.getProfile(ev.source.userId);
-    const text = (ev.message.type === 'text') ? ev.message.text : '';
-    const lineId = ev.source.userId;
-
-    if(text === '連携解除'){
-        // ユーザーコントローラーを呼び出し連携を解除する
-        // const select_query = {text:`SELECT * FROM users WHERE line_id='${lineId}';`}    データベース変更
-        const select_query = `SELECT * FROM users WHERE line_id='${lineId}';`
-        User.check(select_query)
-            .then(checkRes=>{
-                // if(checkRes.rowCount > 0){    データベース変更
-                    // const login_id = checkRes.rows[0].login_id;    データベース変更
-                    // const update_query = {text:`UPDATE users SET line_id = '' WHERE login_id='${login_id}';`}    データベース変更
-                if(checkRes.length > 0){
-                    const login_id = checkRes[0].login_id;
-                    const update_query = `UPDATE users SET line_id = '' WHERE login_id='${login_id}';`
-                    
-                    User.release(update_query)
-                    .then(response=>{
-                        // リッチメニュー デフォルトに解除
-                        client.unlinkRichMenuFromUser(ev.source.userId, richMenuId)
-
-                        return client.replyMessage(ev.replyToken,{
-                            "type":"text",
-                            "text":"連携が解除されました！"
-                        });
-                    })        
-                }else{
-                    // 未連携の場合
-                    return client.replyMessage(ev.replyToken,{
-                        "type":"text",
-                        "text":`${profile.displayName}さん、「${text}」って言いました？`
-                    });
-                }
-            })
-
-    }else{
-        // 上記以外のメッセージ受診の場合はおうむ返しする
-        return client.replyMessage(ev.replyToken,{
-            "type":"text",
-            "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
-        });
-    }
- }
+    // 上記以外のメッセージ受診の場合はおうむ返しする
+    return client.replyMessage(ev.replyToken,{
+        "type":"text",
+        "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
+    });
+}
 
 const accountLink = (ev) => {
-    // 連携処理開始
-
-    User.link(ev.link.nonce,ev.source.userId)
-    .then(linkRes=>{
-        // リッチメニュー 変更
-        client.linkRichMenuToUser(ev.source.userId, richMenuId)
-
-        return client.replyMessage(ev.replyToken,{
-            "type":"text",
-            "text":"連携完了！"
-        });
-    })
-    .catch(e=>console.log(e));
+    // リッチメニュー 変更
+    client.linkRichMenuToUser(ev.source.userId, process.env.ENV_RICHMENUID)
+    return client.replyMessage(ev.replyToken,{
+        "type":"text",
+        "text":"連携完了！"
+    });
 }
