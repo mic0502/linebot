@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.ENV_PORT || 5000
 const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const multipart = require('connect-multiparty');
+console.log(process.env.ENV_PORT)
 // require('dotenv').config();
 const config = {
    channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
