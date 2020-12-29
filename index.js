@@ -66,6 +66,7 @@ app
 
  const handleMessageEvent = async (ev) => {
     // 上記以外のメッセージ受診の場合はおうむ返しする
+    client.unlinkRichMenuFromUser(ev.source.userId, process.env.ENV_RICHMENUID)
     return client.replyMessage(ev.replyToken,{
         "type":"text",
         "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
