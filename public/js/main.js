@@ -174,13 +174,13 @@ window.onload = () => {
                                         // フォーム要素を大元のdiv要素へ格納
                                         divLogin.appendChild(formElement);
 
-                                        // const divRegistration = document.createElement('div');
-                                        // const label_registration = document.createElement('a');
-                                        // label_registration.href = '/registration'
-                                        // label_registration.textContent = '新規会員登録';
-                                        // divRegistration.appendChild(label_registration);
+                                        const divRegistration = document.createElement('div');
+                                        const label_registration = document.createElement('a');
+                                        label_registration.href = '/registration'
+                                        label_registration.textContent = '新規会員登録';
+                                        divRegistration.appendChild(label_registration);
             
-                                        // divLogin.appendChild(divRegistration);
+                                        divLogin.appendChild(divRegistration);
                                     }            
                                 }
                             });
