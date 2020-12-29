@@ -10,6 +10,8 @@ const multipart = require('connect-multiparty');
 if(process.env.ENV_PATH.indexOf('kajita')=0){ 
     require('dotenv').config();     // 本番環境の場合
     console.log('本番')
+}else{
+    console.log('テスト')
 }
 const config = {
    channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
