@@ -11,7 +11,6 @@ window.onload = () => {
 
     liff
         .init({
-            alert(myLiffId);
             liffId:myLiffId
         })
         .then(()=>{
