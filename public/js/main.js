@@ -24,7 +24,7 @@ window.onload = () => {
                                     nameElement.innerHTML = parsedBody.name + 'さま';
 
                                     var setting_icn = document.createElement("a");
-                                    setting_icn.href = `/update?name=${parsedBody.name}&id=${parsedBody.login_id}&password=${parsedBody.login_password}`;
+                                    setting_icn.href = `/update?name=${parsedBody.name}&id=${parsedBody.login_id}&password=${parsedBody.login_password}&lineuid=${line_uid}`;
                                     var setting_img = document.createElement('img');
                                     setting_img.src = '../img/setting.png';
                                     setting_icn.appendChild(setting_img)
