@@ -1,11 +1,6 @@
-// require('dotenv').config();
 const { response } = require('express');
 const mysql = require('mysql')
 const connection = mysql.createConnection({
-    // host:'mysql10093.xserver.jp',
-    // database:'xs311188_wt1',
-    // user:'xs311188_wt1',
-    // password:'asdfasdf1'
     host:process.env.ENV_HOST,
     database:process.env.ENV_DATABASE,
     user:process.env.ENV_USER,

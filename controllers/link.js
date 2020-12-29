@@ -6,8 +6,10 @@ const client = new line.Client({channelAccessToken: process.env.ENV_CHANNEL_ACCE
 
 module.exports = {
     accountLink: (req,res) => {
-        // 非同期でサーバー更新処理
-        // users.postSvQuery();
+        if(process.env.ENV_PATH.indexOf('kajita')>0){
+            // 本番環境の場合、非同期でサーバー更新処理
+            users.postSvQuery();
+        }
 
         const line_uid = req.query.line_uid;       
         // ラインIDから登録済みかチェック
