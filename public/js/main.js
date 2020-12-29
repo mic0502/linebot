@@ -129,7 +129,7 @@ window.onload = () => {
                                         const div_error = document.createElement('span')
                                         const label_error = document.createElement('label');
                                         label_error.setAttribute('class','label_error');
-                                        label_error.textContent = 'IDとパスワードはスタッフにお尋ねください！';
+                                        label_error.textContent = 'IDとパスワードはスタッフにお尋ねください。';
 
 
                                         // ログインボタン
