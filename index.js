@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
-const PORT = process.env.ENV_PORT || 5000
+const PORT = process.env.PORT || 5000
 const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
