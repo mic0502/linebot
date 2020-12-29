@@ -1,8 +1,11 @@
+module.exports = {
+  env: {API_ENDPOINT_FOR_CLIENT: process.env.API_ENDPOINT,},
+}
 window.onload = () => {
 
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
     // const myLiffId = '1655531724-r9vqE0ql';  //テスト
-    const myLiffId = process.env.ENV_MYLIFFID;
+    const myLiffId = ENV["ENV_MYLIFFID"];
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
 
