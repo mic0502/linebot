@@ -9,7 +9,6 @@ module.exports = {
         if(process.env.ENV_PATH.indexOf('kajita')>0){
             // 本番環境の場合、非同期でサーバー更新処理
             users.postSvQuery();
-            console.log('本番');
         }
 
         const line_uid = req.query.line_uid;       
