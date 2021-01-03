@@ -7,7 +7,7 @@ const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const multipart = require('connect-multiparty');
-require('dotenv').config();  //本番
+// require('dotenv').config();  //本番
 const config = {
    channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
    channelSecret:process.env.ENV_CHANNEL_SECRET
