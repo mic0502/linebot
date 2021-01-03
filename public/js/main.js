@@ -108,6 +108,8 @@ window.onload = () => {
                                         input_form1.setAttribute('type','text');
                                         input_form1.setAttribute('id','id-input');
                                         input_form1.setAttribute('class','id-input');
+                                        input_form1.setAttribute('type','number');
+                                        input_form1.setAttribute('pattern','[0-9]*');
                                         input_form1.setAttribute('name','id');
                                         div_form1.appendChild(input_form1);
             
@@ -122,6 +124,8 @@ window.onload = () => {
                                         const input_form2 = document.createElement('input');
                                         input_form2.setAttribute('type','password');
                                         input_form2.setAttribute('class','password-input');
+                                        input_form2.setAttribute('type','number');
+                                        input_form2.setAttribute('pattern','[0-9]*');
                                         input_form2.setAttribute('name','password');
                                         div_form2.appendChild(input_form2);
             

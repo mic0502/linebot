@@ -127,7 +127,7 @@ module.exports = {
                     if(results.length > 0){
                         svQuery = `UPDATE TM_KOK SET sys_name = '${texts[2]}', rank = '${texts[3]}', point = ${texts[4]}, birthday = '${texts[5]}', recent_buy = '${texts[6]}' WHERE login_id='${texts[1]}';`;
                     }else{
-                        svQuery = `INSERT INTO TM_KOK (login_id,sys_name,rank,point,birthday,recent_buy) VALUES('${texts[1]}','${texts[2]}','${texts[3]}',${texts[4]},'${texts[5]}','${texts[6]}');`
+                        svQuery = `INSERT INTO TM_KOK (login_id,sys_name,rank,point,birthday,recent_buy,login_password) VALUES('${texts[1]}','${texts[2]}','${texts[3]}',${texts[4]},'${texts[5]}','${texts[6]}','${texts[5]}');`
                     }
                     User.dbQuery(svQuery,'サーバー更新処理２')
                 })

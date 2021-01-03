@@ -41,6 +41,8 @@ window.onload = () => {
     input_form1.setAttribute('type','text');
     input_form1.setAttribute('id','id-input');
     input_form1.setAttribute('class','id-input');
+    input_form1.setAttribute('type','number');
+    input_form1.setAttribute('pattern','[0-9]*');
     input_form1.setAttribute('name','id');
     div_form1.appendChild(input_form1);
 

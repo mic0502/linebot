@@ -59,6 +59,8 @@ window.onload = () => {
     input_form2.setAttribute('type','text');
     input_form2.setAttribute('id','password-input');
     input_form2.setAttribute('class','password-input');
+    input_form2.setAttribute('type','number');
+    input_form2.setAttribute('pattern','[0-9]*');
     input_form2.setAttribute('name','password');
     div_form2.appendChild(input_form2);
 
