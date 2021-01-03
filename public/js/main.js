@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 window.onload = () => {
 
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
