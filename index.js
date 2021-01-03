@@ -8,7 +8,7 @@ const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const multipart = require('connect-multiparty');
 console.log(process.env.ENV_PATH.indexOf('heroku'));
-if(process.env.ENV_PATH.indexOf('heroku')==0){
+if(process.env.ENV_PATH.indexOf('heroku')=0){
     console.log('本番')
     require('dotenv').config();  //本番
 }    
