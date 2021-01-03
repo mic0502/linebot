@@ -1,3 +1,3 @@
 .env
-.env_heroku
+.env_本番
 node_modules/
