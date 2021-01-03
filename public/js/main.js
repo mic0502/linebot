@@ -4,7 +4,6 @@ window.onload = () => {
     const myLiffId = '1654951421-JM6vmP1n';  //テスト
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
-    alert(myLiffId);
     liff
         .init({
             liffId:myLiffId
