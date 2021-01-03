@@ -1,4 +1,6 @@
-// require('dotenv').config();  //本番
+if(process.env.ENV_PATH.indexOf('heroku')==0){
+    require('dotenv').config();  //本番
+}
 const { response } = require('express');
 const mysql = require('mysql')
 const connection = mysql.createConnection({
