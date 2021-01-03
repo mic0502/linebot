@@ -8,7 +8,10 @@ const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const multipart = require('connect-multiparty');
 console.log(process.env.ENV_DATABASE);
-// require('dotenv').config();  //本番
+if(process.env.ENV_PATH.indexOf('heroku')=0){
+    console.log('本番')
+    require('dotenv').config();  //本番
+}    
 const config = {
    channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
    channelSecret:process.env.ENV_CHANNEL_SECRET
