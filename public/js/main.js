@@ -1,10 +1,7 @@
 window.onload = () => {
 
-    if(process.env.ENV_PATH.indexOf('heroku')==0){
-        const myLiffId = '1654951421-nwJ0jYeb';  //本番
-    }else{
-        const myLiffId = '1654951421-JM6vmP1n';  //テスト
-    }
+    // const myLiffId = '1654951421-nwJ0jYeb';  //本番
+    const myLiffId = '1654951421-JM6vmP1n';  //テスト
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
 
