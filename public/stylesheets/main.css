@@ -24,4 +24,4 @@ h1{font-size:1.5rem;}
 input[type="button"],input[type="submit"]{margin:5%;font-size:150%;}
 #update_area #id-input{pointer-events : none;border:0 none;}
 
-.label_id, .id-input, .label_password, .password-input{font-size:24px;}
+.label_id, .id-input, .label_password, .password-input{font-size:24px;width:45%;}
