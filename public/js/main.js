@@ -115,7 +115,6 @@ window.onload = () => {
             
                                         // div_form2はパスワードに関するlabel要素とinput要素で構成
                                         const div_form2 = document.createElement('div');
-            
                                         const label_form2 = document.createElement('label');
                                         label_form2.setAttribute('class','label_password');
                                         label_form2.textContent = 'パスワード';

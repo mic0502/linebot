@@ -21,5 +21,7 @@ h1{font-size:1.5rem;}
 #customer_rankup{width:90%;margin:0 auto;}
 
 .label_error{color:red;display: block;}
-input[type="button"],input[type="submit"]{margin:5%;font-size:16px;}
-#update_area #id-input{pointer-events : none;border:0 none;}    
+input[type="button"],input[type="submit"]{margin:5%;font-size:24px;}
+#update_area #id-input{pointer-events : none;border:0 none;}
+
+.label_id{font-size:24px;}
