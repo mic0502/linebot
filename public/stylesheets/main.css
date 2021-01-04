@@ -21,7 +21,7 @@ h1{font-size:1.5rem;}
 #customer_rankup{width:90%;margin:0 auto;}
 
 .label_error{color:red;display: block;}
-input[type="button"],input[type="submit"]{margin:5%;font-size:120%;width:45%;}
+input[type="button"],input[type="submit"]{margin:5% 2%;font-size:120%;width:40%;}
 #update_area #id-input{pointer-events : none;border:0 none;}
 
 .label_name, .name-input, .label_id, .id-input, .label_password, .password-input{font-size:24px;width:45%;}
