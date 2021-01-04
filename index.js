@@ -14,6 +14,12 @@ const config = {
 };
 const client = new line.Client(config);
 
+const param = new URL(location).search;
+const splitParam = param.split('&');
+const id = splitParam[0].slice(1);
+alert('liffidは:',id);
+
+
 app
    .use(express.static(path.join(__dirname, 'public')))
    .use(multipart())
