@@ -5,10 +5,6 @@ window.onload = () => {
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
 
-    
-    alert('liffidは:',param);
-    
-
     liff
         .init({
             liffId:myLiffId
