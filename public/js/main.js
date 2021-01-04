@@ -5,6 +5,9 @@ window.onload = () => {
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
 
+    export const aaa = window.liff;
+    alert(aaa);
+    
     liff
         .init({
             liffId:myLiffId
