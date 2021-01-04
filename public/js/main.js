@@ -4,9 +4,9 @@ window.onload = () => {
     const myLiffId = '1654951421-JM6vmP1n';  //テスト
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
-    const splitParam = param.split('&');
-    const id = splitParam[0].slice(1);
-    alert('liffidは:',id);
+
+    
+    alert('liffidは:',param);
     
 
     liff
