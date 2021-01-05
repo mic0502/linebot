@@ -87,6 +87,54 @@ const accountLink = (ev) => {
     });
 }
 
+const handlePostbackEvent = async (ev) => {
+    const data = ev.postback.data;
+    const splitData = data.split('&');
+    
+    if(splitData[0] === 'select'){
+        const orderedMenu = splitData[1];
+        askDate(ev,orderedMenu);
+    }
+ }
+
+ const askDate = (ev,orderedMenu) => {
+    return client.replyMessage(ev.replyToken,{
+        "type":"flex",
+        "altText":"予約日選択",
+        "contents":
+        {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "来店希望日を選んでください。",
+                  "size": "md",
+                  "align": "center"
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "datetimepicker",
+                    "label": "希望日を選択する",
+                    "data": `date&${orderedMenu}`,
+                    "mode": "date"
+                  }
+                }
+              ]
+            }
+          }
+    });
+ }
+ 
 const orderChoice = (ev) => {
     return client.replyMessage(ev.replyToken,{
         "type":"flex",
