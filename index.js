@@ -91,13 +91,18 @@ const handlePostbackEvent = async (ev) => {
     const data = ev.postback.data;
     const splitData = data.split('&');
     
-    if(splitData[0] === 'select'){
+    if(splitData[0] === 'menu'){
         const orderedMenu = splitData[1];
         askDate(ev,orderedMenu);
     }else if(splitData[0] === 'date'){
         const orderedMenu = splitData[1];
         const selectedDate = ev.postback.params.date;
         askTime(ev,orderedMenu,selectedDate);
+    }else if(splitData[0] === 'time'){
+        const orderedMenu = splitData[1];
+        const selectedDate = splitData[2];
+        const selectedTime = splitData[3];
+        confirmation(ev,orderedMenu,selectedDate,selectedTime); 
     }
  }
 
@@ -358,7 +363,7 @@ const orderChoice = (ev) => {
                   "action": {
                     "type": "postback",
                     "label": "景品A",
-                    "data": "select&0"
+                    "data": "menu&0"
                   },
                   "margin": "md",
                   "style": "primary"
@@ -368,7 +373,7 @@ const orderChoice = (ev) => {
                   "action": {
                     "type": "postback",
                     "label": "景品B",
-                    "data": "select&1"
+                    "data": "menu&1"
                   },
                   "margin": "md",
                   "style": "primary"
@@ -393,3 +398,52 @@ const orderChoice = (ev) => {
           }
     });
  }
+
+
+ const confirmation = (ev,menu,date,time) => {
+    const splitDate = date.split('-');
+    const selectedTime = 9 + parseInt(time);
+    
+    return client.replyMessage(ev.replyToken,{
+      "type":"flex",
+      "altText":"menuSelect",
+      "contents":
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": `次回予約は${splitDate[1]}月${splitDate[2]}日 ${selectedTime}時〜でよろしいですか？`,
+              "size": "lg",
+              "wrap": true
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "はい",
+                "data": `yes&${menu}&${date}&${time}`
+              }
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "いいえ",
+                "data": `no&${menu}&${date}&${time}`
+              }
+            }
+          ]
+        }
+      }
+    });
+   }
