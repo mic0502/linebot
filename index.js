@@ -33,8 +33,6 @@ const lineBot = (req,res) => {
     const promises = [];
     for(let i=0;i<events.length;i++){
         const ev = events[i];
-        console.log('イベントの中身：' . ev);
-
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
@@ -66,12 +64,12 @@ const lineBot = (req,res) => {
 
 
 const handleMessageEvent = async (ev) => {
-    console.log('ev:',ev);
+    console.log('ev中身:',ev);
     const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     
     if(text === '予約する'){
-        orderChoice(ev);
+        orderChoice(ev.replyToken);
     }else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
