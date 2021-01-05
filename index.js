@@ -27,13 +27,14 @@ app
    .use('/api/link',linkRouter)
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
-   const lineBot = (req,res) => {
+const lineBot = (req,res) => {
     res.status(200).end();
     const events = req.body.events;
     const promises = [];
     for(let i=0;i<events.length;i++){
         const ev = events[i];
-
+        console.log(ev);
+        
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
@@ -53,7 +54,7 @@ app
         .all(promises)
         .then(console.log('all promises passed'))
         .catch(e=>console.error(e.stack));
- }
+}
 
  const greeting_follow = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
