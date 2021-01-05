@@ -89,59 +89,64 @@ const accountLink = (ev) => {
 
 const orderChoice = (ev) => {
     return client.replyMessage(ev.replyToken,{
-        "type": "bubble",
-        "header": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "どちらか選択して下さい。",
-              "size": "lg",
-              "align": "center"
-            }
-          ]
-        },
-        "body": {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "button",
-              "action": {
-                "type": "postback",
-                "label": "景品A",
-                "data": "select&0"
-              },
-              "margin": "md",
-              "style": "primary"
+        "type":"flex",
+        "altText":"menuSelect",
+        "contents":
+        {
+            "type": "bubble",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "どちらか選択して下さい。",
+                  "size": "lg",
+                  "align": "center"
+                }
+              ]
             },
-            {
-              "type": "button",
-              "action": {
-                "type": "postback",
-                "label": "景品B",
-                "data": "select&1"
-              },
-              "margin": "md",
-              "style": "primary"
+            "body": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "景品A",
+                    "data": "select&0"
+                  },
+                  "margin": "md",
+                  "style": "primary"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "景品B",
+                    "data": "select&1"
+                  },
+                  "margin": "md",
+                  "style": "primary"
+                }
+              ],
+              "position": "relative"
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "キャンセル",
+                    "data": "cancel"
+                  }
+                }
+              ]
             }
-          ],
-          "position": "relative"
-        },
-        "footer": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "button",
-              "action": {
-                "type": "postback",
-                "label": "キャンセル",
-                "data": "cancel"
-              }
-            }
-          ]
-        }
+          }
     });
  }
