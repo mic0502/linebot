@@ -33,8 +33,8 @@ const lineBot = (req,res) => {
     const promises = [];
     for(let i=0;i<events.length;i++){
         const ev = events[i];
-        console.log(ev);
-        
+        console.log('イベントの中身：' . ev);
+
         switch(ev.type){
             case 'follow':
                 promises.push(greeting_follow(ev));
@@ -65,12 +65,19 @@ const lineBot = (req,res) => {
  }
 
 
- const handleMessageEvent = async (ev) => {
-    // 上記以外のメッセージ受診の場合はおうむ返しする
-    return client.replyMessage(ev.replyToken,{
-        "type":"text",
-        "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
-    });
+const handleMessageEvent = async (ev) => {
+    console.log('ev:',ev);
+    const profile = await client.getProfile(ev.source.userId);
+    const text = (ev.message.type === 'text') ? ev.message.text : '';
+    
+    if(text === '予約する'){
+        orderChoice(ev);
+    }else{
+        return client.replyMessage(ev.replyToken,{
+            "type":"text",
+            "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
+        });
+    }
 }
 
 const accountLink = (ev) => {
@@ -79,5 +86,67 @@ const accountLink = (ev) => {
     return client.replyMessage(ev.replyToken,{
         "type":"text",
         "text":"連携完了！"
+    });
+}
+
+const orderChoice = (ev) => {
+    return client.replyMessage(ev.replyToken,{
+        "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "どちらか選択して下さい。",
+                "size": "lg",
+                "align": "center"
+            }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "景品A",
+                "data": "select&0"
+                },
+                "margin": "md",
+                "style": "primary"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "景品B",
+                "data": "select&1"
+                },
+                "margin": "md",
+                "style": "primary"
+            },
+            {
+                "type": "separator"
+            }
+            ],
+            "position": "relative"
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "キャンセル",
+                "data": "cancel"
+                }
+            }
+            ]
+        }
     });
 }
