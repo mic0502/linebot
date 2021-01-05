@@ -125,9 +125,6 @@ const orderChoice = (ev) => {
               },
               "margin": "md",
               "style": "primary"
-            },
-            {
-              "type": "separator"
             }
           ],
           "position": "relative"
