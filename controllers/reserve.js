@@ -3,74 +3,76 @@ const User = require('../models/User');
 const line = require('@line/bot-sdk');
 
 module.exports = {
-    orderChoice: (req,res,body) => {
-        try{
 
-        res.status(200).json({
-            "type":"flex",
-            "altText":"menuSelect",
-            "contents":
+    orderChoice: (error, response) => {
+
+        JSON.parse(
             {
-                "type": "bubble",
-                "header": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "どちらか選択して下さい。",
-                      "size": "lg",
-                      "align": "center"
-                    }
-                  ]
-                },
-                "body": {
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
-                      "type": "button",
-                      "action": {
-                        "type": "postback",
-                        "label": "景品A",
-                        "data": "menu&0"
-                      },
-                      "margin": "md",
-                      "style": "primary"
+                "type":"flex",
+                "altText":"menuSelect",
+                "contents":
+                {
+                    "type": "bubble",
+                    "header": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "どちらか選択して下さい。",
+                          "size": "lg",
+                          "align": "center"
+                        }
+                      ]
                     },
-                    {
-                      "type": "button",
-                      "action": {
-                        "type": "postback",
-                        "label": "景品B",
-                        "data": "menu&1"
-                      },
-                      "margin": "md",
-                      "style": "primary"
+                    "body": {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "景品A",
+                            "data": "menu&0"
+                          },
+                          "margin": "md",
+                          "style": "primary"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "景品B",
+                            "data": "menu&1"
+                          },
+                          "margin": "md",
+                          "style": "primary"
+                        }
+                      ],
+                      "position": "relative"
+                    },
+                    "footer": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "キャンセル",
+                            "data": "cancel"
+                          }
+                        }
+                      ]
                     }
-                  ],
-                  "position": "relative"
-                },
-                "footer": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "button",
-                      "action": {
-                        "type": "postback",
-                        "label": "キャンセル",
-                        "data": "cancel"
-                      }
-                    }
-                  ]
-                }
-              }
-        });
-    }catch(error){
-        res.status(400).json({message:error.message});
-    }
-},
+                  }
+            }            
+            , (key, value) => {
+            return value;     // 変更されていないプロパティの値を返す。
+          });
+
+    },
 
     orderReply: (req,res) => {
         const data = ev.postback.data;
