@@ -3,75 +3,68 @@ const User = require('../models/User');
 const line = require('@line/bot-sdk');
 
 module.exports = {
-
-    orderChoice: (response) => {
-
-        return json(
+    orderChoice: () => {
+        return {
+            "type":"flex",
+            "altText":"menuSelect",
+            "contents":
             {
-                "type":"flex",
-                "altText":"menuSelect",
-                "contents":
-                {
-                    "type": "bubble",
-                    "header": {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
-                        {
-                          "type": "text",
-                          "text": "どちらか選択して下さい。",
-                          "size": "lg",
-                          "align": "center"
-                        }
-                      ]
-                    },
-                    "body": {
-                      "type": "box",
-                      "layout": "horizontal",
-                      "contents": [
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
-                            "label": "景品A",
-                            "data": "menu&0"
-                          },
-                          "margin": "md",
-                          "style": "primary"
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
-                            "label": "景品B",
-                            "data": "menu&1"
-                          },
-                          "margin": "md",
-                          "style": "primary"
-                        }
-                      ],
-                      "position": "relative"
-                    },
-                    "footer": {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
-                            "label": "キャンセル",
-                            "data": "cancel"
-                          }
-                        }
-                      ]
+                "type": "bubble",
+                "header": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "どちらか選択して下さい。",
+                      "size": "lg",
+                      "align": "center"
                     }
-                  }
-            }            
-            , (key, value) => {
-            return value;     // 変更されていないプロパティの値を返す。
-          });
-
+                  ]
+                },
+                "body": {
+                  "type": "box",
+                  "layout": "horizontal",
+                  "contents": [
+                    {
+                      "type": "button",
+                      "action": {
+                        "type": "postback",
+                        "label": "景品A",
+                        "data": "menu&0"
+                      },
+                      "margin": "md",
+                      "style": "primary"
+                    },
+                    {
+                      "type": "button",
+                      "action": {
+                        "type": "postback",
+                        "label": "景品B",
+                        "data": "menu&1"
+                      },
+                      "margin": "md",
+                      "style": "primary"
+                    }
+                  ],
+                  "position": "relative"
+                },
+                "footer": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "button",
+                      "action": {
+                        "type": "postback",
+                        "label": "キャンセル",
+                        "data": "cancel"
+                      }
+                    }
+                  ]
+                }
+              }
+        };
     },
 
     orderReply: (req,res) => {

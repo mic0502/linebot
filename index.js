@@ -70,8 +70,7 @@ const handleMessageEvent = async (ev) => {
     
     if(text === '予約する'){
       console.log('その１')
-      returnCode = reserve.orderChoice();
-      return client.replyMessage(ev.replyToken,returnCode);
+      return client.replyMessage(ev.replyToken,reserve.orderChoice());
 
     }else{
         return client.replyMessage(ev.replyToken,{
