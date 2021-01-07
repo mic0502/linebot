@@ -156,6 +156,11 @@ const handlePostbackEvent = async (ev) => {
     });
    }
 
+const timeConversion = (date,time) => {
+  const selectedTime = 9 + parseInt(time) - 9;
+  return new Date(`${date} ${selectedTime}:00`).getTime();
+}
+  
  const askDate = (ev,orderedMenu) => {
     return client.replyMessage(ev.replyToken,{
         "type":"flex",
