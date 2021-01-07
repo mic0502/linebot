@@ -4,8 +4,7 @@ const line = require('@line/bot-sdk');
 
 module.exports = {
     orderChoice: (req,res) => {
-        res.status(200).send(
-        {
+        res.json({
             "type":"flex",
             "altText":"menuSelect",
             "contents":
@@ -65,8 +64,7 @@ module.exports = {
                   ]
                 }
               }
-        }
-        );
+        });
     },
 
     orderReply: (req,res) => {
