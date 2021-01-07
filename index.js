@@ -87,6 +87,6 @@ const accountLink = (ev) => {
     });
 }
 
-const handlePostbackEvent = async (ev) => {
+const handlePostbackEvent = (ev) => {
     reserve.orderReply();
 }
