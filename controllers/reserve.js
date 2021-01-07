@@ -67,47 +67,45 @@ module.exports = {
         };
     },
 
-    orderReply: (ev) => {
-        const data = ev.postback.data;
-        const splitData = data.split('&');
-        
-        if(splitData[0] === 'menu'){
-            const orderedMenu = splitData[1];
-            askDate(ev,orderedMenu);
-        }else if(splitData[0] === 'date'){
-            const orderedMenu = splitData[1];
-            const selectedDate = ev.postback.params.date;
-            askTime(ev,orderedMenu,selectedDate);
-        }else if(splitData[0] === 'time'){
-            const orderedMenu = splitData[1];
-            const selectedDate = splitData[2];
-            const selectedTime = splitData[3];
-            confirmation(ev,orderedMenu,selectedDate,selectedTime); 
-        }else if(splitData[0] === 'yes'){
-            const orderedMenu = splitData[1];
-            const selectedDate = splitData[2];
-            const selectedTime = splitData[3];
-            const startTimestamp = timeConversion(selectedDate,selectedTime);
-            const treatTime = calcTreatTime(ev.source.userId,orderedMenu);
-            const endTimestamp = startTimestamp + treatTime*60*1000;
-            const insertQuery = {
-              text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
-              values:[ev.source.userId,profile.displayName,selectedDate,startTimestamp,endTimestamp,orderedMenu]
-            };
-            connection.query(insertQuery)
-              .then(res=>{
-                console.log('データ格納成功！');
-                client.replyMessage(ev.replyToken,{
-                  "type":"text",
-                  "text":"予約が完了しました。"
-                });
-              })
-              .catch(e=>console.log(e));
-              
-        }else if(splitData[0] === 'no'){
-          // あとで何か入れる
+    askDate: () => {
+        return {
+            "type":"flex",
+            "altText":"予約日選択",
+            "contents":
+            {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "来店希望日を選んでください。",
+                        "size": "md",
+                        "align": "center"
+                    }
+                    ]
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "datetimepicker",
+                        "label": "希望日を選択する",
+                        "data": `date&${orderedMenu}`,
+                        "mode": "date"
+                        }
+                    }
+                    ]
+                }
+            }
         }
-    }
+    },
+    
+    
 }
 
 const calcTreatTime = (id,menu) => {
@@ -141,44 +139,6 @@ const timeConversion = (date,time) => {
   return new Date(`${date} ${selectedTime}:00`).getTime();
 }
   
- const askDate = (ev,orderedMenu) => {
-    return client.replyMessage(ev.replyToken,{
-        "type":"flex",
-        "altText":"予約日選択",
-        "contents":
-        {
-            "type": "bubble",
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "来店希望日を選んでください。",
-                  "size": "md",
-                  "align": "center"
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "datetimepicker",
-                    "label": "希望日を選択する",
-                    "data": `date&${orderedMenu}`,
-                    "mode": "date"
-                  }
-                }
-              ]
-            }
-          }
-    });
- }
-
  const askTime = (ev,orderedMenu,selectedDate) => {
     return client.replyMessage(ev.replyToken,{
         "type":"flex",

@@ -63,15 +63,20 @@ const lineBot = (req,res) => {
     });
  }
 
+ const accountLink = (ev) => {
+  // リッチメニュー 変更
+  client.linkRichMenuToUser(ev.source.userId, process.env.ENV_RICHMENUID)
+  return client.replyMessage(ev.replyToken,{
+      "type":"text",
+      "text":"連携完了！"
+  });
+}
 
 const handleMessageEvent = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
-    
     if(text === '予約する'){
-      console.log('その１')
       return client.replyMessage(ev.replyToken,reserve.orderChoice());
-
     }else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",
@@ -80,15 +85,46 @@ const handleMessageEvent = async (ev) => {
     }
 }
 
-const accountLink = (ev) => {
-    // リッチメニュー 変更
-    client.linkRichMenuToUser(ev.source.userId, process.env.ENV_RICHMENUID)
-    return client.replyMessage(ev.replyToken,{
-        "type":"text",
-        "text":"連携完了！"
-    });
-}
-
 const handlePostbackEvent = (ev) => {
-    reserve.orderReply(ev);
+  const data = ev.postback.data;
+  const splitData = data.split('&');
+  
+  if(splitData[0] === 'menu'){
+      const orderedMenu = splitData[1];
+      return client.replyMessage(ev.replyToken,reserve.askDate());
+  }else if(splitData[0] === 'date'){
+      const orderedMenu = splitData[1];
+      const selectedDate = ev.postback.params.date;
+      askTime(ev,orderedMenu,selectedDate);
+  }else if(splitData[0] === 'time'){
+      const orderedMenu = splitData[1];
+      const selectedDate = splitData[2];
+      const selectedTime = splitData[3];
+      confirmation(ev,orderedMenu,selectedDate,selectedTime); 
+  }else if(splitData[0] === 'yes'){
+      const orderedMenu = splitData[1];
+      const selectedDate = splitData[2];
+      const selectedTime = splitData[3];
+      const startTimestamp = timeConversion(selectedDate,selectedTime);
+      const treatTime = calcTreatTime(ev.source.userId,orderedMenu);
+      const endTimestamp = startTimestamp + treatTime*60*1000;
+      const insertQuery = {
+        text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
+        values:[ev.source.userId,profile.displayName,selectedDate,startTimestamp,endTimestamp,orderedMenu]
+      };
+      connection.query(insertQuery)
+        .then(res=>{
+          console.log('データ格納成功！');
+          client.replyMessage(ev.replyToken,{
+            "type":"text",
+            "text":"予約が完了しました。"
+          });
+        })
+        .catch(e=>console.log(e));
+        
+  }else if(splitData[0] === 'no'){
+    // あとで何か入れる
+  }
+
+  
 }
