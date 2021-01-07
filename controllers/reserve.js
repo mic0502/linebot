@@ -4,7 +4,9 @@ const line = require('@line/bot-sdk');
 
 module.exports = {
     orderChoice: (req,res,body) => {
-        return body.json({
+        try{
+
+        res.status(200).json({
             "type":"flex",
             "altText":"menuSelect",
             "contents":
@@ -65,7 +67,10 @@ module.exports = {
                 }
               }
         });
-    },
+    }catch(error){
+        res.status(400).json({message:error.message});
+    }
+},
 
     orderReply: (req,res) => {
         const data = ev.postback.data;
