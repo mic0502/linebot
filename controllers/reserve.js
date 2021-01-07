@@ -6,7 +6,7 @@ module.exports = {
 
     orderChoice: (response) => {
 
-        response.json(
+        return json(
             {
                 "type":"flex",
                 "altText":"menuSelect",
