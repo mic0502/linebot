@@ -5,6 +5,9 @@ module.exports = {
 
     postUser: (req,res) => {
         try{
+            const create_reservationTable = 'CREATE TABLE IF NOT EXISTS reservations (id SERIAL NOT NULL, line_uid VARCHAR(255), name VARCHAR(100), scheduledate DATE, starttime BIGINT, endtime BIGINT, menu VARCHAR(50));'
+            User.dbQuery(create_reservationTable,'テーブル作成')
+
             const {name,id,password} = req.body;
             const select_query = `SELECT * FROM TM_KOK WHERE login_id='${id}';`
             User.dbQuery(select_query,'新規作成１番目')

@@ -103,8 +103,58 @@ const handlePostbackEvent = async (ev) => {
         const selectedDate = splitData[2];
         const selectedTime = splitData[3];
         confirmation(ev,orderedMenu,selectedDate,selectedTime); 
+    }else if(splitData[0] === 'yes'){
+        const orderedMenu = splitData[1];
+        const selectedDate = splitData[2];
+        const selectedTime = splitData[3];
+        const startTimestamp = timeConversion(selectedDate,selectedTime);
+        const treatTime = await calcTreatTime(ev.source.userId,orderedMenu);
+        const endTimestamp = startTimestamp + treatTime*60*1000;
+        const insertQuery = {
+          text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
+          values:[ev.source.userId,profile.displayName,selectedDate,startTimestamp,endTimestamp,orderedMenu]
+        };
+        connection.query(insertQuery)
+          .then(res=>{
+            console.log('データ格納成功！');
+            client.replyMessage(ev.replyToken,{
+              "type":"text",
+              "text":"予約が完了しました。"
+            });
+          })
+          .catch(e=>console.log(e));
+          
+    }else if(splitData[0] === 'no'){
+      // あとで何か入れる
     }
+    
  }
+
+ const calcTreatTime = (id,menu) => {
+    return new Promise((resolve,reject)=>{
+      console.log('その2');
+      const selectQuery = {
+        text: 'SELECT * FROM users WHERE line_uid = $1;',
+        values: [`${id}`]
+      };
+      connection.query(selectQuery)
+        .then(res=>{
+          console.log('その3');
+          const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
+          if(res.rows.length){
+            const info = res.rows[0];
+            const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
+            const menuNumber = parseInt(menu);
+            const treatTime = treatArray[menuNumber];
+            resolve(treatTime);
+          }else{
+            console.log('LINE　IDに一致するユーザーが見つかりません。');
+            return;
+          }
+        })
+        .catch(e=>console.log(e));
+    });
+   }
 
  const askDate = (ev,orderedMenu) => {
     return client.replyMessage(ev.replyToken,{
