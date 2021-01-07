@@ -67,7 +67,7 @@ module.exports = {
         };
     },
 
-    askDate: () => {
+    askDate: (orderedMenu) => {
         return {
             "type":"flex",
             "altText":"予約日選択",

@@ -91,7 +91,7 @@ const handlePostbackEvent = (ev) => {
   
   if(splitData[0] === 'menu'){
       const orderedMenu = splitData[1];
-      return client.replyMessage(ev.replyToken,reserve.askDate());
+      return client.replyMessage(ev.replyToken,reserve.askDate(orderedMenu));
   }else if(splitData[0] === 'date'){
       const orderedMenu = splitData[1];
       const selectedDate = ev.postback.params.date;
