@@ -4,7 +4,8 @@ const line = require('@line/bot-sdk');
 
 module.exports = {
     orderChoice: (req,res) => {
-        res.status(200).send({
+        const line_uid = req.query.line_uid;
+        const message = {
             "type":"flex",
             "altText":"menuSelect",
             "contents":
@@ -64,7 +65,10 @@ module.exports = {
                   ]
                 }
               }
-        });
+        };
+        // リッチメニュー デフォルトに解除
+        client.pushMessage(line_uid, message)
+              
     },
 
     orderReply: (req,res) => {
