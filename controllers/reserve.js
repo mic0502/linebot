@@ -4,9 +4,9 @@ const line = require('@line/bot-sdk');
 
 module.exports = {
 
-    orderChoice: (error, response) => {
+    orderChoice: (response) => {
 
-        JSON.parse(
+        response.json(
             {
                 "type":"flex",
                 "altText":"menuSelect",
