@@ -69,7 +69,10 @@ const handleMessageEvent = async (ev) => {
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     
     if(text === '予約する'){
-      return client.replyMessage(ev.replyToken,reserve.orderChoice);
+
+      return client.replyMessage(ev.replyToken,reserve.orderChoice());
+
+
     }else{
         return client.replyMessage(ev.replyToken,{
             "type":"text",

@@ -4,7 +4,7 @@ const line = require('@line/bot-sdk');
 
 module.exports = {
     orderChoice: (req,res) => {
-        res.status(200).json({
+        res.json({
             "type":"flex",
             "altText":"menuSelect",
             "contents":
