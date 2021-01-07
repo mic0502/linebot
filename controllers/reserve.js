@@ -67,7 +67,7 @@ module.exports = {
         };
     },
 
-    orderReply: (req,res) => {
+    orderReply: (ev) => {
         const data = ev.postback.data;
         const splitData = data.split('&');
         
