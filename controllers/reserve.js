@@ -3,8 +3,8 @@ const User = require('../models/User');
 const line = require('@line/bot-sdk');
 
 module.exports = {
-    orderChoice: (req,res) => {
-        res.json({
+    orderChoice: (req,res,body) => {
+        return body.json({
             "type":"flex",
             "altText":"menuSelect",
             "contents":
