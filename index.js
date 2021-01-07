@@ -85,7 +85,7 @@ const handleMessageEvent = async (ev) => {
     }
 }
 
-const handlePostbackEvent = (ev) => {
+const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
   const splitData = data.split('&');
   
@@ -95,18 +95,18 @@ const handlePostbackEvent = (ev) => {
   }else if(splitData[0] === 'date'){
       const orderedMenu = splitData[1];
       const selectedDate = ev.postback.params.date;
-      askTime(ev,orderedMenu,selectedDate);
+      return client.replyMessage(ev.replyToken,reserve.askTime(orderedMenu,selectedDate));
   }else if(splitData[0] === 'time'){
       const orderedMenu = splitData[1];
       const selectedDate = splitData[2];
       const selectedTime = splitData[3];
-      confirmation(ev,orderedMenu,selectedDate,selectedTime); 
+      return client.replyMessage(ev.replyToken,reserve.confirmation(orderedMenu,selectedDate,selectedTime));
   }else if(splitData[0] === 'yes'){
       const orderedMenu = splitData[1];
       const selectedDate = splitData[2];
       const selectedTime = splitData[3];
       const startTimestamp = timeConversion(selectedDate,selectedTime);
-      const treatTime = calcTreatTime(ev.source.userId,orderedMenu);
+      const treatTime = await calcTreatTime(ev.source.userId,orderedMenu);
       const endTimestamp = startTimestamp + treatTime*60*1000;
       const insertQuery = {
         text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
