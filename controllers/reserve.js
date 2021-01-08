@@ -369,10 +369,9 @@ module.exports = {
                     resolve(200);
                   })
                   .catch(e=>console.log(e));
-
               }else{
                 console.log('LINE　IDに一致するユーザーが見つかりません。');
-                resolve('401');
+                resolve(401);
               }
             })
             .catch(e=>console.log(e));

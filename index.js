@@ -110,7 +110,7 @@ const handlePostbackEvent = async (ev) => {
     const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,selectedDate,startTimestamp);
     
     switch(insertData){
-    case '401':
+    case 401:
         pushText = 'ラインが連携されていません。';break;
     default:
         pushText = '予約が完了しました。'
