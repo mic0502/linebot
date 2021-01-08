@@ -433,8 +433,8 @@ module.exports = {
       });
     },
     // 予約削除
-    delete: (id) => {
-      const deleteQuery = `DELETE FROM reservations WHERE id = '${id}';`;
+    deleteReserve: (id) => {
+      const deleteQuery = `DELETE FROM reservations WHERE id = ${id};`;
       User.dbQuery(deleteQuery,'削除処理１')
       .then(res=>{
         return {
