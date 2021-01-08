@@ -107,7 +107,7 @@ const handlePostbackEvent = async (ev) => {
     const selectedDate = splitData[2];
     const selectedTime = splitData[3];
     const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
-    const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,startTimestamp);
+    const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,selectedDate,startTimestamp);
     
     switch(insertData){
     case '401':

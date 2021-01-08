@@ -349,7 +349,7 @@ module.exports = {
         return new Date(`${date} ${selectedTime}:00`).getTime();
     },
     // 所要時間計算
-    calcTreatTime: (id,menu,startTimestamp) => {
+    calcTreatTime: (id,menu,selectedDate,startTime) => {
         return new Promise((resolve,reject)=>{
           console.log('その2');
           const selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${id}';`;
@@ -362,10 +362,10 @@ module.exports = {
                 const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
                 const menuNumber = parseInt(menu);
                 const treatTime = treatArray[menuNumber];
-                const endTimestamp = startTimestamp + treatTime*60*1000;
+                const endTime = startTime + treatTime*60*1000;
                 const insertQuery = {
                   text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
-                  values:[res[0].line_id,res[0].name,selectedDate,startTimestamp,endTimestamp,orderedMenu]
+                  values:[id,res[0].name,selectedDate,startTime,endTime,menu]
                 };
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
