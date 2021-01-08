@@ -359,7 +359,7 @@ module.exports = {
               const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
               if(res.length){
                 const info = res[0];
-                const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
+                const treatArray = [INITIAL_TREAT[0],INITIAL_TREAT[1],INITIAL_TREAT[2],INITIAL_TREAT[3],INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
                 const menuNumber = parseInt(menu);
                 const treatTime = treatArray[menuNumber];
                 const endTime = startTime + treatTime*60*1000;
