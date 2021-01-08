@@ -112,12 +112,12 @@ const handlePostbackEvent = async (ev) => {
           "type":"text",
           "text":"予約が完了しました。"
         });
-    }elseif(insertData===400){
+    }else if(insertData===401){
         client.replyMessage(ev.replyToken,{
           "type":"text",
           "text":"ラインが連携されていません。"
         });
-    }
+    };
 
   }else if(splitData[0] === 'no'){
     // あとで何か入れる
