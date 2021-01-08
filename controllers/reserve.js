@@ -352,7 +352,7 @@ module.exports = {
     calcTreatTime: (id,menu,startTimestamp) => {
         return new Promise((resolve,reject)=>{
           console.log('その2');
-          const selectQuery = `SELECT * FROM TM_KOK WHERE login_id ='${id}}';`;
+          const selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${id}}';`;
           User.dbQuery(selectQuery,'予約確認処理１')
             .then(res=>{
               console.log('その3');
