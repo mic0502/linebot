@@ -102,7 +102,7 @@ const handlePostbackEvent = async (ev) => {
       const selectedTime = splitData[3];
       return client.replyMessage(ev.replyToken,reserve.confirmation(orderedMenu,selectedDate,selectedTime));
   }else if(splitData[0] === 'yes'){
-    const pushText;
+    let pushText;
     const orderedMenu = splitData[1];
     const selectedDate = splitData[2];
     const selectedTime = splitData[3];
