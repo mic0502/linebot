@@ -120,7 +120,9 @@ const handlePostbackEvent = async (ev) => {
   }else if(splitData[0] === 'no'){
     // あとで何か入れる
   }else if(splitData[0] === 'delete'){
+    console.log('成功')
     client.replyMessage(ev.replyToken,reserve.deleteReserve(parseInt(splitData[1])));
+    console.log('成功？')
 
   }
 
