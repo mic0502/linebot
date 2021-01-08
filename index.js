@@ -111,15 +111,11 @@ const handlePostbackEvent = async (ev) => {
     
     switch(insertData){
     case '401':
-        pushText = 'ラインが連携されていません。'
-        break;
+        pushText = 'ラインが連携されていません。';break;
     default:
         pushText = '予約が完了しました。'
     }
-    client.replyMessage(ev.replyToken,{
-        "type":"text",
-        "text":pushText
-    });
+    client.replyMessage(ev.replyToken,{"type":"text","text":pushText});
 
   }else if(splitData[0] === 'no'){
     // あとで何か入れる
