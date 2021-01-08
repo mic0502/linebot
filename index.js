@@ -77,7 +77,9 @@ const handleMessageEvent = async (ev) => {
     if(text === '予約する'){
       return client.replyMessage(ev.replyToken,reserve.orderChoice());
     }else if(text === '予約確認'){
-        return client.replyMessage(ev.replyToken,await reserve.checkNextReservation(ev.source.userId));
+        return client.replyMessage(ev.replyToken,await reserve.checkNextReservation(ev.source.userId,0));   //予約確認
+    }else if(text === '予約キャンセル'){
+        return client.replyMessage(ev.replyToken,await reserve.checkNextReservation(ev.source.userId,1));   //予約削除
     }else{
         return client.replyMessage(ev.replyToken,{"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"});
     }
@@ -117,6 +119,9 @@ const handlePostbackEvent = async (ev) => {
 
   }else if(splitData[0] === 'no'){
     // あとで何か入れる
+  }else if(splitData[0] === 'delete'){
+    client.replyMessage(ev.replyToken,reserve.delete(parseInt(splitData[1])));
+
   }
 
   

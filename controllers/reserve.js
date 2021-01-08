@@ -376,7 +376,7 @@ module.exports = {
         });
     },
     // 予約確認
-    checkNextReservation: (id) => {
+    checkNextReservation: (id,flg) => {
       return new Promise((resolve,reject)=>{
         const nowTime = new Date().getTime();
         const selectQuery = `SELECT * FROM reservations WHERE line_uid ='${id}' ORDER BY scheduledate desc, starttime desc;`;
@@ -387,14 +387,63 @@ module.exports = {
               const startTimestamp = res[0].starttime;
               const date = dateConversion(startTimestamp);
               const menu = MENU[parseInt(res[0].menu)];
-              resolve({"type":"text","text": `次回予約は${date}、${menu}でお取りしてます\uDBC0\uDC22`});
+              if(flg===0){
+                resolve({"type":"text","text": `次回予約は${date}、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
+              }else{
+                resolve({
+                  "type":"flex",
+                  "altText": "cancel message",
+                  "contents":
+                  {
+                    "type": "bubble",
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": `次回の予約は${date}から、${menu}でおとりしてます。この予約をキャンセルしますか？`,
+                          "size": "lg",
+                          "wrap": true
+                        }
+                      ]
+                    },
+                    "footer": {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "予約をキャンセルする",
+                            "data": `delete&${id}`
+                          }
+                        }
+                      ]
+                    }
+                  }
+                });  //削除
+              }
             }else{
               reject({"type":"text","text": '予約が入っておりません。'});
             }
           })
           .catch(e=>console.log(e));
       });
-    }
+    },
+    // 予約削除
+    delete: (id) => {
+      const deleteQuery = `DELETE FROM reservations WHERE id = '${id}';`;
+      User.dbQuery(deleteQuery,'削除処理１')
+      .then(res=>{
+        return {
+          "type":"text",
+          "text":"予約をキャンセルしました。"
+        }
+      })
+  },
+
 
 }
 
