@@ -363,10 +363,7 @@ module.exports = {
                 const menuNumber = parseInt(menu);
                 const treatTime = treatArray[menuNumber];
                 const endTime = startTime + treatTime*60*1000;
-                const insertQuery = {
-                  text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
-                  values:[id,res[0].name,selectedDate,startTime,endTime,menu]
-                };
+                const insertQuery = `INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES('${id}','${res[0].name}','${selectedDate}','${startTime}','${endTime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
                     resolve(200);
