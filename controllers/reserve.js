@@ -379,7 +379,7 @@ module.exports = {
     checkNextReservation: (id) => {
       return new Promise((resolve,reject)=>{
         const nowTime = new Date().getTime();
-        const selectQuery = `SELECT * FROM reservations WHERE line_id ='${id}' ORDER BY scheduledate desc, starttime desc;`;
+        const selectQuery = `SELECT * FROM reservations WHERE line_uid ='${id}' ORDER BY scheduledate desc, starttime desc;`;
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
