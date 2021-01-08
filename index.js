@@ -102,26 +102,18 @@ const handlePostbackEvent = async (ev) => {
       const selectedTime = splitData[3];
       return client.replyMessage(ev.replyToken,reserve.confirmation(orderedMenu,selectedDate,selectedTime));
   }else if(splitData[0] === 'yes'){
-      const orderedMenu = splitData[1];
-      const selectedDate = splitData[2];
-      const selectedTime = splitData[3];
-      const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
-      const treatTime = await reserve.calcTreatTime(ev.source.userId,orderedMenu);
-      const endTimestamp = startTimestamp + treatTime*60*1000;
-      const insertQuery = {
-        text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
-        values:[ev.source.userId,profile.displayName,selectedDate,startTimestamp,endTimestamp,orderedMenu]
-      };
-      connection.query(insertQuery)
-        .then(res=>{
-          console.log('データ格納成功！');
-          client.replyMessage(ev.replyToken,{
-            "type":"text",
-            "text":"予約が完了しました。"
-          });
-        })
-        .catch(e=>console.log(e));
-        
+    const orderedMenu = splitData[1];
+    const selectedDate = splitData[2];
+    const selectedTime = splitData[3];
+    const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
+    const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,startTimestamp);
+    if(insertData===200){
+        client.replyMessage(ev.replyToken,{
+          "type":"text",
+          "text":"予約が完了しました。"
+        });
+    }    
+
   }else if(splitData[0] === 'no'){
     // あとで何か入れる
   }

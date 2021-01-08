@@ -349,7 +349,7 @@ module.exports = {
         return new Date(`${date} ${selectedTime}:00`).getTime();
     },
     // 所要時間計算
-    calcTreatTime: (id,menu) => {
+    calcTreatTime: (id,menu,startTimestamp) => {
         return new Promise((resolve,reject)=>{
           console.log('その2');
           const selectQuery = `SELECT * FROM TM_KOK WHERE login_id ='${id}}';`;
@@ -362,10 +362,20 @@ module.exports = {
                 const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
                 const menuNumber = parseInt(menu);
                 const treatTime = treatArray[menuNumber];
-                resolve(treatTime);
+                const endTimestamp = startTimestamp + treatTime*60*1000;
+                const insertQuery = {
+                  text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
+                  values:[ev.source.userId,profile.displayName,selectedDate,startTimestamp,endTimestamp,orderedMenu]
+                };
+                User.dbQuery(insertQuery,'予約データ格納１')
+                  .then(insRes=>{
+                    resolve(200);
+                  })
+                  .catch(e=>console.log(e));
+
               }else{
                 console.log('LINE　IDに一致するユーザーが見つかりません。');
-                return;
+                resolve('LINE　IDに一致するユーザーが見つかりません。');
               }
             })
             .catch(e=>console.log(e));
