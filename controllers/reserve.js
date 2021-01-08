@@ -375,7 +375,7 @@ module.exports = {
 
               }else{
                 console.log('LINE　IDに一致するユーザーが見つかりません。');
-                resolve('LINE　IDに一致するユーザーが見つかりません。');
+                resolve('401');
               }
             })
             .catch(e=>console.log(e));
