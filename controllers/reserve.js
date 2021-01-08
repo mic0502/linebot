@@ -440,8 +440,7 @@ module.exports = {
           .then(res=>{
             resolve({"type":"text","text":"予約をキャンセルしました。"})
           })
-          .catch(e=>console.log(e));
-          reject({"type":"text","text": 'エラー'});
+          .catch(reject({"type":"text","text": 'エラー'}));
         });
 
     },
