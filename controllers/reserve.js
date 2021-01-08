@@ -399,6 +399,7 @@ module.exports = {
 }
 
 const dateConversion = (timestamp) => {
+  const WEEK = [ "日", "月", "火", "水", "木", "金", "土" ];
   const d = new Date(parseInt(timestamp));
   const month = d.getMonth()+1;
   const date = d.getDate();
