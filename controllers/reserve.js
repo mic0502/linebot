@@ -417,7 +417,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "予約をキャンセルする",
-                            "data": `delete&${id}`
+                            "data": `delete&${res[0].id}`
                           }
                         }
                       ]
