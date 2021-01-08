@@ -73,15 +73,13 @@ const lineBot = (req,res) => {
 }
 
 const handleMessageEvent = async (ev) => {
-    const profile = await client.getProfile(ev.source.userId);
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     if(text === '予約する'){
       return client.replyMessage(ev.replyToken,reserve.orderChoice());
+    }else if(text === '予約確認'){
+        return client.replyMessage(ev.replyToken,await reserve.checkNextReservation(ev.source.userId));
     }else{
-        return client.replyMessage(ev.replyToken,{
-            "type":"text",
-            "text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"
-        });
+        return client.replyMessage(ev.replyToken,{"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"});
     }
 }
 

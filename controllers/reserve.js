@@ -351,11 +351,9 @@ module.exports = {
     // 所要時間計算
     calcTreatTime: (id,menu,selectedDate,startTime) => {
         return new Promise((resolve,reject)=>{
-          console.log('その2');
           const selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${id}';`;
           User.dbQuery(selectQuery,'予約確認処理１')
             .then(res=>{
-              console.log('その3');
               const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
               if(res.length){
                 const info = res[0];
@@ -371,12 +369,41 @@ module.exports = {
                   .catch(e=>console.log(e));
               }else{
                 console.log('LINE　IDに一致するユーザーが見つかりません。');
-                resolve(401);
+                reject(401);
               }
             })
             .catch(e=>console.log(e));
         });
     },
-      
+    // 予約確認
+    checkNextReservation: (id) => {
+      return new Promise((resolve,reject)=>{
+        const nowTime = new Date().getTime();
+        const selectQuery = `SELECT * FROM reservations WHERE line_id ='${id}' ORDER BY scheduledate desc, starttime desc;`;
+        User.dbQuery(selectQuery,'予約確認処理１')
+          .then(res=>{
+            if(res.length){
+              const MENU = ['景品A','景品B'];
+              const startTimestamp = res[0].starttime;
+              const date = dateConversion(startTimestamp);
+              const menu = MENU[parseInt(res[0].menu)];
+              resolve({"type":"text","text": `次回予約は${date}、${menu}でお取りしてます\uDBC0\uDC22`});
+            }else{
+              reject({"type":"text","text": '予約が入っておりません。'});
+            }
+          })
+          .catch(e=>console.log(e));
+      });
+    }
+
 }
-  
+
+const dateConversion = (timestamp) => {
+  const d = new Date(parseInt(timestamp));
+  const month = d.getMonth()+1;
+  const date = d.getDate();
+  const day = d.getDay();
+  const hour = ('0' + (d.getHours()+9)).slice(-2);
+  const min = ('0' + d.getMinutes()).slice(-2);
+  return `${month}月${date}日(${WEEK[day]}) ${hour}:${min}`;
+}
