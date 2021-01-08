@@ -434,18 +434,19 @@ module.exports = {
     },
     // 予約削除
     deleteReserve: (id) => {
-      const deleteQuery = `DELETE FROM reservations WHERE id = ${id};`;
-      User.dbQuery(deleteQuery,'削除処理１')
-      .then(res=>{
-        console.log('予約キャンセル成功');
-        return {
-          "type":"text",
-          "text":"予約をキャンセルしました。"
-        };
-      })
-      .catch(e=>console.log(e));
+      return new Promise((resolve,reject)=>{
+        const deleteQuery = `DELETE FROM reservations WHERE id = ${id};`;
+        User.dbQuery(deleteQuery,'削除処理１')
+        .then(res=>{
+          console.log('予約キャンセル成功');
+          resolve({
+            "type":"text",
+            "text":"予約をキャンセルしました。"
+          });
+        })
+        .catch(e=>console.log(e));
+      });
     },
-
 
 }
 
