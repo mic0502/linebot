@@ -357,7 +357,7 @@ module.exports = {
             .then(res=>{
               console.log('その3');
               const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
-              if(res.rows.length){
+              if(res.length){
                 const info = res.rows[0];
                 const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
                 const menuNumber = parseInt(menu);
