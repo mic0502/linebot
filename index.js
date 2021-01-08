@@ -102,22 +102,24 @@ const handlePostbackEvent = async (ev) => {
       const selectedTime = splitData[3];
       return client.replyMessage(ev.replyToken,reserve.confirmation(orderedMenu,selectedDate,selectedTime));
   }else if(splitData[0] === 'yes'){
+    const pushText;
     const orderedMenu = splitData[1];
     const selectedDate = splitData[2];
     const selectedTime = splitData[3];
     const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
     const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,startTimestamp);
-    if(insertData===200){
-        client.replyMessage(ev.replyToken,{
-          "type":"text",
-          "text":"予約が完了しました。"
-        });
-    }else if(insertData===401){
-        client.replyMessage(ev.replyToken,{
-          "type":"text",
-          "text":"ラインが連携されていません。"
-        });
-    };
+    
+    switch(insertData){
+    case '401':
+        pushText = 'ラインが連携されていません。'
+        break;
+    default:
+        pushText = '予約が完了しました。'
+    }
+    client.replyMessage(ev.replyToken,{
+        "type":"text",
+        "text":pushText
+    });
 
   }else if(splitData[0] === 'no'){
     // あとで何か入れる
