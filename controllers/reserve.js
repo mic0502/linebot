@@ -365,7 +365,7 @@ module.exports = {
                 const endTimestamp = startTimestamp + treatTime*60*1000;
                 const insertQuery = {
                   text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',
-                  values:[ev.source.userId,profile.displayName,selectedDate,startTimestamp,endTimestamp,orderedMenu]
+                  values:[res[0].line_id,res[0].name,selectedDate,startTimestamp,endTimestamp,orderedMenu]
                 };
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
