@@ -105,8 +105,8 @@ const handlePostbackEvent = async (ev) => {
       const orderedMenu = splitData[1];
       const selectedDate = splitData[2];
       const selectedTime = splitData[3];
-      const startTimestamp = timeConversion(selectedDate,selectedTime);
-      const treatTime = await calcTreatTime(ev.source.userId,orderedMenu);
+      const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
+      const treatTime = await reserve.calcTreatTime(ev.source.userId,orderedMenu);
       const endTimestamp = startTimestamp + treatTime*60*1000;
       const insertQuery = {
         text:'INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES($1,$2,$3,$4,$5,$6);',

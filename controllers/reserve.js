@@ -343,37 +343,34 @@ module.exports = {
           }
         };
     },
-
-}
-
-const calcTreatTime = (id,menu) => {
-    return new Promise((resolve,reject)=>{
-      console.log('その2');
-      const selectQuery = {
-        text: 'SELECT * FROM users WHERE line_uid = $1;',
-        values: [`${id}`]
-      };
-      connection.query(selectQuery)
-        .then(res=>{
-          console.log('その3');
-          const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
-          if(res.rows.length){
-            const info = res.rows[0];
-            const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
-            const menuNumber = parseInt(menu);
-            const treatTime = treatArray[menuNumber];
-            resolve(treatTime);
-          }else{
-            console.log('LINE　IDに一致するユーザーが見つかりません。');
-            return;
-          }
-        })
-        .catch(e=>console.log(e));
-    });
-}
-
-const timeConversion = (date,time) => {
-  const selectedTime = 9 + parseInt(time) - 9;
-  return new Date(`${date} ${selectedTime}:00`).getTime();
+    // 時間を算出
+    timeConversion: (date,time) => {
+        const selectedTime = 9 + parseInt(time) - 9;
+        return new Date(`${date} ${selectedTime}:00`).getTime();
+    },
+    // 所要時間計算
+    calcTreatTime: (id,menu) => {
+        return new Promise((resolve,reject)=>{
+          console.log('その2');
+          selectQuery = `SELETC * FROM TM_KOK WHERE line_uid = '${id}');`
+          User.dbQuery(selectQuery,'予約確認処理１')
+            .then(res=>{
+              console.log('その3');
+              const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
+              if(res.rows.length){
+                const info = res.rows[0];
+                const treatArray = [info.cuttime,info.shampootime,info.colortime,info.spatime,INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
+                const menuNumber = parseInt(menu);
+                const treatTime = treatArray[menuNumber];
+                resolve(treatTime);
+              }else{
+                console.log('LINE　IDに一致するユーザーが見つかりません。');
+                return;
+              }
+            })
+            .catch(e=>console.log(e));
+        });
+    },
+      
 }
   
