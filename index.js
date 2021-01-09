@@ -89,10 +89,10 @@ const handleMessageEvent = async (ev) => {
 
 const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
-  console.log('テスト１；');
-  console.log(ev.postback.data);
   const splitData = data.split('&');
   let pushText;
+
+  console.log(new Date().getTime());
 
   if(splitData[0] === 'menu'){
       const orderedMenu = splitData[1];
@@ -117,7 +117,9 @@ const handlePostbackEvent = async (ev) => {
         pushText = {"type":"text","text":'ラインが連携されていません。'};break;
     default:
         pushText = {"type":"text","text":'予約が完了しました。'};
-    }    
+    }
+  }else if(splitData[0] === 'cancel'){
+        pushText = {"type":"text","text":'選択中止しました。'};
   }else if(splitData[0] === 'no'){
         pushText = {"type":"text","text":'予約を中止しました。'};
   }else if(splitData[0] === 'delete'){
