@@ -46,11 +46,10 @@ const lineBot = (req,res) => {
                 (async () => {
                   console.log('スタート');
                   await sleep(10000);
-                  console.log('1秒経ってる!')
                   promises.push(accountLink(ev));
-                  break;  
+                  console.log('10秒経ってる!')
                 })();
-
+                break;
             case 'postback':
                 promises.push(handlePostbackEvent(ev));
                 break;
