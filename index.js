@@ -89,7 +89,8 @@ const handleMessageEvent = async (ev) => {
 
 const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
-  console.log('テスト１；' . ev.postback.data);
+  console.log('テスト１；');
+  console.log(ev.postback.data);
   const splitData = data.split('&');
   let pushText;
 
