@@ -74,21 +74,24 @@ const lineBot = (req,res) => {
 
 const handleMessageEvent = async (ev) => {
     const text = (ev.message.type === 'text') ? ev.message.text : '';
+    let pushText;
     if(text === '予約する'){
-      return client.replyMessage(ev.replyToken,reserve.orderChoice());
+        pushText = reserve.orderChoice();
     }else if(text === '予約確認'){
-        return client.replyMessage(ev.replyToken,await reserve.checkNextReservation(ev.source.userId,0));   //予約確認
+        pushText = await reserve.checkNextReservation(ev.source.userId,0);
     }else if(text === '予約キャンセル'){
-        return client.replyMessage(ev.replyToken,await reserve.checkNextReservation(ev.source.userId,1));   //予約削除
+        pushText = await reserve.checkNextReservation(ev.source.userId,1);
     }else{
-        return client.replyMessage(ev.replyToken,{"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"});
+        pushText = {"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"};
     }
+    return client.replyMessage(ev.replyToken,pushText);
 }
 
 const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
   const splitData = data.split('&');
   let pushText;
+  console.log(data);
 
   if(splitData[0] === 'menu'){
       const orderedMenu = splitData[1];
