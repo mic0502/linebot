@@ -91,7 +91,7 @@ const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
   const splitData = data.split('&');
   let pushText;
-  if((new Date().getTime() - splitData[0])>5000){
+  if((new Date().getTime() - splitData[0])>180000){
       pushText = {"type":"text","text":'一定時間経過しました。最初からやり直して下さい。'};
   }else if(splitData[1] === 'menu'){
       const orderedMenu = splitData[2];
