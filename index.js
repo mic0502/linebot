@@ -88,7 +88,7 @@ const handleMessageEvent = async (ev) => {
 const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
   const splitData = data.split('&');
-  const pushText;
+  let pushText;
 
   if(splitData[0] === 'menu'){
       const orderedMenu = splitData[1];
