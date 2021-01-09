@@ -15,6 +15,11 @@ router
     .get('/update',(req,res)=>{
         res.render('pages/update');
     })
-
+    .get('/users',(req,res)=>{
+        res.render('pages/users');
+    })
+    .get('/reservations',(req,res)=>{
+        res.render('pages/reservations');
+    });
 
 module.exports = router;
