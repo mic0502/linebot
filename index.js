@@ -42,6 +42,7 @@ const lineBot = (req,res) => {
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
+                await _sleep(1000);                
                 promises.push(accountLink(ev));
                 break;
             case 'postback':
@@ -54,6 +55,8 @@ const lineBot = (req,res) => {
         .then(console.log('all promises passed'))
         .catch(e=>console.error(e.stack));
 }
+
+const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
  const greeting_follow = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
