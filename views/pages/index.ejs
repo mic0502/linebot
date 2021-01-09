@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%- include ("../partials/header.ejs") %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jewelry KAJITA</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
 </head>
 
 <body>
-    <div class="toppage">
-        <img src="/biyouin.jpg" class="img">
-        <a type="button" class="btn btn-lg btn-outline-primary" id="toUsers" href="/users"><i class="fas fa-users"></i> 顧客情報</a>
-        <a type="button" class="btn btn-lg btn-outline-primary" id="toReservations" href="/reservations"><i class="fas fa-book"></i></span> 予約管理</a>
+    <div id='top_title'>
+        <h1 id='line_name'></h1>
+        <div id='setting'></div>
     </div>
-    <%- include ("../partials/footer.ejs") %>
+    <div id='login_area'></div>
+
+    <div id='customer_area'>
+        <p id='customer_point'></p>
+        <div id='customer_medal'></div>
+        <div id='customer_rankup'></div>
+    </div>
+ 
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src='js/main.js'></script>
 </body>
 </html>
