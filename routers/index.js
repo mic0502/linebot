@@ -15,8 +15,8 @@ router
     .get('/update',(req,res)=>{
         res.render('pages/update');
     })
-    .get('/owner',(req,res)=>{
-        res.render('pages/owner');
+    .get('/admin',(req,res)=>{
+        res.render('pages/admin');
     })
     .get('/users',(req,res)=>{
         res.render('pages/users');
