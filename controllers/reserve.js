@@ -32,7 +32,7 @@ module.exports = {
                       "action": {
                         "type": "postback",
                         "label": "景品A",
-                        "data": new Date().getTime() + "menu&0"
+                        "data": `${new Date().getTime()}&menu&0`
                       },
                       "margin": "md",
                       "style": "primary"
@@ -42,7 +42,7 @@ module.exports = {
                       "action": {
                         "type": "postback",
                         "label": "景品B",
-                        "data": new Date().getTime() + "menu&1"
+                        "data": `${new Date().getTime()}&menu&1`
                       },
                       "margin": "md",
                       "style": "primary"
@@ -59,7 +59,7 @@ module.exports = {
                       "action": {
                         "type": "postback",
                         "label": "キャンセル",
-                        "data": new Date().getTime() + "cancel"
+                        "data": `${new Date().getTime()}&cancel`
                       }
                     }
                   ]
@@ -96,7 +96,7 @@ module.exports = {
                         "action": {
                         "type": "datetimepicker",
                         "label": "希望日を選択する",
-                        "data": new Date().getTime() + `date&${orderedMenu}`,
+                        "data": `${new Date().getTime()}&date&${orderedMenu}`,
                         "mode": "date"
                         }
                     }
@@ -141,7 +141,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "9時-",
-                            "data":new Date().getTime() + `time&${orderedMenu}&${selectedDate}&0`
+                            "data":`${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&0`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -152,7 +152,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "10時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&1`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&1`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -163,7 +163,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "11時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&2`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&2`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -180,7 +180,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "12時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&3`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&3`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -191,7 +191,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "13時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&4`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&4`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -202,7 +202,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "14時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&5`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&5`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -220,7 +220,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "15時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&6`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&6`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -231,7 +231,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "16時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&7`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&7`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -242,7 +242,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "17時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&8`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&8`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -260,7 +260,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "18時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&9`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&9`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -271,7 +271,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "19時-",
-                            "data": new Date().getTime() + `time&${orderedMenu}&${selectedDate}&10`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&10`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -282,7 +282,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "終了",
-                            "data": new Date().getTime() + "end"
+                            "data": `${new Date().getTime()}&end`
                           },
                           "style": "primary",
                           "color": "#0000ff",
@@ -327,7 +327,7 @@ module.exports = {
                   "action": {
                     "type": "postback",
                     "label": "はい",
-                    "data": new Date().getTime() + `yes&${menu}&${date}&${time}`
+                    "data": `${new Date().getTime()}&yes&${menu}&${date}&${time}`
                   }
                 },
                 {
@@ -335,7 +335,7 @@ module.exports = {
                   "action": {
                     "type": "postback",
                     "label": "いいえ",
-                    "data": new Date().getTime() + `no&${menu}&${date}&${time}`
+                    "data": `${new Date().getTime()}&no&${menu}&${date}&${time}`
                   }
                 }
               ]
@@ -417,7 +417,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "予約をキャンセルする",
-                            "data": new Date().getTime() + `delete&${res[0].id}`
+                            "data": `${new Date().getTime()}&delete&${res[0].id}`
                           }
                         }
                       ]
