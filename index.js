@@ -44,10 +44,8 @@ const lineBot = (req,res) => {
             case 'accountLink':
                 const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                 (async () => {
-                  console.log('スタート');
-                  await sleep(10000);
+                  await sleep(400);
                   promises.push(accountLink(ev));
-                  console.log('10秒経ってる!')
                 })();
                 break;
             case 'postback':
