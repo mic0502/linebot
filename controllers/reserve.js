@@ -361,7 +361,7 @@ module.exports = {
                 const menuNumber = parseInt(menu);
                 const treatTime = treatArray[menuNumber];
                 const endTime = startTime + treatTime*60*1000;
-                const insertQuery = `INSERT INTO reservations (line_uid, name, scheduledate, starttime, endtime, menu) VALUES('${id}','${res[0].name}','${selectedDate}','${startTime}','${endTime}','${menu}');`;
+                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, scheduledate, starttime, endtime, menu) VALUES('${id}','${res[0].name}','${selectedDate}','${startTime}','${endTime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
                     resolve(200);
@@ -379,7 +379,7 @@ module.exports = {
     checkNextReservation: (id,flg) => {
       return new Promise((resolve,reject)=>{
         const nowTime = new Date().getTime();
-        const selectQuery = `SELECT * FROM reservations WHERE line_uid ='${id}' ORDER BY scheduledate desc, starttime desc;`;
+        const selectQuery = `SELECT * FROM TM_RESERVE WHERE line_uid ='${id}' ORDER BY scheduledate desc, starttime desc;`;
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
@@ -417,7 +417,7 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "予約をキャンセルする",
-                            "data": `${new Date().getTime()}&delete&${res[0].id}`
+                            "data": `delete&${res[0].id}`
                           }
                         }
                       ]
@@ -435,7 +435,7 @@ module.exports = {
     // 予約削除
     deleteReserve: (id) => {
       return new Promise((resolve,reject)=>{
-        const deleteQuery = `DELETE FROM reservations WHERE id = ${id};`;
+        const deleteQuery = `DELETE FROM TM_RESERVE WHERE id = ${id};`;
         User.dbQuery(deleteQuery,'削除処理１')
         .then(res=>{
           console.log('予約キャンセル成功');
