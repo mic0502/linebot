@@ -42,7 +42,7 @@ const lineBot = (req,res) => {
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
-                async () => await _sleep(1000);
+                async () => await _sleep(10000);
                 promises.push(accountLink(ev));
                 break;
             case 'postback':
