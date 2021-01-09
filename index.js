@@ -59,8 +59,6 @@ const lineBot = (req,res) => {
         .catch(e=>console.error(e.stack));
 }
 
-const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
  const greeting_follow = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
     return client.replyMessage(ev.replyToken,{
