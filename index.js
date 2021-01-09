@@ -91,25 +91,24 @@ const handlePostbackEvent = async (ev) => {
   const data = ev.postback.data;
   const splitData = data.split('&');
   let pushText;
-
-  console.log(new Date().getTime());
-
-  if(splitData[0] === 'menu'){
-      const orderedMenu = splitData[1];
+  if((new Date().getTime() - splitData[0])>5000){
+      pushText = {"type":"text","text":'一定時間経過しました。最初からやり直して下さい。'};
+  }else if(splitData[1] === 'menu'){
+      const orderedMenu = splitData[2];
       pushText = reserve.askDate(orderedMenu);
-  }else if(splitData[0] === 'date'){
-      const orderedMenu = splitData[1];
+  }else if(splitData[1] === 'date'){
+      const orderedMenu = splitData[2];
       const selectedDate = ev.postback.params.date;
       pushText = reserve.askTime(orderedMenu,selectedDate);
-  }else if(splitData[0] === 'time'){
-      const orderedMenu = splitData[1];
-      const selectedDate = splitData[2];
-      const selectedTime = splitData[3];
+  }else if(splitData[1] === 'time'){
+      const orderedMenu = splitData[2];
+      const selectedDate = splitData[3];
+      const selectedTime = splitData[4];
       pushText = reserve.confirmation(orderedMenu,selectedDate,selectedTime);
-  }else if(splitData[0] === 'yes'){
-    const orderedMenu = splitData[1];
-    const selectedDate = splitData[2];
-    const selectedTime = splitData[3];
+  }else if(splitData[1] === 'yes'){
+    const orderedMenu = splitData[2];
+    const selectedDate = splitData[3];
+    const selectedTime = splitData[4];
     const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
     const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,selectedDate,startTimestamp);
     switch(insertData){
@@ -118,12 +117,12 @@ const handlePostbackEvent = async (ev) => {
     default:
         pushText = {"type":"text","text":'予約が完了しました。'};
     }
-  }else if(splitData[0] === 'cancel'){
+  }else if(splitData[1] === 'cancel'){
         pushText = {"type":"text","text":'選択中止しました。'};
-  }else if(splitData[0] === 'no'){
+  }else if(splitData[1] === 'no'){
         pushText = {"type":"text","text":'予約を中止しました。'};
-  }else if(splitData[0] === 'delete'){
-    pushText = await reserve.deleteReserve(parseInt(splitData[1]));
+  }else if(splitData[1] === 'delete'){
+    pushText = await reserve.deleteReserve(parseInt(splitData[2]));
   }
   return client.replyMessage(ev.replyToken,pushText);
 
