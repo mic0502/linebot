@@ -53,7 +53,7 @@
                 usersObj.point,
                 usersObj.recent_buy,
                 usersObj.birthday,
-                usersObj.menu,
+                revData[0].menu,
                 nextReservationDate
             ]);
         });
