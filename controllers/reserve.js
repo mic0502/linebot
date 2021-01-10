@@ -32,7 +32,7 @@ module.exports = {
                       "action": {
                         "type": "postback",
                         "label": "景品A",
-                        "data": `${new Date().getTime()}&menu&0`
+                        "data": `${new Date().getTime()}&menu&景品A`
                       },
                       "margin": "md",
                       "style": "primary"
@@ -42,7 +42,7 @@ module.exports = {
                       "action": {
                         "type": "postback",
                         "label": "景品B",
-                        "data": `${new Date().getTime()}&menu&1`
+                        "data": `${new Date().getTime()}&menu&景品B`
                       },
                       "margin": "md",
                       "style": "primary"
