@@ -37,7 +37,7 @@
             
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
             const revData = data.reservations.filter(revObj1=>{
-                return usersObj.line_uid === revObj1.line_uid;
+                return usersObj.line_uid === revObj1.line_id;
             }).filter(revObj2=>{
                 return parseInt(revObj2.starttime) > now;
             });
@@ -104,5 +104,5 @@
             return `${y}/${m}/${d} ${h}:${i}`
         }
     }
-    
+
 })();
