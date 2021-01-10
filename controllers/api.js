@@ -3,8 +3,8 @@ const User = require('../models/User');
 module.exports = {
 
     getData: () => {
-        const pickup_users = 'SELECT * FROM users;';
-        const pickup_reservations = 'SELECT * FROM reservations;';
+        const pickup_users = 'SELECT * FROM TM_KOK;';
+        const pickup_reservations = 'SELECT * FROM TM_RESERVE;';
         User.dbQuery(pickup_users)
             .then(users=>{
                 User.dbQuery(pickup_reservations)
