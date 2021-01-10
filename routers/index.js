@@ -19,7 +19,10 @@ router
         res.render('pages/admin');
     })
     .get('/img/top_image.jpg',(req,res)=>{
-        res.render('pages/img/top_image.jpg');
+        res.render('../../public/img/top_image.jpg');
+    })
+    .get('/img/favicon.ico',(req,res)=>{
+        res.render('../../public/favicon.ico');
     })
     .get('/users',(req,res)=>{
         res.render('pages/users');
