@@ -6,6 +6,7 @@ const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
+const apiRouter = require('./routers/api');
 const multipart = require('connect-multiparty');
 const reserve = require('./controllers/reserve');
 require('dotenv').config();
@@ -21,6 +22,7 @@ app
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
    .use('/',router)
+   .use('/api',apiRouter)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
    .use(express.urlencoded({extended:true}))
