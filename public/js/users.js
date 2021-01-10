@@ -52,11 +52,11 @@
             usersData.push([
                 usersObj.login_id,
                 usersObj.name,
-                resistrationDate,
-                usersObj.recent_buy,
-                timeConversion(parseInt(usersObj.birthday,0)),
-                usersObj.point,
                 usersObj.rank,
+                usersObj.point,
+                usersObj.recent_buy,
+                usersObj.birthday,
+                resistrationDate,
                 nextReservationDate
             ]);
         });
