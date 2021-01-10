@@ -18,6 +18,9 @@ router
     .get('/admin',(req,res)=>{
         res.render('pages/admin');
     })
+    .get('/img/top_image.jpg',(req,res)=>{
+        res.render('pages/img/top_image.jpg');
+    })
     .get('/users',(req,res)=>{
         res.render('pages/users');
     })
