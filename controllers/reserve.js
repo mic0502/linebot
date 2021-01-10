@@ -383,10 +383,9 @@ module.exports = {
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
-              const MENU = ['景品A','景品B'];
               const startTimestamp = res[0].starttime;
               const date = dateConversion(startTimestamp);
-              const menu = MENU[parseInt(res[0].menu)];
+              const menu = res[0].menu;
               if(flg===0){
                 resolve({"type":"text","text": `次回予約は${date}、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
               }else{
