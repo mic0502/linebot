@@ -5,9 +5,9 @@ module.exports = {
     getData: (req,res) => {
         const pickup_users = 'SELECT * FROM TM_KOK;';
         const pickup_reservations = 'SELECT * FROM TM_RESERVE;';
-        User.dbQuery(pickup_users)
+        User.dbQuery(pickup_users,'顧客情報照会')
             .then(users=>{
-                User.dbQuery(pickup_reservations)
+                User.dbQuery(pickup_reservations,'予約情報照会')
                     .then(reservations=>{
                         const data = {
                             users:users,
