@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 module.exports = {
 
-    findData: () => {
+    getData: () => {
         const pickup_users = 'SELECT * FROM users;';
         const pickup_reservations = 'SELECT * FROM reservations;';
         User.dbQuery(pickup_users)
@@ -19,5 +19,5 @@ module.exports = {
             })
             .catch(e=>console.log(e))           
    }
-   
+
 }
