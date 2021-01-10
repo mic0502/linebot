@@ -10,8 +10,8 @@ module.exports = {
                 User.dbQuery(pickup_reservations)
                     .then(reservations=>{
                         const data = {
-                            users:users[0],
-                            reservations:reservations[0]
+                            users:users,
+                            reservations:reservations
                         }
                         res.status(200).json(data);
                     })
