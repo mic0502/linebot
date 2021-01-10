@@ -21,7 +21,7 @@ router
     .get('/img/top_image.jpg',(req,res)=>{
         res.render('../../public/img/top_image.jpg');
     })
-    .get('/img/favicon.ico',(req,res)=>{
+    .get('/favicon.ico',(req,res)=>{
         res.render('../../public/img/favicon.ico');
     })
     .get('/users',(req,res)=>{
