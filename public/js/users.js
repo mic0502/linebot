@@ -44,10 +44,7 @@
             
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? timeConversion(parseInt(revData[0].starttime),1) : '予約なし';
-            
-            // usersObj.timestampを日時文字列へ変換する
-            const resistrationDate = timeConversion(parseInt(revData[0].endtime),0);
-            
+                        
             // usersData配列へ配列を格納
             usersData.push([
                 usersObj.login_id,
@@ -56,7 +53,7 @@
                 usersObj.point,
                 usersObj.recent_buy,
                 usersObj.birthday,
-                resistrationDate,
+                usersObj.menu,
                 nextReservationDate
             ]);
         });
