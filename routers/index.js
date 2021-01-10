@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 
 router 
@@ -21,7 +20,7 @@ router
     .get('/img/top_image.jpg',(req,res)=>{
         res.render('../../public/img/top_image.jpg');
     })
-    .get('/favicon.ico',(req,res)=>{
+    .get('favicon.ico',(req,res)=>{
         res.render('../../public/img/favicon.ico');
     })
     .get('/users',(req,res)=>{
