@@ -50,8 +50,8 @@
             
             // usersData配列へ配列を格納
             usersData.push([
-                usersObj.id,
-                usersObj.display_name,
+                usersObj.login_id,
+                usersObj.name,
                 resistrationDate,
                 usersObj.cuttime,
                 usersObj.shampootime,
