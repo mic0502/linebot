@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 module.exports = {
 
-    getData: () => {
+    getData: (req,res) => {
         const pickup_users = 'SELECT * FROM TM_KOK;';
         const pickup_reservations = 'SELECT * FROM TM_RESERVE;';
         User.dbQuery(pickup_users)
