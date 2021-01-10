@@ -54,7 +54,7 @@
                 usersObj.name,
                 resistrationDate,
                 usersObj.recent_buy,
-                usersObj.birthday,
+                timeConversion(parseInt(usersObj.birthday,0)),
                 usersObj.point,
                 usersObj.rank,
                 nextReservationDate
