@@ -53,10 +53,10 @@
                 usersObj.login_id,
                 usersObj.name,
                 resistrationDate,
-                usersObj.cuttime,
-                usersObj.shampootime,
-                usersObj.colortime,
-                usersObj.spatime,
+                usersObj.recent_buy,
+                usersObj.birthday,
+                usersObj.point,
+                usersObj.rank,
                 nextReservationDate
             ]);
         });
