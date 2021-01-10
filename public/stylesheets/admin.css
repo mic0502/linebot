@@ -54,6 +54,68 @@ body {
     font-size:2.5vw;
 }
 
-/* 顧客管理画面 */ #usersPage {
+/* 顧客管理画面 */
+#usersPage {
    text-align:center;
+}
+ #usersTable {
+   margin-top:2vw;
+   margin-left:2vw;
+}
+
+.uTitles{
+   border:solid 1px #aaa ;
+   text-align:center;
+   background:#333;
+   color:#fff;
+   font-size:2vw;
+   margin-top:1vw;
+}
+
+.uElements{
+   border:solid 1px #aaa ;
+   text-align:center;
+   font-size:2vw;
+   height:3vh;
+ }
+ 
+.row-id{
+   width:6vw;
+   font-size:2vw;
+   margin-left:1vw;
+}
+
+.row-name{
+   width:23w;
+   font-size:2.5vw;
+}
+
+.row-resist{
+   width:18vw;
+   font-size:2.5vw;
+}
+
+.row-cut{
+   width:8vw;
+   font-size:2.5vw;
+}
+
+.row-shampoo{
+   width:10vw;
+   font-size:2.5vw;
+}
+
+.row-color{
+   width:8vw;
+   font-size:2.5vw;
+}
+
+.row-spa{
+   width:8vw;
+   font-size:2.5vw;
+}
+
+.row-nextrev{
+   width:18vw;
+   font-size:2.5vw;
 }
