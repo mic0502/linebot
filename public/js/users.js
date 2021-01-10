@@ -1,7 +1,7 @@
 (()=>{
 
     const API_URL = 'https://linebot-linkapp.herokuapp.com/api/';
-    const HEADERS = ['ID','名前','登録日','Cut','Shampoo','Color','Spa','次回予約'];
+    const HEADERS = ['ID','名前','ランク','ポイント','誕生日','最近の購入日','次回予約','景品'];
     const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-nextrev'];
 
     window.addEventListener('load',()=>{
@@ -51,10 +51,10 @@
                 usersObj.name,
                 usersObj.rank,
                 usersObj.point,
-                usersObj.recent_buy,
                 usersObj.birthday,
-                revData[0].menu,
-                nextReservationDate
+                usersObj.recent_buy,
+                nextReservationDate,
+                revData[0].menu
             ]);
         });
         
