@@ -17,7 +17,7 @@ router
     .get('/admin',(req,res)=>{
         res.render('pages/admin');
     })
-    .get('/top_image.jpg',(req,res)=>{
+    .get('/img/top_image.jpg',(req,res)=>{
         res.render('../../public/img/top_image.jpg');
     })
     .get('favicon.ico',(req,res)=>{
