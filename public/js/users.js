@@ -203,11 +203,8 @@
             formElement.setAttribute('action',`api/users/${userDataArray[0]}`);
             
             //各インプットの入力をできるようにする
-            input_name.disabled = false;
             input_cut.disabled = false;
             input_shampoo.disabled = false;
-            input_color.disabled = false;
-            input_spa.disabled = false;
             
             //送信ボタンの生成
             const sendButton = document.createElement('input');
