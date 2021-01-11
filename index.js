@@ -105,6 +105,7 @@ const handlePostbackEvent = async (ev) => {
   }else if(splitData[1] === 'date'){
       const orderedMenu = splitData[2];
       const selectedDate = ev.postback.params.date.replace('-','/');
+      alert(selectedDate)
       pushText = reserve.askTime(orderedMenu,selectedDate);
   }else if(splitData[1] === 'time'){
       const orderedMenu = splitData[2];
@@ -115,8 +116,7 @@ const handlePostbackEvent = async (ev) => {
     const orderedMenu = splitData[2];
     const selectedDate = splitData[3];
     const selectedTime = splitData[4];
-    const receiveDate = Date().getDate;
-    const insertData = await reserve.insertReservation(ev.source.userId,orderedMenu,selectedDate,selectedTime,receiveDate);
+    const insertData = await reserve.insertReservation(ev.source.userId,orderedMenu,selectedDate,selectedTime);
     switch(insertData){
     case 401:
         pushText = {"type":"text","text":'ラインが連携されていません。'};break;
