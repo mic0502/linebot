@@ -350,7 +350,9 @@ module.exports = {
           User.dbQuery(selectQuery,'予約確認処理１')
             .then(res=>{
               if(res.length){
-                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${Date().getDate()}','${selectedDate}','${selectedtime}','${menu}');`;
+                const recieveDate = new Date().getDate();
+                console.log(`受付時間は${recieveDate}`);
+                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
                     resolve(200);
