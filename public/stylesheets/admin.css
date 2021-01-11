@@ -202,22 +202,11 @@ body {
    background-color:#333;
    cursor:pointer;
 }
-.row-cut:hover{
-   background-color:rgb(222, 231, 97);
-   cursor:pointer;
-}
-
-.row-shampoo:hover{
-   background-color:rgb(222, 231, 97);
-   cursor:pointer;
-}
-
-.row-color:hover{
-   background-color:rgb(222, 231, 97);
-   cursor:pointer;
-}
-
 .row-spa:hover{
+   background-color:rgb(222, 231, 97);
+   cursor:pointer;
+}
+.row-nextrev:hover{
    background-color:rgb(222, 231, 97);
    cursor:pointer;
 }

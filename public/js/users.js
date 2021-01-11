@@ -200,38 +200,6 @@
         div_form_shampoo.appendChild(input_shampoo);
         formElement.appendChild(div_form_shampoo);
         
-        // カラーリング時間の入力フォーム生成
-        const div_form_color = document.createElement('div');
-        div_form_color.setAttribute('class','form-group inline-block menu-time');
-        const label_color = document.createElement('label');
-        label_color.setAttribute('class','label_user');
-        label_color.innerHTML = 'Color';
-        div_form_color.appendChild(label_color);
-        const input_color = document.createElement('input');
-        input_color.setAttribute('type','text');
-        input_color.setAttribute('class','form-control time-input');
-        input_color.setAttribute('name','colortime');
-        input_color.value = userDataArray[5];
-        input_color.disabled = true;
-        div_form_color.appendChild(input_color);
-        formElement.appendChild(div_form_color);
-        
-        // ヘッドスパ時間の入力フォーム生成
-        const div_form_spa = document.createElement('div');
-        div_form_spa.setAttribute('class','form-group inline-block');
-        const label_spa = document.createElement('label');
-        label_spa.setAttribute('class','label_user');
-        label_spa.innerHTML = 'Spa';
-        div_form_spa.appendChild(label_spa);
-        const input_spa = document.createElement('input');
-        input_spa.setAttribute('type','text');
-        input_spa.setAttribute('class','form-control time-input');
-        input_spa.setAttribute('name','spatime');
-        input_spa.value = userDataArray[6];
-        input_spa.disabled = true;
-        div_form_spa.appendChild(input_spa);
-        formElement.appendChild(div_form_spa);
-        
         // 子要素の親要素へのappendChild
         divBody.appendChild(formElement);
         divCard.appendChild(divBody);
@@ -357,6 +325,6 @@ divHeader.onmousedown = (e) =>{
  divHeader.ondragstart = () => {
     return false;
  }
-     
+
 
 })();
