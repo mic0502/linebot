@@ -287,7 +287,7 @@ module.exports = {
      },        
     // 確認メッセージ
     confirmation: (menu,date,time) => {
-        const splitDate = date.split('-');
+        const splitDate = date.split('/');
         return {
           "type":"flex",
           "altText":"menuSelect",
