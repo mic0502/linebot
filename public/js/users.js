@@ -116,7 +116,7 @@
         // カード本体の定義
         const divCard = document.createElement('div');
         divCard.setAttribute('class','card text-white bg-primary card-user');
-        divCard.style.top = `${y}px`;
+        divCard.style.top = `${y/2}px`;
         divCard.style.left = `${x/2}px`;
         
         // カードヘッダーの定義
