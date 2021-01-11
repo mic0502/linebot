@@ -245,7 +245,7 @@
                     divCard.style.left = 0 + 'px';
                 }
                 if(pageY-shiftY>=0){
-                    divCard.style.top = shiftY + 'px';
+                    divCard.style.top = - shiftY + 'px';
                 }else{
                     divCard.style.top = 0;
                 }
