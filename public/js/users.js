@@ -43,7 +43,7 @@
             });
             
             // revData.starttimeを日時文字列へ変換する
-            const nextReservationDate = (revData.length) ? timeConversion(parseInt(revData[0].starttime),1) : '予約なし';
+            const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
                         
             // usersData配列へ配列を格納
             usersData.push([
@@ -94,22 +94,6 @@
             });
         }
         divElement.appendChild(table);
-    }
-
-    const timeConversion = (timestamp,mode) => {
-
-        const date = new Date(timestamp);
-        const y = date.getFullYear();
-        const m = ("0" + (date.getMonth()+1)).slice(-2);
-        const d = ("0" + date.getDate()).slice(-2);
-        const h = ("0" + date.getHours()).slice(-2);
-        const i = ("0" + date.getMinutes()).slice(-2);
-        
-        if(mode === 0){
-            return `${y}/${m}/${d}`
-        }else{
-            return `${y}/${m}/${d} ${h}:${i}`
-        }
     }
 
     const createCard = (userDataArray,x,y) => {
