@@ -12,7 +12,7 @@
         try{
             alert('通過０')
             const response = await fetch(API_URL);
-            console.log(response)
+            alert(response)
 
             if(response.ok){
                 const data = await response.json();
