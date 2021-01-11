@@ -244,7 +244,6 @@
                 }else{
                     divCard.style.left = 0 + 'px';
                 }
-                alert(`${pageY}/${shiftY}`)
                 if(pageY-shiftY>=0){
                     divCard.style.top = shiftY + 'px';
                 }else{
