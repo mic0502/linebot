@@ -128,6 +128,7 @@ body {
 .card-user{
    position:absolute;
    width:40vw;
+   min-width:250px;
    height:auto;
    text-align:left;
    border:1px solid #aaa;
