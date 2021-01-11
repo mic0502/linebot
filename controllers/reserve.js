@@ -140,19 +140,8 @@ module.exports = {
                           "type": "button",
                           "action": {
                             "type": "postback",
-                            "label": "9時-",
-                            "data":`${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&0`
-                          },
-                          "style": "primary",
-                          "color": "#00AA00",
-                          "margin": "md"
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
                             "label": "10時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&1`
+                            "data":`${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&10:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -163,7 +152,18 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "11時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&2`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&11:00`
+                          },
+                          "style": "primary",
+                          "color": "#00AA00",
+                          "margin": "md"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "12時-",
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&12:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -179,19 +179,8 @@ module.exports = {
                           "type": "button",
                           "action": {
                             "type": "postback",
-                            "label": "12時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&3`
-                          },
-                          "style": "primary",
-                          "color": "#00AA00",
-                          "margin": "md"
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
                             "label": "13時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&4`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&13:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -202,7 +191,18 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "14時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&5`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&14:00`
+                          },
+                          "style": "primary",
+                          "color": "#00AA00",
+                          "margin": "md"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "15時-",
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&15:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -219,19 +219,8 @@ module.exports = {
                           "type": "button",
                           "action": {
                             "type": "postback",
-                            "label": "15時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&6`
-                          },
-                          "style": "primary",
-                          "color": "#00AA00",
-                          "margin": "md"
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
                             "label": "16時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&7`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&16:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -242,7 +231,18 @@ module.exports = {
                           "action": {
                             "type": "postback",
                             "label": "17時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&8`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&17:00`
+                          },
+                          "style": "primary",
+                          "color": "#00AA00",
+                          "margin": "md"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "postback",
+                            "label": "18時-",
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&18:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
@@ -259,19 +259,8 @@ module.exports = {
                           "type": "button",
                           "action": {
                             "type": "postback",
-                            "label": "18時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&9`
-                          },
-                          "style": "primary",
-                          "color": "#00AA00",
-                          "margin": "md"
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
                             "label": "19時-",
-                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&10`
+                            "data": `${new Date().getTime()}&time&${orderedMenu}&${selectedDate}&19:00`
                           },
                           "style": "primary",
                           "color": "#00AA00",
