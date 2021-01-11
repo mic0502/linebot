@@ -364,13 +364,13 @@ module.exports = {
           .then(res=>{
             if(res.length){
               var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
-              const date = new Date(res[0].selecteddate).getDay();
-              console.log(`テスト${date}`);
-              const week = weekday[date];
+              const date = res[0].selecteddate;
+              const d = new Date(date).getDay();
+              const week = weekday[d];
               const time = res[0].selectedtime;
               const menu = res[0].menu;
               if(flg===0){
-                resolve({"type":"text","text": `次回予約は${date}月${time}日${week}曜日、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
+                resolve({"type":"text","text": `次回予約は${date.slice(5,6)}月${date.slice(8,9)}日${week}曜日 ${time}時から、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
               }else{
                 resolve({
                   "type":"flex",
