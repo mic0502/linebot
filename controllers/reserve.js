@@ -364,7 +364,7 @@ module.exports = {
           .then(res=>{
             if(res.length){
               var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
-              const date = new Date(res[0].selecteddate.getDay());
+              const date = new Date(res[0].selecteddate).getDay();
               console.log(`テスト${date}`);
               const week = weekday[date];
               const time = res[0].selectedtime;
