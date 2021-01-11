@@ -363,6 +363,7 @@ module.exports = {
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
+              console.log('通過１')
               var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
               const date = res[0].selecteddate;
               const d = new Date(date).getDay();
@@ -408,6 +409,7 @@ module.exports = {
                 });  //削除
               }
             }else{
+              console.log('通過２')
               reject({"type":"text","text": '予約が入っておりません。'});
             }
           })
