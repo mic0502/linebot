@@ -79,6 +79,15 @@
                     const td = document.createElement('td');
                     td.setAttribute('class',`uElements ${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
+
+                    // 施術時間をクリックした時の処理
+                    if(index >= 3 && index <= 6){
+                        td.addEventListener('click',(e)=>{
+                            const x = e.pageX;
+                            const y = e.pageY;
+                            createCard(usersData[i-1],x,y);
+                        });
+                    }
                     tr.appendChild(td);
                 }
             });
@@ -101,32 +110,6 @@
             return `${y}/${m}/${d} ${h}:${i}`
         }
     }
-
-    HEADERS.forEach((value,index)=>{
-
-        if(i===0){
-            // 最初の行は表題（th）とする
-            const th = document.createElement('th');
-            th.setAttribute('class',`uTitles`);
-            th.innerHTML = value;
-            tr.appendChild(th);
-        }else{
-            // ２行目以降はユーザーデータを格納する要素とする
-            const td = document.createElement('td');
-            td.setAttribute('class',`uElements ${CLASSES[index]}`);
-            td.innerHTML = usersData[i-1][index];
-            
-            // 施術時間をクリックした時の処理
-            if(index >= 6 && index <= 7){
-                td.addEventListener('click',(e)=>{
-                    const x = e.pageX;
-                    const y = e.pageY;
-                    createCard(usersData[i-1],x,y);
-                });
-            }
-            tr.appendChild(td);
-        }
-    });
 
     const createCard = (userDataArray,x,y) => {
 
