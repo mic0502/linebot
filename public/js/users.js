@@ -47,7 +47,7 @@
                         
             // usersData配列へ配列を格納
             usersData.push([
-                usersObj.login_id,
+                revData[0].id,
                 usersObj.name,
                 usersObj.rank,
                 usersObj.point,
@@ -215,24 +215,18 @@
             //sendButtonクリック時の処理
             sendButton.addEventListener('click',(e)=>{
                 e.preventDefault();
-                if(!isNaN(document.userInfo.cuttime.value) && !isNaN(document.userInfo.shampootime.value)){
-                    const data = new FormData(formElement);
-                    console.log('FormData:',...data.entries());
-                    
-                    fetch(`/api/users/${userDataArray[0]}`,{
-                        method:'POST',
-                        body:data,
-                        creadentials:'same-origin'
-                    })
-                    .then(response=>{
-                        console.log('response:',response);
-                    })
-                    .catch(e=>{
-                        throw e;
-                    });
-                }else{
-                    alert('時間は半角数値を入力してください。');
-                }
+                const data = new FormData(formElement);
+                fetch(`/api/users/${userDataArray[0]}`,{
+                    method:'POST',
+                    body:data,
+                    creadentials:'same-origin'
+                })
+                .then(response=>{
+                    console.log('response:',response);
+                })
+                .catch(e=>{
+                    throw e;
+                });
             });
             divButton.appendChild(sendButton);
             
