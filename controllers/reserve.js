@@ -339,7 +339,7 @@ module.exports = {
             .then(res=>{
               if(res.length){
                 let recieveDate = new Date();
-                recieveDate = `${recieveDate.getFullYear()}/${recieveDate.getMonth()}/${recieveDate.getDate()} ${recieveDate.getTime()}`;
+                recieveDate = `${recieveDate.getFullYear()}/${recieveDate.getMonth() + 1}/${recieveDate.getDate() +1} ${recieveDate.getHours()}:${recieveDate.getMinutes()}:${recieveDate.getSeconds()}`;
                 console.log(`受付時間は${recieveDate}`);
                 const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
