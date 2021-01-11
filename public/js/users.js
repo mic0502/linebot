@@ -118,7 +118,7 @@
         divCard.setAttribute('class','text-white bg-primary card-user');
         divCard.style.top = `${y}px`;
         divCard.style.left = `${x/2}px`;
-        alert(`${y}px`);
+
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
