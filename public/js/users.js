@@ -251,7 +251,7 @@
             }
             
             moveAt(e.pageX,e.pageY);
-            alert(`${moveAt}/${pageX,pageY}`)
+            alert(`${moveAt}/${pageX}/${pageY}`)
             
             const onMouseMove = (e) => {
                 moveAt(e.pageX,e.pageY);
