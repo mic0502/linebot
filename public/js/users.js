@@ -85,7 +85,6 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
-                            alert(`${x}/${y}`)
                             createCard(usersData[i-1],x,y);
                         });
                     }
@@ -119,7 +118,7 @@
         divCard.setAttribute('class','card text-white bg-primary card-user');
         divCard.style.top = `${y}px`;
         divCard.style.left = `${x/2}px`;
-        
+        alert(`${y}px`);
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
