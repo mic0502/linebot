@@ -237,7 +237,6 @@
         divHeader.onmousedown = (e) =>{
             let shiftX = e.clientX - divCard.getBoundingClientRect().left;
             let shiftY = e.clientY - divCard.getBoundingClientRect().top;
-            alert(`${shiftX}/${shiftY}`)
             const moveAt = (pageX,pageY) => {
                 if(pageX-shiftX>=0){
                     divCard.style.left = pageX - shiftX + 'px';
@@ -252,6 +251,7 @@
             }
             
             moveAt(e.pageX,e.pageY);
+            alert(`${moveAt}/${pageX,pageY}`)
             
             const onMouseMove = (e) => {
                 moveAt(e.pageX,e.pageY);
