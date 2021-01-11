@@ -51,7 +51,7 @@
                 usersObj.name,
                 usersObj.rank,
                 usersObj.point,
-                `${usersObj.birthday.slice(4,7)}/${usersObj.birthday.slice(-2)}/${usersObj.birthday.slice(2,3)}`,
+                `${usersObj.birthday.slice(4)}/${usersObj.birthday.slice(4,5)}/${usersObj.birthday.slice(-2)}`,
                 usersObj.recent_buy,
                 nextReservationDate,
                 revData[0].menu
