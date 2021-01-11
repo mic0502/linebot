@@ -244,8 +244,9 @@
                 }else{
                     divCard.style.left = 0 + 'px';
                 }
-                if(pageY>=0){
-                    divCard.style.top = pageY + 'px';
+                alert(`${pageY}/${shiftY}`)
+                if(pageY-shiftY>=0){
+                    divCard.style.top = pageY - shiftY + 'px';
                 }else{
                     divCard.style.top = 0;
                 }
