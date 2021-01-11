@@ -119,7 +119,7 @@
         divCard.style.top = '0px';
         // divCard.style.top = `${y}px`;
         divCard.style.left = `${x/2}px`;
-        alert(`${y}px`);
+
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
@@ -237,7 +237,8 @@
         // マウスイベント
         divHeader.onmousedown = (e) =>{
             let shiftX = e.clientX - divCard.getBoundingClientRect().left;
-            let shiftY = e.clientY - divCard.getBoundingClientRect().top;
+            // let shiftY = e.clientY - divCard.getBoundingClientRect().top;
+            let shiftY = 0;
             const moveAt = (pageX,pageY) => {
                 if(pageX-shiftX>=0){
                     divCard.style.left = pageX - shiftX + 'px';
