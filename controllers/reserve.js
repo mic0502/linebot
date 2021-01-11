@@ -365,7 +365,7 @@ module.exports = {
             if(res.length){
               var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
               const date = res[0].selecteddate;
-              const week = weekday[ date.getDay() ] ;            
+              const week = weekday[ res[0].selecteddate.getDay() ] ;            
               const time = res[0].selectedtime;
               const menu = res[0].menu;
               if(flg===0){
