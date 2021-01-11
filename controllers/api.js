@@ -18,6 +18,18 @@ module.exports = {
                     .catch(e=>console.log(e))
             })
             .catch(e=>console.log(e))           
-   }
+   },
+
+    putUser: (req,res) => {
+        const id = parseInt(req.params.id);
+        const {starttime,menu} = req.body;        
+        const update_query = `UPDATE users SET (starttime,menu) = (${starttime},${menu}) WHERE id=${id};`;
+        User.dbQuery(update_query,'予約情報変更')
+            .then(message=>{
+                console.log('message:',message);
+                res.status(200).send(message);
+            })
+            .catch(e=>console.log(e.stack));
+     }
 
 }
