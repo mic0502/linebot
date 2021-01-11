@@ -338,14 +338,9 @@ module.exports = {
           User.dbQuery(selectQuery,'予約確認処理１')
             .then(res=>{
               if(res.length){
-
                 const convertJST = new Date();
                 convertJST.setHours(convertJST.getHours() + 9);
-                const updatedTime = convertJST.toLocaleString('ja-JP').slice(0,-3);
-
-                let recieveDate = new Date();
-                console.log(`受付時間は${updatedTime}`);
-                recieveDate = `${recieveDate.getFullYear()}/${recieveDate.getMonth() + 1}/${recieveDate.getDate() +1} ${recieveDate.getHours() + 9}:${recieveDate.getMinutes()}:${recieveDate.getSeconds()}`;
+                const recieveDate = convertJST.toLocaleString('ja-JP').slice(0,-3);
                 const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
