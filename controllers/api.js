@@ -13,7 +13,6 @@ module.exports = {
                             users:users,
                             reservations:reservations
                         }
-                        console.log('通過１')
                         res.status(200).json(data);
                     })
                     .catch(e=>console.log(e))

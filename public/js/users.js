@@ -10,8 +10,8 @@
     
     const fetchData = async () => {
         try{
+            console.log('通過０')
             const response = await fetch(API_URL);
-            console.log('通過２')
             console.log(response)
 
             if(response.ok){
