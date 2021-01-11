@@ -127,7 +127,7 @@ body {
 /* 顧客情報カード */
 .card-user{
    position:absolute;
-   width:40vw;
+   width:30vw;
    min-width:250px;
    height:auto;
    text-align:left;

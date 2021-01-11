@@ -343,25 +343,14 @@ module.exports = {
           }
         };
     },
-    // 時間を算出
-    timeConversion: (date,time) => {
-        const selectedTime = 9 + parseInt(time) - 9;
-        return new Date(`${date} ${selectedTime}:00`).getTime();
-    },
     // 所要時間計算
-    calcTreatTime: (id,menu,selectedDate,startTime) => {
+    insertReservation: (id,menu,selectedDate,selectedtime) => {
         return new Promise((resolve,reject)=>{
           const selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${id}';`;
           User.dbQuery(selectQuery,'予約確認処理１')
             .then(res=>{
-              const INITIAL_TREAT = [20,10,40,15,30,15,10];  //施術時間初期値（min）
               if(res.length){
-                const info = res[0];
-                const treatArray = [INITIAL_TREAT[0],INITIAL_TREAT[1],INITIAL_TREAT[2],INITIAL_TREAT[3],INITIAL_TREAT[4],INITIAL_TREAT[5],INITIAL_TREAT[6]];
-                const menuNumber = parseInt(menu);
-                const treatTime = treatArray[menuNumber];
-                const endTime = startTime + treatTime*60*1000;
-                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, scheduledate, starttime, endtime, menu) VALUES('${id}','${res[0].name}','${selectedDate}','${startTime}','${endTime}','${menu}');`;
+                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${Date().getDate()}','${selectedDate}','${selectedtime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
                     resolve(200);
@@ -379,15 +368,17 @@ module.exports = {
     checkNextReservation: (id,flg) => {
       return new Promise((resolve,reject)=>{
         const nowTime = new Date().getTime();
-        const selectQuery = `SELECT * FROM TM_RESERVE WHERE line_uid ='${id}' ORDER BY scheduledate desc, starttime desc;`;
+        const selectQuery = `SELECT * FROM TM_RESERVE WHERE line_uid ='${id}' ORDER BY id desc;`;
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
-              const startTimestamp = res[0].starttime;
-              const date = dateConversion(startTimestamp);
+              var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
+              const date = res[0].selecteddate;
+              const week = weekday[ date.getDay() ] ;            
+              const time = res[0].selectedtime;
               const menu = res[0].menu;
               if(flg===0){
-                resolve({"type":"text","text": `次回予約は${date}、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
+                resolve({"type":"text","text": `次回予約は${date}月${time}日${week}曜日、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
               }else{
                 resolve({
                   "type":"flex",
@@ -401,7 +392,7 @@ module.exports = {
                       "contents": [
                         {
                           "type": "text",
-                          "text": `次回の予約は${date}から、${menu}でおとりしてます。この予約をキャンセルしますか？`,
+                          "text": `次回の予約は$${date}月${time}日${week}曜日、${menu}でおとりしてます。この予約をキャンセルしますか？`,
                           "size": "lg",
                           "wrap": true
                         }
@@ -447,15 +438,4 @@ module.exports = {
       });
     },
 
-}
-
-const dateConversion = (timestamp) => {
-  const WEEK = [ "日", "月", "火", "水", "木", "金", "土" ];
-  const d = new Date(parseInt(timestamp));
-  const month = d.getMonth()+1;
-  const date = d.getDate();
-  const day = d.getDay();
-  const hour = ('0' + (d.getHours()+9)).slice(-2);
-  const min = ('0' + d.getMinutes()).slice(-2);
-  return `${month}月${date}日(${WEEK[day]}) ${hour}:${min}`;
 }

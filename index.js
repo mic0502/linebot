@@ -115,8 +115,8 @@ const handlePostbackEvent = async (ev) => {
     const orderedMenu = splitData[2];
     const selectedDate = splitData[3];
     const selectedTime = splitData[4];
-    const startTimestamp = reserve.timeConversion(selectedDate,selectedTime);
-    const insertData = await reserve.calcTreatTime(ev.source.userId,orderedMenu,selectedDate,startTimestamp);
+    const receiveDate = Date().getDate;
+    const insertData = await reserve.insertReservation(ev.source.userId,orderedMenu,selectedDate,selectedTime,receiveDate);
     switch(insertData){
     case 401:
         pushText = {"type":"text","text":'ラインが連携されていません。'};break;
