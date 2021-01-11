@@ -341,7 +341,7 @@ module.exports = {
                 const convertJST = new Date();
                 convertJST.setHours(convertJST.getHours() + 9);
                 const recieveDate = convertJST.toLocaleString('ja-JP').slice(0,-3);
-                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
+                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
                     resolve(200);
