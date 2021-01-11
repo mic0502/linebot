@@ -288,7 +288,6 @@ module.exports = {
     // 確認メッセージ
     confirmation: (menu,date,time) => {
         const splitDate = date.split('-');
-        const selectedTime = 9 + parseInt(time);
         return {
           "type":"flex",
           "altText":"menuSelect",
@@ -301,7 +300,7 @@ module.exports = {
               "contents": [
                 {
                   "type": "text",
-                  "text": `次回予約は${splitDate[1]}月${splitDate[2]}日 ${selectedTime}時〜でよろしいですか？`,
+                  "text": `次回予約は${splitDate[1]}月${splitDate[2]}日 ${time}時〜でよろしいですか？`,
                   "size": "lg",
                   "wrap": true
                 }
@@ -339,7 +338,7 @@ module.exports = {
           User.dbQuery(selectQuery,'予約確認処理１')
             .then(res=>{
               if(res.length){
-                const recieveDate = new Date();
+                let recieveDate = new Date();
                 recieveDate = `${recieveDate.getFullYear}/${recieveDate.getMonth}/${recieveDate.getDate} ${recieveDate.getTime}`;
                 console.log(`受付時間は${recieveDate}`);
                 const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
