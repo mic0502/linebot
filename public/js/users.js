@@ -244,11 +244,11 @@
                 }else{
                     divCard.style.left = 0 + 'px';
                 }
-                // if(pageY-shiftY>=0){
-                //     divCard.style.top = pageY - shiftY + 'px';
-                // }else{
+                if(0-shiftY>=0){
+                    divCard.style.top = 0 - shiftY + 'px';
+                }else{
                     divCard.style.top = 0;
-                // }
+                }
             }
             
             moveAt(e.pageX,e.pageY);
