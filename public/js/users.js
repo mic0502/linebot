@@ -157,7 +157,7 @@
         div_form_cut.setAttribute('class','form-group inline-block menu-time');
         const label_cut = document.createElement('label');
         label_cut.setAttribute('class','label_user');
-        label_cut.innerHTML = 'Cut';
+        label_cut.innerHTML = '予約日時';
         div_form_cut.appendChild(label_cut);
         const input_cut = document.createElement('input');
         input_cut.setAttribute('type','text');
@@ -173,7 +173,7 @@
         div_form_shampoo.setAttribute('class','form-group inline-block');
         const label_shampoo = document.createElement('label');
         label_shampoo.setAttribute('class','label_user');
-        label_shampoo.innerHTML = 'Shampoo';
+        label_shampoo.innerHTML = '予約景品';
         div_form_shampoo.appendChild(label_shampoo);
         const input_shampoo = document.createElement('input');
         input_shampoo.setAttribute('type','text');
