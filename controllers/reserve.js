@@ -384,7 +384,7 @@ module.exports = {
                       "contents": [
                         {
                           "type": "text",
-                          "text": `次回の予約は$${date.slice(5,7)}月${time.slice(8,10)}日${week}曜日 ${time}時から、${menu}でおとりしてます。この予約をキャンセルしますか？`,
+                          "text": `次回の予約は${date.slice(5,7)}月${date.slice(8,10)}日${week}曜日 ${time}時から、${menu}でおとりしてます。この予約をキャンセルしますか？`,
                           "size": "lg",
                           "wrap": true
                         }
