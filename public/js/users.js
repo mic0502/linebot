@@ -85,6 +85,7 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
+                            alert(`${x}/${y}`)
                             createCard(usersData[i-1],x,y);
                         });
                     }
@@ -251,7 +252,6 @@
             }
             
             moveAt(e.pageX,e.pageY);
-            alert(`${moveAt}/${pageX}/${pageY}`)
             
             const onMouseMove = (e) => {
                 moveAt(e.pageX,e.pageY);
