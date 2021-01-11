@@ -237,19 +237,18 @@
         // マウスイベント
         divHeader.onmousedown = (e) =>{
             let shiftX = e.clientX - divCard.getBoundingClientRect().left;
-            // let shiftY = e.clientY - divCard.getBoundingClientRect().top;
-            let shiftY = 0;
+            let shiftY = e.clientY - divCard.getBoundingClientRect().top;
             const moveAt = (pageX,pageY) => {
                 if(pageX-shiftX>=0){
                     divCard.style.left = pageX - shiftX + 'px';
                 }else{
                     divCard.style.left = 0 + 'px';
                 }
-                if(pageY-shiftY>=0){
-                    divCard.style.top = pageY - shiftY + 'px';
-                }else{
+                // if(pageY-shiftY>=0){
+                //     divCard.style.top = pageY - shiftY + 'px';
+                // }else{
                     divCard.style.top = 0;
-                }
+                // }
             }
             
             moveAt(e.pageX,e.pageY);
