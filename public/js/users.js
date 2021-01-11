@@ -116,7 +116,7 @@
         // カード本体の定義
         const divCard = document.createElement('div');
         divCard.setAttribute('class','card text-white bg-primary card-user');
-        divCard.style.top = `${y/2}px`;
+        divCard.style.top = `${y}px`;
         divCard.style.left = `${x/2}px`;
         
         // カードヘッダーの定義
@@ -162,7 +162,7 @@
         input_cut.setAttribute('type','text');
         input_cut.setAttribute('class','form-control time-input');
         input_cut.setAttribute('name','cuttime');
-        input_cut.value = userDataArray[3];
+        input_cut.value = userDataArray[6];
         input_cut.disabled = true;
         div_form_cut.appendChild(input_cut);
         formElement.appendChild(div_form_cut);
@@ -178,7 +178,7 @@
         input_shampoo.setAttribute('type','text');
         input_shampoo.setAttribute('class','form-control time-input');
         input_shampoo.setAttribute('name','shampootime');
-        input_shampoo.value = userDataArray[4];
+        input_shampoo.value = userDataArray[7];
         input_shampoo.disabled = true;
         div_form_shampoo.appendChild(input_shampoo);
         formElement.appendChild(div_form_shampoo);
