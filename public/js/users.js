@@ -81,7 +81,7 @@
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
-                    if(index >= 3 && index <= 6){
+                    if(index >= 6 && index <= 7){
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
