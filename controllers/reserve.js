@@ -370,7 +370,7 @@ module.exports = {
               const time = res[0].selectedtime;
               const menu = res[0].menu;
               if(flg===0){
-                resolve({"type":"text","text": `次回予約は${date.slice(5,6)}月${date.slice(8,9)}日${week}曜日 ${time}時から、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
+                resolve({"type":"text","text": `次回予約は${date.slice(5,7)}月${date.slice(8,10)}日${week}曜日 ${time}時から、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
               }else{
                 resolve({
                   "type":"flex",
