@@ -1,7 +1,7 @@
 (()=>{
 
     const API_URL = 'https://linebot-linkapp.herokuapp.com/api/';
-    const HEADERS = ['ID','　　名前　　','ランク','ポイント','　　誕生日　　','　直近購入日　','　　　次回予約　　　','　景品　'];
+    const HEADERS = ['予約番号','　顧客ID　','　　名前　　','ランク','ポイント','　　誕生日　　','　直近購入日　','　　　次回予約　　　','　景品　'];
     const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-nextrev'];
 
     window.addEventListener('load',()=>{
@@ -48,6 +48,7 @@
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
+                usersObj.login_id,
                 usersObj.name,
                 usersObj.rank,
                 usersObj.point,
@@ -81,7 +82,7 @@
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
-                    if(index >= 6 && index <= 7){
+                    if(index >= 7 && index <= 8){
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
@@ -122,7 +123,7 @@
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
-        divHeader.innerHTML = `お客さまID:${userDataArray[0]}`;
+        divHeader.innerHTML = `お客さまID:${userDataArray[1]}`;
         divCard.appendChild(divHeader);
         
         // カードボディの定義
@@ -146,7 +147,7 @@
         input_name.setAttribute('type','text');
         input_name.setAttribute('class','form-control name-input');
         input_name.setAttribute('name','name');
-        input_name.value = userDataArray[1];
+        input_name.value = userDataArray[2];
         input_name.disabled = true;
         div_form_name.appendChild(input_name);
         formElement.appendChild(div_form_name);
@@ -162,7 +163,7 @@
         input_cut.setAttribute('type','text');
         input_cut.setAttribute('class','form-control time-input');
         input_cut.setAttribute('name','cuttime');
-        input_cut.value = userDataArray[6];
+        input_cut.value = userDataArray[7];
         input_cut.disabled = true;
         div_form_cut.appendChild(input_cut);
         formElement.appendChild(div_form_cut);
@@ -178,7 +179,7 @@
         input_shampoo.setAttribute('type','text');
         input_shampoo.setAttribute('class','form-control time-input');
         input_shampoo.setAttribute('name','shampootime');
-        input_shampoo.value = userDataArray[7];
+        input_shampoo.value = userDataArray[8];
         input_shampoo.disabled = true;
         div_form_shampoo.appendChild(input_shampoo);
         formElement.appendChild(div_form_shampoo);
