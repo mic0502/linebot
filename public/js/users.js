@@ -11,6 +11,9 @@
     const fetchData = async () => {
         try{
             const response = await fetch(API_URL);
+            console.log('通過２')
+            console.log(response)
+
             if(response.ok){
                 const data = await response.json();
                 createTable(data);
