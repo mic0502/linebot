@@ -105,7 +105,7 @@ const handlePostbackEvent = async (ev) => {
   }else if(splitData[1] === 'date'){
       const orderedMenu = splitData[2];
       const selectedDate = ev.postback.params.date.replace('-','/');
-      alert(selectedDate)
+      console.log(selectedDate)
       pushText = reserve.askTime(orderedMenu,selectedDate);
   }else if(splitData[1] === 'time'){
       const orderedMenu = splitData[2];
