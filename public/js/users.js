@@ -24,7 +24,6 @@
     }
 
     const createTable = (data) => {
-        alert('通過１');
 
         // div要素の取得
         const divElement = document.getElementById('usersPage');
@@ -44,9 +43,12 @@
                 return parseInt(revObj2.starttime) > now;
             });
             
+            alert('通過２');
+
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
                         
+            alert('通過３');
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
