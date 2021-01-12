@@ -228,7 +228,7 @@
                     creadentials:'same-origin'
                 })
                 .then(response=>{
-                    console.log('response:',response);
+                    alert(response);
                 })
                 .catch(e=>{
                     throw e;
