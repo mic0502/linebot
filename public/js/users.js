@@ -41,7 +41,7 @@
                 return usersObj.line_id === revObj1.line_uid;
             }).filter(revObj2=>{
                 alert(revObj2.selecteddate)
-                alert(now)
+                alert(Date().getDate())
                 return parseInt(revObj2.selecteddate) > now;
             });
             
