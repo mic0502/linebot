@@ -232,6 +232,7 @@
                     // 画面を更新する
                     // response.selecteddate + ' ' + response.selectedtime;
                     document.getElementsByName("row-menu(1)").value === response.menu;
+                    alert(response.menu);
                     divCard.style.display = 'none';
                     alert('更新完了！');
                 })
