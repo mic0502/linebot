@@ -22,11 +22,11 @@ module.exports = {
 
     putUser: (req,res) => {
         const id = parseInt(req.params.id);
-        const {cuttime,shampootime,menu} = req.body;
+        const {selecteddate,selectedtime,menu} = req.body;
         console.log(cuttime)
         console.log(shampootime)
         
-        const update_query = `UPDATE users SET (selecteddate,selectedtime,menu) = (${cuttime},${shampootime},${menu}) WHERE id=${id};`;
+        const update_query = `UPDATE users SET (selecteddate,selectedtime,menu) = (${selecteddate},${selectedtime},${menu}) WHERE id=${id};`;
         User.dbQuery(update_query,'予約情報変更')
             .then(message=>{
                 console.log('message:',message);
