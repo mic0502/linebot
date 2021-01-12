@@ -34,13 +34,13 @@
         data.users.forEach(usersObj=>{
         
             // 現在時刻のタイムスタンプ取得
-            const now = new Date().getTime();
+            const now = new Date().getFullYear() + (new Date().getMonth() + 1) + new Date().getDate();
+            alert(now)
             
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
             const revData = data.reservations.filter(revObj1=>{
                 return usersObj.line_id === revObj1.line_uid;
             }).filter(revObj2=>{
-                alert(new Date)
                 return parseInt(revObj2.selecteddate.replace(/-/g,'')) > now;
             });
             
