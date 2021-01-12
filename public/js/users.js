@@ -182,7 +182,7 @@
         const input_shampoo = document.createElement('input');
         input_shampoo.setAttribute('type','text');
         input_shampoo.setAttribute('class','form-control time-input');
-        input_shampoo.setAttribute('name','shampootime');
+        input_shampoo.setAttribute('name','menu');
         input_shampoo.value = userDataArray[8];
         input_shampoo.disabled = true;
         div_form_shampoo.appendChild(input_shampoo);
@@ -209,6 +209,7 @@
             
             //各インプットの入力をできるようにする
             input_cut.disabled = false;
+            input_time.disabled = false;
             input_shampoo.disabled = false;
             
             //送信ボタンの生成
