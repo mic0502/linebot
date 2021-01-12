@@ -23,8 +23,6 @@ module.exports = {
     putUser: (req,res) => {
         const id = parseInt(req.params.id);
         const {selecteddate,selectedtime,menu} = req.body;
-        console.log(cuttime)
-        console.log(shampootime)
         
         const update_query = `UPDATE users SET (selecteddate,selectedtime,menu) = (${selecteddate},${selectedtime},${menu}) WHERE id=${id};`;
         User.dbQuery(update_query,'予約情報変更')
