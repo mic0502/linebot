@@ -10,9 +10,7 @@
     
     const fetchData = async () => {
         try{
-            alert('通過０')
             const response = await fetch(API_URL);
-            alert(response)
 
             if(response.ok){
                 const data = await response.json();
@@ -26,7 +24,8 @@
     }
 
     const createTable = (data) => {
-    
+        alert('通過１');
+
         // div要素の取得
         const divElement = document.getElementById('usersPage');
         
