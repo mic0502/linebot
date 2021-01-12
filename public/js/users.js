@@ -231,7 +231,7 @@
                 .then(response=>{
                     // 画面を更新する
                     // response.selecteddate + ' ' + response.selectedtime;
-                    // response.menu;
+                    document.getElementsByName('row-menu(1)').value = response.menu;
                     divCard.style.display = 'none';
                     alert('更新完了！');
                 })
