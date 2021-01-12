@@ -24,7 +24,7 @@ module.exports = {
         const id = parseInt(req.params.id);
         const {selecteddate,selectedtime,menu} = req.body;
         
-        const update_query = `UPDATE users SET (selecteddate,selectedtime,menu) = (${selecteddate},${selectedtime},${menu}) WHERE id=${id};`;
+        const update_query = `UPDATE TM_RESERVE SET (selecteddate,selectedtime,menu) = (${selecteddate},${selectedtime},${menu}) WHERE id=${id};`;
         User.dbQuery(update_query,'予約情報変更')
             .then(message=>{
                 console.log('message:',message);
