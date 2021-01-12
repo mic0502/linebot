@@ -228,7 +228,11 @@
                     creadentials:'same-origin'
                 })
                 .then(response=>{
-                    alert(response);
+                    // 画面を更新する
+                    // response.selecteddate + ' ' + response.selectedtime;
+                    // response.menu;
+                    divCard.style.display = 'none';
+                    alert('更新完了！');
                 })
                 .catch(e=>{
                     throw e;
