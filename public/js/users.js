@@ -40,9 +40,8 @@
             const revData = data.reservations.filter(revObj1=>{
                 return usersObj.line_id === revObj1.line_uid;
             }).filter(revObj2=>{
-                alert(revObj2.selecteddate)
-                alert(new Date().getDate())
-                return parseInt(revObj2.selecteddate) > now;
+                alert(new Date)
+                return parseInt(revObj2.selecteddate.replace(/-/g,'')) > now;
             });
             
             // revData.starttimeを日時文字列へ変換する
