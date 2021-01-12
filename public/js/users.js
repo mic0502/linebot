@@ -38,12 +38,12 @@
             // 現在時刻のタイムスタンプ取得
             const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
             alert(now)
-            alert(revObj2.selecteddate.replace('/','').replace('/',''))
 
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
             const revData = data.reservations.filter(revObj1=>{
                 return usersObj.line_id === revObj1.line_uid;
             }).filter(revObj2=>{
+                alert(revObj2.selecteddate.replace('/','').replace('/',''))
                 return parseInt(revObj2.selecteddate.replace(/-/g,'')) > now;
             });
             
