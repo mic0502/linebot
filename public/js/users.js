@@ -55,8 +55,8 @@
                 usersObj.name,
                 usersObj.rank,
                 usersObj.point,
-                `${usersObj.birthday.slice(0,4)}/${usersObj.birthday.slice(5,7)}/${usersObj.birthday.slice(-2)}`,
-                `${usersObj.recent_buy.slice(0,4)}/${usersObj.recent_buy.slice(5,7)}/${usersObj.recent_buy.slice(-2)}`,
+                `${usersObj.birthday.slice(0,4)}/${usersObj.birthday.slice(4,6)}/${usersObj.birthday.slice(-2)}`,
+                `${usersObj.recent_buy.slice(0,4)}/${usersObj.recent_buy.slice(4,6)}/${usersObj.recent_buy.slice(-2)}`,
                 nextReservationDate,
                 revData[0].menu
             ]);
@@ -86,7 +86,7 @@
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
-                    if(index >= 7 && index <= 8){
+                    if(index >= 0 && index <= 8){
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
