@@ -140,7 +140,7 @@
         div_form_name.appendChild(input_name);
         formElement.appendChild(div_form_name);
         
-        // カット時間入力フォームの生成
+        // 日付入力フォームの生成
         const div_form_cut = document.createElement('div');
         div_form_cut.setAttribute('class','form-group inline-block menu-time');
         const label_cut = document.createElement('label');
@@ -150,13 +150,29 @@
         const input_cut = document.createElement('input');
         input_cut.setAttribute('type','text');
         input_cut.setAttribute('class','form-control time-input');
-        input_cut.setAttribute('name','cuttime');
-        input_cut.value = userDataArray[7];
+        input_cut.setAttribute('name','selecteddate');
+        input_cut.value = userDataArray[7].slice(10);
         input_cut.disabled = true;
         div_form_cut.appendChild(input_cut);
         formElement.appendChild(div_form_cut);
         
-        // シャンプー時間の入力フォーム生成
+        // 時間入力フォームの生成
+        const div_form_cut = document.createElement('div');
+        div_form_cut.setAttribute('class','form-group inline-block menu-time');
+        const label_cut = document.createElement('label');
+        label_cut.setAttribute('class','label_user');
+        label_cut.innerHTML = '予約日時';
+        div_form_cut.appendChild(label_cut);
+        const input_cut = document.createElement('input');
+        input_cut.setAttribute('type','text');
+        input_cut.setAttribute('class','form-control time-input');
+        input_cut.setAttribute('name','selectedtime');
+        input_cut.value = userDataArray[7].slice(-5);
+        input_cut.disabled = true;
+        div_form_cut.appendChild(input_cut);
+        formElement.appendChild(div_form_cut);
+        
+        // メニューの入力フォーム生成
         const div_form_shampoo = document.createElement('div');
         div_form_shampoo.setAttribute('class','form-group inline-block');
         const label_shampoo = document.createElement('label');

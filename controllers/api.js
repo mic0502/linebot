@@ -26,7 +26,7 @@ module.exports = {
         console.log(cuttime)
         console.log(shampootime)
         
-        const update_query = `UPDATE users SET (starttime,menu) = (${cuttime},${menu}) WHERE id=${id};`;
+        const update_query = `UPDATE users SET (selecteddate,selectedtime,menu) = (${cuttime},${shampootime},${menu}) WHERE id=${id};`;
         User.dbQuery(update_query,'予約情報変更')
             .then(message=>{
                 console.log('message:',message);
