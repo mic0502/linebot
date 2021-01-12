@@ -2,7 +2,7 @@
 
     const API_URL = 'https://linebot-linkapp.herokuapp.com/api/';
     const HEADERS = ['予約番号','顧客ID','　名前　','ランク','ポイント','　誕生日　','直近購入日','　　次回予約　　','　景品　'];
-    const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-nextrev','row-nextrev'];
+    const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-reserve','row-menu'];
 
     window.addEventListener('load',()=>{
         fetchData();
@@ -83,7 +83,7 @@
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
                     td.setAttribute('class',`uElements ${CLASSES[index]}`);
-                    td.setAttribute('name',`uElements ${CLASSES[index]}`);
+                    td.setAttribute('name',`${CLASSES[index]}(i)`);
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
