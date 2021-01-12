@@ -45,9 +45,7 @@
             
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
-                        
-            alert('通過３');
-
+            alert(nextReservationDate)
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
@@ -60,7 +58,6 @@
                 nextReservationDate,
                 revData[0].menu
             ]);
-            alert('通過４');
 
         });
         
