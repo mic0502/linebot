@@ -145,13 +145,13 @@
         div_form_cut.setAttribute('class','form-group inline-block menu-time');
         const label_cut = document.createElement('label');
         label_cut.setAttribute('class','label_user');
-        label_cut.innerHTML = '予約日時';
+        label_cut.innerHTML = '予約日付';
         div_form_cut.appendChild(label_cut);
         const input_cut = document.createElement('input');
         input_cut.setAttribute('type','text');
         input_cut.setAttribute('class','form-control time-input');
         input_cut.setAttribute('name','selecteddate');
-        input_cut.value = userDataArray[7].slice(10);
+        input_cut.value = userDataArray[7].slice(0,10);
         input_cut.disabled = true;
         div_form_cut.appendChild(input_cut);
         formElement.appendChild(div_form_cut);
@@ -161,7 +161,7 @@
         div_form_time.setAttribute('class','form-group inline-block menu-time');
         const label_time = document.createElement('label');
         label_time.setAttribute('class','label_user');
-        label_time.innerHTML = '予約日時';
+        label_time.innerHTML = '予約時間';
         div_form_time.appendChild(label_time);
         const input_time = document.createElement('input');
         input_time.setAttribute('type','text');
