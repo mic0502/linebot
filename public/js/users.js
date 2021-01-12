@@ -33,10 +33,12 @@
         
         data.users.forEach(usersObj=>{
         
+            const aaa = `00${(new Date().getMonth() + 1)}`;
+            
             // 現在時刻のタイムスタンプ取得
-            const now = `${new Date().getFullYear()}  '00'${(new Date().getMonth() + 1)}  ${new Date().getDate()}`;
+            const now = `${new Date().getFullYear()}  ${aaa.slice(-2)}  ${new Date().getDate()}`;
             alert(now)
-            alert(`'00'${(new Date().getMonth() + 1)}`)
+
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
             const revData = data.reservations.filter(revObj1=>{
                 return usersObj.line_id === revObj1.line_uid;
