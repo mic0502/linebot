@@ -6,7 +6,7 @@ const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
-const apiRouter = require('./routers/api');
+const apiRouter = require('./routers/admin');
 const multipart = require('connect-multiparty');
 const reserve = require('./controllers/reserve');
 require('dotenv').config();
@@ -22,12 +22,12 @@ app
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
    .use('/',router)
-   .use('/api',apiRouter)
    .post('/hook',line.middleware(config),(req,res)=> lineBot(req,res))
    .use(express.json())
    .use(express.urlencoded({extended:true}))
    .use('/api/users',usersRouter)
    .use('/api/link',linkRouter)
+   .use('/api/admin',apiRouter)
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
 const lineBot = (req,res) => {
@@ -44,12 +44,11 @@ const lineBot = (req,res) => {
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
-                // const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
-                // (async () => {
-                //   await sleep(400);
-                //   promises.push(accountLink(ev));
-                // })();
-                promises.push(accountLink(ev));
+                const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+                (async () => {
+                  await sleep(400);
+                  promises.push(accountLink(ev));
+                })();
                 break;
             case 'postback':
                 promises.push(handlePostbackEvent(ev));
