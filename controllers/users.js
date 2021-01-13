@@ -7,7 +7,6 @@ module.exports = {
         try{            
             const {name,id,password} = req.body;
             const select_query = `SELECT * FROM TM_KOK WHERE login_id='${id}';`
-            console.log(select_query)
             User.dbQuery(select_query,'新規作成１番目')
             .then(checkRes=>{
                 if (checkRes.length > 0 ){
@@ -51,6 +50,7 @@ module.exports = {
             const {id,password,line_uid,linkToken} = req.body;
             // IDとパスワードから検索
             const select_query = `SELECT * FROM TM_KOK WHERE login_id='${id}' and login_password='${password}';`
+            console.log(`テスト${select_query}`)
             User.dbQuery(select_query,'連携１番目')
                 .then(checkRes=>{
                     if (checkRes.length > 0 ){
