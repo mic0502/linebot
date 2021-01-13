@@ -112,7 +112,7 @@
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
-        divHeader.innerHTML = `ID:${userDataArray[1]} ${userDataArray[2]}`;
+        divHeader.innerHTML = `[${userDataArray[1]}] ${userDataArray[2]}`;
         divCard.appendChild(divHeader);
         
         // カードボディの定義
@@ -183,7 +183,7 @@
         
         //編集ボタンの作成
         const editButton = document.createElement('input');
-        editButton.setAttribute('class','btn-warning card-button');
+        editButton.setAttribute('class','btn btn-warning card-button');
         editButton.value = '編集';
         editButton.type = 'button';
         
