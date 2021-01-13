@@ -147,7 +147,7 @@ body {
 }
 
 .form-group{
-   margin:0vw 1vw;
+   margin:0vw 1vw!important;
 }
 .label_user{
    margin-bottom:0;
