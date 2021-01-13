@@ -102,7 +102,7 @@
         divElement.appendChild(table);
     }
 
-    function createCard(userDataArray,x,y){
+    const createCard = (userDataArray,x,y) => {
 
         if(document.getElementById("card-user") != null){
             document.getElementById('card-user').remove();
