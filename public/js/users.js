@@ -229,7 +229,7 @@
                     creadentials:'same-origin'
                 })
                 .then(response=>{
-                    const data = response.json()
+                    response.json()
                     .then(data=>{
                         // 画面を更新する
                         const row8 = document.getElementsByName("row-menu");
