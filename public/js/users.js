@@ -103,6 +103,8 @@
 
     const createCard = (userDataArray,x,y) => {
 
+        divCard.style.display = 'none';
+        
         // カード本体の定義
         const divCard = document.createElement('div');
         divCard.setAttribute('class','text-white bg-primary card-user');
