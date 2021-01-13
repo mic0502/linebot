@@ -91,8 +91,8 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
-                            let updateDate = createCard(usersData[i-1],x,y);
-                            alert(`変更した値は${updateDate[0]}と${updateDate[1]}`)
+                            let [resReserve, resMenu] = createCard(usersData[i-1],x,y);
+                            alert(`変更した値は${resReserve}と${resMenu}`)
                         });
                     }
                     tr.appendChild(td);
