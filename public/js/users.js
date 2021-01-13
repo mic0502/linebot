@@ -219,7 +219,7 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
-                        divCard.style.display = 'none';
+                        divCard.remove;
                         alert('更新完了！');
                     })        
                 })
@@ -256,7 +256,7 @@
         closeButton.setAttribute('class','closeButton');
         closeButton.textContent = '閉じる';
         divFooter.addEventListener('click',()=>{
-            divCard.style.display = 'none';
+            divCard.remove;
         });
         divFooter.appendChild(closeButton);
         divCard.appendChild(divFooter);
