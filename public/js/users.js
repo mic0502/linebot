@@ -257,7 +257,7 @@
         closeButton.setAttribute('class','closeButton');
         closeButton.textContent = '閉じる';
         divFooter.addEventListener('click',()=>{
-            document.getElementById('card-user').remove();
+            divCard.remove();
         });
         divFooter.appendChild(closeButton);
         divCard.appendChild(divFooter);
