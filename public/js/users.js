@@ -230,11 +230,10 @@
                 })
                 .then(response=>{
                     // 画面を更新する
-                    res = JSON.parse(body);
                     const row8 = document.getElementsByName("row-menu");
                     // response.selecteddate + ' ' + response.selectedtime;
-                    alert(res.menu)
-                    row8[0].value === res.menu;
+                    alert(JSON.parse(response).menu)
+                    row8[0].value === JSON.parse(response).menu;
                     divCard.style.display = 'none';
                     alert('更新完了！');
                 })
