@@ -107,6 +107,7 @@
         const divCard = document.createElement('div');
         
         divCard.setAttribute('class','text-white bg-primary card-user');
+        divCard.setAttribute('id','card-user');
         divCard.style.top = `${y}px`;
         divCard.style.left = `${x/2}px`;
 
@@ -256,7 +257,7 @@
         closeButton.setAttribute('class','closeButton');
         closeButton.textContent = '閉じる';
         divFooter.addEventListener('click',()=>{
-            divCard.remove;
+            document.getElementById('card-user').remove;
         });
         divFooter.appendChild(closeButton);
         divCard.appendChild(divFooter);
