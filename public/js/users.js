@@ -91,7 +91,8 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
-                            createCard(usersData[i-1],x,y);
+                            let updateDate = createCard(usersData[i-1],x,y);
+                            alert(`変更した値は${updateDate[0]}と${updateDate[1]}`)
                         });
                     }
                     tr.appendChild(td);
@@ -224,9 +225,9 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
-                        usersData[1,8] = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
+                        return [data.selecteddate + ' ' + data.selectedtime,data.menu];
                     })        
                 })
                 .catch(e=>{
