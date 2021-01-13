@@ -224,7 +224,7 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
-                        usersData[1,8] = data.menu;
+                        // usersData[1,8] = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
                     })        
