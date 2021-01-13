@@ -112,7 +112,7 @@
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
-        divHeader.innerHTML = `お客さまID:${userDataArray[1]}`;
+        divHeader.innerHTML = `ID:${userDataArray[1]} ${userDataArray[2]}`;
         divCard.appendChild(divHeader);
         
         // カードボディの定義
@@ -124,23 +124,7 @@
         formElement.setAttribute('id','userForm');
         formElement.setAttribute('name','userInfo');
         formElement.setAttribute('method','post');
-        
-        // 名前入力フォームの生成
-        const div_form_name = document.createElement('div');
-        div_form_name.setAttribute('class','form-group');
-        const label_name = document.createElement('label');
-        label_name.setAttribute('class','label_user');
-        label_name.innerHTML = '名前';
-        div_form_name.appendChild(label_name);
-        const input_name = document.createElement('input');
-        input_name.setAttribute('type','text');
-        input_name.setAttribute('class','form-control name-input');
-        input_name.setAttribute('name','name');
-        input_name.value = userDataArray[2];
-        input_name.disabled = true;
-        div_form_name.appendChild(input_name);
-        formElement.appendChild(div_form_name);
-        
+                
         // 日付入力フォームの生成
         const div_form_cut = document.createElement('div');
         div_form_cut.setAttribute('class','form-group inline-block menu-time');
