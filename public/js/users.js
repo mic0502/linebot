@@ -232,9 +232,8 @@
                     response.json()
                     .then(data=>{
                         // 画面を更新する
-                        const row8 = document.getElementsByName("row-menu");
                         // response.selecteddate + ' ' + response.selectedtime;
-                        row8[0].textContent = data.menu;
+                        document.getElementsByName("row-menu")[0].textContent = data.menu;
                         divCard.style.display = 'none';
                         alert('更新完了！');
                     })        
