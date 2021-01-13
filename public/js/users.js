@@ -82,7 +82,7 @@
                 }else{
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
-                    td.setAttribute('class',`${CLASSES[index]}`);
+                    td.setAttribute('class',`uElements ${CLASSES[index]}`);
                     td.setAttribute('name',`${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
 
@@ -224,7 +224,7 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
-                        // usersData[1,8] = data.menu;
+                        usersData[1,8] = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
                     })        
