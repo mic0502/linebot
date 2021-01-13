@@ -14,7 +14,7 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             connection.query(text_query, (error, results) => {
                 if (error){
-                    console.log('データベース失敗');
+                    console.log(`データベース失敗：${text_query}`);
                     reject(error)
                 }else{
                     console.log(`データベース成功 ${order}：${text_query}`);
