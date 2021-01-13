@@ -91,8 +91,7 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
-                            var resData = createCard(usersData[i-1],x,y);
-                            alert(`変更した値は${resData.selected}と${resData.selectedmenu}`)
+                            createCard(usersData[i-1],x,y);
                         });
                     }
                     tr.appendChild(td);
@@ -103,9 +102,6 @@
     }
 
     const createCard = (userDataArray,x,y) => {
-        var obj = new Object();
-        obj.selected = '';
-        obj.selectedmenu = '';
 
         if(document.getElementById("card-user") != null){
             document.getElementById('card-user').remove();
@@ -228,15 +224,14 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
+                        userDataArray[1,8] = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
-                        obj.selected = data.selecteddate + ' ' + data.selectedtime;
-                        obj.selectedmenu = data.menu;
-                        return obj;
+                        return data.menu;
                     })        
                 })
                 .catch(e=>{
-                    throw obj;
+                    throw e;
                 });
             });
             divButton.appendChild(sendButton);
@@ -346,9 +341,9 @@
         }
         
         divHeader.ondragstart = () => {
-            return obj;
+            return false;
         }
-        return obj;
+
     }
 
 })();
