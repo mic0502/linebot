@@ -348,7 +348,7 @@
         divHeader.ondragstart = () => {
             return obj;
         }
-
+        return obj;
     }
 
 })();
