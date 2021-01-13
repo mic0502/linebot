@@ -232,8 +232,8 @@
                     // 画面を更新する
                     const row8 = document.getElementsByName("row-menu");
                     // response.selecteddate + ' ' + response.selectedtime;
-                    alert(JSON.parse(response).menu)
-                    row8[0].value === JSON.parse(response).menu;
+                    alert(response.json().menu)
+                    row8[0].value === response.json().menu;
                     divCard.style.display = 'none';
                     alert('更新完了！');
                 })
