@@ -230,7 +230,7 @@
                 })
                 .then(response=>{
                     if(response.ok){
-                        const data = response.json();
+                        const data = response.text();
                         // 画面を更新する
                         const row8 = document.getElementsByName("row-menu");
                         // response.selecteddate + ' ' + response.selectedtime;
