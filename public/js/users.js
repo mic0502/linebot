@@ -235,7 +235,7 @@
                         const row8 = document.getElementsByName("row-menu");
                         // response.selecteddate + ' ' + response.selectedtime;
                         alert(data.menu)
-                        row8[0].value === data.menu;
+                        row8[0].value = data.menu;
                         divCard.style.display = 'none';
                         alert('更新完了！');
                     })        
