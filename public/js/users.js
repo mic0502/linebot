@@ -231,8 +231,8 @@
                 .then(response=>{
                     response.json()
                     .then(data=>{
-                        // 画面を更新する
-                        // response.selecteddate + ' ' + response.selectedtime;
+                        // テーブルを更新する
+                        document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
                         divCard.style.display = 'none';
                         alert('更新完了！');
