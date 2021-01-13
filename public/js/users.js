@@ -103,7 +103,9 @@
 
     const createCard = (userDataArray,x,y) => {
 
-        document.getElementById('card-user').remove();
+        if(document.getElementById("card-user") != null){
+            document.getElementById('card-user').remove();
+        }
 
         // カード本体の定義
         const divCard = document.createElement('div');
