@@ -230,15 +230,17 @@
                 })
                 .then(response=>{
                     if(response.ok){
-                        const data = response.text();
-                        // 画面を更新する
-                        const row8 = document.getElementsByName("row-menu");
-                        // response.selecteddate + ' ' + response.selectedtime;
-                        alert(data.menu)
-                        row8[0].value === data.menu;
-                        divCard.style.display = 'none';
-                        alert('更新完了！');
-
+                        response.text()
+                        .then(text=>{
+                            // 画面を更新する
+                            const data = text;
+                            const row8 = document.getElementsByName("row-menu");
+                            // response.selecteddate + ' ' + response.selectedtime;
+                            alert(data.menu)
+                            row8[0].value === data.menu;
+                            divCard.style.display = 'none';
+                            alert('更新完了！');
+                        })
                     }else{
                         alert('HTTPレスポンスエラーです');
                     }
