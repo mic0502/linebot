@@ -103,6 +103,8 @@
 
     const createCard = (userDataArray,x,y) => {
 
+        divCard.remove();
+
         // カード本体の定義
         const divCard = document.createElement('div');
         
