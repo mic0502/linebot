@@ -91,8 +91,8 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
-                            let [resReserve, resMenu] = createCard(usersData[i-1],x,y);
-                            alert(`変更した値は${resReserve}と${resMenu}`)
+                            var resData = createCard(usersData[i-1],x,y);
+                            alert(`変更した値は${resData.selected}と${resData.selectedmenu}`)
                         });
                     }
                     tr.appendChild(td);
@@ -227,7 +227,10 @@
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
-                        return [data.selecteddate + ' ' + data.selectedtime,data.menu];
+                        var obj = new Object();
+                        obj.selected = data.selecteddate + ' ' + data.selectedtime;
+                        obj.selectedmenu = data.menu;
+                        return obj;
                     })        
                 })
                 .catch(e=>{
