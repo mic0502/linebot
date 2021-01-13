@@ -183,7 +183,7 @@
         
         //編集ボタンの作成
         const editButton = document.createElement('input');
-        editButton.setAttribute('class','btn btn-warning card-button');
+        editButton.setAttribute('class','btn-warning card-button');
         editButton.value = '編集';
         editButton.type = 'button';
         
@@ -201,7 +201,7 @@
             const sendButton = document.createElement('input');
             sendButton.value = '送信';
             sendButton.type = 'button';
-            sendButton.setAttribute('class','btn btn-warning card-button');
+            sendButton.setAttribute('class','btn-warning card-button');
             
             //sendButtonクリック時の処理
             sendButton.addEventListener('click',(e)=>{
