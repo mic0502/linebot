@@ -83,7 +83,7 @@
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
                     td.setAttribute('class',`uElements ${CLASSES[index]}`);
-                    td.setAttribute('name',`${CLASSES[index]}(${i})`);
+                    td.setAttribute('name',`${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
