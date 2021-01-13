@@ -105,7 +105,6 @@
 
         // カード本体の定義
         const divCard = document.createElement('div');
-        divCard.style.display = 'none';
         
         divCard.setAttribute('class','text-white bg-primary card-user');
         divCard.style.top = `${y}px`;
