@@ -229,13 +229,20 @@
                     creadentials:'same-origin'
                 })
                 .then(response=>{
-                    // 画面を更新する
-                    const row8 = document.getElementsByName("row-menu");
-                    // response.selecteddate + ' ' + response.selectedtime;
-                    alert(response.json.menu)
-                    row8[0].value === response.json(0).menu;
-                    divCard.style.display = 'none';
-                    alert('更新完了！');
+                    if(response.ok){
+                        const data = await response.json();
+                        // 画面を更新する
+                        const row8 = document.getElementsByName("row-menu");
+                        // response.selecteddate + ' ' + response.selectedtime;
+                        alert(data.menu)
+                        row8[0].value === data.menu;
+                        divCard.style.display = 'none';
+                        alert('更新完了！');
+
+                    }else{
+                        alert('HTTPレスポンスエラーです');
+                    }
+        
                 })
                 .catch(e=>{
                     throw e;
