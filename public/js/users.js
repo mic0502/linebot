@@ -103,6 +103,9 @@
     }
 
     const createCard = (userDataArray,x,y) => {
+        var obj = new Object();
+        obj.selected = '';
+        obj.selectedmenu = '';
 
         if(document.getElementById("card-user") != null){
             document.getElementById('card-user').remove();
@@ -227,14 +230,13 @@
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
-                        var obj = new Object();
                         obj.selected = data.selecteddate + ' ' + data.selectedtime;
                         obj.selectedmenu = data.menu;
                         return obj;
                     })        
                 })
                 .catch(e=>{
-                    throw e;
+                    throw obj;
                 });
             });
             divButton.appendChild(sendButton);
@@ -344,7 +346,7 @@
         }
         
         divHeader.ondragstart = () => {
-            return false;
+            return obj;
         }
 
     }
