@@ -224,10 +224,9 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
-                        userDataArray[1,8] = data.menu;
+                        userDataArray[8] = data.menu;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
-                        return data.menu;
                     })        
                 })
                 .catch(e=>{
