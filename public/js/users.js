@@ -103,12 +103,13 @@
 
     const createCard = (userDataArray,x,y) => {
 
-        divCard.remove();
+        document.getElementById('card-user').remove();
 
         // カード本体の定義
         const divCard = document.createElement('div');
         
         divCard.setAttribute('class','text-white bg-primary card-user');
+        divCard.setAttribute('id','card-user');
         divCard.style.top = `${y}px`;
         divCard.style.left = `${x/2}px`;
 
@@ -221,7 +222,7 @@
                         // テーブルを更新する
                         document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
                         document.getElementsByName("row-menu")[0].textContent = data.menu;
-                        divCard.remove();
+                        document.getElementById('card-user').remove();
                         alert('更新完了！');
                     })        
                 })
@@ -258,7 +259,7 @@
         closeButton.setAttribute('class','closeButton');
         closeButton.textContent = '閉じる';
         divFooter.addEventListener('click',()=>{
-            divCard.remove();
+            document.getElementById('card-user').remove();
         });
         divFooter.appendChild(closeButton);
         divCard.appendChild(divFooter);
