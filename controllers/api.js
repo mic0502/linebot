@@ -26,11 +26,12 @@ module.exports = {
         const update_query = `UPDATE TM_RESERVE SET selecteddate='${selecteddate}',selectedtime='${selectedtime}',menu='${menu}' WHERE id=${id};`;
         User.dbQuery(update_query,'予約情報変更')
             .then(message=>{
-                res.status(200).json({
+                const data = {
                     selecteddate:selecteddate,
                     selectedtime:selectedtime,
                     menu:menu
-                });
+                }
+                res.status(200).json(data);
             })
             .catch(e=>console.log(e.stack));
      }
