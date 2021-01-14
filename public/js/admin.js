@@ -196,7 +196,7 @@
         //編集ボタンクリック時の動作
         editButton.addEventListener('click',()=>{
             //formのactionを設定　paramとしてidをつける
-            formElement.setAttribute('action',`api/customer/${userDataArray[0]}`);
+            formElement.setAttribute('action',`api/admin/${userDataArray[0]}`);
             
             //各インプットの入力をできるようにする
             input_cut.disabled = false;
@@ -213,7 +213,7 @@
             sendButton.addEventListener('click',(e)=>{
                 e.preventDefault();
                 const data = new FormData(formElement);
-                fetch(`/api/customer/${userDataArray[0]}`,{
+                fetch(`/api/admin/${userDataArray[0]}`,{
                     method:'POST',
                     body:data,
                     creadentials:'same-origin'
