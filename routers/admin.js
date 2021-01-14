@@ -7,7 +7,7 @@ router
    .get(controller.getData);
 
 router 
-   .route('/customer/:id')
+   .route('/costomer/:id')
    .post(controller.putUser);
    
 module.exports = router;
