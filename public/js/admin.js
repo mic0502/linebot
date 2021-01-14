@@ -11,7 +11,6 @@
     const fetchData = async () => {
         try{
             const response = await fetch(API_URL);
-            alert('1');
 
             if(response.ok){
                 const data = await response.json();
@@ -199,7 +198,7 @@
         //編集ボタンクリック時の動作
         editButton.addEventListener('click',()=>{
             //formのactionを設定　paramとしてidをつける
-            formElement.setAttribute('action',`api/updateCustomer/${userDataArray[0]}`);
+            formElement.setAttribute('action',`admin/updateCustomer/${userDataArray[0]}`);
             
             //各インプットの入力をできるようにする
             input_cut.disabled = false;
@@ -216,7 +215,7 @@
             sendButton.addEventListener('click',(e)=>{
                 e.preventDefault();
                 const data = new FormData(formElement);
-                fetch(`/api/updateCustomer/${userDataArray[0]}`,{
+                fetch(`/admin/updateCustomer/${userDataArray[0]}`,{
                     method:'POST',
                     body:data,
                     creadentials:'same-origin'
