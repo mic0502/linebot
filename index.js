@@ -83,6 +83,7 @@ const handleMessageEvent = async (ev) => {
     let pushText;
     if(text === '予約する'){
         client.unlinkRichMenuFromUser(ev.source.userId, process.env.ENV_RICHMENUID)
+        console.log(名越さん)
 
         pushText = reserve.orderChoice();
     }else if(text === '予約確認'){
