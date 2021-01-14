@@ -1,6 +1,6 @@
 (()=>{
 
-    const API_URL = 'https://linebot-linkapp.herokuapp.com/admin/';
+    const API_URL = 'api/admin/';
     const HEADERS = ['予約番号','顧客ID','　名前　','ランク','ポイント','　誕生日　','直近購入日','　　次回予約　　','　景品　'];
     const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-reserve','row-menu'];
 
