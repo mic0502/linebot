@@ -46,7 +46,7 @@ const lineBot = (req,res) => {
             case 'accountLink':
                 const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                 (async () => {
-                  await sleep(400);
+                  await sleep(5000);
                   promises.push(accountLink(ev));
                 })();
                 break;
@@ -82,9 +82,6 @@ const handleMessageEvent = async (ev) => {
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     let pushText;
     if(text === '予約する'){
-        client.unlinkRichMenuFromUser(ev.source.userId, process.env.ENV_RICHMENUID)
-        console.log(名越さん)
-
         pushText = reserve.orderChoice();
     }else if(text === '予約確認'){
         pushText = await reserve.checkNextReservation(ev.source.userId,0);
