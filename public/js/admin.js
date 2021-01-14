@@ -196,7 +196,7 @@
         //編集ボタンクリック時の動作
         editButton.addEventListener('click',()=>{
             //formのactionを設定　paramとしてidをつける
-            formElement.setAttribute('action',`api/updateCustomer/${userDataArray[0]}`);
+            formElement.setAttribute('action',`api/updateReserve/${userDataArray[0]}`);
             
             //各インプットの入力をできるようにする
             input_cut.disabled = false;
@@ -213,7 +213,7 @@
             sendButton.addEventListener('click',(e)=>{
                 e.preventDefault();
                 const data = new FormData(formElement);
-                fetch(`/api/updateCustomer/${userDataArray[0]}`,{
+                fetch(`/api/updateReserve/${userDataArray[0]}`,{
                     method:'POST',
                     body:data,
                     creadentials:'same-origin'
@@ -230,9 +230,6 @@
                         alert('更新完了！');
                     })        
                 })
-                .catch(e=>{
-                    throw e;
-                });
             });
             divButton.appendChild(sendButton);
             
@@ -248,9 +245,13 @@
         deleteButton.value = '削除';
         deleteButton.type = 'button';
         deleteButton.addEventListener('click',()=>{
-        
-            // クリック時の処理を後で実装
-            
+            fetch(`/api/updateReserve/${userDataArray[0]}`)
+            .then(response=>{response.text()
+                .then(text=>{
+                    // テーブルを削除する
+                    alert(text);
+                })
+            })
         });
         divButton.appendChild(deleteButton);
         divCard.appendChild(divButton);

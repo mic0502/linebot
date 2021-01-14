@@ -7,7 +7,11 @@ router
    .get(controller.getData);
 
 router 
-   .route('/updateCustomer/:id')
+   .route('/updateReserve/:id')
    .post(controller.putUser);
+   
+router 
+   .route('/delReserve/:id')
+   .post(controller.delUser);
    
 module.exports = router;

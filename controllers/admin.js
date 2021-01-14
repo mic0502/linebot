@@ -33,6 +33,16 @@ module.exports = {
                 });
             })
             .catch(e=>console.log(e.stack));
+     },
+
+    delUser: (req,res) => {
+        const id = parseInt(req.params.id);
+        const delete_query = `DELETE FROM TM_RESERVE WHERE id=${id};`;
+        User.dbQuery(delete_query,'予約情報削除')
+            .then(message=>{
+                res.status(200).send('予約削除しました');
+            })
+            .catch(e=>console.log(e.stack));
      }
 
 }
