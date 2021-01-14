@@ -17,8 +17,8 @@ router
     .get('/admin',(req,res)=>{
         res.render('pages/admin');
     })
-    .get('/users',(req,res)=>{
-        res.render('pages/users');
+    .get('/customer',(req,res)=>{
+        res.render('pages/customer');
     })
     .get('/reservations',(req,res)=>{
         res.render('pages/reservations');
