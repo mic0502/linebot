@@ -245,6 +245,7 @@
         deleteButton.value = '削除';
         deleteButton.type = 'button';
         deleteButton.addEventListener('click',()=>{
+            alert('aaa');
             fetch(`/api/admin/delReserve/${userDataArray[0]}`)
             .then(response=>{response.text()
                 .then(text=>{
