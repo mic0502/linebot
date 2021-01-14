@@ -1,6 +1,6 @@
 (()=>{
 
-    const API_URL = 'https://linebot-linkapp.herokuapp.com/admin/';
+    const API_URL = 'https://linebot-linkapp.herokuapp.com/api/';
     const HEADERS = ['予約番号','顧客ID','　名前　','ランク','ポイント','　誕生日　','直近購入日','　　次回予約　　','　景品　'];
     const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-reserve','row-menu'];
 
@@ -198,7 +198,7 @@
         //編集ボタンクリック時の動作
         editButton.addEventListener('click',()=>{
             //formのactionを設定　paramとしてidをつける
-            formElement.setAttribute('action',`admin/updateCustomer/${userDataArray[0]}`);
+            formElement.setAttribute('action',`api/updateCustomer/${userDataArray[0]}`);
             
             //各インプットの入力をできるようにする
             input_cut.disabled = false;
@@ -215,7 +215,7 @@
             sendButton.addEventListener('click',(e)=>{
                 e.preventDefault();
                 const data = new FormData(formElement);
-                fetch(`/admin/updateCustomer/${userDataArray[0]}`,{
+                fetch(`/api/updateCustomer/${userDataArray[0]}`,{
                     method:'POST',
                     body:data,
                     creadentials:'same-origin'
