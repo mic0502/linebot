@@ -245,7 +245,7 @@
         deleteButton.value = '削除';
         deleteButton.type = 'button';
         deleteButton.addEventListener('click',()=>{
-            fetch(`/api/updateReserve/${userDataArray[0]}`)
+            fetch(`/api/admin/updateReserve/${userDataArray[0]}`)
             .then(response=>{response.text()
                 .then(text=>{
                     // テーブルを削除する
