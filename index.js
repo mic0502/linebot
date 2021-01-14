@@ -46,8 +46,8 @@ const lineBot = (req,res) => {
             case 'accountLink':
                 const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                 (async () => {
-                  await sleep(5000);
                   promises.push(accountLink(ev));
+                  await sleep(5000);
                 })();
                 break;
             case 'postback':
