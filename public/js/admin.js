@@ -14,7 +14,6 @@
 
             if(response.ok){
                 const data = await response.json();
-                alert('2');
                 createTable(data);
             }else{
                 alert('HTTPレスポンスエラーです');
@@ -31,7 +30,6 @@
         
         // data.usersを２次元配列の形にする
         const usersData = [];
-        alert('3');
 
         data.users.forEach(usersObj=>{
         
