@@ -4,7 +4,7 @@ const controller = require('../controllers/admin');
 
 router
    .route('/')
-   .post(controller.getData);
+   .get(controller.getData);
 
 router 
    .route('/updateReserve/:id')
