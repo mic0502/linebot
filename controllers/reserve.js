@@ -10,10 +10,10 @@ module.exports = {
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
-              const aaa = `00${(new Date().getMonth() + 1)}`;
-              const bbb = `00${new Date().getDate()}`;
-              const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
-              const selectQuery2 = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' AND selecteddate > ${now};`;
+              // const aaa = `00${(new Date().getMonth() + 1)}`;
+              // const bbb = `00${new Date().getDate()}`;
+              // const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
+              const selectQuery2 = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' AND selecteddate > CURRENT_DATE();`;
               console.log(selectQuery2);
               User.dbQuery(selectQuery2,'予約確認処理２')
                 .then(res2=>{
