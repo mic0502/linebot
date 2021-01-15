@@ -4,68 +4,89 @@ const line = require('@line/bot-sdk');
 
 module.exports = {
     // メニュー選択
-    orderChoice: () => {
-        return {
-            "type":"flex",
-            "altText":"menuSelect",
-            "contents":
-            {
-                "type": "bubble",
-                "header": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "どちらか選択して下さい。",
-                      "size": "lg",
-                      "align": "center"
-                    }
-                  ]
-                },
-                "body": {
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
-                      "type": "button",
-                      "action": {
-                        "type": "postback",
-                        "label": "景品A",
-                        "data": `${new Date().getTime()}&menu&景品A`
-                      },
-                      "margin": "md",
-                      "style": "primary"
-                    },
-                    {
-                      "type": "button",
-                      "action": {
-                        "type": "postback",
-                        "label": "景品B",
-                        "data": `${new Date().getTime()}&menu&景品B`
-                      },
-                      "margin": "md",
-                      "style": "primary"
-                    }
-                  ],
-                  "position": "relative"
-                },
-                "footer": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "button",
-                      "action": {
-                        "type": "postback",
-                        "label": "キャンセル",
-                        "data": `${new Date().getTime()}&cancel`
+    orderChoice: (line_id) => {
+      return new Promise((resolve,reject)=>{
+        const selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${line_id}';`;
+        User.dbQuery(selectQuery,'予約確認処理１')
+          .then(res=>{
+            if(res.length){
+              const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
+              const selectQuery2 = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' AND selecteddate > ${now};`;
+              console.log(selectQuery2);
+              User.dbQuery(selectQuery2,'予約確認処理２')
+                .then(res2=>{
+                  if(res2.length){
+                    resolve({"type":"text","text":"すでに予約が入っています。\n\n新しく予約する場合は一旦入っている予約を削除してください。"})
+                  }else{
+                    resolve({
+                      "type":"flex",
+                      "altText":"menuSelect",
+                      "contents":
+                      {
+                        "type": "bubble",
+                        "header": {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "どちらか選択して下さい。",
+                              "size": "lg",
+                              "align": "center"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "type": "box",
+                          "layout": "horizontal",
+                          "contents": [
+                            {
+                              "type": "button",
+                              "action": {
+                                "type": "postback",
+                                "label": "景品A",
+                                "data": `${new Date().getTime()}&menu&景品A`
+                              },
+                              "margin": "md",
+                              "style": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "action": {
+                                "type": "postback",
+                                "label": "景品B",
+                                "data": `${new Date().getTime()}&menu&景品B`
+                              },
+                              "margin": "md",
+                              "style": "primary"
+                            }
+                          ],
+                          "position": "relative"
+                        },
+                        "footer": {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "button",
+                              "action": {
+                                "type": "postback",
+                                "label": "キャンセル",
+                                "data": `${new Date().getTime()}&cancel`
+                              }
+                            }
+                          ]
+                        }
                       }
-                    }
-                  ]
-                }
-              }
-        };
+                    });
+                  }
+                });
+            }else{
+              resolve({"type":"text","text":"ラインの連携がされていません。連携後に予約してください。"})
+            }
+          })
+          .catch(e=>console.log(e));
+      });
     },
     // 日付選択
     askDate: (orderedMenu) => {
@@ -341,14 +362,14 @@ module.exports = {
                 const convertJST = new Date();
                 convertJST.setHours(convertJST.getHours() + 9);
                 const recieveDate = convertJST.toLocaleString('ja-JP').slice(0,-3);
-                const insertQuery = `INSERT INTO TM_RESERVE (line_uid, name, recievedate, selecteddate, selectedtime, menu) VALUES('${id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
+                const insertQuery = `INSERT INTO TM_RESERVE (login_id, name, recievedate, selecteddate, selectedtime, menu) VALUES('${res[0].login_id}','${res[0].name}','${recieveDate}','${selectedDate}','${selectedtime}','${menu}');`;
                 User.dbQuery(insertQuery,'予約データ格納１')
                   .then(insRes=>{
                     resolve(200);
                   })
                   .catch(e=>console.log(e));
               }else{
-                console.log('LINE　IDに一致するユーザーが見つかりません。');
+                console.log('LINE IDに一致するユーザーが見つかりません。');
                 reject(401);
               }
             })
@@ -359,7 +380,7 @@ module.exports = {
     checkNextReservation: (id,flg) => {
       return new Promise((resolve,reject)=>{
         const nowTime = new Date().getTime();
-        const selectQuery = `SELECT * FROM TM_RESERVE WHERE line_uid ='${id}' ORDER BY id desc;`;
+        const selectQuery = `SELECT * FROM TM_RESERVE WHERE login_id ='${id}' ORDER BY id desc;`;
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){

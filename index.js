@@ -82,7 +82,7 @@ const handleMessageEvent = async (ev) => {
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     let pushText;
     if(text === '予約する'){
-        pushText = reserve.orderChoice();
+        pushText = reserve.orderChoice(ev.source.userId);
     }else if(text === '予約確認'){
         pushText = await reserve.checkNextReservation(ev.source.userId,0);
     }else if(text === '予約キャンセル'){
