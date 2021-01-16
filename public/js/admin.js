@@ -74,7 +74,6 @@
         for(let i=0;i<l;i++){
             //tr要素の挿入
             const tr = table.insertRow(-1);
-            tr.setAttribute('class','uRow');
             HEADERS.forEach((value,index)=>{
                 if(i===0){
                     // 最初の行は表題（th）とする
@@ -83,6 +82,9 @@
                     th.innerHTML = value;
                     tr.appendChild(th);
                 }else{
+                    if(index===0){
+                        tr.setAttribute('class','uRow');
+                    }
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
                     td.setAttribute('name',`${CLASSES[index]}`);
