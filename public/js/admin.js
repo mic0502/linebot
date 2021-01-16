@@ -35,11 +35,6 @@
 
         data.forEach(reservationsObj=>{
         
-            // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
-            // const revData = data.reservations.filter(revObj=>{
-            //     return parseInt(revObj.selecteddate.replace('/','').replace('/','')) > parseInt(now);
-            // });
-            
             // revData.starttimeを日時文字列へ変換する
             const birthdayDate = (reservationsObj.birthday != null && reservationsObj.birthday.length > 0)?`${reservationsObj.birthday.slice(0,4)}/${reservationsObj.birthday.slice(4,6)}/${reservationsObj.birthday.slice(-2)}`:'';
             const recentbuyDate = (reservationsObj.recent_buy != null && reservationsObj.recent_buy.length > 0)?`${reservationsObj.recent_buy.slice(0,4)}/${reservationsObj.recent_buy.slice(4,6)}/${reservationsObj.recent_buy.slice(-2)}`:'';
@@ -80,16 +75,14 @@
                     th.innerHTML = value;
                     tr.appendChild(th);
                 }else{
-                    if(index===0){
-                        if(parseInt(usersData[i-1][7].slice(0,10).replace('/','').replace('/','')) < parseInt(now)){
-                            tr.setAttribute('class','uRowOld');
-                        }else{
-                            tr.setAttribute('class','uRow');
-                        }
-                    }
+                    // 過去の予約の列は色をグレーにする
+                    if(index===0){if(parseInt(usersData[i-1][7].slice(0,10).replace('/','').replace('/','')) < parseInt(now)){
+                        tr.setAttribute('class','uRowOld');
+                    }else{
+                        tr.setAttribute('class','uRow');
+                    }}
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
-                    td.setAttribute('name',`${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
