@@ -12,8 +12,10 @@
         try{
             const response = await fetch(API_URL);
 
+            console.log('-2')
             if(response.ok){
                 const data = await response.json();
+                console.log('-1')
                 createTable(data);
             }else{
                 alert('予約データがありません。');
