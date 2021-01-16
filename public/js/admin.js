@@ -46,7 +46,7 @@
             // });
             
             // revData.starttimeを日時文字列へ変換する
-            const nextReservationDate = (reservationsObj.length) ? reservationsObj.selecteddate + ' ' + reservationsObj.selectedtime : '予約なし';
+            const nextReservationDate = reservationsObj.selecteddate + ' ' + reservationsObj.selectedtime;
 
             // usersData配列へ配列を格納
             usersData.push([
