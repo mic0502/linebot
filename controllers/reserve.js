@@ -6,13 +6,12 @@ module.exports = {
     // メニュー選択
     orderChoice: (line_id) => {
       return new Promise((resolve,reject)=>{
-        const selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${line_id}';`;
+        let selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${line_id}';`;
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
-              const selectQuery2 = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' AND CAST(REPLACE(selecteddate, "/", "") AS SIGNED) >= CURRENT_DATE;`;
-              console.log(selectQuery2);
-              User.dbQuery(selectQuery2,'予約確認処理２')
+              selectQuery = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' AND CAST(REPLACE(selecteddate, "/", "") AS SIGNED) >= CURRENT_DATE;`;
+              User.dbQuery(selectQuery,'予約確認処理２')
                 .then(res2=>{
                   if(res2.length){
                     resolve({"type":"text","text":"すでに予約が入っています。\n\n新しく予約する場合は一旦入っている予約を削除してください。"})
@@ -382,7 +381,7 @@ module.exports = {
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
-              selectQuery = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' ORDER BY id desc;`;
+              selectQuery = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' AND CAST(REPLACE(selecteddate, "/", "") AS SIGNED) >= CURRENT_DATE;`;
               User.dbQuery(selectQuery,'予約確認処理２')
                 .then(res2=>{
                   if(res2.length){
