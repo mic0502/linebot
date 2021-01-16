@@ -12,10 +12,8 @@
         try{
             const response = await fetch(API_URL);
 
-            alert('-2')
             if(response.ok){
                 const data = await response.json();
-                alert('-1')
                 createTable(data);
             }else{
                 alert('予約データがありません。');
@@ -27,7 +25,6 @@
 
     const createTable = (data) => {
 
-        alert('0')
         // div要素の取得
         const divElement = document.getElementById('usersPage');
         
@@ -36,7 +33,6 @@
 
         data.users.forEach(usersObj=>{
         
-            alert('1')
             const aaa = `00${(new Date().getMonth() + 1)}`;
             const bbb = `00${new Date().getDate()}`;
             // 現在時刻のタイムスタンプ取得
@@ -44,16 +40,14 @@
 
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
             const revData = data.reservations.filter(revObj1=>{
-                return usersObj.line_id === revObj1.line_uid;
+                return usersObj.login_id === revObj1.login_id;
             }).filter(revObj2=>{
                 return parseInt(revObj2.selecteddate.replace('/','').replace('/','')) > parseInt(now);
             });
-            alert('2')
             
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
 
-            alert('3')
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
@@ -66,7 +60,6 @@
                 nextReservationDate,
                 revData[0].menu
             ]);
-            alert('4')
 
         });
         
