@@ -31,7 +31,7 @@
         // data.usersを２次元配列の形にする
         const usersData = [];
 
-        data.users.forEach(usersObj=>{
+        data.reservations.forEach(reservationsObj=>{
         
             const aaa = `00${(new Date().getMonth() + 1)}`;
             const bbb = `00${new Date().getDate()}`;
@@ -39,10 +39,8 @@
             const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
 
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
-            const revData = data.reservations.filter(revObj1=>{
-                return usersObj.login_id === revObj1.login_id;
-            }).filter(revObj2=>{
-                return parseInt(revObj2.selecteddate.replace('/','').replace('/','')) > parseInt(now);
+            const revData = data.reservations.filter(revObj=>{
+                return parseInt(revObj.selecteddate.replace('/','').replace('/','')) > parseInt(now);
             });
             
             // revData.starttimeを日時文字列へ変換する
@@ -51,12 +49,12 @@
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
-                usersObj.login_id,
-                usersObj.name,
-                usersObj.rank,
-                usersObj.point,
-                `${usersObj.birthday.slice(0,4)}/${usersObj.birthday.slice(4,6)}/${usersObj.birthday.slice(-2)}`,
-                `${usersObj.recent_buy.slice(0,4)}/${usersObj.recent_buy.slice(4,6)}/${usersObj.recent_buy.slice(-2)}`,
+                reservationsObj.login_id,
+                reservationsObj.name,
+                reservationsObj.rank,
+                reservationsObj.point,
+                `${reservationsObj.birthday.slice(0,4)}/${reservationsObj.birthday.slice(4,6)}/${reservationsObj.birthday.slice(-2)}`,
+                `${reservationsObj.recent_buy.slice(0,4)}/${reservationsObj.recent_buy.slice(4,6)}/${reservationsObj.recent_buy.slice(-2)}`,
                 nextReservationDate,
                 revData[0].menu
             ]);

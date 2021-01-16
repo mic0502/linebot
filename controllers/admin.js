@@ -3,19 +3,11 @@ const User = require('../models/User');
 module.exports = {
 
     getData: (req,res) => {
-        const pickup_users = 'SELECT * FROM TM_KOK;';
-        const pickup_reservations = 'SELECT * FROM TM_RESERVE;';
-        User.dbQuery(pickup_users,'顧客情報照会')
-            .then(users=>{
-                User.dbQuery(pickup_reservations,'予約情報照会')
-                    .then(reservations=>{
-                        const data = {
-                            users:users,
-                            reservations:reservations
-                        }
-                        res.status(200).json(data);
-                    })
-                    .catch(e=>console.log(e))
+        const pickup_reserve = 'SELECT * FROM TM_RESERVE INNER JOIN TM_KOK ON TM_RESERVE.login_id = TM_KOK.login_id;';
+        User.dbQuery(pickup_reserve,'予約情報照会')
+            .then(reservations=>{
+                const data = {reservations:reservations}
+                res.status(200).json(data);
             })
             .catch(e=>console.log(e))           
    },
