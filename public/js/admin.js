@@ -84,7 +84,6 @@
                 }else{
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
-                    td.setAttribute('class',`uElements ${CLASSES[index]}`);
                     td.setAttribute('name',`${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
 
@@ -96,7 +95,7 @@
                             createCard(usersData[i-1],x,y);
                         });
                     }
-                    tr.setAttribute('class',`urow`);
+                    tr.setAttribute('class','uRow');
                     tr.appendChild(td);
                 }
             });
