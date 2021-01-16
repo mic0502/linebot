@@ -35,11 +35,6 @@
 
         data.forEach(reservationsObj=>{
         
-            const aaa = `00${(new Date().getMonth() + 1)}`;
-            const bbb = `00${new Date().getDate()}`;
-            // 現在時刻のタイムスタンプ取得
-            const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
-
             // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
             // const revData = data.reservations.filter(revObj=>{
             //     return parseInt(revObj.selecteddate.replace('/','').replace('/','')) > parseInt(now);
@@ -66,8 +61,11 @@
         });
         
         // 次回予約日を計算し、usersDataへpushする
-        const l = usersData.length+1;  //表題の分＋１している
-        
+        const l = usersData.length+1;  //表題の分＋１している        
+        const aaa = `00${(new Date().getMonth() + 1)}`;
+        const bbb = `00${new Date().getDate()}`;
+        const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
+
         // テーブル要素の生成
         const table = document.createElement('table');
         table.setAttribute('id','usersTable');
@@ -83,7 +81,11 @@
                     tr.appendChild(th);
                 }else{
                     if(index===0){
-                        tr.setAttribute('class','uRow');
+                        if(parseInt(usersData[i-1][7].slice(0,10).replace('/','').replace('/','')) < parseInt(now)){
+                            tr.setAttribute('class','uRowOld');
+                        }else{
+                            tr.setAttribute('class','uRow');
+                        }
                     }
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
