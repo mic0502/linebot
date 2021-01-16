@@ -31,7 +31,7 @@
         const divElement = document.getElementById('usersPage');
         
         // data.usersを２次元配列の形にする
-        const usersData = [];
+        let usersData = [];
 
         data.forEach(reservationsObj=>{
         
