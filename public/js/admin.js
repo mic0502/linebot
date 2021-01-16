@@ -25,6 +25,7 @@
 
     const createTable = (data) => {
 
+        console.log('0')
         // div要素の取得
         const divElement = document.getElementById('usersPage');
         
@@ -33,6 +34,7 @@
 
         data.users.forEach(usersObj=>{
         
+            console.log('1')
             const aaa = `00${(new Date().getMonth() + 1)}`;
             const bbb = `00${new Date().getDate()}`;
             // 現在時刻のタイムスタンプ取得
@@ -44,10 +46,12 @@
             }).filter(revObj2=>{
                 return parseInt(revObj2.selecteddate.replace('/','').replace('/','')) > parseInt(now);
             });
+            console.log('2')
             
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
 
+            console.log('3')
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
@@ -60,6 +64,7 @@
                 nextReservationDate,
                 revData[0].menu
             ]);
+            console.log('4')
 
         });
         
