@@ -33,7 +33,7 @@
         // data.usersを２次元配列の形にする
         const usersData = [];
 
-        data.reservations.forEach(reservationsObj=>{
+        data.forEach(reservationsObj=>{
         
             // const aaa = `00${(new Date().getMonth() + 1)}`;
             // const bbb = `00${new Date().getDate()}`;
