@@ -7,8 +7,7 @@ module.exports = {
         const pickup_reserve = 'SELECT * FROM TM_RESERVE INNER JOIN TM_KOK ON TM_RESERVE.login_id = TM_KOK.login_id WHERE CAST(REPLACE(TM_RESERVE.selecteddate, "/", "") AS SIGNED) >= CURRENT_DATE;';
         User.dbQuery(pickup_reserve,'予約情報照会')
             .then(reservations=>{
-                const data = {reservations:reservations}
-                res.status(200).json(data);
+                res.status(200).json(reservations);
             })
             .catch(e=>console.log(e))           
    },
