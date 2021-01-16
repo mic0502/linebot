@@ -50,7 +50,7 @@
 
             // usersData配列へ配列を格納
             usersData.push([
-                revData.id,
+                reservationsObj.id,
                 reservationsObj.login_id,
                 reservationsObj.name,
                 reservationsObj.rank,
@@ -58,7 +58,7 @@
                 `${reservationsObj.birthday.slice(0,4)}/${reservationsObj.birthday.slice(4,6)}/${reservationsObj.birthday.slice(-2)}`,
                 `${reservationsObj.recent_buy.slice(0,4)}/${reservationsObj.recent_buy.slice(4,6)}/${reservationsObj.recent_buy.slice(-2)}`,
                 nextReservationDate,
-                revData.menu
+                reservationsObj.menu
             ]);
 
         });
