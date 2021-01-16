@@ -49,7 +49,7 @@
             const birthdayDate = (reservationsObj.birthday.length)?`${reservationsObj.birthday.slice(0,4)}/${reservationsObj.birthday.slice(4,6)}/${reservationsObj.birthday.slice(-2)}`:'';
             // birthdayDate = (birthdayDate == '')?'':`${birthdayDate.slice(0,4)}/${birthdayDate.slice(4,6)}/${birthdayDate.slice(-2)}`;
             const recentbuyDate = (reservationsObj.recent_buy == null)?'':reservationsObj.recent_buy;
-            recentbuyDate = (recentbuyDate == '')?'':`${recentbuyDate.slice(0,4)}/${recentbuyDate.slice(4,6)}/${recentbuyDate.slice(-2)}`;
+            // recentbuyDate = (recentbuyDate == '')?'':`${recentbuyDate.slice(0,4)}/${recentbuyDate.slice(4,6)}/${recentbuyDate.slice(-2)}`;
             const nextReservationDate = reservationsObj.selecteddate + ' ' + reservationsObj.selectedtime;
             
             // usersData配列へ配列を格納
