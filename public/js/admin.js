@@ -33,15 +33,15 @@
 
         data.reservations.forEach(reservationsObj=>{
         
-            const aaa = `00${(new Date().getMonth() + 1)}`;
-            const bbb = `00${new Date().getDate()}`;
-            // 現在時刻のタイムスタンプ取得
-            const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
+            // const aaa = `00${(new Date().getMonth() + 1)}`;
+            // const bbb = `00${new Date().getDate()}`;
+            // // 現在時刻のタイムスタンプ取得
+            // const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
 
-            // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
-            const revData = data.reservations.filter(revObj=>{
-                return parseInt(revObj.selecteddate.replace('/','').replace('/','')) > parseInt(now);
-            });
+            // // data.reservationsからdata.usersのline_uidが一致するもの、かつ現在時刻より先の予約データのみを抽出
+            // const revData = data.reservations.filter(revObj=>{
+            //     return parseInt(revObj.selecteddate.replace('/','').replace('/','')) > parseInt(now);
+            // });
             
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
