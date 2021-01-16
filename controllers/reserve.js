@@ -368,7 +368,7 @@ module.exports = {
                   })
                   .catch(e=>console.log(e));
               }else{
-                console.log('LINE IDに一致するユーザーが見つかりません。');
+                console.log('ラインが連携されていません。');
                 reject(401);
               }
             })
@@ -378,60 +378,70 @@ module.exports = {
     // 予約確認
     checkNextReservation: (id,flg) => {
       return new Promise((resolve,reject)=>{
-        const nowTime = new Date().getTime();
-        const selectQuery = `SELECT * FROM TM_RESERVE WHERE login_id ='${id}' ORDER BY id desc;`;
+        let selectQuery = `SELECT * FROM TM_KOK WHERE line_id ='${id}';`;
         User.dbQuery(selectQuery,'予約確認処理１')
           .then(res=>{
             if(res.length){
-              var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
-              const date = res[0].selecteddate;
-              const d = new Date(date).getDay();
-              const week = weekday[d];
-              const time = res[0].selectedtime;
-              const menu = res[0].menu;
-              if(flg===0){
-                resolve({"type":"text","text": `次回予約は${date.slice(5,7)}月${date.slice(8,10)}日${week}曜日 ${time}時から、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
-              }else{
-                resolve({
-                  "type":"flex",
-                  "altText": "cancel message",
-                  "contents":
-                  {
-                    "type": "bubble",
-                    "body": {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
+              selectQuery = `SELECT * FROM TM_RESERVE WHERE login_id ='${res[0].login_id}' ORDER BY id desc;`;
+              User.dbQuery(selectQuery,'予約確認処理２')
+                .then(res2=>{
+                  if(res2.length){
+                    var weekday = [ "日", "月", "火", "水", "木", "金", "土" ] ;
+                    const date = res2[0].selecteddate;
+                    const d = new Date(date).getDay();
+                    const week = weekday[d];
+                    const time = res2[0].selectedtime;
+                    const menu = res2[0].menu;
+                    if(flg===0){
+                      resolve({"type":"text","text": `次回予約は${date.slice(5,7)}月${date.slice(8,10)}日${week}曜日 ${time}時から、${menu}でお取りしてます\uDBC0\uDC22`});  //確認
+                    }else{
+                      resolve({
+                        "type":"flex",
+                        "altText": "cancel message",
+                        "contents":
                         {
-                          "type": "text",
-                          "text": `次回の予約は${date.slice(5,7)}月${date.slice(8,10)}日${week}曜日 ${time}時から、${menu}でおとりしてます。この予約をキャンセルしますか？`,
-                          "size": "lg",
-                          "wrap": true
-                        }
-                      ]
-                    },
-                    "footer": {
-                      "type": "box",
-                      "layout": "horizontal",
-                      "contents": [
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "postback",
-                            "label": "予約をキャンセルする",
-                            "data": `delete&${res[0].id}`
+                          "type": "bubble",
+                          "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": `次回の予約は${date.slice(5,7)}月${date.slice(8,10)}日${week}曜日 ${time}時から、${menu}でおとりしてます。この予約をキャンセルしますか？`,
+                                "size": "lg",
+                                "wrap": true
+                              }
+                            ]
+                          },
+                          "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                              {
+                                "type": "button",
+                                "action": {
+                                  "type": "postback",
+                                  "label": "予約をキャンセルする",
+                                  "data": `delete&${res2[0].id}`
+                                }
+                              }
+                            ]
                           }
                         }
-                      ]
+                      });  //削除
                     }
+                  }else{
+                    resolve({"type":"text","text": '予約が入っておりません。'});
                   }
-                });  //削除
-              }
+                })
+                .catch(e=>console.log(e));
             }else{
-              resolve({"type":"text","text": '予約が入っておりません。'});
-            }
+              console.log('ラインが連携されていません。');
+              reject(401);
+            }  
           })
-          .catch(e=>console.log(e));
+        .catch(e=>console.log(e));
+
       });
     },
     // 予約削除
