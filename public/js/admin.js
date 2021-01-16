@@ -2,7 +2,7 @@
 
     const API_URL = '/api/admin';
     const HEADERS = ['予約番号','顧客ID','　名前　','ランク','ポイント','　誕生日　','直近購入日','　　次回予約　　','　景品　'];
-    const CLASSES = ['row-id','row-name','row-resist','row-cut','row-shampoo','row-color','row-spa','row-reserve','row-menu'];
+    const CLASSES = ['row-id','row-kokid','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-reserve','row-menu'];
 
     window.addEventListener('load',()=>{
         fetchData();
@@ -83,6 +83,7 @@
                     }}
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
+                    td.setAttribute('name',`${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
 
                     // 施術時間をクリックした時の処理
