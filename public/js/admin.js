@@ -12,10 +12,10 @@
         try{
             const response = await fetch(API_URL);
 
-            console.log('-2')
+            alert('-2')
             if(response.ok){
                 const data = await response.json();
-                console.log('-1')
+                alert('-1')
                 createTable(data);
             }else{
                 alert('予約データがありません。');
@@ -27,7 +27,7 @@
 
     const createTable = (data) => {
 
-        console.log('0')
+        alert('0')
         // div要素の取得
         const divElement = document.getElementById('usersPage');
         
@@ -36,7 +36,7 @@
 
         data.users.forEach(usersObj=>{
         
-            console.log('1')
+            alert('1')
             const aaa = `00${(new Date().getMonth() + 1)}`;
             const bbb = `00${new Date().getDate()}`;
             // 現在時刻のタイムスタンプ取得
@@ -48,12 +48,12 @@
             }).filter(revObj2=>{
                 return parseInt(revObj2.selecteddate.replace('/','').replace('/','')) > parseInt(now);
             });
-            console.log('2')
+            alert('2')
             
             // revData.starttimeを日時文字列へ変換する
             const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
 
-            console.log('3')
+            alert('3')
             // usersData配列へ配列を格納
             usersData.push([
                 revData[0].id,
@@ -66,7 +66,7 @@
                 nextReservationDate,
                 revData[0].menu
             ]);
-            console.log('4')
+            alert('4')
 
         });
         
