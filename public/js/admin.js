@@ -14,9 +14,11 @@
 
             if(response.ok){
                 const data = await response.json();
-                createTable(data);
-            }else{
-                alert('予約データがありません。');
+                if(data.length){
+                    createTable(data);
+                }else{
+                    alert('予約データがありません。');
+                }
             }
          }catch(error){
             alert('データ読み込み失敗です');
