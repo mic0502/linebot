@@ -82,7 +82,7 @@
                 }else{
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
-                    td.setAttribute('class',`uElements ${CLASSES[index]}`);
+                    td.setAttribute('class',`uElements`);
                     td.setAttribute('name',`${CLASSES[index]}`);
                     td.innerHTML = usersData[i-1][index];
 
