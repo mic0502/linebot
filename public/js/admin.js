@@ -44,11 +44,11 @@
             // });
             
             // revData.starttimeを日時文字列へ変換する
-            const nextReservationDate = (revData.length) ? revData[0].selecteddate + ' ' + revData[0].selectedtime : '予約なし';
+            const nextReservationDate = (reservationsObj.length) ? reservationsObj.selecteddate + ' ' + reservationsObj.selectedtime : '予約なし';
 
             // usersData配列へ配列を格納
             usersData.push([
-                revData[0].id,
+                revData.id,
                 reservationsObj.login_id,
                 reservationsObj.name,
                 reservationsObj.rank,
@@ -56,7 +56,7 @@
                 `${reservationsObj.birthday.slice(0,4)}/${reservationsObj.birthday.slice(4,6)}/${reservationsObj.birthday.slice(-2)}`,
                 `${reservationsObj.recent_buy.slice(0,4)}/${reservationsObj.recent_buy.slice(4,6)}/${reservationsObj.recent_buy.slice(-2)}`,
                 nextReservationDate,
-                revData[0].menu
+                revData.menu
             ]);
 
         });
