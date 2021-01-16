@@ -82,47 +82,6 @@ body {
 .row-id{
    margin-left:1vw;
 }
-/* .row-id{
-   width:6vw;
-   font-size:2vw;
-   margin-left:1vw;
-}
-
-.row-name{
-   width:23vw;
-   font-size:2.5vw;
-}
-
-.row-resist{
-   width:18vw;
-   font-size:2.5vw;
-}
-
-.row-cut{
-   width:8vw;
-   font-size:2.5vw;
-}
-
-.row-shampoo{
-   width:10vw;
-   font-size:2.5vw;
-}
-
-.row-color{
-   width:8vw;
-   font-size:2.5vw;
-}
-
-.row-spa{
-   width:8vw;
-   font-size:2.5vw;
-}
-
-.row-nextrev{
-   width:18vw;
-   font-size:2.5vw;
-} */
-
 
 /* 顧客情報カード */
 .card-user{
@@ -208,3 +167,4 @@ body {
    background-color:rgb(222, 231, 97);
    cursor:pointer;
 }
+.uRowOld{background-color:#aaa;}

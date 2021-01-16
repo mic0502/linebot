@@ -74,6 +74,7 @@
         for(let i=0;i<l;i++){
             //tr要素の挿入
             const tr = table.insertRow(-1);
+            tr.setAttribute('class','uRow');
             HEADERS.forEach((value,index)=>{
                 if(i===0){
                     // 最初の行は表題（th）とする
@@ -95,7 +96,6 @@
                             createCard(usersData[i-1],x,y);
                         });
                     }
-                    tr.setAttribute('class','uRow');
                     tr.appendChild(td);
                 }
             });
