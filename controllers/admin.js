@@ -29,6 +29,7 @@ module.exports = {
      },
 
     delUser: (req,res) => {
+        console.log('bbb')
         const id = parseInt(req.params.id);
         const delete_query = `DELETE FROM TM_RESERVE WHERE id=${id};`;
         User.dbQuery(delete_query,'予約情報削除')
