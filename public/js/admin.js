@@ -96,6 +96,7 @@
                             createCard(usersData[i-1],x,y);
                         });
                     }
+                    tr.setAttribute('class',`urow`);
                     tr.appendChild(td);
                 }
             });
