@@ -246,7 +246,7 @@
             fetch(`/api/admin/delReserve/${userDataArray[0]}`,{method:'POST'})
             .then(response=>{response.text()
                 .then(text=>{
-                    // テーブルを削除する
+                    document.getElementById('card-user').remove();
                     alert(text);
                 })
             })
