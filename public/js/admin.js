@@ -91,7 +91,7 @@
                         td.addEventListener('click',(e)=>{
                             const x = e.pageX;
                             const y = e.pageY;
-                            createCard(usersData[i-1],x,y);
+                            createCard(usersData[i-1],i-1,x,y);
                         });
                     }
                     tr.appendChild(td);
@@ -101,7 +101,7 @@
         divElement.appendChild(table);
     }
 
-    const createCard = (userDataArray,x,y) => {
+    const createCard = (userDataArray,selectrow,x,y) => {
 
         if(document.getElementById("card-user") != null){
             document.getElementById('card-user').remove();
@@ -222,8 +222,8 @@
                     response.json()
                     .then(data=>{
                         // テーブルを更新する
-                        document.getElementsByName("row-reserve")[0].textContent = data.selecteddate + ' ' + data.selectedtime;
-                        document.getElementsByName("row-menu")[0].textContent = data.menu;
+                        document.getElementsByName("row-reserve")[selectrow].textContent = data.selecteddate + ' ' + data.selectedtime;
+                        document.getElementsByName("row-menu")[selectrow].textContent = data.menu;
                         userDataArray[7] = data.selecteddate + ' ' + data.selectedtime;
                         userDataArray[8] = data.menu;
                         document.getElementById('card-user').remove();
