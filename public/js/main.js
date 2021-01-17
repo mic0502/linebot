@@ -157,13 +157,13 @@ window.onload = () => {
                                                             liff.closeWindow()
                                                             const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                                                             (async () => {
-                                                              await sleep(1000);
+                                                              await sleep(500);
                                                               const url = `https://access.line.me/dialog/bot/${text}`;
-                                                              // document.location.href = url;
-                                                              liff.openWindow({
-                                                                  url: url,
-                                                                  external: false
-                                                              });
+                                                              document.location.href = url;
+                                                            //   liff.openWindow({
+                                                            //       url: url,
+                                                            //       external: false
+                                                            //   });
                                                             })();
                                             
                                                         })
