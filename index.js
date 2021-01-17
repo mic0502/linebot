@@ -44,11 +44,12 @@ const lineBot = (req,res) => {
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
-                const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
-                (async () => {
-                  await sleep(3000);
-                  promises.push(accountLink(ev));
-                })();
+                // const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+                // (async () => {
+                //   await sleep(3000);
+                //   promises.push(accountLink(ev));
+                // })();
+                promises.push(accountLink(ev));
                 break;
             case 'postback':
                 promises.push(handlePostbackEvent(ev));
