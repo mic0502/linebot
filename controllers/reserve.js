@@ -367,8 +367,7 @@ module.exports = {
                   })
                   .catch(e=>console.log(e));
               }else{
-                console.log('ラインが連携されていません。');
-                reject(401);
+                resolve({"type":"text","text":"ラインの連携がされていません。連携後に予約してください。"})
               }
             })
             .catch(e=>console.log(e));
@@ -435,8 +434,7 @@ module.exports = {
                 })
                 .catch(e=>console.log(e));
             }else{
-              console.log('ラインが連携されていません。');
-              reject(401);
+              resolve({"type":"text","text":"ラインの連携がされていません。連携後に予約してください。"})
             }  
           })
         .catch(e=>console.log(e));
