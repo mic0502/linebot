@@ -73,7 +73,7 @@ body {
 }
 
 #usersTable td{
-   border:solid 1px #aaa ;
+   border:solid 1px rgb(80, 80, 80) ;
    text-align:center;
    font-size:2vw;
    height:3vh;
@@ -167,4 +167,4 @@ body {
    background-color:rgb(222, 231, 97);
    cursor:pointer;
 }
-.uRowOld{background-color:#aaa;}
+.uRowOld{background-color:rgb(194, 194, 194);}
