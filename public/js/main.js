@@ -151,22 +151,21 @@ window.onload = () => {
                                                 credentials: 'same-origin'
                                             })
                                             .then(response=>{
-                                                if(response.ok){
-                                                    response.text()
-                                                        .then(text=>{
-                                                            const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
-                                                            (async () => {
-                                                              const url = `https://access.line.me/dialog/bot/${text}`;
-                                                              document.location.href = url;
-                                                              await sleep(2000);
-                                                              liff.closeWindow()
-                                                            //   liff.openWindow({
-                                                            //       url: url,
-                                                            //       external: false
-                                                            //   });
-                                                            })();
-                                            
-                                                        })
+                                                if(response.ok){response.text()
+                                                    .then(text=>{
+                                                        const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+                                                        (async () => {
+                                                            await sleep(2000);
+                                                            const url = `https://access.line.me/dialog/bot/${text}`;
+                                                            document.location.href = url;
+                                                            liff.closeWindow()
+                                                        //   liff.openWindow({
+                                                        //       url: url,
+                                                        //       external: false
+                                                        //   });
+                                                        })();
+                                        
+                                                    })
                                                 }else if(response.status == 402){
                                                     label_error.textContent = 'すでに他の端末でログインされています。';
                                                 }else{
