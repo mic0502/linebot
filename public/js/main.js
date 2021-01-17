@@ -154,7 +154,6 @@ window.onload = () => {
                                                 if(response.ok){
                                                     response.text()
                                                         .then(text=>{
-                                                            liff.closeWindow()
                                                             const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                                                             (async () => {
                                                               await sleep(500);
@@ -165,6 +164,7 @@ window.onload = () => {
                                                             //       external: false
                                                             //   });
                                                             })();
+                                                            liff.closeWindow()
                                             
                                                         })
                                                 }else if(response.status == 402){
