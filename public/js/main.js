@@ -160,7 +160,7 @@ window.onload = () => {
                                                               document.location.href = url;
                                                               await sleep(2000);
                                                               liff.closeWindow()
-                                                              //   liff.openWindow({
+                                                            //   liff.openWindow({
                                                             //       url: url,
                                                             //       external: false
                                                             //   });
