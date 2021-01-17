@@ -64,7 +64,7 @@ body {
 }
 
 .uTitles{
-   border:solid 1px #aaa ;
+   border:solid 1px rgb(80, 80, 80) ;
    text-align:center;
    background:#333;
    color:#fff;
