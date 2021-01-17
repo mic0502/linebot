@@ -155,7 +155,7 @@ window.onload = () => {
                                                     .then(text=>{
                                                         const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                                                         (async () => {
-                                                            await sleep(2000);
+                                                            await sleep(1000);
                                                             const url = `https://access.line.me/dialog/bot/${text}`;
                                                             document.location.href = url;
                                                             // liff.closeWindow()
