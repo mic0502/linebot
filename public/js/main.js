@@ -54,6 +54,10 @@ window.onload = () => {
                                       }
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
+
+                                    var barcode_form = document.createElement('svg');
+                                    document.getElementById('wrap_barcode').appendChild(barcode_form)
+
                                     JsBarcode("#barcode").init();
                                                                                                             
                                 }else{
