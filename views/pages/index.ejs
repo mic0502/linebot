@@ -18,6 +18,50 @@
         <p id='customer_point'></p>
         <div id='customer_medal'></div>
         <div id='customer_rankup'></div>
+
+
+        <h2>自由入力バーコード生成<br><span>※18桁の数字のみ。</span></h2>
+        <p class="input" id="js-generate">
+          <span>JAN:</span>
+          <input type="num" min="18" max="18">
+          <button>生成</button>
+        </p>
+        <div class="section">
+          <svg class="js-barcode"></svg>
+        </div>
+        <div class="section">
+          <canvas class="js-barcode"></canvas>
+        </div>
+        <div class="section">
+          <img class="js-barcode">
+        </div>
+      <hr>
+      <h2>JsBarcode<br><span>※固定表示確認用</span></h2>
+      <div class="section">
+        <div class="space">
+          <p>svg<br>
+            code:251165000000000000<br>
+            ※レジ打ち数値全表示
+          </p>
+          <svg class="barcode"></svg>
+        </div>
+        <div class="space">
+          <p>canvas：<br>
+            code:251165000000000000<br>
+            ※レジ打ち数値全表示
+          </p>
+          <canvas class="barcode"></canvas>
+        </div>
+        <div class="space">
+          <p>img:<br>
+            code:251165000000000000<br>
+            ※レジ打ち数値全表示
+          </p>
+          <img class="barcode"/>
+        </div>
+      </div>
+      
+      
     </div>
  
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>

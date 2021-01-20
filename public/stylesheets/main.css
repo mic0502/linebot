@@ -26,3 +26,40 @@ input[type="button"],input[type="submit"]{margin:5% 2%;font-size:120%;width:40%;
 
 .label_name, .name-input, .label_id, .id-input, .label_password, .password-input{font-size:18px;width:45%;margin:2% 1%;}
 .label_name, .label_id, .label_password{width:40%;}
+
+
+h2 {
+    text-align: center;
+    line-height: 1;
+  }
+  span {
+    font-size: 10px;
+  }
+
+  .section {
+    text-align: center;
+  }
+  svg, canvas, img {
+    max-width: 500px;
+    height: auto;
+    max-height: 250px;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
+
+  .input {
+    text-align: center;
+    vertical-align: middle;
+  }
+  input, span, button {
+    vertical-align: middle;
+  }
+  button {
+    margin-left: 10px;
+  }
+
+  .notice {
+    font-size: 10px;
+    color: red;
+  }

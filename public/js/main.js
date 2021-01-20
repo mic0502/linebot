@@ -54,6 +54,7 @@ window.onload = () => {
                                       }
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
+                                    
                                 }else{
                                     if(param.indexOf('&')>0){
                                         // 新規作成画面から遷移してきた場合
@@ -206,3 +207,51 @@ window.onload = () => {
         
 }
 
+
+// variables
+const $window = $(window);
+const num = "251165000000000000";
+const target = ".barcode";
+const target2 = ".js-barcode";
+const $generateButton = $('#js-generate').find('button');
+
+// functions
+let splitNum = (num) => {
+  num = num.slice(1)
+  let segments = num.match(/[\s\S]{1,4}/g) || [];
+  let text = "";
+  for (let i = 0; i < segments.length; i++) {
+    if(i !== segments.length - 1) {
+      text += segments[i] + "\u00A0\u00A0";
+    } else {
+      text += segments[i];
+    }
+  }
+  return text;
+};
+
+// events
+$window.on('load', function() {
+  const pram = {format: "ITF",text: splitNum(num),width: 2.8,height: 210,};
+  JsBarcode(target, num, pram);
+});
+
+$generateButton.on('click', function(e) {
+  e.preventDefault();
+  let $container = $('#js-generate');
+  let val = $container.find('input').val();
+  if(val.length === 18 && isNaN(val) !== true) {
+    $('#js-generate').find('.notice').remove();
+    let pram = {
+      format: "ITF",
+      text: splitNum(val),
+      width: 2.8,
+      height: 210,
+    };
+    JsBarcode(target2, val, pram);
+  } else {
+    let text = '<p class="notice">入力値が不正です</p>'
+    $container.find('.notice').remove();
+    $container.append(text);
+  }
+});
