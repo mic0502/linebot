@@ -55,16 +55,9 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
                                     
-                                    const target = ".js-barcode";
-                                    const $generateButton = $('#js-generate').find('button');                                    
-                                    const pram = {format: "ITF",text: splitNum(num),width: 2.8,height: 210,};
-                                    JsBarcode(target, "251165000000000000", pram);
-                                    let $container = $('#js-generate');
-                                    let val = $container.find('input').val();
-
-                                    $container.find('.notice').remove();
-                                    $container.append(text);
-                                                                  
+                                    const JsBarcode = require('jsbarcode');
+                                    JsBarcode('#code', 'test');
+                                                                        
                                 }else{
                                     if(param.indexOf('&')>0){
                                         // 新規作成画面から遷移してきた場合
