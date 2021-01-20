@@ -22,13 +22,16 @@
         <div id='customer_rankup'></div>
 
 
-        <svg id="barcode"></svg>
-        
+        <svg class="barcode"
+        jsbarcode-format="upc"
+        jsbarcode-value="201508044"
+        jsbarcode-textmargin="0">
+        </svg>
         
     </div>
     
     <script>
-        JsBarcode("#barcode", "201508044");
+        JsBarcode(".barcode").init();
     </script>
 
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
