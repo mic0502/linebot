@@ -123,9 +123,7 @@ const handlePostbackEvent = async (ev) => {
     default:
         pushText = {"type":"text","text":'予約が完了しました。'};
     }
-  }else if(splitData[1] === 'cancel'){
-        pushText = {"type":"text","text":'選択中止しました。'};
-  }else if(splitData[1] === 'no'){
+  }else if(splitData[1] === 'end'){
         pushText = {"type":"text","text":'予約を中止しました。'};
   }else if(splitData[1] === 'delete'){
     pushText = await reserve.deleteReserve(parseInt(splitData[1]));

@@ -70,7 +70,7 @@ module.exports = {
                               "action": {
                                 "type": "postback",
                                 "label": "キャンセル",
-                                "data": `${new Date().getTime()}&cancel`
+                                "data": `${new Date().getTime()}&end`
                               }
                             }
                           ]
@@ -342,7 +342,7 @@ module.exports = {
                   "action": {
                     "type": "postback",
                     "label": "いいえ",
-                    "data": `${new Date().getTime()}&no&${menu}&${date}&${time}`
+                    "data": `${new Date().getTime()}&end&${menu}&${date}&${time}`
                   }
                 }
               ]
