@@ -55,7 +55,7 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
 
-                                    document.getElementById('barcode').setAttribute('jsbarcode-value','201508044');
+                                    document.getElementById('barcode').setAttribute('type','number');
 
                                                                                                             
                                 }else{
