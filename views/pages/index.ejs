@@ -8,7 +8,7 @@
     <script src="js/JsBarcode.all.min.js"></script>
     <script>
         function load() {
-            JsBarcode("#barcode", "1234");
+            JsBarcode(".barcode").init();
         }
     </script>
 
@@ -28,8 +28,13 @@
         <div id='customer_rankup'></div>
 
 
-        <img id="barcode"/>
-          
+        <svg class="barcode"
+        jsbarcode-format="upc"
+        jsbarcode-value="123456789012"
+        jsbarcode-textmargin="0"
+        jsbarcode-fontoptions="bold">
+      </svg>
+
       
     </div>
  
