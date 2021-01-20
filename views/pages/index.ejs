@@ -5,6 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Jewelry KAJITA</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+    <script src="js/JsBarcode.all.min.js"></script>
+    <script>
+        function load() {
+            JsBarcode("#barcode", "1234", {
+                format: "CODE39",
+                lineColor: "#000",
+                width:2,
+                height:100,
+                displayValue: true
+            });
+        }
+    </script>
+
+
 </head>
 
 <body onload="load()">
@@ -27,19 +41,6 @@
  
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src='js/main.js'></script>
-    <script src="js/JsBarcode.all.min.js"></script>
-    <script>
-        function load() {
-            JsBarcode("#barcode", "1234", {
-                format: "CODE39",
-                lineColor: "#000",
-                width:2,
-                height:100,
-                displayValue: true
-            });
-        }
-    </script>
-
 
 </body>
 </html>
