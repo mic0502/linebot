@@ -55,11 +55,10 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
 
-                                    const barcode_form = document.createElement('svg');
+                                    var barcode_form = document.createElement('svg');
                                     barcode_form.setAttribute('id','barcode');
                                     barcode_form.setAttribute('jsbarcode-value','201508044');
                                     document.getElementById('wrap_barcode').appendChild(barcode_form);
-
                                                                                                             
                                 }else{
                                     if(param.indexOf('&')>0){
