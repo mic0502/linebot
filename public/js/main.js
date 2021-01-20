@@ -55,9 +55,7 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
                                     
-                                    const $window = $(window);
-                                    const target = ".barcode";
-                                    const target2 = ".js-barcode";
+                                    const target = ".js-barcode";
                                     const $generateButton = $('#js-generate').find('button');                                    
                                     const pram = {format: "ITF",text: splitNum(num),width: 2.8,height: 210,};
                                     JsBarcode(target, "251165000000000000", pram);
