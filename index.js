@@ -127,7 +127,7 @@ const handlePostbackEvent = async (ev) => {
         pushText = {"type":"text","text":'選択中止しました。'};
   }else if(splitData[1] === 'no'){
         pushText = {"type":"text","text":'予約を中止しました。'};
-  }else if(splitData[0] === 'delete'){
+  }else if(splitData[1] === 'delete'){
     pushText = await reserve.deleteReserve(parseInt(splitData[1]));
   }
   return client.replyMessage(ev.replyToken,pushText);
