@@ -1,5 +1,3 @@
-<script src="js/JsBarcode.all.min.js"></script>
-
 window.onload = () => {
 
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
