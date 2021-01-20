@@ -5,6 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Jewelry KAJITA</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+
+    <script src="JsBarcode.all.min.js"></script>
+    <script>
+        function load() {
+            JsBarcode("#barcode", "1234", {
+                format: "CODE39",
+                lineColor: "#000",
+                width:2,
+                height:100,
+                displayValue: true
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -20,11 +34,8 @@
         <div id='customer_rankup'></div>
 
 
-        <div class="section">
-            <p>201508044</p>
-            <img id="code" class="js-barcode">
-        </div>
-      
+        <img id="barcode"/>
+          
       
     </div>
  

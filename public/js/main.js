@@ -54,10 +54,7 @@ window.onload = () => {
                                       }
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
-                                    
-                                    const JsBarcode = require('jsbarcode');
-                                    JsBarcode('#code', 'test');
-                                                                        
+                                                                                                            
                                 }else{
                                     if(param.indexOf('&')>0){
                                         // 新規作成画面から遷移してきた場合
