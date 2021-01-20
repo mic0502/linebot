@@ -6,12 +6,6 @@
     <title>Jewelry KAJITA</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
     <script src="js/JsBarcode.all.min.js"></script>
-    <script>
-        function load() {
-            JsBarcode("#barcode", "Hi world!");
-        }
-    </script>
-
 
 </head>
 
@@ -29,9 +23,14 @@
 
 
         <svg id="barcode"></svg>
-      
+        
+        
     </div>
- 
+    
+    <script>
+            JsBarcode("#barcode", "Hi world!");
+    </script>
+
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src='js/main.js'></script>
 
