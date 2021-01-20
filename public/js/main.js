@@ -1,3 +1,5 @@
+<script src="js/JsBarcode.all.min.js"></script>
+
 window.onload = () => {
 
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
@@ -54,6 +56,7 @@ window.onload = () => {
                                       }
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
+                                    JsBarcode("#barcode").init();
                                                                                                             
                                 }else{
                                     if(param.indexOf('&')>0){
