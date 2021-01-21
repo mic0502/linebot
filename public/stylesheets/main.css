@@ -27,3 +27,11 @@ input[type="button"],input[type="submit"]{margin:5% 2%;font-size:120%;width:40%;
 .label_name, .name-input, .label_id, .id-input, .label_password, .password-input{font-size:18px;width:45%;margin:2% 1%;}
 .label_name, .label_id, .label_password{width:40%;}
 
+svg{
+    width: 222px;
+    height: 142px;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
