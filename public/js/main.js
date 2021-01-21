@@ -7,7 +7,7 @@ window.onload = () => {
     var barcode_form = document.createElement('svg');
     barcode_form.setAttribute('class','barcode');
     barcode_form.setAttribute('jsbarcode-value','123456789012');
-    document.getElementById('body').appendChild(barcode_form)
+    document.body.appendChild(barcode_form)
 
     JsBarcode(".barcode").init();
 
