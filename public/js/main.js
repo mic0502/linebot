@@ -56,6 +56,7 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
 
+                                    // バーコード表示
                                     var barcodeElement = document.getElementById('barcode')
                                     barcodeElement.setAttribute('jsbarcode-value',parsedBody.login_id);
                                     JsBarcode("#barcode").init();                                
