@@ -133,6 +133,8 @@ window.onload = () => {
     document.getElementById('password-input').value = password;
 
 })
+.catch(err=>console.log(err));
 })
+.catch(err=>alert(JSON.stringify(err)));
 
 }
