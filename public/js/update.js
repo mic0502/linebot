@@ -106,12 +106,6 @@ window.onload = () => {
         var result = window.confirm( '本当に解除してよろしいですが。');
         if( result ) {
             fetch(`/api/link/release?line_uid=${lineId}`)
-            
-            if (!liff.isInClient()) {
-                sendAlertIfNotInClient();
-            } else {
-                liff.closeWindow();
-            }
         }
     });
 
