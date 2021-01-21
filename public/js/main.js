@@ -4,6 +4,10 @@ window.onload = () => {
     const myLiffId = '1654951421-JM6vmP1n';  //テスト
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
+    var barcode_form = document.createElement('svg');
+    document.getElementById('wrap_barcode').appendChild(barcode_form)
+
+    JsBarcode("#barcode").init();
 
     liff
         .init({
@@ -55,10 +59,6 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
 
-                                    var barcode_form = document.createElement('svg');
-                                    document.getElementById('wrap_barcode').appendChild(barcode_form)
-
-                                    JsBarcode("#barcode").init();
                                                                                                             
                                 }else{
                                     if(param.indexOf('&')>0){
