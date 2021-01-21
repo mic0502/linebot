@@ -73,7 +73,12 @@ module.exports = {
                                 const update_query = `UPDATE TM_KOK SET line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
                                 User.dbQuery(update_query,'連携２番目')
                                     .then(releaseRes=>{
-                                        res.status(200).send(`accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+                                        const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+                                        (async () => {
+                                            await sleep(3000);        
+                                            res.status(200).send(`accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+                                    })();
+
                                     })
                             })();
 
