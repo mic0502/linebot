@@ -9,7 +9,7 @@ window.onload = () => {
     barcode_form.setAttribute('jsbarcode-value','123456789012');
     document.getElementById('wrap_barcode').appendChild(barcode_form)
 
-    JsBarcode("#barcode").init();
+    JsBarcode(".barcode").init();
 
     liff
         .init({
