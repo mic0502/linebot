@@ -65,12 +65,19 @@ module.exports = {
                             const buf = Buffer.from(randomStrings);
                             const nonce = buf.toString('base64');
     
-                            // TM_KOKテーブルへの挿入
-                            const update_query = `UPDATE TM_KOK SET line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
-                            User.dbQuery(update_query,'連携２番目')
-                                .then(releaseRes=>{
-                                    res.status(200).send(`accountLink?linkToken=${linkToken}&nonce=${nonce}`);
-                                })
+                            const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+                            (async () => {
+                                await sleep(3000);
+                                
+                                // TM_KOKテーブルへの挿入
+                                const update_query = `UPDATE TM_KOK SET line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
+                                User.dbQuery(update_query,'連携２番目')
+                                    .then(releaseRes=>{
+                                        await sleep(3000);
+                                        res.status(200).send(`accountLink?linkToken=${linkToken}&nonce=${nonce}`);
+                                    })
+                            })();
+
 
                         }else{
                             // すでに他の端末でログインすみ
