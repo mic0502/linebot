@@ -4,10 +4,10 @@ window.onload = () => {
     const myLiffId = '1654951421-JM6vmP1n';  //テスト
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
-    var barcode_form = document.createElement('svg');
-    barcode_form.setAttribute('class','barcode');
+
+
+    var barcode_form = document.getElementsByClassName('barcode')
     barcode_form.setAttribute('jsbarcode-value','123456789012');
-    document.body.appendChild(barcode_form)
 
     liff
         .init({
