@@ -169,9 +169,8 @@ window.onload = () => {
                                                                 url: url,
                                                                 external: false
                                                             });
-                                                            await sleep(2000);
+                                                            await sleep(3000);
                                                             liff.closeWindow()
-                                                            await sleep(2000);
                                                             liff.closeWindow()
                                                         })();
                                         
