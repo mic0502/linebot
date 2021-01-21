@@ -6,7 +6,7 @@ window.onload = () => {
     const param = new URL(location).search;
 
 
-    var barcode_form = document.getElementsByClassName('barcode')
+    var barcode_form = document.getElementsByClass('barcode')
     barcode_form.setAttribute('jsbarcode-value','123456789012');
 
     liff
