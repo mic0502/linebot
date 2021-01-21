@@ -161,18 +161,15 @@ window.onload = () => {
                                                 if(response.ok){response.text()
                                                     .then(text=>{
                                                         const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
-                                                        (async () => {
-                                                            
+                                                        (async () => {                                                            
                                                             const url = `https://access.line.me/dialog/bot/${text}`;
                                                             // document.location.href = url;
                                                             liff.openWindow({
                                                                 url: url,
                                                                 external: false
                                                             });
-                                                            await sleep(3000);
-                                                            liff.closeWindow()
-                                                            await sleep(300);
-                                                            liff.closeWindow()
+                                                            await sleep(3000);liff.closeWindow();
+                                                            await sleep(300);liff.closeWindow();
                                                         })();
                                         
                                                     })
