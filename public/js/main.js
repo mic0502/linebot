@@ -6,9 +6,6 @@ window.onload = () => {
     const param = new URL(location).search;
 
 
-    var barcodeElement = document.getElementById('barcode')
-    barcodeElement.setAttribute('jsbarcode-value','123456789012');
-
     liff
         .init({
             liffId:myLiffId
@@ -59,6 +56,9 @@ window.onload = () => {
                                     document.getElementById('customer_medal').appendChild(medal_img);
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
 
+                                    var barcodeElement = document.getElementById('barcode')
+                                    barcodeElement.setAttribute('jsbarcode-value',parsedBody.login_id);
+                                    JsBarcode("#barcode").init();                                
                                                                                                             
                                 }else{
                                     if(param.indexOf('&')>0){
@@ -209,9 +209,6 @@ window.onload = () => {
                 .catch(err=>console.log(err));
         })
         .catch(err=>alert(JSON.stringify(err)));
-
-        JsBarcode("#barcode").init();
-
         
 }
 
