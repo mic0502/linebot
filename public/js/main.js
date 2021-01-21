@@ -6,8 +6,8 @@ window.onload = () => {
     const param = new URL(location).search;
 
 
-    var barcode_form = document.getElementsByClass('barcode')
-    barcode_form.setAttribute('jsbarcode-value','123456789012');
+    var barcodeElement = document.getElementById('barcode')
+    barcodeElement.setAttribute('jsbarcode-value','123456789012');
 
     liff
         .init({
@@ -210,7 +210,7 @@ window.onload = () => {
         })
         .catch(err=>alert(JSON.stringify(err)));
 
-        JsBarcode(".barcode").init();
+        JsBarcode("#barcode").init();
 
         
 }
