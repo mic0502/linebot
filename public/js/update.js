@@ -103,8 +103,7 @@ window.onload = () => {
     releaseButton.value = '連携解除する';
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
-        var result = window.confirm( '本当に解除してよろしいですが。');
-        if( result ) {
+        if(window.confirm( '本当に解除してよろしいですが。')) {
             fetch(`/api/link/release?line_uid=${lineId}`)
         }
     });

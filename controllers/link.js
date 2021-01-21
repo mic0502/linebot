@@ -51,7 +51,6 @@ module.exports = {
             // リッチメニュー デフォルトに解除
             client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
             client.pushMessage(line_uid, message)
-            liff.closeWindow();
               
         })
     }
