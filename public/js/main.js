@@ -171,6 +171,7 @@ window.onload = () => {
                                                             });
                                                             await sleep(3000);
                                                             liff.closeWindow()
+                                                            await sleep(500);
                                                             liff.closeWindow()
                                                         })();
                                         
