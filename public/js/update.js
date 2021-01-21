@@ -1,5 +1,12 @@
 
 window.onload = () => {
+    // const myLiffId = '1654951421-nwJ0jYeb';  //本番
+    const myLiffId = '1654951421-JM6vmP1n';  //テスト
+
+    liff
+    .init({liffId:myLiffId})
+    .then(()=>{liff.getProfile()
+        .then(profile=>{
 
     const param = new URL(location).search;
     const splitParam = param.split('&');
@@ -124,5 +131,7 @@ window.onload = () => {
     document.getElementById('name-input').value = name;
     document.getElementById('password-input').value = password;
 
+})
+})
 
 }
