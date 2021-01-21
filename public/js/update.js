@@ -3,10 +3,6 @@ window.onload = () => {
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
     const myLiffId = '1654951421-JM6vmP1n';  //テスト
 
-    liff
-    .init({liffId:myLiffId})
-    .then(()=>{liff.getProfile()
-        .then(profile=>{
 
     const param = new URL(location).search;
     const splitParam = param.split('&');
@@ -112,8 +108,18 @@ window.onload = () => {
     releaseButton.addEventListener('click',()=>{
         var result = window.confirm( '本当に解除してよろしいですが。');
         if( result ) {
-            fetch(`/api/link/release?line_uid=${lineId}`)
+
+            liff
+            .init({liffId:myLiffId})
+            .then(()=>{liff.getProfile()
+                .then(profile=>{
+                    fetch(`/api/link/release?line_uid=${lineId}`)
             liff.closeWindow()
+            })
+            .catch(err=>console.log(err));
+            })
+            .catch(err=>alert(JSON.stringify(err)));
+        
         }
     });
 
@@ -131,10 +137,5 @@ window.onload = () => {
     document.getElementById('id-input').value = id;
     document.getElementById('name-input').value = name;
     document.getElementById('password-input').value = password;
-
-})
-.catch(err=>console.log(err));
-})
-.catch(err=>alert(JSON.stringify(err)));
 
 }
