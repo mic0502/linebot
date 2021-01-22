@@ -107,7 +107,7 @@ window.onload = () => {
             fetch(`/api/link/release?line_uid=${lineId}`)
             .then(response => response.text())
             .then(text => {
-              console.log(text);
+              alert(text);
             });
 
         }
