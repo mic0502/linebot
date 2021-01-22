@@ -109,7 +109,6 @@ window.onload = () => {
             .then(response => response.text())
             .then(text => {
               alert(text);
-              liff.closeWindow();
             });
 
         }
