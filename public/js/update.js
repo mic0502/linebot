@@ -1,3 +1,4 @@
+const { default: liff } = require("@line/liff/dist/lib");
 
 window.onload = () => {
 
@@ -108,6 +109,7 @@ window.onload = () => {
             .then(response => response.text())
             .then(text => {
               alert(text);
+              liff.closeWindow();
             });
 
         }

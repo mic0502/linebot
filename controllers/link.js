@@ -51,7 +51,7 @@ module.exports = {
             // リッチメニュー デフォルトに解除
             client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
             client.pushMessage(line_uid, message)
-            res.status(200).send('テスト連携が解除されました。');
+            res.status(200).send('連携が解除されました。');
         })
         .catch(e=>console.log(e));    
 
