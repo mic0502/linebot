@@ -104,8 +104,11 @@ window.onload = () => {
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
         if(window.confirm( '本当に解除してよろしいですが。')) {
-            fetch(`/api/link/release?line_uid=${lineId}`,{method:'POST'})
-
+            fetch(`/api/link/release?line_uid=${lineId}`)
+            .then(response => response.text())
+            .then(text => {
+              console.log(text);
+            });
 
         }
     });
