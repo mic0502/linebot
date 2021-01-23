@@ -85,7 +85,6 @@ const handleMessageEvent = async (ev) => {
     }else if(text === '予約キャンセル'){
         pushText = await reserve.checkNextReservation(ev.source.userId,1);
     }else if(text === '連携解除'){
-        console.log('テスト通過')
         pushText = await linkapp.confirmation();
     }else{
         pushText = {"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"};
