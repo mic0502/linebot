@@ -1,3 +1,4 @@
+const { default: liff } = require("@line/liff/dist/lib");
 
 window.onload = () => {
 
@@ -108,7 +109,8 @@ window.onload = () => {
             liff
             .init({liffId:myLiffId})
             .then(()=>{        
-                liff.sendMessages([{'type': 'text','text': '連携解除'}])            
+                liff.sendMessages([{'type': 'text','text': '連携解除'}])      
+                liff.closeWindow();
             })
 
             // fetch(`/api/link/release?line_uid=${lineId}`)
