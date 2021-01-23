@@ -9,7 +9,13 @@ window.onload = () => {
     const lineId = splitParam[3].slice(8);
     const myLiffId = splitParam[4].slice(7);
 
-    // 大元のdiv要素
+    liff
+    .init({
+        liffId:myLiffId
+    })
+    .then(()=>{
+
+        // 大元のdiv要素
     const divUpdate = document.getElementById('update_area');
 
     // フォーム要素生成。ここに各label要素とinput要素を格納していく。
@@ -105,18 +111,10 @@ window.onload = () => {
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
         if(window.confirm( '本当に解除してよろしいですが。')) {
-            alert(myLiffId);
-            liff
-            .init({
-                liffId:myLiffId
-            })
-            .then(()=>{
                 liff.sendMessages([{
                     'type': 'text',
                     'text': '連携解除'
                 }])            
-            })
-    
 
             // fetch(`/api/link/release?line_uid=${lineId}`)
             // .then(response => response.text())
@@ -141,5 +139,7 @@ window.onload = () => {
     document.getElementById('name-input').value = name;
     document.getElementById('password-input').value = password;
 
+})
+    
 
 }
