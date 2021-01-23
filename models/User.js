@@ -11,8 +11,13 @@ var connection = mysql.createConnection(dbconfig);
 
 module.exports = {
     condb:()=>{
-        console.log('テスト通過')
-        connection = mysql.createConnection(dbconfig);
+        connection.connect(function(err) {
+            if(err) {
+              console.log("SQL CONNECT ERROR >> " + err);
+            } else {
+              console.log("SQL CONNECT SUCCESSFUL.");
+            }
+        });
     },
     
     dbQuery:(text_query,order)=>{
