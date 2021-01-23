@@ -106,6 +106,7 @@ window.onload = () => {
         liff
         .init({liffId:myLiffId})
         .then(()=>{
+            alert('テスト通過');
             liff.sendMessages([{'type': 'text','text': '連携解除'}]);
             liff.closeWindow();
         })
