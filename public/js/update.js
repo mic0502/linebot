@@ -105,13 +105,10 @@ window.onload = () => {
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
 
-        if (!liff.isInClient()) {
-          } else {
             liff.sendMessages([{
               'type': 'text',
               'text': '連携解除'
             }])
-        }
 
 
         // if(window.confirm( '本当に解除してよろしいですが。')) {
