@@ -1,5 +1,3 @@
-const { default: liff } = require("@line/liff/dist/lib");
-
 window.onload = () => {
 
     const param = new URL(location).search;
