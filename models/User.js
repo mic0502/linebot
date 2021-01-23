@@ -11,6 +11,7 @@ var connection = mysql.createConnection(dbconfig);
 
 module.exports = {
     condb:()=>{
+        console.log('テスト通過')
         connection.connect(function(err) {
             if(err) {
               console.log("SQL CONNECT ERROR >> " + err);
