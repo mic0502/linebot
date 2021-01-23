@@ -1,6 +1,5 @@
 window.onload = () => {
 
-
     const param = new URL(location).search;
     const splitParam = param.split('&');
     const name = decodeURIComponent(splitParam[0].slice(6));
@@ -105,7 +104,7 @@ window.onload = () => {
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
         if(window.confirm( '本当に解除してよろしいですが。')) {
-            liff.sendMessages([{'type': 'text','text': '連携解除'}]);
+            liff.sendMessages([{'type': 'text','text': '連携解除'}])            
 
             // fetch(`/api/link/release?line_uid=${lineId}`)
             // .then(response => response.text())
