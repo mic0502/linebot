@@ -6,7 +6,7 @@ const dbconfig = {
     user:process.env.ENV_USER,
     password:process.env.ENV_PASSWORD
 };
-const connection = mysql.createConnection(dbconfig);
+var connection = mysql.createConnection(dbconfig);
 
 
 module.exports = {
