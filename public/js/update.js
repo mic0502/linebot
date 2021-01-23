@@ -104,16 +104,22 @@ window.onload = () => {
     releaseButton.value = '連携解除する';
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
-        
-        if(window.confirm( '本当に解除してよろしいですが。')) {
-            liff.sendMessages([{'type': 'text','text': '連携解除'}]);
 
-            // fetch(`/api/link/release?line_uid=${lineId}`)
-            // .then(response => response.text())
-            // .then(text => {
-            //     alert(text);
-            // });
-        }
+            liff.sendMessages([{
+              'type': 'text',
+              'text': '連携解除'
+            }])
+
+
+        // if(window.confirm( '本当に解除してよろしいですが。')) {
+        //     liff.sendMessages([{'type': 'text','text': '連携解除'}]);
+
+        //     // fetch(`/api/link/release?line_uid=${lineId}`)
+        //     // .then(response => response.text())
+        //     // .then(text => {
+        //     //     alert(text);
+        //     // });
+        // }
     });
 
     // フォーム要素へform0〜form1と変更確認ボタンを格納
