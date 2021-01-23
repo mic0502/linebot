@@ -11,6 +11,7 @@ const connection = mysql.createConnection(dbconfig);
 
 module.exports = {
     condb:()=>{
+        console.log('テスト通過')
         connection = mysql.createConnection(dbconfig);
     },
     
