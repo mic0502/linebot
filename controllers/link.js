@@ -44,13 +44,13 @@ module.exports = {
         const update_query = `UPDATE TM_KOK SET line_id = '', nonce = '' WHERE line_id='${line_uid}';`
         User.dbQuery(update_query,'連携解除')
         .then(releaseRes=>{
-            const message = {
-                "type":"text",
-                "text":"連携が解除されました！"
-            };
             // リッチメニュー デフォルトに解除
             client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
-            client.pushMessage(line_uid, message)
+            // const message = {
+            //     "type":"text",
+            //     "text":"連携が解除されました！"
+            // };
+            // client.pushMessage(line_uid, message)
             res.status(200).send('連携が解除されました。');
             return {
                 "type":"flex",
