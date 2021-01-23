@@ -1,8 +1,4 @@
 window.onload = () => {
-    const User = require('../../models/User');
-    alert('テスト通過')
-    // データベース接続
-    User.condb();
 
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
     const myLiffId = '1654951421-JM6vmP1n';  //テスト
