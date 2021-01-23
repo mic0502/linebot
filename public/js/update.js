@@ -104,12 +104,8 @@ window.onload = () => {
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
         if(window.confirm( '本当に解除してよろしいですが。')) {
-            liff
-            .init({liffId:myLiffId})
-            .then(()=>{        
-                liff.closewindow();
-                liff.sendMessages([{'type': 'text','text': '連携解除'}]);
-            })
+            liff.closewindow();
+            liff.sendMessages([{'type': 'text','text': '連携解除'}]);
 
             // fetch(`/api/link/release?line_uid=${lineId}`)
             // .then(response => response.text())
