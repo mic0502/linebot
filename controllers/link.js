@@ -37,24 +37,38 @@ module.exports = {
         })
     },
 
-    releaseLink: (req,res) => {
-        const line_uid = req.query.line_uid;       
-
+    releaseLink: (line_uid) => {
+        return new Promise((resolve,reject)=>{
         // 連携解除処理開始
         const update_query = `UPDATE TM_KOK SET line_id = '', nonce = '' WHERE line_id='${line_uid}';`
         User.dbQuery(update_query,'連携解除')
-        .then(releaseRes=>{
+          .then(res=>{
             // リッチメニュー デフォルトに解除
             client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
-            const message = {
-                "type":"text",
-                "text":"連携が解除されました！"
-            };
-            client.pushMessage(line_uid, message)
-            res.status(200).send('連携が解除されました。');
+            resolve({"type":"text","text":"連携を解除しました。"});
         })
-        .catch(e=>console.log(e));    
+          .catch(e=>console.log(e));
+        });
+      },
+  
+    // releaseLink: (req,res) => {
+    //     const line_uid = req.query.line_uid;       
 
-    }
+    //     // 連携解除処理開始
+    //     const update_query = `UPDATE TM_KOK SET line_id = '', nonce = '' WHERE line_id='${line_uid}';`
+    //     User.dbQuery(update_query,'連携解除')
+    //     .then(releaseRes=>{
+    //         // リッチメニュー デフォルトに解除
+    //         client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
+    //         const message = {
+    //             "type":"text",
+    //             "text":"連携が解除されました！"
+    //         };
+    //         client.pushMessage(line_uid, message)
+    //         res.status(200).send('連携が解除されました。');
+    //     })
+    //     .catch(e=>console.log(e));    
+
+    // }
     
 }

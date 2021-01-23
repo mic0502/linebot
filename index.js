@@ -9,6 +9,7 @@ const linkRouter = require('./routers/link');
 const apiRouter = require('./routers/admin');
 const multipart = require('connect-multiparty');
 const reserve = require('./controllers/reserve');
+const linkapp = require('./controllers/link');
 require('dotenv').config();
 const config = {
    channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
@@ -88,6 +89,8 @@ const handleMessageEvent = async (ev) => {
         pushText = await reserve.checkNextReservation(ev.source.userId,0);
     }else if(text === '予約キャンセル'){
         pushText = await reserve.checkNextReservation(ev.source.userId,1);
+    }else if(text === '連携解除'){
+        pushText = await linkapp.releaseLink(ev.source.userId);
     }else{
         pushText = {"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"};
     }
