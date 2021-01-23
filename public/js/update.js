@@ -107,8 +107,8 @@ window.onload = () => {
             liff
             .init({liffId:myLiffId})
             .then(()=>{        
+                liff.closewindow()
                 liff.sendMessages([{'type': 'text','text': '連携解除'}]);
-                liff.closewindow();
             })
 
             // fetch(`/api/link/release?line_uid=${lineId}`)
