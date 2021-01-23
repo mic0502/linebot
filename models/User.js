@@ -1,15 +1,19 @@
 require('dotenv').config();
-const { response } = require('express');
 const mysql = require('mysql')
-const connection = mysql.createConnection({
+const dbconfig = {
     host:process.env.ENV_HOST,
     database:process.env.ENV_DATABASE,
     user:process.env.ENV_USER,
     password:process.env.ENV_PASSWORD
-});
+};
+const connection = mysql.createConnection(dbconfig);
 
 
 module.exports = {
+    condb:()=>{
+        connection = mysql.createConnection(dbconfig);
+    },
+    
     dbQuery:(text_query,order)=>{
         return new Promise((resolve,reject)=>{
             connection.query(text_query, (error, results) => {

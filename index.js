@@ -4,6 +4,7 @@ const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 5000
 const path = require('path');
 const router = require('./routers/index');
+const User = require('./models/User');
 const usersRouter = require('./routers/users');
 const linkRouter = require('./routers/link');
 const apiRouter = require('./routers/admin');
@@ -16,6 +17,8 @@ const config = {
    channelSecret:process.env.ENV_CHANNEL_SECRET
 };
 const client = new line.Client(config);
+
+User.condb();
 
 app
    .use(express.static(path.join(__dirname, 'public')))
