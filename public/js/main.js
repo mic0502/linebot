@@ -1,7 +1,5 @@
-const User = require('../../models/User');
-
 window.onload = () => {
-
+    const User = require('../../models/User');
     alert('テスト通過')
     // データベース接続
     User.condb();
