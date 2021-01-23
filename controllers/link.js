@@ -90,7 +90,7 @@ module.exports = {
           .then(res=>{
             // リッチメニュー デフォルトに解除
             client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
-            resolve({"type":"text","text":"連携を解除しました。"});
+            resolve({"type":"text","text":"ライン連携を解除しました。"});
         })
           .catch(e=>console.log(e));
         });
