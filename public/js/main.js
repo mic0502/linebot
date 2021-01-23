@@ -2,6 +2,7 @@ const User = require('../../models/User');
 
 window.onload = () => {
 
+    alert('テスト通過')
     // データベース接続
     User.condb();
 
