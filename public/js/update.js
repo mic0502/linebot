@@ -7,6 +7,7 @@ window.onload = () => {
     const id = splitParam[1].slice(3);
     const password = splitParam[2].slice(9);
     const lineId = splitParam[3].slice(8);
+    const myLiffId = splitParam[4].slice(7);
 
     // 大元のdiv要素
     const divUpdate = document.getElementById('update_area');
@@ -104,11 +105,23 @@ window.onload = () => {
     releaseButton.type = 'button';
     releaseButton.addEventListener('click',()=>{
         if(window.confirm( '本当に解除してよろしいですが。')) {
-            fetch(`/api/link/release?line_uid=${lineId}`)
-            .then(response => response.text())
-            .then(text => {
-                alert(text);
-            });
+            liff
+            .init({
+                liffId:myLiffId
+            })
+            .then(()=>{
+                liff.sendMessages([{
+                    'type': 'text',
+                    'text': '連携解除'
+                }])            
+            })
+    
+
+            // fetch(`/api/link/release?line_uid=${lineId}`)
+            // .then(response => response.text())
+            // .then(text => {
+            //     alert(text);
+            // });
         }
     });
 
