@@ -52,6 +52,42 @@ module.exports = {
             client.unlinkRichMenuFromUser(line_uid, process.env.ENV_RICHMENUID)
             client.pushMessage(line_uid, message)
             res.status(200).send('連携が解除されました。');
+            return {
+                "type":"flex",
+                "altText":"予約日選択",
+                "contents":
+                {
+                    "type": "bubble",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "来店希望日を選んでください。",
+                            "size": "md",
+                            "align": "center"
+                        }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "datetimepicker",
+                            "label": "希望日を選択する",
+                            "data": `${new Date().getTime()}&date&${orderedMenu}`,
+                            "mode": "date"
+                            }
+                        }
+                        ]
+                    }
+                }
+            }
+
         })
         .catch(e=>console.log(e));    
 
