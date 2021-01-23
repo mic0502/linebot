@@ -1,6 +1,7 @@
+liff.closewindow();
+
 window.onload = () => {
 
-    liff.closewindow();
 
     const param = new URL(location).search;
     const splitParam = param.split('&');
