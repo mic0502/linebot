@@ -1,4 +1,7 @@
-liff.closewindow();
+const { default: liff } = require("@line/liff/dist/lib");
+
+liff.closeWindow
+
 
 window.onload = () => {
 
