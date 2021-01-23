@@ -37,6 +37,51 @@ module.exports = {
         })
     },
 
+    confirmation: () => {
+        return {
+          "type":"flex",
+          "altText":"menuSelect",
+          "contents":
+          {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": '連携を解除してよろしいですか？',
+                  "size": "lg",
+                  "wrap": true
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "はい",
+                    "data": `${new Date().getTime()}&unlinkyes`
+                  }
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "いいえ",
+                    "data": `${new Date().getTime()}&unlinkno`
+                  }
+                }
+              ]
+            }
+          }
+        };
+    },
+
     releaseLink: (line_uid) => {
         return new Promise((resolve,reject)=>{
         // 連携解除処理開始

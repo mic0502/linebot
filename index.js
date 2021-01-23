@@ -90,7 +90,7 @@ const handleMessageEvent = async (ev) => {
     }else if(text === '予約キャンセル'){
         pushText = await reserve.checkNextReservation(ev.source.userId,1);
     }else if(text === '連携解除'){
-        pushText = await linkapp.releaseLink(ev.source.userId);
+        pushText = await linkapp.confirmation();
     }else{
         pushText = {"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"};
     }
@@ -121,15 +121,19 @@ const handlePostbackEvent = async (ev) => {
     const selectedTime = splitData[4];
     const insertData = await reserve.insertReservation(ev.source.userId,orderedMenu,selectedDate,selectedTime);
     switch(insertData){
-    case 401:
-        pushText = {"type":"text","text":'ラインが連携されていません。'};break;
-    default:
-        pushText = {"type":"text","text":'予約が完了しました。'};
+        case 401:
+            pushText = {"type":"text","text":'ラインが連携されていません。'};break;
+        default:
+            pushText = {"type":"text","text":'予約が完了しました。'};
     }
   }else if(splitData[1] === 'end'){
-        pushText = {"type":"text","text":'予約を中止しました。'};
+    pushText = {"type":"text","text":'予約を中止しました。'};
   }else if(splitData[1] === 'delete'){
     pushText = await reserve.deleteReserve(parseInt(splitData[2]));
+  }else if(splitData[1] === 'unlinkyes'){
+    pushText = await linkapp.releaseLink(ev.source.userId);
+  }else if(splitData[1] === 'unlinkno'){
+    pushText = {"type":"text","text":'ライン連携解除を中止しました。'};
   }
   return client.replyMessage(ev.replyToken,pushText);
 
