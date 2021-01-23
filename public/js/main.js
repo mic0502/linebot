@@ -1,5 +1,3 @@
-const { default: liff } = require("@line/liff/dist/lib");
-
 window.onload = () => {
 
     // const myLiffId = '1654951421-nwJ0jYeb';  //本番
@@ -170,7 +168,7 @@ window.onload = () => {
                                                                 url: url,
                                                                 external: false
                                                             });
-                                                            await sleep(3000);liff.closeWindow()
+                                                            await sleep(3000);liff.closeWindow();
                                                             await sleep(300);liff.closeWindow();
                                                         })();
                                         
