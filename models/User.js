@@ -1,13 +1,12 @@
 require('dotenv').config();
 const { response } = require('express');
 const mysql = require('mysql')
-const connect_config = {
+const connection = mysql.createConnection({
     host:process.env.ENV_HOST,
     database:process.env.ENV_DATABASE,
     user:process.env.ENV_USER,
     password:process.env.ENV_PASSWORD
-}
-const connection = mysql.createPool(connect_config);
+});
 
 
 module.exports = {
@@ -22,16 +21,6 @@ module.exports = {
                     resolve(results);
                 };
             })
-            connection.on('error', function(err) {
-                if(err.code === 'PROTOCOL_CONNECTION_LOST') {
-                    console.log('=> RECONECT...');
-                    //再接続
-                    connection = mysql.createPool(connect_config);
-                } else {
-                    throw err;
-                }              
-            });
-
         });
     }
 
