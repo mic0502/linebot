@@ -72,13 +72,11 @@ canvasElem.onmousemove = function(e) {
                       body: ''
                   })
                   alert('通過2')
-                  await sleep(3000);
                   if(response2.ok){
-                      const response3 = await fetch(`https://api.line.me/v2/bot/user/all/richmenu/${text}`,{
+                      const response3 = fetch(`https://api.line.me/v2/bot/user/all/richmenu/${text}`,{
                           method:'POST',headers: {'Authorization': AUTH}
                       })    
                       alert('通過3')
-                      await sleep(3000);
                       if(response3.ok){
                           alert('完了！')
                       }        
