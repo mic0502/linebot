@@ -67,7 +67,7 @@ canvasElem.onmousemove = function(e) {
           await sleep(3000);
           if(response.ok){response.text()
               .then(text=>{
-                  const response2 = await fetch(`https://api-data.line.me/v2/bot/richmenu/${text}/content`,{
+                  const response2 = fetch(`https://api-data.line.me/v2/bot/richmenu/${text}/content`,{
                       method:'POST',headers: {'Authorization': AUTH,'Content-Type': 'image/png'},
                       body: ''
                   })
