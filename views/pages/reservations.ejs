@@ -3,9 +3,19 @@
 <head>
    <%- include ("../partials/header.ejs") %>
 </head>
+
 <body>
    <%- include ("../partials/nav.ejs") %>
-   <h1>予約管理画面です</h1>
+   
+   <div id='usersPage'>
+       <h1 class='top-font'>管理画面</h1>
+       <form id="upload">
+         <canvas id="canvasElem" width="100" height="80" style="border:1px solid"></canvas>
+         <input type="button" value="Submit" onclick="submit()">       
+      </form>       
+   </div>
+   
    <%- include ("../partials/footer.ejs") %>
+   <script src='js/reservations.js'></script>
 </body>
 </html>
