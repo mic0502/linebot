@@ -139,7 +139,7 @@
         const input_cut = document.createElement('input');
         input_cut.setAttribute('type','text');
         input_cut.setAttribute('class','form-control time-input');
-        input_cut.setAttribute('name','selecteddate');
+        input_cut.setAttribute('name','sbt');
         input_cut.value = userDataArray[8];
         input_cut.disabled = true;
         div_form_sbt.appendChild(input_cut);
