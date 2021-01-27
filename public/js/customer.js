@@ -77,7 +77,7 @@
                     if((i % 2 ) != 0){
                         tr.setAttribute('class','uRow');
                     }else{
-                        tr.setAttribute('class','uRow2');
+                        tr.setAttribute('class','uRow uRow2');
                     }
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
