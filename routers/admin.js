@@ -8,7 +8,7 @@ router
 
 router 
    .route('/selectReserve')
-   .post(controller.getData);
+   .get(controller.getData);
    
 router 
    .route('/updateReserve/:id')
