@@ -74,11 +74,11 @@
                     tr.appendChild(th);
                 }else{
                     // 過去の予約の列は色をグレーにする
-                    if(index===0){if(parseInt(usersData[i-1][7].slice(0,10).replace('/','').replace('/','')) < parseInt(now)){
-                        tr.setAttribute('class','uRowOld');
-                    }else{
+                    if((index % 2 ) != 0){
                         tr.setAttribute('class','uRow');
-                    }}
+                    }else{
+                        tr.setAttribute('class','uRow2');
+                    }
                     // ２行目以降はユーザーデータを格納する要素とする
                     const td = document.createElement('td');
                     td.setAttribute('name',`${CLASSES[index]}`);
