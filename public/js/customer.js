@@ -1,7 +1,7 @@
 (()=>{
 
     const HEADERS = ['ログインID','てっちゃん氏名','　名前　','ランク','ポイント','　誕生日　','直近購入日','　パスワード　','　種別　'];
-    const CLASSES = ['row-id','row-kokid','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-reserve','row-menu'];
+    const CLASSES = ['row-id','row-sysname','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-password','row-sbt'];
 
     window.addEventListener('load',()=>{
         fetchData();
@@ -162,12 +162,10 @@
         //編集ボタンクリック時の動作
         editButton.addEventListener('click',()=>{
             //formのactionを設定　paramとしてidをつける
-            formElement.setAttribute('action',`api/admin/updateReserve/${userDataArray[0]}`);
+            formElement.setAttribute('action',`api/admin/updateCustomer/${userDataArray[0]}`);
             
             //各インプットの入力をできるようにする
             input_cut.disabled = false;
-            input_time.disabled = false;
-            input_shampoo.disabled = false;
             
             //送信ボタンの生成
             const sendButton = document.createElement('input');
@@ -179,7 +177,7 @@
             sendButton.addEventListener('click',(e)=>{
                 e.preventDefault();
                 const data = new FormData(formElement);
-                fetch(`/api/admin/updateReserve/${userDataArray[0]}`,{
+                fetch(`/api/admin/updateCustomer/${userDataArray[0]}`,{
                     method:'POST',
                     body:data,
                     creadentials:'same-origin'
@@ -188,10 +186,8 @@
                     response.json()
                     .then(data=>{
                         // テーブルを更新する
-                        document.getElementsByName("row-reserve")[selectrow].textContent = data.selecteddate + ' ' + data.selectedtime;
-                        document.getElementsByName("row-menu")[selectrow].textContent = data.menu;
-                        userDataArray[7] = data.selecteddate + ' ' + data.selectedtime;
-                        userDataArray[8] = data.menu;
+                        document.getElementsByName("row-sbt")[selectrow].textContent = data.sbt;
+                        userDataArray[8] = data.sbt;
                         document.getElementById('card-user').remove();
                         alert('更新完了！');
                     })        

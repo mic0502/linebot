@@ -6,16 +6,24 @@ router
    .route('/')
    .get(controller.getkokData);
 
+router
+   .route('/')
+   .post(controller.updateCustomer);
+   
+router
+   .route('/')
+   .post(controller.delCustomer);
+   
 router 
    .route('/selectReserve')
    .get(controller.getReserve);
    
 router 
    .route('/updateReserve/:id')
-   .post(controller.putUser);
+   .post(controller.putReserve);
    
 router 
    .route('/delReserve/:id')
-   .post(controller.delUser);
+   .post(controller.delReserve);
 
 module.exports = router;
