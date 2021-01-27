@@ -9,12 +9,14 @@
    
    <div id='usersPage'>
        <h1 class='top-font'>管理画面</h1>
-       <form v-bind:action="base_url + '/upload'" method="post" enctype="multipart/form-data">
-         <input type="file" name="upfile" accept="image/*">
-         <input type="text" name="param" v-model="param_value">
-         <input type="submit" name="submit" value="送信">
-       </form>
-      </div>
+
+       <div>
+         <input type="file" accept="image/*" v-on:change="do_change">
+         <input type="text" v-model="param_value">
+         <button v-on:click="do_upload">do_upload</button>
+     </div>
+   
+   </div>
    
    <%- include ("../partials/footer.ejs") %>
    <script src='js/reservations.js'></script>
