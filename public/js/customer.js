@@ -1,6 +1,6 @@
 (()=>{
 
-    const HEADERS = ['予約番号','顧客ID','　名前　','ランク','ポイント','　誕生日　','直近購入日','　　次回予約　　','　景品　'];
+    const HEADERS = ['ログインID','てっちゃん氏名','　名前　','ランク','ポイント','　誕生日　','直近購入日','　パスワード　','　種別　'];
     const CLASSES = ['row-id','row-kokid','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-reserve','row-menu'];
 
     window.addEventListener('load',()=>{
@@ -32,24 +32,23 @@
         // data.usersを２次元配列の形にする
         const usersData = [];
 
-        data.forEach(reservationsObj=>{
+        data.forEach(customersObj=>{
         
             // revData.starttimeを日時文字列へ変換する
-            const birthdayDate = (reservationsObj.birthday != null && reservationsObj.birthday.length > 0)?`${reservationsObj.birthday.slice(0,4)}/${reservationsObj.birthday.slice(4,6)}/${reservationsObj.birthday.slice(-2)}`:'';
-            const recentbuyDate = (reservationsObj.recent_buy != null && reservationsObj.recent_buy.length > 0)?`${reservationsObj.recent_buy.slice(0,4)}/${reservationsObj.recent_buy.slice(4,6)}/${reservationsObj.recent_buy.slice(-2)}`:'';
-            const nextReservationDate = reservationsObj.selecteddate + ' ' + reservationsObj.selectedtime;
+            const birthdayDate = (customersObj.birthday != null && customersObj.birthday.length > 0)?`${customersObj.birthday.slice(0,4)}/${customersObj.birthday.slice(4,6)}/${customersObj.birthday.slice(-2)}`:'';
+            const recentbuyDate = (customersObj.recent_buy != null && customersObj.recent_buy.length > 0)?`${customersObj.recent_buy.slice(0,4)}/${customersObj.recent_buy.slice(4,6)}/${customersObj.recent_buy.slice(-2)}`:'';
             
             // usersData配列へ配列を格納
             usersData.push([
-                reservationsObj.id,
-                reservationsObj.login_id,
-                reservationsObj.name,
-                reservationsObj.rank,
-                reservationsObj.point,
+                customersObj.login_id,
+                customersObj.sys_name,
+                customersObj.name,
+                customersObj.rank,
+                customersObj.point,
                 birthdayDate,
                 recentbuyDate,
-                nextReservationDate,
-                reservationsObj.menu
+                customersObj.login_password,
+                ''
             ]);
 
         });
