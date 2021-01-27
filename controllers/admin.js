@@ -3,15 +3,15 @@ const User = require('../models/User');
 module.exports = {
 
     getkokData: (req,res) => {
-        const pickup_reserve = 'SELECT * FROM TM_RESERVE INNER JOIN TM_KOK ON TM_RESERVE.login_id = TM_KOK.login_id ORDER BY ID';
-        User.dbQuery(pickup_reserve,'予約情報照会')
-            .then(reservations=>{
-                res.status(200).json(reservations);
+        const pickup_customer = 'SELECT * FROM TM_KOK ORDER BY login_id';
+        User.dbQuery(pickup_customer,'顧客情報照会')
+            .then(customers=>{
+                res.status(200).json(customers);
             })
             .catch(e=>console.log(e))           
    },
 
-    getData: (req,res) => {
+   getReserve: (req,res) => {
         // 予約テーブルと顧客テーブルを内部結合して結果を返す
         // const pickup_reserve = 'SELECT * FROM TM_RESERVE INNER JOIN TM_KOK ON TM_RESERVE.login_id = TM_KOK.login_id WHERE CAST(REPLACE(TM_RESERVE.selecteddate, "/", "") AS SIGNED) >= CURRENT_DATE;';
         const pickup_reserve = 'SELECT * FROM TM_RESERVE INNER JOIN TM_KOK ON TM_RESERVE.login_id = TM_KOK.login_id ORDER BY ID';
