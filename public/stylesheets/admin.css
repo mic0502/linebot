@@ -163,9 +163,10 @@ body {
    background-color:#333;
    cursor:pointer;
 }
+.uRowOld{background-color:rgb(194, 194, 194);}
+.uRow2{background-color:rgb(235, 254, 255);}
+
 .uRow:hover{
    background-color:rgb(222, 231, 97);
    cursor:pointer;
 }
-.uRowOld{background-color:rgb(194, 194, 194);}
-.uRow2{background-color:rgb(235, 254, 255);}
