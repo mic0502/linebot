@@ -7,11 +7,11 @@ router
    .get(controller.getkokData);
 
 router
-   .route('/')
+   .route('/updateCustomer/:login_id')
    .post(controller.updateCustomer);
    
 router
-   .route('/')
+   .route('/delCustomer/:login_id')
    .post(controller.delCustomer);
    
 router 

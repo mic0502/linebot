@@ -207,7 +207,7 @@
         deleteButton.value = '削除';
         deleteButton.type = 'button';
         deleteButton.addEventListener('click',()=>{
-            fetch(`/api/admin/delReserve/${userDataArray[0]}`,{method:'POST'})
+            fetch(`/api/admin/delCustomer/${userDataArray[0]}`,{method:'POST'})
             .then(response=>{response.text()
                 .then(text=>{
                     document.getElementById('card-user').remove();
