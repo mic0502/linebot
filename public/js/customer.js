@@ -116,7 +116,7 @@
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
-        divHeader.innerHTML = `[${userDataArray[1]}] ${userDataArray[2]}`;
+        divHeader.innerHTML = `[${userDataArray[0]}] ${userDataArray[2]}`;
         divCard.appendChild(divHeader);
         
         // カードボディの定義
@@ -129,53 +129,21 @@
         formElement.setAttribute('name','userInfo');
         formElement.setAttribute('method','post');
                 
-        // 日付入力フォームの生成
-        const div_form_cut = document.createElement('div');
-        div_form_cut.setAttribute('class','form-group inline-block menu-time');
-        const label_cut = document.createElement('label');
-        label_cut.setAttribute('class','label_user');
-        label_cut.innerHTML = '予約日付';
-        div_form_cut.appendChild(label_cut);
+        // 種別フォームの生成
+        const div_form_sbt = document.createElement('div');
+        div_form_sbt.setAttribute('class','form-group inline-block menu-time');
+        const label_sbt = document.createElement('label');
+        label_sbt.setAttribute('class','label_user');
+        label_sbt.innerHTML = '種別';
+        div_form_sbt.appendChild(label_sbt);
         const input_cut = document.createElement('input');
         input_cut.setAttribute('type','text');
         input_cut.setAttribute('class','form-control time-input');
         input_cut.setAttribute('name','selecteddate');
-        input_cut.value = userDataArray[7].slice(0,10);
+        input_cut.value = userDataArray[8];
         input_cut.disabled = true;
-        div_form_cut.appendChild(input_cut);
-        formElement.appendChild(div_form_cut);
-        
-        // 時間入力フォームの生成
-        const div_form_time = document.createElement('div');
-        div_form_time.setAttribute('class','form-group inline-block menu-time');
-        const label_time = document.createElement('label');
-        label_time.setAttribute('class','label_user');
-        label_time.innerHTML = '予約時間';
-        div_form_time.appendChild(label_time);
-        const input_time = document.createElement('input');
-        input_time.setAttribute('type','text');
-        input_time.setAttribute('class','form-control time-input');
-        input_time.setAttribute('name','selectedtime');
-        input_time.value = userDataArray[7].slice(-5);
-        input_time.disabled = true;
-        div_form_time.appendChild(input_time);
-        formElement.appendChild(div_form_time);
-        
-        // メニューの入力フォーム生成
-        const div_form_shampoo = document.createElement('div');
-        div_form_shampoo.setAttribute('class','form-group inline-block');
-        const label_shampoo = document.createElement('label');
-        label_shampoo.setAttribute('class','label_user');
-        label_shampoo.innerHTML = '予約景品';
-        div_form_shampoo.appendChild(label_shampoo);
-        const input_shampoo = document.createElement('input');
-        input_shampoo.setAttribute('type','text');
-        input_shampoo.setAttribute('class','form-control time-input');
-        input_shampoo.setAttribute('name','menu');
-        input_shampoo.value = userDataArray[8];
-        input_shampoo.disabled = true;
-        div_form_shampoo.appendChild(input_shampoo);
-        formElement.appendChild(div_form_shampoo);
+        div_form_sbt.appendChild(input_cut);
+        formElement.appendChild(div_form_sbt);
         
         // 子要素の親要素へのappendChild
         divBody.appendChild(formElement);
