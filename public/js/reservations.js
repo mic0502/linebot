@@ -1,4 +1,4 @@
-require('../../dotenv').config();
+require('/../../dotenv').config();
 
 canvasElem.onmousemove = function(e) {
     let ctx = canvasElem.getContext('2d');
