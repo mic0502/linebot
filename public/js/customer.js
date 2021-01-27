@@ -48,7 +48,7 @@
                 birthdayDate,
                 recentbuyDate,
                 customersObj.login_password,
-                ''
+                customersObj.sbt
             ]);
 
         });
