@@ -13,7 +13,9 @@ module.exports = {
 
     updateCustomer: (req,res) => {
     const login_id = parseInt(req.params.login_id);
+    console.log(login_id)
     const {sbt} = req.body;
+    console.log(sbt)
     const update_query = `UPDATE TM_RESERVE SET sbt='${sbt}' WHERE login_id=${login_id};`;
     User.dbQuery(update_query,'顧客情報変更')
         .then(message=>{
