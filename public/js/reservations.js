@@ -9,7 +9,7 @@
     
     const fetchData = async () => {
         try{
-            const response = await fetch('api/admin/selectReserve');
+            const response = await fetch('/api/admin/selectReserve');
 
             if(response.ok){
                 const data = await response.json();
