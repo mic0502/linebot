@@ -1,6 +1,5 @@
 (()=>{
 
-    const API_URL = '/api/admin';
     const HEADERS = ['予約番号','顧客ID','　名前　','ランク','ポイント','　誕生日　','直近購入日','　　次回予約　　','　景品　'];
     const CLASSES = ['row-id','row-kokid','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-reserve','row-menu'];
 
@@ -10,7 +9,7 @@
     
     const fetchData = async () => {
         try{
-            const response = await fetch(API_URL);
+            const response = await fetch('api/admin/selectReserve');
 
             if(response.ok){
                 const data = await response.json();
