@@ -8,10 +8,17 @@
    <%- include ("../partials/nav.ejs") %>
    
    <div id='usersPage'>
-       <h1 class='top-font'>お客さま情報管理画面</h1>
+       <h1 class='top-font'>管理画面</h1>
+
+       <div>
+         <input type="file" accept="image/*" v-on:change="do_change">
+         <input type="text" v-model="param_value">
+         <button v-on:click="do_upload">do_upload</button>
+     </div>
+   
    </div>
    
    <%- include ("../partials/footer.ejs") %>
-   <script src='js/customer.js'></script>
+   <script src='js/reservations.js'></script>
 </body>
 </html>
