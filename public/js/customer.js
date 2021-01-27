@@ -74,7 +74,7 @@
                     tr.appendChild(th);
                 }else{
                     // 過去の予約の列は色をグレーにする
-                    if((index % 2 ) != 0){
+                    if((i % 2 ) != 0){
                         tr.setAttribute('class','uRow');
                     }else{
                         tr.setAttribute('class','uRow2');
