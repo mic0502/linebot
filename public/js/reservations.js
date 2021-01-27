@@ -1,7 +1,3 @@
-const express = require('express');
-const app = express();
-require('/../../dotenv').config();
-
 canvasElem.onmousemove = function(e) {
     let ctx = canvasElem.getContext('2d');
     ctx.lineTo(e.clientX, e.clientY);
@@ -12,7 +8,7 @@ canvasElem.onmousemove = function(e) {
     fetchData();
   }
 
-  const AUTH = `Bearer ${process.env.ENV_CHANNEL_ACCESS_TOKEN}`;
+  const AUTH = `Bearer ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU=`;
   const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
   const fetchData = async () => {
       try{
