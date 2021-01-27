@@ -89,8 +89,3 @@ canvasElem.onmousemove = function(e) {
           alert('失敗です');
       }
   }
-
-
-
-
-
