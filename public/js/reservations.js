@@ -118,7 +118,7 @@
         // カードヘッダーの定義
         const divHeader = document.createElement('div');
         divHeader.setAttribute('class','card-header');
-        divHeader.innerHTML = `[${userDataArray[1]}] ${userDataArray[2]}`;
+        divHeader.innerHTML = `[${userDataArray[0]}] ${userDataArray[2]}`;
         divCard.appendChild(divHeader);
         
         // カードボディの定義
