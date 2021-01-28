@@ -1,6 +1,4 @@
-const request = require('request-promise');
 const User = require('../models/User');
-const line = require('@line/bot-sdk');
 
 module.exports = {
     // メニュー選択
