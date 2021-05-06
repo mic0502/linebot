@@ -1,5 +1,5 @@
 # .bash_profile
 
-export channelAccessToken="ahd1DH4XRUUjgL11hcQUMQxPXS4Xcr8UU1KOAzKIokK6LVe1I/ERSJ7fh8Epp8vLPrH+nB3oz52G0X3uBZpSvlxU74lkJJgY3oGQ4lc8ApLARAKN/7KOeIFNp1PdjXJ5XsNbxJLNDuQxB3YunWUJBQdB04t89/1O/w1cDnyilFU="
-export channelSecret="6ac0a53fabcf1bbb837d757420eebe1b"
-
+if [ -f ~/.bashrc ] ; then
+. ~/.bashrc
+fi
