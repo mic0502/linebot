@@ -17,7 +17,7 @@ window.onload = () => {
     formElement.setAttribute('name','user_info');
     formElement.setAttribute('method','post');
     formElement.setAttribute('onsubmit','return cancelsubmit()');
-    formElement.setAttribute('action','/api/users/confirm');　//POST先のアドレス
+    formElement.setAttribute('action','./api/users/confirm');　//POST先のアドレス
 
     // div_form0はID入力に関するlabel,input要素から構成
     const div_form0 = document.createElement('div');
@@ -106,16 +106,16 @@ window.onload = () => {
         liff
         .init({liffId:myLiffId})
         .then(()=>{
+            liff.sendMessages([{'type': 'text','text': '連携解除'}]);
             const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
             (async () => {
-                liff.sendMessages([{'type': 'text','text': '連携解除'}]);
                 await sleep(500);
                 liff.closeWindow();
-                })();
+            })();
 
         })
 
-        // fetch(`/api/link/release?line_uid=${lineId}`)
+        // fetch(`./api/link/release?line_uid=${lineId}`)
         // .then(response => response.text())
         // .then(text => {
         //     alert(text);

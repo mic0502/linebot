@@ -1,7 +1,7 @@
 (()=>{
 
-    const HEADERS = ['ログインID','てっちゃん氏名','　名前　','ランク','ポイント','　誕生日　','直近購入日','　パスワード　','　種別　'];
-    const CLASSES = ['row-id','row-sysname','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-password','row-sbt'];
+    const HEADERS = ['ログインID','名前(システム氏名)','ランク','ポイント','　誕生日　','直近購入日','　パスワード　','担当店舗','　種別　'];
+    const CLASSES = ['row-id','row-name','row-rank','row-point','row-birthday','row-recentbuy','row-password','row-tts','row-sbt'];
 
     window.addEventListener('load',()=>{
         fetchData();
@@ -41,23 +41,21 @@
             // usersData配列へ配列を格納
             usersData.push([
                 customersObj.login_id,
-                customersObj.sys_name,
-                customersObj.name,
+                `${customersObj.name}(${customersObj.sys_name})`,
                 customersObj.rank,
                 customersObj.point,
                 birthdayDate,
                 recentbuyDate,
                 customersObj.login_password,
+                 `${customersObj.tts.indexOf('2') !=-1 ? 'ポ' : ''}${customersObj.tts.indexOf('3') !=-1 ? 'さ' : ''}`,
                 customersObj.sbt
             ]);
 
         });
         
+
         // 次回予約日を計算し、usersDataへpushする
         const l = usersData.length+1;  //表題の分＋１している        
-        const aaa = `00${(new Date().getMonth() + 1)}`;
-        const bbb = `00${new Date().getDate()}`;
-        const now = `${new Date().getFullYear()}${aaa.slice(-2)}${bbb.slice(-2)}`;
 
         // テーブル要素の生成
         const table = document.createElement('table');

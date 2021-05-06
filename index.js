@@ -68,7 +68,6 @@ const lineBot = (req,res) => {
 
  const accountLink = (ev) => {
   // リッチメニュー 変更
-  console.log(process.env.ENV_RICHMENUID);
   client.linkRichMenuToUser(ev.source.userId, process.env.ENV_RICHMENUID)
   return client.replyMessage(ev.replyToken,{
       "type":"text",

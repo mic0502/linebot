@@ -14,6 +14,10 @@ router
    .route('/delCustomer/:login_id')
    .post(controller.delCustomer);
    
+router
+   .route('/menuChange/:menu_flg')
+   .post(controller.menuChange);
+
 router 
    .route('/selectReserve')
    .get(controller.getReserve);
@@ -25,5 +29,9 @@ router
 router 
    .route('/delReserve/:id')
    .post(controller.delReserve);
+
+router 
+   .route('/selectFair')
+   .get(controller.getfairData);
 
 module.exports = router;

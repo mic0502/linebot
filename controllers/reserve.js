@@ -16,7 +16,7 @@ module.exports = {
                   }else{
                     resolve({
                       "type":"flex",
-                      "altText":"menuSelect",
+                      "altText":"選択してください。",
                       "contents":
                       {
                         "type": "bubble",
@@ -88,7 +88,7 @@ module.exports = {
     askDate: (orderedMenu) => {
         return {
             "type":"flex",
-            "altText":"予約日選択",
+            "altText":"予約日を選択してください。",
             "contents":
             {
                 "type": "bubble",
@@ -126,7 +126,7 @@ module.exports = {
     askTime: (orderedMenu,selectedDate) => {
         return {
             "type":"flex",
-            "altText":"予約日選択",
+            "altText":"予約時間を選択してください。",
             "contents":
             {
                 "type": "bubble",
@@ -307,7 +307,7 @@ module.exports = {
         const splitDate = date.split('/');
         return {
           "type":"flex",
-          "altText":"menuSelect",
+          "altText":"確認してください。",
           "contents":
           {
             "type": "bubble",
@@ -393,7 +393,7 @@ module.exports = {
                     }else{
                       resolve({
                         "type":"flex",
-                        "altText": "cancel message",
+                        "altText": "選択してください。",
                         "contents":
                         {
                           "type": "bubble",

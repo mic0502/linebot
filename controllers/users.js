@@ -50,7 +50,6 @@ module.exports = {
             const {id,password,line_uid,linkToken} = req.body;
             // IDとパスワードから検索
             const select_query = `SELECT * FROM TM_KOK WHERE login_id='${id}' and login_password='${password}';`
-            console.log(`テスト${select_query}`)
             User.dbQuery(select_query,'連携１番目')
                 .then(checkRes=>{
                     if (checkRes.length > 0 ){
@@ -66,7 +65,13 @@ module.exports = {
                             const nonce = buf.toString('base64');
     
                             // TM_KOKテーブルへの挿入
-                            const update_query = `UPDATE TM_KOK SET line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
+                            // Aランクは種別を2にする
+                            let update_query;
+                            if(checkRes[0].rank == 'A'){
+                                update_query = `UPDATE TM_KOK SET sbt = '2', line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
+                            }else{
+                                update_query = `UPDATE TM_KOK SET sbt = '1', line_id = '${line_uid}', nonce = '${nonce}' WHERE login_id='${id}';`
+                            }
                             User.dbQuery(update_query,'連携２番目')
                                 .then(releaseRes=>{
                                     res.status(200).send(`accountLink?linkToken=${linkToken}&nonce=${nonce}`);
@@ -126,9 +131,9 @@ module.exports = {
                 .then(results=>{
                     // 登録済みの顧客かチェックしてSQL文生成
                     if(results.length > 0){
-                        svQuery = `UPDATE TM_KOK SET sys_name = '${texts[2]}', rank = '${texts[3]}', point = ${texts[4]}, birthday = '${texts[5]}', recent_buy = '${texts[6]}', login_password = '${texts[5]}' WHERE login_id='${texts[1]}';`;
+                        svQuery = `UPDATE TM_KOK SET sys_name = '${texts[2]}', rank = '${texts[3]}', point = ${texts[4]}, birthday = '${texts[5]}', recent_buy = '${texts[6]}', tts = '${texts[7]}' WHERE login_id='${texts[1]}';`;
                     }else{
-                        svQuery = `INSERT INTO TM_KOK (login_id,sys_name,name,rank,point,birthday,recent_buy,login_password) VALUES('${texts[1]}','${texts[2]}','${texts[2]}','${texts[3]}',${texts[4]},'${texts[5]}','${texts[6]}','${texts[5]}');`
+                        svQuery = `INSERT INTO TM_KOK (login_id,sys_name,name,rank,point,birthday,recent_buy,tts,login_password) VALUES('${texts[1]}','${texts[2]}','${texts[2]}','${texts[3]}',${texts[4]},'${texts[5]}','${texts[6]}','${texts[7]}','${texts[5]}');`
                     }
                     User.dbQuery(svQuery,'サーバー更新処理２')
                 })

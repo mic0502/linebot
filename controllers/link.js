@@ -40,7 +40,7 @@ module.exports = {
     confirmation: () => {
         return {
           "type":"flex",
-          "altText":"menuSelect",
+          "altText":"選択してください。",
           "contents":
           {
             "type": "bubble",
@@ -85,7 +85,7 @@ module.exports = {
     releaseLink: (line_uid) => {
         return new Promise((resolve,reject)=>{
         // 連携解除処理開始
-        const update_query = `UPDATE TM_KOK SET line_id = '', nonce = '' WHERE line_id='${line_uid}';`
+        const update_query = `UPDATE TM_KOK SET sbt = '', line_id = '', nonce = '' WHERE line_id='${line_uid}';`
         User.dbQuery(update_query,'連携解除')
           .then(res=>{
             // リッチメニュー デフォルトに解除

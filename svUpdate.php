@@ -26,7 +26,7 @@ while(false !== ($fn = readdir($dh))){
         if($stmt->fetchColumn() > 0){
             $sql = "UPDATE TM_KOK SET sys_name = '" . trim($array[2]) . "', rank = '" . trim($array[3]) . "', point = " . trim($array[4]) . ", birthday = '" . trim($array[5]) . "', recent_buy = '" . trim($array[6]) . "' WHERE login_id='" . trim($array[1]) . "'";
         }else{
-            $sql = "INSERT INTO TM_KOK (login_id,sys_name,rank,point,birthday,recent_buy,login_password) VALUES('" . trim($array[1]) . "','" . trim($array[2]) . "','" . trim($array[3]) . "'," . trim($array[4]) . ",'" . trim($array[5]) . "','" . trim($array[6]) . "','" . trim($array[5]) . "')";
+            $sql = "INSERT INTO TM_KOK (login_id,sys_name,name,rank,point,birthday,recent_buy,login_password) VALUES ('" . trim($array[1]) . "','" . trim($array[2]) . "','" . trim($array[2]) . "','" . trim($array[3]) . "'," . trim($array[4]) . ",'" . trim($array[5]) . "','" . trim($array[6]) . "','" . trim($array[5]) . "')";
         }
         $stmt = $dbh->query($sql);
         unlink($dir . $fn); //ファイルを削除する

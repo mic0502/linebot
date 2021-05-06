@@ -22,6 +22,9 @@ router
     })
     .get('/reservations',(req,res)=>{
         res.render('pages/reservations');
-    });
+    })
+    .get('/fair',(req,res)=>{
+        res.render('pages/fair');
+    })
 
 module.exports = router;

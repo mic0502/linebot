@@ -1,10 +1,9 @@
 window.onload = () => {
 
-    // const myLiffId = '1654951421-nwJ0jYeb';  //本番
-    const myLiffId = '1654951421-JM6vmP1n';  //テスト
+    const myLiffId = '1654951421-nwJ0jYeb';  //本番
+    // const myLiffId = '1654951421-JM6vmP1n';  //テスト
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
-
 
     liff
         .init({
@@ -15,7 +14,6 @@ window.onload = () => {
                 .then(profile=>{
                     const line_uid = profile.userId;
                     const nameElement = document.getElementById('line_name');
-                    
                     fetch(`api/link/?line_uid=${line_uid}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
@@ -28,6 +26,7 @@ window.onload = () => {
                                     setting_icn.href = `/update?name=${parsedBody.name}&id=${parsedBody.login_id}&password=${parsedBody.login_password}&lineuid=${line_uid}&liffid=${myLiffId}`;
                                     var setting_img = document.createElement('img');
                                     setting_img.src = '../img/setting.png';
+                           
                                     setting_icn.appendChild(setting_img)
                                     document.getElementById('setting').appendChild(setting_icn);
 
@@ -160,14 +159,15 @@ window.onload = () => {
                                             .then(response=>{
                                                 if(response.ok){response.text()
                                                     .then(text=>{
+                                                        const url = `https://access.line.me/dialog/bot/${text}`;
+                                                        // document.location.href = url;
+                                                        liff.openWindow({
+                                                            url: url,
+                                                            external: false
+                                                        });
+
                                                         const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
                                                         (async () => {                                                            
-                                                            const url = `https://access.line.me/dialog/bot/${text}`;
-                                                            // document.location.href = url;
-                                                            liff.openWindow({
-                                                                url: url,
-                                                                external: false
-                                                            });
                                                             await sleep(3000);liff.closeWindow();
                                                             await sleep(300);liff.closeWindow();
                                                         })();

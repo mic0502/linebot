@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "linebot-login",
   "engines": {
-    "node": "14.x",
-    "npm": "6.x"
+    "node": "16.x",
+    "npm": "7.x"
   },
   "main": "index.js",
   "scripts": {
