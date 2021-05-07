@@ -11,7 +11,8 @@ module.exports = {
             users.postSvQuery();
         }
 
-        const line_uid = req.query.line_uid;       
+        const line_uid = req.query.line_uid;    
+        console.log('line id', line_uid);   
         // ラインIDから登録済みかチェック
         const select_query = `SELECT * FROM TM_KOK WHERE line_id='${line_uid}';`
         User.dbQuery(select_query,'最初のチェック')
