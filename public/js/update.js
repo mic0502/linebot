@@ -114,12 +114,6 @@ window.onload = () => {
             })();
 
         })
-
-        // fetch(`./api/link/release?line_uid=${lineId}`)
-        // .then(response => response.text())
-        // .then(text => {
-        //     alert(text);
-        // });
     });
 
     // フォーム要素へform0〜form1と変更確認ボタンを格納

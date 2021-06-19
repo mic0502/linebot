@@ -25,7 +25,7 @@ window.onload = () => {
     const input_form0 = document.createElement('input');
     input_form0.setAttribute('type','text');
     input_form0.setAttribute('id','name-input');
-    input_form0.setAttribute('class','name-input');
+    input_form0.setAttribute('class','text_input');
     input_form0.setAttribute('name','name');
     div_form0.appendChild(input_form0);
 
@@ -40,7 +40,7 @@ window.onload = () => {
     const input_form1 = document.createElement('input');
     input_form1.setAttribute('type','text');
     input_form1.setAttribute('id','id-input');
-    input_form1.setAttribute('class','id-input');
+    input_form1.setAttribute('class','text_input');
     input_form1.setAttribute('type','number');
     input_form1.setAttribute('pattern','[0-9]*');
     input_form1.setAttribute('name','id');
@@ -57,7 +57,7 @@ window.onload = () => {
     const input_form2 = document.createElement('input');
     input_form2.setAttribute('type','text');
     input_form2.setAttribute('id','password-input');
-    input_form2.setAttribute('class','password-input');
+    input_form2.setAttribute('class','text_input');
     input_form2.setAttribute('type','number');
     input_form2.setAttribute('pattern','[0-9]*');
     input_form2.setAttribute('name','password');

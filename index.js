@@ -1,21 +1,23 @@
 const express = require('express');
 const app = express();
 const line = require('@line/bot-sdk');
-const PORT = process.env.PORT || 5000
 const path = require('path');
 const router = require('./routers/index');
 const usersRouter = require('./routers/users');
-const linkRouter = require('./routers/link');
+const shnRouter = require('./routers/shn');
 const apiRouter = require('./routers/admin');
 const multipart = require('connect-multiparty');
 const reserve = require('./controllers/reserve');
-const linkapp = require('./controllers/link');
+const users = require('./controllers/users');
+const shn = require('./controllers/shn');
 require('dotenv').config();
+const PORT = process.env.PORT
 const config = {
    channelAccessToken:process.env.ENV_CHANNEL_ACCESS_TOKEN,
    channelSecret:process.env.ENV_CHANNEL_SECRET
 };
 const client = new line.Client(config);
+let photoMessageId;
 
 app
    .use(express.static(path.join(__dirname, 'public')))
@@ -27,7 +29,7 @@ app
    .use(express.json())
    .use(express.urlencoded({extended:true}))
    .use('/api/users',usersRouter)
-   .use('/api/link',linkRouter)
+   .use('/api/shn',shnRouter)
    .use('/api/admin',apiRouter)
    .listen(PORT,()=>console.log(`Listening on ${PORT}`));
 
@@ -35,6 +37,7 @@ const lineBot = (req,res) => {
     res.status(200).end();
     const events = req.body.events;
     const promises = [];
+
     for(let i=0;i<events.length;i++){
         const ev = events[i];
         switch(ev.type){
@@ -42,31 +45,44 @@ const lineBot = (req,res) => {
                 promises.push(greeting_follow(ev));
                 break;
             case 'message':
+                const msg = ev.message.text;
+                if(ev.message.type=='image'){
+                    promises.push(handlePostbackShn(ev));   //商品入庫処理
+                    break;
+                }else if(msg.indexOf("商品No：'") === 0){
+                    return client.replyMessage(ev.replyToken,{"type":"text","text":"入庫完了！！"});
+                };
                 promises.push(handleMessageEvent(ev));
                 break;
             case 'accountLink':
                 promises.push(accountLink(ev));
                 break;
             case 'postback':
-                promises.push(handlePostbackEvent(ev));
-                break;
+                const splitData = ev.postback.data.split('&');
+                if((new Date().getTime() - splitData[0])>60000){
+                    return client.replyMessage(ev.replyToken,{"type":"text","text":'一定時間経過しました。最初からやり直して下さい。'});
+                }else if(splitData[1] === 'shn'){
+                    promises.push(handlePostbackShn(ev));   //商品入庫処理
+                }else{
+                    promises.push(handlePostbackEvent(ev)); //イベント予約
+                };
         }
     }
     Promise
         .all(promises)
-        .then(console.log('all promises passed'))
-        .catch(e=>console.error(e.stack));
+        .then(console.log('全ての処理完了！'))
+        .catch(e=>console.error('プロミスエラー' + e.stack));
 }
 
- const greeting_follow = async (ev) => {
+const greeting_follow = async (ev) => {
     const profile = await client.getProfile(ev.source.userId);
     return client.replyMessage(ev.replyToken,{
         "type":"text",
         "text":`${profile.displayName}さん、フォローありがとうございます\uDBC0\uDC04`
     });
- }
+}
 
- const accountLink = (ev) => {
+const accountLink = (ev) => {
   // リッチメニュー 変更
   client.linkRichMenuToUser(ev.source.userId, process.env.ENV_RICHMENUID)
   return client.replyMessage(ev.replyToken,{
@@ -74,7 +90,7 @@ const lineBot = (req,res) => {
       "text":"連携完了！"
   });
 }
-
+  
 const handleMessageEvent = async (ev) => {
     const text = (ev.message.type === 'text') ? ev.message.text : '';
     let pushText;
@@ -85,7 +101,7 @@ const handleMessageEvent = async (ev) => {
     }else if(text === '予約キャンセル'){
         pushText = await reserve.checkNextReservation(ev.source.userId,1);
     }else if(text === '連携解除'){
-        pushText = await linkapp.confirmation();
+        pushText = await users.confirmation();
     }else{
         pushText = {"type":"text","text":"メッセージありがとうございます。\n\n申し訳ございません。こちらから個別のご返信はできません。\n\nお問い合わせは下記からお願いします。\n\n■お問い合わせ\nhttps://jewelry-kajita.com/contact/"};
     }
@@ -93,12 +109,9 @@ const handleMessageEvent = async (ev) => {
 }
 
 const handlePostbackEvent = async (ev) => {
-  const data = ev.postback.data;
-  const splitData = data.split('&');
+  const splitData = ev.postback.data.split('&');
   let pushText;
-  if((new Date().getTime() - splitData[0])>180000){
-      pushText = {"type":"text","text":'一定時間経過しました。最初からやり直して下さい。'};
-  }else if(splitData[1] === 'menu'){
+  if(splitData[1] === 'menu'){
       const orderedMenu = splitData[2];
       pushText = reserve.askDate(orderedMenu);
   }else if(splitData[1] === 'date'){
@@ -126,12 +139,28 @@ const handlePostbackEvent = async (ev) => {
   }else if(splitData[1] === 'delete'){
     pushText = await reserve.deleteReserve(parseInt(splitData[2]));
   }else if(splitData[1] === 'unlinkyes'){
-    pushText = await linkapp.releaseLink(ev.source.userId);
+    pushText = await users.releaseLink(ev.source.userId);
   }else if(splitData[1] === 'unlinkno'){
     pushText = {"type":"text","text":'ライン連携解除を中止しました。'};
   }
-  return client.replyMessage(ev.replyToken,pushText);
-
-
-  
+  return client.replyMessage(ev.replyToken,pushText); 
 }
+
+const handlePostbackShn = async (ev) => {
+    let pushText;
+    if(ev.type=='message'){
+        await shn.downloadData();           //商品の素材形状をダウンロード
+        pushText = await shn.selectMetal(ev.source.userId);
+        photoMessageId = ev.message.id;
+    }else{
+        const splitData = ev.postback.data.split('&');
+        if(splitData[2] === 'metal'){
+            pushText = shn.selectStone(splitData[3]);
+        }else if(splitData[2] === 'stone'){
+            pushText = shn.selectType(splitData[3],splitData[4],photoMessageId);
+            shn.savePhoto(photoMessageId);       //画像が送られてきた場合
+        }
+    }
+    return client.replyMessage(ev.replyToken,pushText);    
+}
+  

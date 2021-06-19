@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>商品詳細</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/shn.css" />
+
+</head>
+
+<body>
+    <div id='shnPhoto'></div>
+    <form method="POST" id="updateForm">
+        <table>
+            <tr><th>商品No</th><td id='input_barcode' style='font-size:130%;padding-left:20px;'></td></tr>
+            <tr><th>入庫日</th><td id='input_purchaseDate' style='font-size:130%;padding-left:20px;'></td></td></tr>
+            <tr><th>商品名</th><td id='input_name' style='font-size:130%;padding-left:20px;'></td></tr>
+            <tr><th>備考</th><td><input type='text' id='input_bikou' name='bikou' oninput="inputChange()"></td></tr>
+            <tr><th>売価</th><td><input type='text' id='input_sellPrice' name='sellPrice' style='width:50%' oninput="inputChange()"><span>(税抜)</span></td></tr>
+        </table>
+        <span id="label_error">　</span>
+        <div>
+            <input class="shnButton" id="btUpdate" type="button" value="更新" name="btUpdate">
+            <input class="shnButton" id="btPrint" type="button" value="タグ" name="btPrint">
+            <!-- <input class="shnButton" id="btDelete" type="button" value="削除" name="btDelete"> -->
+        </div>
+    </form>      
+    <script>
+        function inputChange(){
+            // テキストが変更されたら印刷ボタンを消す
+            document.getElementById("btPrint").style.display ="none";
+        }        
+    </script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src='js/item.js'></script>
+
+</body>
+</html>

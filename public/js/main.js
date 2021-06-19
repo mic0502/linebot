@@ -1,6 +1,7 @@
 window.onload = () => {
 
-    const myLiffId = '1654951421-nwJ0jYeb';  //本番
+    // const myLiffId = '1654951421-nwJ0jYeb';
+    const myLiffId = '1655847665-8zReQW4W';
     const divLogin = document.getElementById('login_area');
     const param = new URL(location).search;
 
@@ -13,7 +14,7 @@ window.onload = () => {
                 .then(profile=>{
                     const line_uid = profile.userId;
                     const nameElement = document.getElementById('line_name');
-                    fetch(`api/link/?line_uid=${line_uid}`,{method:'GET'})
+                    fetch(`api/users/link/?line_uid=${line_uid}`,{method:'GET'})
                         .then(response=>{response.text()
                             .then(text=>{
                                 const parsedBody = JSON.parse(text);
@@ -55,9 +56,7 @@ window.onload = () => {
                                     document.getElementById('customer_rankup').appendChild(rankup_img);
 
                                     // バーコード表示
-                                    var barcodeElement = document.getElementById('barcode')
-                                    barcodeElement.setAttribute('jsbarcode-value',parsedBody.login_id);
-                                    JsBarcode("#barcode").init();                                
+                                    $('#barcode').qrcode({width: 150, height: 150, text: `https://liff.line.me/1654951421-mWwgz01J?${parsedBody.login_id}`});
                                                                                                             
                                 }else{
                                     if(param.indexOf('&')>0){
@@ -105,14 +104,14 @@ window.onload = () => {
                                         // div_form1はログインIDに関するlabel要素とinput要素で構成
                                         const div_form1 = document.createElement('div');
                                         const label_form1 = document.createElement('label');
-                                        label_form1.setAttribute('class','label_id');
+                                        label_form1.setAttribute('class','label_name');
                                         label_form1.textContent = 'ログインID';
                                         div_form1.appendChild(label_form1);
             
                                         const input_form1 = document.createElement('input');
                                         input_form1.setAttribute('type','text');
                                         input_form1.setAttribute('id','id-input');
-                                        input_form1.setAttribute('class','id-input');
+                                        input_form1.setAttribute('class','text_input');
                                         input_form1.setAttribute('type','number');
                                         input_form1.setAttribute('pattern','[0-9]*');
                                         input_form1.setAttribute('name','id');
@@ -121,13 +120,13 @@ window.onload = () => {
                                         // div_form2はパスワードに関するlabel要素とinput要素で構成
                                         const div_form2 = document.createElement('div');
                                         const label_form2 = document.createElement('label');
-                                        label_form2.setAttribute('class','label_password');
+                                        label_form2.setAttribute('class','label_name');
                                         label_form2.textContent = 'パスワード';
                                         div_form2.appendChild(label_form2);
             
                                         const input_form2 = document.createElement('input');
                                         input_form2.setAttribute('type','password');
-                                        input_form2.setAttribute('class','password-input');
+                                        input_form2.setAttribute('class','text_input');
                                         input_form2.setAttribute('type','number');
                                         input_form2.setAttribute('pattern','[0-9]*');
                                         input_form2.setAttribute('name','password');
@@ -166,7 +165,7 @@ window.onload = () => {
                                                         });
 
                                                         const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
-                                                        (async () => {                                                            
+                                                        (async () => {
                                                             await sleep(3000);liff.closeWindow();
                                                             await sleep(300);liff.closeWindow();
                                                         })();

@@ -1,0 +1,9 @@
+html,body{
+    width:100%;
+}
+/* #tagPrint{
+    display: list-item;
+    list-style-position: inside;
+    list-style-image: url(./img/priceBack.png);
+} */
+#btnPrint{display: none;}

@@ -1,0 +1,42 @@
+<html>
+<header>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <style>
+        body{margin:0;}
+        #qrcode{width:35px;}
+        #qrcode canvas{width:100%;}        
+    </style>
+
+</header>
+<body>
+    <div style="width:240px;height:48px;border:0.5px solid #CCC;"><img src="./img/priceBack.png" style="width:100%;"/></div>
+    <div id="qrcode" style="left:126px;top:4px;position:absolute;"></div>
+    <div id="barcode" style="left:210px;top:35px;position:absolute;font-size:30%;"></div>
+    <div id="name" style="left:165px;top:5px;position:absolute;font-size:60%;"></div>
+    <div id="bikou" style="left:165px;top:20px;position:absolute;font-size:60%;"></div>
+    <div id="sellPrice" style="font-size:80%;left:38px;top:28px;position:absolute;"></div>
+
+    <input type="button" value="印刷" id="btnPrint" style="margin:5%;width:100px;height:50px">
+
+    <script>document.getElementById('btnPrint').addEventListener('click', function(){window.print();});</script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        const param = decodeURI(new URL(location).search);
+        const splitParam = param.split('&');
+        const inputBarcode = splitParam[0].slice(1);
+        const shnName = splitParam[1];
+        const bikou = splitParam[2];
+        const sellPrice = splitParam[3];
+
+        document.getElementById('barcode').innerText = '[' + inputBarcode + ']';
+        document.getElementById('name').innerText = shnName;
+        document.getElementById('bikou').innerText = bikou;
+        document.getElementById('sellPrice').innerText = '¥' + Number(sellPrice).toLocaleString();
+    </script>
+    <script>$('#qrcode').qrcode({width: 200, height: 200, text: `https://xs311188.xsrv.jp/item?${inputBarcode}`});</script>
+
+</body>
+</html>

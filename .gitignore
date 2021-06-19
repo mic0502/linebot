@@ -1,3 +1,4 @@
-.env
-.env_本番
+.env/
+.git/
+.htaccess/
 node_modules/
