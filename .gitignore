@@ -1,4 +1,5 @@
 .env/
 .git/
 .htaccess/
+.gitignore
 node_modules/
